@@ -8,6 +8,7 @@ import react.dom.code
 import react.dom.div
 import react.dom.h2
 import react.dom.p
+import test.components.ButtonsDemo
 
 class App : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
@@ -20,6 +21,10 @@ class App : RComponent<RProps, RState>() {
             +"To get started, edit "
             code { +"app/App.kt" }
             +" and save to reload."
+        }
+
+        div {
+            child(ButtonsDemo::class) { }
         }
     }
 }
