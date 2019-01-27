@@ -9,13 +9,18 @@ import components.buttonbase.ButtonBaseElementBuilder
 import kotlinext.js.jsObject
 import react.RComponent
 import react.RState
+import react.ReactElement
+import styled.Styled
 
 class ButtonElementBuilder internal constructor(
+    var caption: String = "",
     override var type: RComponent<ButtonProps, RState>,
     props: ButtonProps = jsObject {  }
 ) : MaterialElementBuilder<ButtonProps>(props),
     ButtonAttributes by AttributesImpl(props),
     ButtonBaseAttributes by ButtonBaseElementBuilder.AttributesImpl(props) {
+
+    override fun create(): ReactElement = Styled.createElement(type, css, attrs, childList.apply { add(caption) })
 
     internal class AttributesImpl(private val props: ButtonProps) : ButtonAttributes {
         override var color: ButtonColor
