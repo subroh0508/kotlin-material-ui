@@ -44,6 +44,11 @@ kotlinFrontend {
         devDependency("babel-core")
         devDependency("karma")
     }
+
+    webpackBundle {
+        bundleName = 'main'
+        contentPath = file('src/resources')
+    }
 }
 
 compileKotlin2Js {
