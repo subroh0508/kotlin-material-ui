@@ -9,13 +9,13 @@ import react.RProps
 import react.RRef
 import react.RState
 
-class ButtanBaseElementBuilder internal constructor(
+class ButtonBaseElementBuilder internal constructor(
     override var type: RComponent<ButtonBaseProps, RState>,
     props: ButtonBaseProps = jsObject {  }
 ) : MaterialElementBuilder<ButtonBaseProps>(props),
     ButtonBaseAttributes by AttributesImpl(props) {
 
-    private class AttributesImpl(private val props: ButtonBaseProps) : ButtonBaseAttributes {
+    internal class AttributesImpl(private val props: ButtonBaseProps) : ButtonBaseAttributes {
         override var className: String?
             get() = props.className
             set(value) { props.className = value }
