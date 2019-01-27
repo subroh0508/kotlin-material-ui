@@ -1,0 +1,73 @@
+group 'subroh0508.net.kotlinmaterialui'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.44"
+    }
+}
+
+apply plugin: 'kotlin2js'
+apply plugin: 'kotlin-dce-js'
+apply plugin: 'org.jetbrains.kotlin.frontend'
+
+dependencies {
+    project(':core')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-js:${kotlinVersion}"
+    implementation "org.jetbrains.kotlinx:kotlinx-html-js:${kotlinxHtmlVersion}"
+    implementation "org.jetbrains:kotlin-react:${kotlinReactVersion}"
+    implementation "org.jetbrains:kotlin-react-dom:${kotlinReactVersion}"
+    implementation "org.jetbrains:kotlin-styled:${kotlinJsWrappersVersion}"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-js:${kotlinVersion}"
+}
+
+kotlinFrontend {
+    // downloadNodeJsVersion = "11.0.0"
+
+    npm {
+        replaceVersion("kotlinx-html-js", "1.1.0")
+        replaceVersion("kotlinx-html-shared", "1.1.0")
+        replaceVersion("kotlin-js-library", "1.1.0")
+
+        dependency("react")
+        dependency("react-dom")
+        dependency("react-router")
+        dependency("jquery")
+        dependency("react-markdown")
+        dependency("styled-components", "3.4.10")
+        dependency("inline-style-prefixer")
+
+        devDependency("css-loader")
+        devDependency("style-loader")
+        devDependency("babel-loader")
+        devDependency("babel-core")
+        devDependency("karma")
+    }
+}
+
+compileKotlin2Js {
+    kotlinOptions.metaInfo = true
+    kotlinOptions.outputFile = "$project.buildDir.path/js/${project.name}.js"
+    kotlinOptions.sourceMap = true
+    kotlinOptions.moduleKind = 'commonjs'
+    kotlinOptions.main = "call"
+}
+
+compileTestKotlin2Js {
+    kotlinOptions.metaInfo = true
+    kotlinOptions.outputFile = "$project.buildDir.path/js-tests/${project.name}-tests.js"
+    kotlinOptions.sourceMap = true
+    kotlinOptions.moduleKind = 'commonjs'
+//    kotlinOptions.moduleName = project.name + "-test"
+    kotlinOptions.main = "call"
+}
+
+sourceSets {
+    main.kotlin.srcDirs "src/main/kotlin"
+    main.resources.srcDirs "src/resources"
+    main.output.resourcesDir "build/js/resources"
+
+    test.kotlin.srcDirs "src/test/kotlin"
+    test.resources.srcDirs "src/resources"
+}
