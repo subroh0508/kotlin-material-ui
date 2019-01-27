@@ -13,7 +13,7 @@ apply plugin: 'kotlin-dce-js'
 apply plugin: 'org.jetbrains.kotlin.frontend'
 
 dependencies {
-    project(':core')
+    implementation project(':core')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-js:${kotlinVersion}"
     implementation "org.jetbrains.kotlinx:kotlinx-html-js:${kotlinxHtmlVersion}"
     implementation "org.jetbrains:kotlin-react:${kotlinReactVersion}"
@@ -37,6 +37,7 @@ kotlinFrontend {
         dependency("react-markdown")
         dependency("styled-components", "3.4.10")
         dependency("inline-style-prefixer")
+        dependency("@material-ui/core")
 
         devDependency("css-loader")
         devDependency("style-loader")

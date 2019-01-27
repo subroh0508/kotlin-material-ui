@@ -10,8 +10,8 @@ import styled.StyledProps
 
 abstract class MaterialElementBuilder<P: StyledProps>(
     override val type: Any,
-    attr: P = jsObject {  }
-) : RElementBuilder<P>(attr),
+    override var attrs: P = jsObject { }
+) : RElementBuilder<P>(attrs),
     StyledBuilder<P>
 {
     override val css: CSSBuilder = CSSBuilder()
