@@ -36,6 +36,7 @@ kotlinFrontend {
         dependency("react-markdown")
         dependency("styled-components", "3.4.10")
         dependency("inline-style-prefixer")
+        dependency("@material-ui/core")
 
         devDependency("css-loader")
         devDependency("style-loader")
