@@ -6,6 +6,8 @@ import react.RState
 
 @JsModule("@material-ui/core/ButtonBase")
 private external val buttonBaseModule: dynamic
+
+@Suppress("UnsafeCastFromDynamic")
 private val buttonBaseComponent: RComponent<ButtonBaseProps, RState> = buttonBaseModule.default
 
 fun RBuilder.buttonBase(block: ButtonBaseElementBuilder.() -> Unit)
