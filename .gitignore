@@ -40,3 +40,9 @@ cmake-build-*/
 
 # IntelliJ
 out/
+
+.gradle
+build
+*.iml
+
+node_modules
