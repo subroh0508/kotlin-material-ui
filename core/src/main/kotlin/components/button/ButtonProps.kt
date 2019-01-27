@@ -1,6 +1,5 @@
 package components.button
 
-import components.button.enums.ButtonColor
 import components.buttonbase.ButtonBaseProps
 
 interface ButtonProps : ButtonBaseProps {
