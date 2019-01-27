@@ -1,24 +1,37 @@
-plugins {
-    id 'kotlin2js' version '1.3.11'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.11'
-}
-
 group 'subroh0508.net'
 version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
+subprojects { p ->
+    p.buildscript {
+        ext.kotlinVersion = '1.3.11'
+        ext.kotlinFrontendPluginVersion = '0.0.44'
+
+        repositories {
+            mavenCentral()
+            jcenter()
+            maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
+        }
+
+        dependencies {
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+            classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:$kotlinFrontendPluginVersion"
+        }
+    }
+
 }
 
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-js"
-    testCompile "org.jetbrains.kotlin:kotlin-test-js"
-}
+subprojects {
+    ext.kotlinVersion = "1.3.11"
+    ext.kotlinxHtmlVersion = "0.6.12"
+    ext.kotlinJsWrappersVersion = "1.0.0-pre.66-kotlin-1.3.11"
+    ext.kotlinReactVersion = '16.6.0-pre.66-kotlin-1.3.11'
+    ext.ktorVersion = "1.1.1"
 
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven { url "http://dl.bintray.com/kotlin/kotlinx.html" }
+        maven { url "http://dl.bintray.com/kotlin/kotlin-js-wrappers" }
+        maven { url "http://dl.bintray.com/kotlin/ktor" }
+    }
 }

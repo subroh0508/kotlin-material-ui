@@ -1,2 +1,3 @@
 rootProject.name = 'kotlin-material-ui'
 
+include 'core'
