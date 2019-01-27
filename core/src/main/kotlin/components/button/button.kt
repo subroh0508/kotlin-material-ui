@@ -8,5 +8,5 @@ import react.RState
 private external val buttonModule: dynamic
 private val buttonComponent: RComponent<ButtonProps, RState> = buttonModule.default
 
-fun RBuilder.button(block: ButtonElementBuilder.() -> Unit)
-        = child(ButtonElementBuilder(buttonComponent).apply(block).create())
+fun RBuilder.button(caption: String = "", block: ButtonElementBuilder.() -> Unit)
+        = child(ButtonElementBuilder(caption, buttonComponent).apply(block).create())
