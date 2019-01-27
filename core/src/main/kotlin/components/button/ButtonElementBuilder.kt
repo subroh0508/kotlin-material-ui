@@ -15,17 +15,17 @@ import styled.Styled
 class ButtonElementBuilder internal constructor(
     var caption: String = "",
     override var type: RComponent<ButtonProps, RState>,
-    props: ButtonProps = jsObject {  }
-) : MaterialElementBuilder<ButtonProps>(props),
-    ButtonAttributes by AttributesImpl(props),
-    ButtonBaseAttributes by ButtonBaseElementBuilder.AttributesImpl(props) {
+    override var attrs: ButtonProps = jsObject {  }
+) : MaterialElementBuilder<ButtonProps>(attrs),
+    ButtonAttributes by AttributesImpl(attrs),
+    ButtonBaseAttributes by ButtonBaseElementBuilder.AttributesImpl(attrs) {
 
     override fun create(): ReactElement = Styled.createElement(type, css, attrs, childList.apply { add(caption) })
 
     internal class AttributesImpl(private val props: ButtonProps) : ButtonAttributes {
         override var color: ButtonColor
             get() = ButtonColor.valueOf(props.color)
-            set(value) { props.color = value.name }
+            set(value) { props.color = value.toString() }
         override var fullWidth: Boolean
             get() = props.fullWidth
             set(value) { props.fullWidth = value }
@@ -37,9 +37,9 @@ class ButtonElementBuilder internal constructor(
             set(value) { props.mini = value }
         override var size: ButtonSize
             get() = ButtonSize.valueOf(props.size)
-            set(value) { props.size = value.name }
+            set(value) { props.size = value.toString() }
         override var variant: ButtonVariant
             get() = ButtonVariant.valueOf(props.variant)
-            set(value) { props.variant = value.name }
+            set(value) { props.variant = value.toString() }
     }
 }

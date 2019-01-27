@@ -12,9 +12,9 @@ import styled.Styled
 class IconElementBuilder internal constructor(
     var iconName: String,
     override var type: RComponent<IconProps, RState>,
-    props: IconProps = jsObject {  }
-) : MaterialElementBuilder<IconProps>(props),
-    IconAttributes by AttributesImpl(props) {
+    override var attrs: IconProps = jsObject {  }
+) : MaterialElementBuilder<IconProps>(attrs),
+    IconAttributes by AttributesImpl(attrs) {
 
     override fun create(): ReactElement = Styled.createElement(type, css, attrs, childList.apply { add(iconName) })
 
@@ -24,12 +24,12 @@ class IconElementBuilder internal constructor(
             set(value) { props.classes = value }
         override var color: IconColor
             get() = IconColor.valueOf(props.color)
-            set(value) { props.color = value.name }
+            set(value) { props.color = value.toString() }
         override var component: String
             get() = props.component
             set(value) { props.component = value }
         override var fontSize: IconFontSize
             get() = IconFontSize.valueOf(props.fontSize)
-            set(value) { props.fontSize = value.name }
+            set(value) { props.fontSize = value.toString() }
     }
 }

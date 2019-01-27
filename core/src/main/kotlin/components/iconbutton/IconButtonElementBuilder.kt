@@ -10,14 +10,14 @@ import react.RState
 
 class IconButtonElementBuilder(
     override var type: RComponent<IconButtonProps, RState>,
-    props: IconButtonProps = jsObject {  }
-) : MaterialElementBuilder<IconButtonProps>(props),
-    IconButtonAttributes by AttributesImpl(props),
-    ButtonBaseAttributes by ButtonBaseElementBuilder.AttributesImpl(props){
+    override var attrs: IconButtonProps = jsObject {  }
+) : MaterialElementBuilder<IconButtonProps>(attrs),
+    IconButtonAttributes by AttributesImpl(attrs),
+    ButtonBaseAttributes by ButtonBaseElementBuilder.AttributesImpl(attrs){
 
     internal class AttributesImpl(private val props: IconButtonProps): IconButtonAttributes {
         override var color: ButtonColor
             get() = ButtonColor.valueOf(props.color)
-            set(value) { props.color = value.name }
+            set(value) { props.color = value.toString() }
     }
 }

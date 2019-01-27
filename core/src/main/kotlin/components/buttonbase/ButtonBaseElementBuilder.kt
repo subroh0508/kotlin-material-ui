@@ -11,9 +11,9 @@ import react.RState
 
 class ButtonBaseElementBuilder internal constructor(
     override var type: RComponent<ButtonBaseProps, RState>,
-    props: ButtonBaseProps = jsObject {  }
-) : MaterialElementBuilder<ButtonBaseProps>(props),
-    ButtonBaseAttributes by AttributesImpl(props) {
+    override var attrs: ButtonBaseProps = jsObject {  }
+) : MaterialElementBuilder<ButtonBaseProps>(attrs),
+    ButtonBaseAttributes by AttributesImpl(attrs) {
 
     internal class AttributesImpl(private val props: ButtonBaseProps) : ButtonBaseAttributes {
         override var className: String?
@@ -54,7 +54,7 @@ class ButtonBaseElementBuilder internal constructor(
             set(value) { props.touchRippleProps = value }
         override var buttonType: ButtonType
             get() = ButtonType.valueOf(props.type)
-            set(value) { props.type = value.name }
+            set(value) { props.type = value.toString() }
         override var style: String
             get() = props.style
             set(value) { props.style = value }
