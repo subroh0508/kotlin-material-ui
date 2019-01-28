@@ -19,9 +19,6 @@ class ButtonsDemo : RComponent<RProps, RState>() {
             h2 {
                 +"Contained Buttons"
             }
-            attrs {
-
-            }
         }
 
         styledDiv {
@@ -39,21 +36,37 @@ class ButtonsDemo : RComponent<RProps, RState>() {
                     }
                 }
 
-                button("Default") {
-                    variant = ButtonVariant.contained
+                button {
+                    attrs {
+                        variant = ButtonVariant.contained
+                    }
+
+                    +"Default"
                 }
-                button("Primary") {
-                    variant = ButtonVariant.contained
-                    color = ButtonColor.primary
+                button {
+                    attrs {
+                        variant = ButtonVariant.contained
+                        color = ButtonColor.primary
+                    }
+
+                    +"Primary"
                 }
-                button("Secondary") {
-                    variant = ButtonVariant.contained
-                    color = ButtonColor.secondary
+                button {
+                    attrs {
+                        variant = ButtonVariant.contained
+                        color = ButtonColor.secondary
+                    }
+
+                    +"Secondary"
                 }
-                button("Disabled") {
-                    variant = ButtonVariant.contained
-                    color = ButtonColor.secondary
-                    disabled = true
+                button {
+                    attrs {
+                        variant = ButtonVariant.contained
+                        color = ButtonColor.secondary
+                        disabled = true
+                    }
+
+                    +"Disabled"
                 }
             }
         }
