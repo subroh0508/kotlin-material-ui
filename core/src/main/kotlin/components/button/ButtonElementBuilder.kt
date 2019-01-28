@@ -13,24 +13,24 @@ import kotlin.reflect.KClass
 class ButtonElementBuilder<T: Tag> internal constructor(
     type: RComponent<RProps, RState>,
     tag: KClass<T>
-) : ButtonBaseElementBuilder<T>(type, tag), ButtonAttributes {
+) : ButtonBaseElementBuilder<T>(type, tag) {
 
-    override var color: ButtonColor
+    var Tag.color: ButtonColor
         get() = ButtonColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
         set(value) { setProp("color", value.toString()) }
-    override var fullWidth: Boolean
+    var Tag.fullWidth: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["fullWidth"]
         set(value) { setProp("fullWidth", value) }
-    override var href: String
+    var Tag.href: String
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["href"]
         set(value) { setProp("href", value) }
-    override var mini: Boolean
+    var Tag.mini: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["mini"]
         set(value) { setProp("mini", value) }
-    override var size: ButtonSize
+    var Tag.size: ButtonSize
         get() = ButtonSize.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["size"])
         set(value) { setProp("size", value.toString()) }
-    override var variant: ButtonVariant
+    var Tag.variant: ButtonVariant
         get() = ButtonVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
         set(value) { setProp("variant", value.toString()) }
 }

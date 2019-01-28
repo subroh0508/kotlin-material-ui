@@ -13,39 +13,39 @@ import kotlin.reflect.KClass
 open class ButtonBaseElementBuilder<T: Tag> internal constructor(
     type: RComponent<RProps, RState>,
     tag: KClass<T>
-) : MaterialElementBuilder<T>(type, tag), ButtonBaseAttributes {
+) : MaterialElementBuilder<T>(type, tag) {
 
-    override var buttonRef: RRef
+    var Tag.buttonRef: RRef
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["buttonRef"]
         set(value) { setProp("buttonRef", value) }
-    override var centerRipple: Boolean
+    var Tag.centerRipple: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["centerRipple"]
         set(value) { setProp("centerRipple", value) }
-    override var classes: Any
+    var Tag.classes: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
         set(value) { setProp("classes", value) }
-    override var disabled: Boolean
+    var Tag.disabled: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]
         set(value) { setProp("disabled", value) }
-    override var disableRipple: Boolean
+    var Tag.disableRipple: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableRipple"]
         set(value) { setProp("disableRipple", value) }
-    override var disableTouchRipple: Boolean
+    var Tag.disableTouchRipple: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableTouchRipple"]
         set(value) { setProp("disableTouchRipple", value) }
-    override var focusRipple: Boolean
+    var Tag.focusRipple: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["focusRipple"]
         set(value) { setProp("focusRipple", value) }
-    override var focusVisibleClassName: String
+    var Tag.focusVisibleClassName: String
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["focusVisibleClassName"]
         set(value) { setProp("focusVisibleClassName", value) }
-    override var onFocusVisible: (Event) -> Unit
+    var Tag.onFocusVisible: (Event) -> Unit
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onFocusVisible"]
         set(value) { setProp("onFocusVisible", value) }
-    override var touchRippleProps: RProps
+    var Tag.touchRippleProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["touchRippleProps"]
         set(value) { setProp("touchRippleProps", value) }
-    override var buttonType: ButtonType
+    var Tag.buttonType: ButtonType
         get() = ButtonType.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["type"])
         set(value) { setProp("type", value.toString()) }
 }
