@@ -16,11 +16,11 @@ abstract class MaterialElementBuilder<T: Tag>(
         setProp("component", attrs.tagName)
     }
 
-    var className: String?
+    var Tag.className: String?
         get() = props.className
         set(value) { props.className = value }
 
-    var dangerouslySetInnerHTML: InnerHTML?
+    var Tag.dangerouslySetInnerHTML: InnerHTML?
         get() = props.dangerouslySetInnerHTML
         set(value) { props.dangerouslySetInnerHTML = value }
 
