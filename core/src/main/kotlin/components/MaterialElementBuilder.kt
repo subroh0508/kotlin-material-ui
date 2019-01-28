@@ -1,20 +1,28 @@
 package components
 
-import kotlinext.js.jsObject
-import kotlinx.css.CSSBuilder
-import react.RElementBuilder
-import react.ReactElement
-import styled.Styled
-import styled.StyledBuilder
-import styled.StyledProps
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import react.*
+import react.dom.InnerHTML
+import react.dom.RDOMBuilder
+import kotlin.reflect.KClass
 
-abstract class MaterialElementBuilder<P: StyledProps>(
-    override val type: Any,
-    override var attrs: P = jsObject { }
-) : RElementBuilder<P>(attrs),
-    StyledBuilder<P>
-{
-    override val css: CSSBuilder = CSSBuilder()
+abstract class MaterialElementBuilder<T: Tag>(
+    val type: RComponent<RProps, RState>,
+    tag: KClass<T>,
+    factory: (TagConsumer<Unit>) -> T = consumers(tag)
+) : RDOMBuilder<T>(factory) {
+    init {
+        setProp("component", attrs.tagName)
+    }
 
-    open fun create(): ReactElement = Styled.createElement(type, css, attrs, childList)
+    var className: String?
+        get() = props.className
+        set(value) { props.className = value }
+
+    var dangerouslySetInnerHTML: InnerHTML?
+        get() = props.dangerouslySetInnerHTML
+        set(value) { props.dangerouslySetInnerHTML = value }
+
+    override fun create(): ReactElement = createElement(type, props, *childList.toTypedArray())
 }

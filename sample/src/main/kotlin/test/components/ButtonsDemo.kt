@@ -19,6 +19,9 @@ class ButtonsDemo : RComponent<RProps, RState>() {
             h2 {
                 +"Contained Buttons"
             }
+            attrs {
+
+            }
         }
 
         styledDiv {
