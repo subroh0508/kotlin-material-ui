@@ -2,95 +2,50 @@ package components.buttonbase
 
 import components.MaterialElementBuilder
 import components.buttonbase.enums.ButtonType
-import kotlinext.js.jsObject
+import kotlinx.html.Tag
 import org.w3c.dom.events.Event
 import react.RComponent
 import react.RProps
 import react.RRef
 import react.RState
+import kotlin.reflect.KClass
 
-class ButtonBaseElementBuilder internal constructor(
-    override var type: RComponent<ButtonBaseProps, RState>,
-    override var attrs: ButtonBaseProps = jsObject {  }
-) : MaterialElementBuilder<ButtonBaseProps>(attrs),
-    ButtonBaseAttributes by AttributesImpl(attrs) {
+open class ButtonBaseElementBuilder<T: Tag> internal constructor(
+    type: RComponent<RProps, RState>,
+    tag: KClass<T>
+) : MaterialElementBuilder<T>(type, tag), ButtonBaseAttributes {
 
-    internal class AttributesImpl(private val props: ButtonBaseProps) : ButtonBaseAttributes {
-        override var className: String?
-            get() = props.className
-            set(value) { props.className = value }
-        override var buttonRef: RRef
-            get() = props.buttonRef
-            set(value) { props.buttonRef = value }
-        override var centerRipple: Boolean
-            get() = props.centerRipple
-            set(value) { props.centerRipple = value }
-        override var classes: Any
-            get() = props.classes
-            set(value) { props.classes = value }
-        override var component: String
-            get() = props.component
-            set(value) { props.component = value }
-        override var disabled: Boolean
-            get() = props.disabled
-            set(value) { props.disabled = value }
-        override var disableRipple: Boolean
-            get() = props.disableRipple
-            set(value) { props.disableRipple = value }
-        override var disableTouchRipple: Boolean
-            get() = props.disableTouchRipple
-            set(value) { props.disableTouchRipple = value }
-        override var focusRipple: Boolean
-            get() = props.focusRipple
-            set(value) { props.focusRipple = value }
-        override var focusVisibleClassName: String
-            get() = props.focusVisibleClassName
-            set(value) { props.focusVisibleClassName = value }
-        override var onFocusVisible: (Event) -> Unit
-            get() = props.onFocusVisible
-            set(value) { props.onFocusVisible = value }
-        override var touchRippleProps: RProps
-            get() = props.touchRippleProps
-            set(value) { props.touchRippleProps = value }
-        override var buttonType: ButtonType
-            get() = ButtonType.valueOf(props.type)
-            set(value) { props.type = value.toString() }
-        override var style: String
-            get() = props.style
-            set(value) { props.style = value }
-
-        override var onBlur: (Event) -> Unit
-            get() = props.onBlur
-            set(value) { props.onBlur = value }
-        override var onFocus: (Event) -> Unit
-            get() = props.onFocus
-            set(value) { props.onFocus = value }
-        override var onKeyDown: (Event) -> Unit
-            get() = props.onKeyDown
-            set(value) { props.onKeyDown = value }
-        override var onKeyUp: (Event) -> Unit
-            get() = props.onKeyUp
-            set(value) { props.onKeyUp = value }
-        override var onMouseDown: (Event) -> Unit
-            get() = props.onMouseDown
-            set(value) { props.onMouseDown = value }
-        override var onMouseLeave: (Event) -> Unit
-            get() = props.onMouseLeave
-            set(value) { props.onMouseLeave = value }
-        override var onMouseUp: (Event) -> Unit
-            get() = props.onMouseUp
-            set(value) { props.onMouseUp = value }
-        override var onTouchEnd: (Event) -> Unit
-            get() = props.onTouchEnd
-            set(value) { props.onTouchEnd = value }
-        override var onTouchMove: (Event) -> Unit
-            get() = props.onTouchMove
-            set(value) { props.onTouchMove = value }
-        override var onTouchStart: (Event) -> Unit
-            get() = props.onTouchStart
-            set(value) { props.onTouchStart = value }
-        override var onContextMenu: (Event) -> Unit
-            get() = props.onContextMenu
-            set(value) { props.onContextMenu = value }
-    }
+    override var buttonRef: RRef
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["buttonRef"]
+        set(value) { setProp("buttonRef", value) }
+    override var centerRipple: Boolean
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["centerRipple"]
+        set(value) { setProp("centerRipple", value) }
+    override var classes: Any
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
+        set(value) { setProp("classes", value) }
+    override var disabled: Boolean
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]
+        set(value) { setProp("disabled", value) }
+    override var disableRipple: Boolean
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableRipple"]
+        set(value) { setProp("disableRipple", value) }
+    override var disableTouchRipple: Boolean
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableTouchRipple"]
+        set(value) { setProp("disableTouchRipple", value) }
+    override var focusRipple: Boolean
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["focusRipple"]
+        set(value) { setProp("focusRipple", value) }
+    override var focusVisibleClassName: String
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["focusVisibleClassName"]
+        set(value) { setProp("focusVisibleClassName", value) }
+    override var onFocusVisible: (Event) -> Unit
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onFocusVisible"]
+        set(value) { setProp("onFocusVisible", value) }
+    override var touchRippleProps: RProps
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["touchRippleProps"]
+        set(value) { setProp("touchRippleProps", value) }
+    override var buttonType: ButtonType
+        get() = ButtonType.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["type"])
+        set(value) { setProp("type", value.toString()) }
 }

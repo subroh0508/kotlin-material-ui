@@ -1,45 +1,36 @@
 package components.button
 
-import components.MaterialElementBuilder
 import components.button.enums.ButtonColor
 import components.button.enums.ButtonSize
 import components.button.enums.ButtonVariant
-import components.buttonbase.ButtonBaseAttributes
 import components.buttonbase.ButtonBaseElementBuilder
-import kotlinext.js.jsObject
+import kotlinx.html.Tag
 import react.RComponent
+import react.RProps
 import react.RState
-import react.ReactElement
-import styled.Styled
+import kotlin.reflect.KClass
 
-class ButtonElementBuilder internal constructor(
-    var caption: String = "",
-    override var type: RComponent<ButtonProps, RState>,
-    override var attrs: ButtonProps = jsObject {  }
-) : MaterialElementBuilder<ButtonProps>(attrs),
-    ButtonAttributes by AttributesImpl(attrs),
-    ButtonBaseAttributes by ButtonBaseElementBuilder.AttributesImpl(attrs) {
+class ButtonElementBuilder<T: Tag> internal constructor(
+    type: RComponent<RProps, RState>,
+    tag: KClass<T>
+) : ButtonBaseElementBuilder<T>(type, tag), ButtonAttributes {
 
-    override fun create(): ReactElement = Styled.createElement(type, css, attrs, childList.apply { add(caption) })
-
-    internal class AttributesImpl(private val props: ButtonProps) : ButtonAttributes {
-        override var color: ButtonColor
-            get() = ButtonColor.valueOf(props.color)
-            set(value) { props.color = value.toString() }
-        override var fullWidth: Boolean
-            get() = props.fullWidth
-            set(value) { props.fullWidth = value }
-        override var href: String
-            get() = props.href
-            set(value) { props.href = value }
-        override var mini: Boolean
-            get() = props.mini
-            set(value) { props.mini = value }
-        override var size: ButtonSize
-            get() = ButtonSize.valueOf(props.size)
-            set(value) { props.size = value.toString() }
-        override var variant: ButtonVariant
-            get() = ButtonVariant.valueOf(props.variant)
-            set(value) { props.variant = value.toString() }
-    }
+    override var color: ButtonColor
+        get() = ButtonColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
+        set(value) { setProp("color", value.toString()) }
+    override var fullWidth: Boolean
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["fullWidth"]
+        set(value) { setProp("fullWidth", value) }
+    override var href: String
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["href"]
+        set(value) { setProp("href", value) }
+    override var mini: Boolean
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["mini"]
+        set(value) { setProp("mini", value) }
+    override var size: ButtonSize
+        get() = ButtonSize.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["size"])
+        set(value) { setProp("size", value.toString()) }
+    override var variant: ButtonVariant
+        get() = ButtonVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
+        set(value) { setProp("variant", value.toString()) }
 }
