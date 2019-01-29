@@ -27,10 +27,10 @@ class ListItemElementBuilder<T: Tag> internal constructor(
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
         set(value) { setProp("classes", value) }
     var Tag.containerComponent: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["containerComponent"]
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["ContainerComponent"]
         set(value) { setProp("ContainerComponent", value) }
     var Tag.containerProps: ListItemSecondaryActionProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["containerProps"]
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["ContainerProps"]
         set(value) { setProp("ContainerProps", value) }
     var Tag.dense: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["dense"]
