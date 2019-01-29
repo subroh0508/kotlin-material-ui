@@ -20,11 +20,11 @@ class IconElementBuilder<T: Tag> internal constructor(
 
     var Tag.classes: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("Any", value) }
+        set(value) { setProp("classes", value) }
     var Tag.color: IconColor
         get() = IconColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
-        set(value) { setProp("IconColor", value.toString()) }
+        set(value) { setProp("color", value.toString()) }
     var Tag.fontSize: IconFontSize
         get() = IconFontSize.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["fontSize"])
-        set(value) { setProp("IconFontSize", value.toString()) }
+        set(value) { setProp("iconFontSize", value.toString()) }
 }

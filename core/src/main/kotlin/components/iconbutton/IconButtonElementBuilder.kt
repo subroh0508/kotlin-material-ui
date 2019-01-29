@@ -18,5 +18,5 @@ class IconButtonElementBuilder<T: Tag>(
 
     var Tag.color: ButtonColor
         get() = ButtonColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
-        set(value) { setProp("ButtonColor", value.toString()) }
+        set(value) { setProp("color", value.toString()) }
 }
