@@ -1,38 +1,31 @@
 package components.list
 
 import components.MaterialElementBuilder
-import kotlinext.js.jsObject
+import components.consumers
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
 import react.RComponent
+import react.RProps
 import react.RState
 import react.ReactElement
+import kotlin.reflect.KClass
 
-class ListElementBuilder internal constructor(
-    override var type: RComponent<ListProps, RState>,
-    override var attrs: ListProps = jsObject {  }
-) : MaterialElementBuilder<ListProps>(attrs),
-    ListAttributes by AttributesImpl(attrs) {
+class ListElementBuilder<T: Tag> internal constructor(
+    type: RComponent<RProps, RState>,
+    tag: KClass<T>,
+    factory: (TagConsumer<Unit>) -> T = consumers(tag)
+) : MaterialElementBuilder<T>(type, factory) {
 
-    internal class AttributesImpl(private val props: ListProps) : ListAttributes {
-        override var className: String?
-            get() = props.className
-            set(value) { props.className = value }
-        override var classes: Any
-            get() = props.classes
-            set(value) { props.classes = value }
-        override var component: String
-            get() = props.component
-            set(value) { props.component = value }
-        override var dense: Boolean
-            get() = props.dense
-            set(value) { props.dense = value }
-        override var disablePadding: Boolean
-            get() = props.disablePadding
-            set(value) { props.disablePadding = value }
-        override var subheader: ReactElement
-            get() = props.subheader
-            set(value) { props.subheader = value }
-        override var style: String
-            get() = props.style
-            set(value) { props.style = value }
-    }
+    var Tag.classes: Any
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
+        set(value) { setProp("Any", value) }
+    var Tag.dense: Boolean
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["dense"]
+        set(value) { setProp("Boolean", value) }
+    var Tag.disablePadding: Boolean
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disablePadding"]
+        set(value) { setProp("Boolean", value) }
+    var Tag.subheader: ReactElement
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["subheader"]
+        set(value) { setProp("ReactElement", value) }
 }
