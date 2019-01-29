@@ -64,13 +64,6 @@ class MenuElementBuilder<T: Tag> internal constructor(
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["PopoverClasses"]
         set(values) { setProp("PopoverClasses", value) }
     var Tag.transitionDuration: TransitionDuration
-        get() = when (props.asDynamic()["transitionDuration"]) {
-            "auto" -> TransitionDuration.Auto
-            is Number -> TransitionDuration.Ms(props.asDynamic()["transitionDuration"] as Number)
-            else -> TransitionDuration.EnterExit(
-                enter = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["transitionDuration"].enter,
-                exit = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["transitionDuration"].exit
-            )
-        }
+        get() = TransitionDuration.fromDynamic(props.asDynamic()["transitionDuration"])
         set(value) { setProp("transitionDuration", value.value) }
 }
