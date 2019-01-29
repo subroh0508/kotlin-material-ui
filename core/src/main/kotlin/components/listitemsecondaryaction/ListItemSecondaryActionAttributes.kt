@@ -1,4 +1,0 @@
-package components.listitemsecondaryaction
-
-interface ListItemSecondaryActionAttributes {
-}
