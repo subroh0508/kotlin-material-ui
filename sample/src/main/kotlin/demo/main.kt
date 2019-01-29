@@ -1,4 +1,4 @@
-package test
+package demo
 
 import react.dom.render
 import kotlin.browser.document
