@@ -10,7 +10,7 @@ import react.RState
 private external val menuModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val menuComponent: RComponent<RProps, RState> = menuModule.defaultr
+private val menuComponent: RComponent<RProps, RState> = menuModule.default
 
 fun RBuilder.menu(block: MenuElementBuilder<DIV>.() -> Unit)
     = child(MenuElementBuilder(menuComponent, DIV::class) { DIV(mapOf(), it) }.apply(block).create())
