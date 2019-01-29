@@ -3,7 +3,6 @@ package components.listitem
 import components.MaterialElementBuilder
 import components.consumers
 import components.listitem.enums.ListItemAlignItem
-import components.listitemsecondaryaction.ListItemSecondaryActionProps
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import react.RComponent
@@ -29,7 +28,7 @@ class ListItemElementBuilder<T: Tag> internal constructor(
     var Tag.containerComponent: String
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["ContainerComponent"]
         set(value) { setProp("ContainerComponent", value) }
-    var Tag.containerProps: ListItemSecondaryActionProps
+    var Tag.containerProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["ContainerProps"]
         set(value) { setProp("ContainerProps", value) }
     var Tag.dense: Boolean

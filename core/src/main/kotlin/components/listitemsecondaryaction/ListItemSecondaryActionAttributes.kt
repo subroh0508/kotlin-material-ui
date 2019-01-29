@@ -1,4 +1,4 @@
 package components.listitemsecondaryaction
 
-interface ListItemSecondaryActionAttributes : BaseMaterialAttributes {
+interface ListItemSecondaryActionAttributes {
 }
