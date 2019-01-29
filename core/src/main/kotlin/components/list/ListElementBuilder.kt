@@ -18,14 +18,14 @@ class ListElementBuilder<T: Tag> internal constructor(
 
     var Tag.classes: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("Any", value) }
+        set(value) { setProp("classes", value) }
     var Tag.dense: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["dense"]
-        set(value) { setProp("Boolean", value) }
+        set(value) { setProp("dense", value) }
     var Tag.disablePadding: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disablePadding"]
-        set(value) { setProp("Boolean", value) }
+        set(value) { setProp("disablePadding", value) }
     var Tag.subheader: ReactElement
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["subheader"]
-        set(value) { setProp("ReactElement", value) }
+        set(value) { setProp("subheader", value) }
 }

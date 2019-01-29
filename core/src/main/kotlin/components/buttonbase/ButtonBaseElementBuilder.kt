@@ -48,7 +48,7 @@ open class ButtonBaseElementBuilder<T: Tag> internal constructor(
     var Tag.touchRippleProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["touchRippleProps"]
         set(value) { setProp("touchRippleProps", value) }
-    var Tag.buttonType: ButtonType
+    var Tag.type: ButtonType
         get() = ButtonType.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["type"])
         set(value) { setProp("type", value.toString()) }
 }
