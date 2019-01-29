@@ -1,6 +1,5 @@
 package components.toolbar
 
-import components.BaseMaterialAttributes
 import components.toolbar.enums.ToolbarVariant
 
 interface ToolbarAttributes : BaseMaterialAttributes {

@@ -1,6 +1,5 @@
 package components.list
 
-import components.BaseMaterialAttributes
 import react.ReactElement
 
 interface ListAttributes : BaseMaterialAttributes {

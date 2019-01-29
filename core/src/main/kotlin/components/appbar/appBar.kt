@@ -15,7 +15,7 @@ private external val appBarModule: dynamic
 private val appBarComponent: RComponent<RProps, RState> = appBarModule.default
 
 fun RBuilder.appBar(block: AppBarElementBuilder<DIV>.() -> Unit)
-    = child(AppBarElementBuilder(appBarComponent, DIV::class).apply(block).create())
+    = child(AppBarElementBuilder(appBarComponent, DIV::class) { DIV(mapOf(), it) }.apply(block).create())
 
 fun <T: Tag> RBuilder.appBar(tag: KClass<T>, block: AppBarElementBuilder<T>.() -> Unit)
     = child(AppBarElementBuilder(appBarComponent, tag).apply(block).create())

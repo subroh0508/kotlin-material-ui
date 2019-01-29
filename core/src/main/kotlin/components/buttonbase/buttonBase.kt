@@ -15,7 +15,7 @@ private external val buttonBaseModule: dynamic
 private val buttonBaseComponent: RComponent<RProps, RState> = buttonBaseModule.default
 
 fun RBuilder.buttonBase(block: ButtonBaseElementBuilder<BUTTON>.() -> Unit)
-    = child(ButtonBaseElementBuilder(buttonBaseComponent, BUTTON::class).apply(block).create())
+    = child(ButtonBaseElementBuilder(buttonBaseComponent, BUTTON::class) { BUTTON(mapOf(), it) }.apply(block).create())
 
 fun <T: Tag> RBuilder.buttonBase(tag: KClass<T>, block: ButtonBaseElementBuilder<T>.() -> Unit)
     = child(ButtonBaseElementBuilder(buttonBaseComponent, tag).apply(block).create())

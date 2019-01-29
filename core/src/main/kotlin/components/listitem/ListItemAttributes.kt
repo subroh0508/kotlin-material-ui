@@ -1,6 +1,5 @@
 package components.listitem
 
-import components.BaseMaterialAttributes
 import components.listitem.enums.ListItemAlignItem
 import components.listitemsecondaryaction.ListItemSecondaryActionProps
 
