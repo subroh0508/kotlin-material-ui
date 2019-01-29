@@ -1,32 +1,28 @@
 package components.toolbar
 
 import components.MaterialElementBuilder
+import components.consumers
 import components.toolbar.enums.ToolbarVariant
-import kotlinext.js.jsObject
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
 import react.RComponent
+import react.RProps
 import react.RState
+import kotlin.reflect.KClass
 
-class ToolbarElementBuilder internal constructor(
-    override var type: RComponent<ToolbarProps, RState>,
-    override var attrs: ToolbarProps = jsObject {  }
-) : MaterialElementBuilder<ToolbarProps>(attrs),
-    ToolbarAttributes by AttributesImpl(attrs) {
+class ToolbarElementBuilder<T: Tag> internal constructor(
+    type: RComponent<RProps, RState>,
+    tag: KClass<T>,
+    factory: (TagConsumer<Unit>) -> T = consumers(tag)
+) : MaterialElementBuilder<T>(type, factory) {
 
-    internal class AttributesImpl(private val props: ToolbarProps) : ToolbarAttributes {
-        override var className: String?
-            get() = props.className
-            set(value) { props.className = value }
-        override var classes: Any
-            get() = props.classes
-            set(value) { props.classes = value }
-        override var disableGutters: Boolean
-            get() = props.disableGutters
-            set(value) { props.disableGutters = value }
-        override var variant: ToolbarVariant
-            get() = ToolbarVariant.valueOf(props.variant)
-            set(value) { props.variant = value.toString() }
-        override var style: String
-            get() = props.style
-            set(value) { props.style = value }
-    }
+    var Tag.classes: Any
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
+        set(value) { setProp("classes", value) }
+    var Tag.disableGutters: Boolean
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableGutters"]
+        set(value) { setProp("disableGutters", value) }
+    var Tag.variant: ToolbarVariant
+        get() = ToolbarVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
+        set(value) { setProp("variant", value.toString()) }
 }
