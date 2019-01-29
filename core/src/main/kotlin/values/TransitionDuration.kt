@@ -7,11 +7,12 @@ sealed class TransitionDuration {
         override val value: Any = sec
     }
 
-    class EnterExit(enter: Double, exit: Double) : TransitionDuration() {
-        override val value: Any = js {
-            this.enter = enter
-            this.exit = exit
-        } as Any
+    class EnterExit(private val enter: Double, private val exit: Double) : TransitionDuration() {
+        override val value: Any
+            get() = js {
+                this.enter = enter
+                this.exit = exit
+            } as Any
     }
 
     object Auto : TransitionDuration() {
@@ -19,4 +20,15 @@ sealed class TransitionDuration {
     }
 
     internal abstract val value: Any
+
+    companion object {
+        internal fun fromDynamic(jsObject: dynamic): TransitionDuration = when (jsObject) {
+            "auto" -> TransitionDuration.Auto
+            is Number -> @Suppress("UnsafeCastFromDynamic") TransitionDuration.Ms(jsObject)
+            else -> TransitionDuration.EnterExit(
+                enter = @Suppress("UnsafeCastFromDynamic") jsObject.enter,
+                exit = @Suppress("UnsafeCastFromDynamic") jsObject.exit
+            )
+        }
+    }
 }
