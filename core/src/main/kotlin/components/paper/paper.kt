@@ -12,7 +12,7 @@ import kotlin.reflect.KClass
 private external val paperModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val paperComponent: RComponent<RProps, RState> = paperModule.defaultr
+private val paperComponent: RComponent<RProps, RState> = paperModule.default
 
 fun RBuilder.paper(block: PaperElementBuilder<DIV>.() -> Unit)
     = child(PaperElementBuilder(paperComponent, DIV::class) { DIV(mapOf(), it) }.apply(block).create())
