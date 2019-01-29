@@ -1,8 +1,6 @@
 package components.menu
 
 import components.MaterialElementBuilder
-import components.menulist.MenuListProps
-import components.paper.PaperProps
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import org.w3c.dom.events.Event
@@ -29,7 +27,7 @@ class MenuElementBuilder<T: Tag> internal constructor(
     var Tag.disableAutoFocusItem: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableAutoFocusItem"]
         set(value) { setProp("disableAutoFocusItem", value) }
-    var Tag.menuListProps: MenuListProps
+    var Tag.menuListProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["MenuListProps"]
         set(value) { setProp("MenuListProps", value) }
     var Tag.onClose: (Event) -> Unit
@@ -56,7 +54,7 @@ class MenuElementBuilder<T: Tag> internal constructor(
     var Tag.open: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["open"]
         set(value) { setProp("open", value) }
-    var Tag.paperProps: PaperProps
+    var Tag.paperProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["PaperProps"]
         set(value) { setProp("PaperProps", value) }
     var Tag.theme: Any
