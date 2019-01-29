@@ -1,35 +1,30 @@
 package components.icon
 
 import components.MaterialElementBuilder
+import components.consumers
 import components.icon.enums.IconColor
 import components.icon.enums.IconFontSize
-import kotlinext.js.jsObject
-import react.RComponent
-import react.RState
-import react.ReactElement
-import styled.Styled
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import react.*
+import kotlin.reflect.KClass
 
-class IconElementBuilder internal constructor(
+class IconElementBuilder<T: Tag> internal constructor(
     var iconName: String,
-    override var type: RComponent<IconProps, RState>,
-    override var attrs: IconProps = jsObject {  }
-) : MaterialElementBuilder<IconProps>(attrs),
-    IconAttributes by AttributesImpl(attrs) {
+    type: RComponent<RProps, RState>,
+    tag: KClass<T>,
+    factory: (TagConsumer<Unit>) -> T = consumers(tag)
+) : MaterialElementBuilder<T>(type, factory) {
 
-    override fun create(): ReactElement = Styled.createElement(type, css, attrs, childList.apply { add(iconName) })
+    override fun create(): ReactElement = createElement(type, props, childList.apply { add(iconName) })
 
-    internal class AttributesImpl(private val props: IconProps) : IconAttributes {
-        override var classes: Any
-            get() = props.classes
-            set(value) { props.classes = value }
-        override var color: IconColor
-            get() = IconColor.valueOf(props.color)
-            set(value) { props.color = value.toString() }
-        override var component: String
-            get() = props.component
-            set(value) { props.component = value }
-        override var fontSize: IconFontSize
-            get() = IconFontSize.valueOf(props.fontSize)
-            set(value) { props.fontSize = value.toString() }
-    }
+    var Tag.classes: Any
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
+        set(value) { setProp("Any", value) }
+    var Tag.color: IconColor
+        get() = IconColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
+        set(value) { setProp("IconColor", value.toString()) }
+    var Tag.fontSize: IconFontSize
+        get() = IconFontSize.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["fontSize"])
+        set(value) { setProp("IconFontSize", value.toString()) }
 }
