@@ -1,22 +1,22 @@
 package components.iconbutton
 
-import components.MaterialElementBuilder
 import components.button.enums.ButtonColor
 import components.buttonbase.ButtonBaseElementBuilder
-import kotlinext.js.jsObject
+import components.consumers
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
 import react.RComponent
+import react.RProps
 import react.RState
+import kotlin.reflect.KClass
 
-class IconButtonElementBuilder(
-    override var type: RComponent<IconButtonProps, RState>,
-    override var attrs: IconButtonProps = jsObject {  }
-) : MaterialElementBuilder<IconButtonProps>(attrs),
-    IconButtonAttributes by AttributesImpl(attrs),
-    ButtonBaseAttributes by ButtonBaseElementBuilder.AttributesImpl(attrs){
+class IconButtonElementBuilder<T: Tag>(
+    type: RComponent<RProps, RState>,
+    tag: KClass<T>,
+    factory: (TagConsumer<Unit>) -> T = consumers(tag)
+) : ButtonBaseElementBuilder<T>(type, tag, factory) {
 
-    internal class AttributesImpl(private val props: IconButtonProps): IconButtonAttributes {
-        override var color: ButtonColor
-            get() = ButtonColor.valueOf(props.color)
-            set(value) { props.color = value.toString() }
-    }
+    var Tag.color: ButtonColor
+        get() = ButtonColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
+        set(value) { setProp("ButtonColor", value.toString()) }
 }
