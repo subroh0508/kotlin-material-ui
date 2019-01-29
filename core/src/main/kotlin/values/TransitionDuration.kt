@@ -3,7 +3,7 @@ package values
 import kotlinext.js.js
 
 sealed class TransitionDuration {
-    class Ms(sec: Double) : TransitionDuration() {
+    class Ms(sec: Number) : TransitionDuration() {
         override val value: Any = sec
     }
 
