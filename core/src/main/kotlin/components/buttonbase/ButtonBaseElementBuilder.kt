@@ -2,7 +2,9 @@ package components.buttonbase
 
 import components.MaterialElementBuilder
 import components.buttonbase.enums.ButtonType
+import components.consumers
 import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
 import org.w3c.dom.events.Event
 import react.RComponent
 import react.RProps
@@ -12,8 +14,9 @@ import kotlin.reflect.KClass
 
 open class ButtonBaseElementBuilder<T: Tag> internal constructor(
     type: RComponent<RProps, RState>,
-    tag: KClass<T>
-) : MaterialElementBuilder<T>(type, tag) {
+    tag: KClass<T>,
+    factory: (TagConsumer<Unit>) -> T = consumers(tag)
+) : MaterialElementBuilder<T>(type, factory) {
 
     var Tag.buttonRef: RRef
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["buttonRef"]

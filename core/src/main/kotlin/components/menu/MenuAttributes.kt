@@ -1,6 +1,5 @@
 package components.menu
 
-import components.BaseMaterialAttributes
 import components.menulist.MenuListProps
 import components.paper.PaperProps
 import org.w3c.dom.events.Event

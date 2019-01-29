@@ -2,7 +2,6 @@ package components.iconbutton
 
 import components.MaterialElementBuilder
 import components.button.enums.ButtonColor
-import components.buttonbase.ButtonBaseAttributes
 import components.buttonbase.ButtonBaseElementBuilder
 import kotlinext.js.jsObject
 import react.RComponent

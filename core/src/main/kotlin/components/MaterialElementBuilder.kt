@@ -5,12 +5,10 @@ import kotlinx.html.TagConsumer
 import react.*
 import react.dom.InnerHTML
 import react.dom.RDOMBuilder
-import kotlin.reflect.KClass
 
 abstract class MaterialElementBuilder<T: Tag>(
     val type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
+    factory: (TagConsumer<Unit>) -> T
 ) : RDOMBuilder<T>(factory) {
     init {
         setProp("component", attrs.tagName)
