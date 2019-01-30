@@ -1,8 +1,8 @@
-package components.menulist
+package components.listsubheader
 
 import components.MaterialElementBuilder
 import components.consumers
-import components.menulist.enums.MenuListColor
+import components.listsubheader.enums.MenuListColor
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import react.RComponent
@@ -10,7 +10,7 @@ import react.RProps
 import react.RState
 import kotlin.reflect.KClass
 
-class MenuListElementBuilder<T: Tag> internal constructor(
+class ListSubheaderElementBuilder<T: Tag> internal constructor(
     type: RComponent<RProps, RState>,
     tag: KClass<T>,
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
