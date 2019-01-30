@@ -1,4 +1,4 @@
-package test.components
+package demo.components
 
 import components.button.button
 import components.button.enums.ButtonColor
