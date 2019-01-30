@@ -1,9 +1,9 @@
 package components.popover.values
 
-import components.values.HasEnterExit
-import components.values.HasEnterExitImpl
-import components.values.MilliSecond
-import components.values.MilliSecondImpl
+import components.values.duration.HasEnterExit
+import components.values.duration.HasEnterExitImpl
+import components.values.duration.MilliSecond
+import components.values.duration.MilliSecondImpl
 
 sealed class TransitionDuration {
     class Ms internal constructor(
