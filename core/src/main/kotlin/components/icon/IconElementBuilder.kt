@@ -6,17 +6,16 @@ import components.icon.enums.IconColor
 import components.icon.enums.IconFontSize
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.*
+import react.RComponent
+import react.RProps
+import react.RState
 import kotlin.reflect.KClass
 
 class IconElementBuilder<T: Tag> internal constructor(
-    var iconName: String,
     type: RComponent<RProps, RState>,
     tag: KClass<T>,
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
 ) : MaterialElementBuilder<T>(type, factory) {
-
-    override fun create(): ReactElement = createElement(type, props, childList.apply { add(iconName) })
 
     var Tag.classes: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
