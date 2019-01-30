@@ -1,5 +1,7 @@
-package test
+package demo
 
+import demo.components.AppbarsDemo
+import demo.components.ButtonsDemo
 import react.RBuilder
 import react.RComponent
 import react.RProps
@@ -8,8 +10,6 @@ import react.dom.code
 import react.dom.div
 import react.dom.h2
 import react.dom.p
-import test.components.AppbarsDemo
-import test.components.ButtonsDemo
 
 class App : RComponent<RProps, RState>() {
     override fun RBuilder.render() {

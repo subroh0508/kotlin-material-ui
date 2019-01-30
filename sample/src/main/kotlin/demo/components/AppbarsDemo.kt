@@ -1,4 +1,4 @@
-package test.components
+package demo.components
 
 import components.appbar.appBar
 import components.appbar.enums.AppBarPosition
