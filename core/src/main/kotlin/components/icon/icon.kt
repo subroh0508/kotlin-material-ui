@@ -14,8 +14,8 @@ private external val iconModule: dynamic
 @Suppress("UnsafeCastFromDynamic")
 private val iconComponent: RComponent<RProps, RState> = iconModule.default
 
-fun RBuilder.icon(iconName: String, block: IconElementBuilder<SPAN>.() -> Unit)
-    = child(IconElementBuilder(iconName, iconComponent, SPAN::class) { SPAN(mapOf(), it) }.apply(block).create())
+fun RBuilder.icon(block: IconElementBuilder<SPAN>.() -> Unit)
+    = child(IconElementBuilder(iconComponent, SPAN::class) { SPAN(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.icon(tag: KClass<T>, iconName: String, block: IconElementBuilder<T>.() -> Unit)
-    = child(IconElementBuilder(iconName, iconComponent, tag).apply(block).create())
+fun <T: Tag> RBuilder.icon(tag: KClass<T>, block: IconElementBuilder<T>.() -> Unit)
+    = child(IconElementBuilder(iconComponent, tag).apply(block).create())
