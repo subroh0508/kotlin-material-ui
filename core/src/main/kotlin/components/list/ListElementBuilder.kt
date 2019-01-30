@@ -10,7 +10,7 @@ import react.RState
 import react.ReactElement
 import kotlin.reflect.KClass
 
-class ListElementBuilder<T: Tag> internal constructor(
+open class ListElementBuilder<T: Tag> internal constructor(
     type: RComponent<RProps, RState>,
     tag: KClass<T>,
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
