@@ -4,6 +4,7 @@ import components.appbar.appBar
 import components.appbar.enums.AppBarPosition
 import components.button.button
 import components.button.enums.ButtonColor
+import components.icon.icon
 import components.iconbutton.iconButton
 import components.toolbar.toolbar
 import react.RBuilder
@@ -39,6 +40,10 @@ class AppbarsDemo : RComponent<RProps, RState>() {
                         attrs {
                             color = ButtonColor.inherit
 
+                        }
+
+                        icon {
+                            +"menu_icon"
                         }
                     }
                     h6 {
