@@ -1,4 +1,4 @@
-package values
+package components.popover.values
 
 import kotlinext.js.js
 

@@ -1,4 +1,4 @@
-package components.enums
+package components.popover.enums
 
 @Suppress("EnumEntryName")
 enum class TransformOriginVertical {
