@@ -1,4 +1,4 @@
-package components.menulist.enums
+package components.listsubheader.enums
 
 @Suppress("EnumEntryName")
 enum class MenuListColor {
