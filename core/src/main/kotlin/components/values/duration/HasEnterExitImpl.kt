@@ -1,4 +1,4 @@
-package components.values
+package components.values.duration
 
 internal class HasEnterExitImpl(
     override val enter: Number,

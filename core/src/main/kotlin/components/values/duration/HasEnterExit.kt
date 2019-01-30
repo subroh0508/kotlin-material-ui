@@ -1,4 +1,4 @@
-package components.values
+package components.values.duration
 
 interface HasEnterExit {
     val enter: Number
