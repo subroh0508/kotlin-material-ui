@@ -7,7 +7,7 @@ import react.RComponent
 import react.RProps
 import react.RState
 
-class ListItemSecondaryActionElementBuilder(
+class ListItemSecondaryActionElementBuilder internal constructor(
     type: RComponent<RProps, RState>
 ) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
 
