@@ -5,7 +5,6 @@ import kotlinx.html.Tag
 import react.RComponent
 import react.RProps
 import react.RState
-import values.TransitionDuration.Auto.value
 
 class MenuElementBuilder internal constructor(
     type: RComponent<RProps, RState>
@@ -22,5 +21,5 @@ class MenuElementBuilder internal constructor(
         set(value) { setProp("theme", value) }
     var Tag.popoverClasses: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["PopoverClasses"]
-        set(values) { setProp("PopoverClasses", value) }
+        set(value) { setProp("PopoverClasses", value) }
 }
