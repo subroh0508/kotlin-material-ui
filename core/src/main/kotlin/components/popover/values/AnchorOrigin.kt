@@ -1,33 +1,33 @@
-package values
+package components.popover.values
 
-import components.enums.TransformOriginHorizontal
-import components.enums.TransformOriginVertical
+import components.popover.enums.AnchorOriginHorizontal
+import components.popover.enums.AnchorOriginVertical
 import kotlinext.js.js
 
-class TransformOrigin {
+class AnchorOrigin {
     constructor(horizontal: Number, vertical: Number) {
         this.horizontal = horizontal
         this.vertical = vertical
     }
-    constructor(horizontal: TransformOriginHorizontal, vertical: Number) {
+    constructor(horizontal: AnchorOriginHorizontal, vertical: Number) {
         this.horizontal = horizontal.toString()
         this.vertical = vertical
     }
-    constructor(horizontal: Number, vertical: TransformOriginVertical) {
+    constructor(horizontal: Number, vertical: AnchorOriginVertical) {
         this.horizontal = horizontal
         this.vertical = vertical.toString()
     }
-    constructor(horizontal: TransformOriginHorizontal, vertical: TransformOriginVertical) {
+    constructor(horizontal: AnchorOriginHorizontal, vertical: AnchorOriginVertical) {
         this.horizontal = horizontal.toString()
         this.vertical = vertical.toString()
     }
     internal constructor(jsObject: dynamic) {
         this.horizontal = when (jsObject.horizontal) {
-            is String -> TransformOriginHorizontal.valueOf(jsObject.horizontal as String)
+            is String -> AnchorOriginHorizontal.valueOf(jsObject.horizontal as String)
             else -> jsObject.horizontal as Number
         }
         this.vertical = when (jsObject.vertical) {
-            is String -> TransformOriginVertical.valueOf(jsObject.vertical as String)
+            is String -> AnchorOriginVertical.valueOf(jsObject.vertical as String)
             else -> jsObject.vertical as Number
         }
     }

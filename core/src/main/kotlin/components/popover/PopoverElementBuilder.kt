@@ -1,6 +1,6 @@
 package components.popover
 
-import components.enums.AnchorReference
+import components.popover.enums.AnchorReference
 import components.modal.ModalElementBuilder
 import kotlinx.html.Tag
 import org.w3c.dom.HTMLElement
@@ -9,10 +9,10 @@ import react.RComponent
 import react.RProps
 import react.RState
 import react.ReactElement
-import values.AnchorOrigin
-import values.AnchorPosition
-import values.TransformOrigin
-import values.TransitionDuration
+import components.popover.values.AnchorOrigin
+import components.popover.values.AnchorPosition
+import components.popover.values.TransformOrigin
+import components.popover.values.TransitionDuration
 
 open class PopoverElementBuilder(
     type: RComponent<RProps, RState>
