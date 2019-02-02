@@ -1,25 +1,31 @@
 package components.backdrop
 
 import components.backdrop.values.TransitionDuration
+import components.consumers
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
 import react.RComponent
 import react.RProps
 import react.RState
 import reacttransiton.RTransitionBuilder
+import kotlin.reflect.KClass
 
-class BackdropElementBuilder(
-    type: RComponent<RProps, RState>
-) : RTransitionBuilder(type) {
+class BackdropElementBuilder<T: Tag>(
+    type: RComponent<RProps, RState>,
+    tag: KClass<T>,
+    factory: (TagConsumer<Unit>) -> T = consumers(tag)
+) : RTransitionBuilder<T>(type, factory) {
 
-    var RProps.classes: Any
+    var Tag.classes: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { props.asDynamic()["classes"] = value }
-    var RProps.invisible: Boolean
+        set(value) { setProp("classes", value) }
+    var Tag.invisible: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["invisible"]
-        set(value) { props.asDynamic()["invisible"] = value }
-    var RProps.open: Boolean
+        set(value) { setProp("invisible", value) }
+    var Tag.open: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["open"]
-        set(value) { props.asDynamic()["open"] = value }
-    var RProps.transitionDuration: TransitionDuration
+        set(value) { setProp("open", value) }
+    var Tag.transitionDuration: TransitionDuration
         get() = TransitionDuration.fromDynamic(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["transitionDuration"])
-        set(value) { props.asDynamic()["transitionDuration"] = value.value }
+        set(value) { setProp("transitionDuration", value.value) }
 }
