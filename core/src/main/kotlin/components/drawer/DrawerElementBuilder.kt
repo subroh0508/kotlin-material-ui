@@ -11,14 +11,14 @@ import react.RComponent
 import react.RProps
 import react.RState
 
-class DrawerElementBuilder internal constructor(
+open class DrawerElementBuilder internal constructor(
     type: RComponent<RProps, RState>
 ) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
 
     var Tag.anchor: DrawerAnchor
         get() = DrawerAnchor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["anchor"])
         set(value) { setProp("anchor", value.toString()) }
-    var Tag.BackdropProps: RProps
+    var Tag.backdropProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["BackdropProps"]
         set(value) { setProp("BackdropProps", value) }
     var Tag.classes: Any
@@ -27,7 +27,7 @@ class DrawerElementBuilder internal constructor(
     var Tag.elevation: Number
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["elevation"]
         set(value) { setProp("elevation", value) }
-    var Tag.ModalProps: RProps
+    var Tag.modalProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["ModalProps"]
         set(value) { setProp("ModalProps", value) }
     var Tag.onClose: (Event) -> Unit
@@ -36,10 +36,10 @@ class DrawerElementBuilder internal constructor(
     var Tag.open: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["open"]
         set(value) { setProp("open", value) }
-    var Tag.PaperProps: RProps
+    var Tag.paperProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["PaperProps"]
         set(value) { setProp("PaperProps", value) }
-    var Tag.SlideProps: RProps
+    var Tag.slideProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["SlideProps"]
         set(value) { setProp("SlideProps", value) }
     var Tag.theme: Any
