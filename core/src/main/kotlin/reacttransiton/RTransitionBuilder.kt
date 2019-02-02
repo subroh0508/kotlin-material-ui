@@ -14,9 +14,10 @@ abstract class RTransitionBuilder<CHILD: Tag>(
     type: RComponent<RProps, RState>,
     factory: (TagConsumer<Unit>) -> CHILD
 ) : MaterialElementBuilder<CHILD>(type, factory) {
+
     var Tag.`in`: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["`in`"]
-        set(value) { setProp("`in`", value) }
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["in"]
+        set(value) { setProp("in", value) }
     var Tag.mountOnEnter: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["mountOnEnter"]
         set(value) { setProp("mountOnEnter", value) }
@@ -56,6 +57,4 @@ abstract class RTransitionBuilder<CHILD: Tag>(
     var Tag.onExited: (HTMLElement) -> Unit
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onExited"]
         set(value) { setProp("onExited", value) }
-
-
 }
