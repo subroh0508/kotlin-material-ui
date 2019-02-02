@@ -10,7 +10,7 @@ import react.ReactElement
 
 class CheckboxElementBuilder internal constructor(
     type: RComponent<RProps, RState>
-) : SwitchBaseElementBuilder(type) {
+) : SwitchBaseElementBuilder<String>(type) {
 
     var Tag.color: CheckboxColor
         get() = CheckboxColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
@@ -21,4 +21,7 @@ class CheckboxElementBuilder internal constructor(
     var Tag.indeterminateIcon: ReactElement
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["indeterminateIcon"]
         set(value) { setProp("indeterminateIcon", value) }
+    override var Tag.value: String
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["value"]
+        set(value) { setProp("value", value) }
 }
