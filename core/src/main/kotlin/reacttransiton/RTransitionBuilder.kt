@@ -1,61 +1,60 @@
 package reacttransiton
 
-import components.MaterialElementBuilder
-import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
-import org.w3c.dom.HTMLElement
+import kotlinext.js.jsObject
 import org.w3c.dom.events.Event
-import react.RComponent
-import react.RProps
-import react.RState
+import react.*
 import reacttransiton.values.TransitionTimeout
 
-abstract class RTransitionBuilder<CHILD: Tag>(
-    type: RComponent<RProps, RState>,
-    factory: (TagConsumer<Unit>) -> CHILD
-) : MaterialElementBuilder<CHILD>(type, factory) {
-    var Tag.`in`: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["`in`"]
-        set(value) { setProp("`in`", value) }
-    var Tag.mountOnEnter: Boolean
+abstract class RTransitionBuilder(
+    val type: RComponent<RProps, RState>,
+    protected val props: RProps = jsObject { }
+) : RBuilder() {
+    fun attrs(handler: RProps.() -> Unit) {
+        props.handler()
+    }
+
+    fun create() = createElement(type, props, *childList.toTypedArray())
+
+    var RProps.`in`: Boolean
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["in"]
+        set(value) { props.asDynamic()["in"] = value }
+    var RProps.mountOnEnter: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["mountOnEnter"]
-        set(value) { setProp("mountOnEnter", value) }
-    var Tag.unmountOnExit: Boolean
+        set(value) { props.asDynamic()["mountOnEnter"] = value }
+    var RProps.unmountOnExit: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["unmountOnExit"]
-        set(value) { setProp("unmountOnExit", value) }
-    var Tag.appear: Boolean
+        set(value) { props.asDynamic()["unmountOnExit"] = value }
+    var RProps.appear: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["appear"]
-        set(value) { setProp("appear", value) }
-    var Tag.enter: Boolean
+        set(value) { props.asDynamic()["appear"] = value }
+    var RProps.enter: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["enter"]
-        set(value) { setProp("enter", value) }
-    var Tag.exit: Boolean
+        set(value) { props.asDynamic()["enter"] = value }
+    var RProps.exit: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["exit"]
-        set(value) { setProp("exit", value) }
-    var Tag.timeout: TransitionTimeout
+        set(value) { props.asDynamic()["exit"] = value }
+    var RProps.timeout: TransitionTimeout
         get() = TransitionTimeout.fromDynamic(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["timeout"])
-        set(value) { setProp("timeout", value.value) }
-    var Tag.addEndListener: (HTMLElement, (Event) -> Unit) -> Unit
+        set(value) { props.asDynamic()["timeout"] = value.value }
+    var RProps.addEndListener: (ReactElement, (Event) -> Unit) -> Unit
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["addEndListener"]
-        set(value) { setProp("addEndListener", value) }
-    var Tag.onEnter: (HTMLElement, Boolean) -> Unit
+        set(value) { props.asDynamic()["addEndListener"] = value }
+    var RProps.onEnter: (ReactElement, Boolean) -> Unit
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onEnter"]
-        set(value) { setProp("onEnter", value) }
-    var Tag.onEntering: (HTMLElement, Boolean) -> Unit
+        set(value) { props.asDynamic()["onEnter"] = value }
+    var RProps.onEntering: (ReactElement, Boolean) -> Unit
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onEntering"]
-        set(value) { setProp("onEntering", value) }
-    var Tag.onEntered: (HTMLElement, Boolean) -> Unit
+        set(value) { props.asDynamic()["onEntering"] = value }
+    var RProps.onEntered: (ReactElement, Boolean) -> Unit
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onEntered"]
-        set(value) { setProp("onEntered", value) }
-    var Tag.onExit: (HTMLElement) -> Unit
+        set(value) { props.asDynamic()["onEntered"] = value }
+    var RProps.onExit: (ReactElement) -> Unit
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onExit"]
-        set(value) { setProp("onExit", value) }
-    var Tag.onExiting: (HTMLElement) -> Unit
+        set(value) { props.asDynamic()["onExit"] = value }
+    var RProps.onExiting: (ReactElement) -> Unit
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onExiting"]
-        set(value) { setProp("onExiting", value) }
-    var Tag.onExited: (HTMLElement) -> Unit
+        set(value) { props.asDynamic()["onExiting"] = value }
+    var RProps.onExited: (ReactElement) -> Unit
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onExited"]
-        set(value) { setProp("onExited", value) }
-
-
+        set(value) { props.asDynamic()["onExited"] = value }
 }
