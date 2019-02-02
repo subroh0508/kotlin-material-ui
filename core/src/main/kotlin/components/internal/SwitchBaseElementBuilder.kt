@@ -61,6 +61,6 @@ abstract class SwitchBaseElementBuilder internal constructor(
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["type"]
         set(value) { setProp("type", value) }
     var Tag.value: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["Tag.value"]
-        set(value) { setProp("Tag.value", value) }
+        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["value"]
+        set(value) { setProp("value", value) }
 }
