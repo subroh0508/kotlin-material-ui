@@ -5,7 +5,7 @@ import kotlinx.html.SPAN
 import kotlinx.html.Tag
 import react.*
 
-abstract class SwitchBaseElementBuilder internal constructor(
+abstract class SwitchBaseElementBuilder<T: Any> internal constructor(
     type: RComponent<RProps, RState>
 ) : MaterialElementBuilder<SPAN>(type, { SPAN(mapOf(), it) }) {
 
@@ -60,7 +60,5 @@ abstract class SwitchBaseElementBuilder internal constructor(
     var Tag.type: String
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["type"]
         set(value) { setProp("type", value) }
-    var Tag.value: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["value"]
-        set(value) { setProp("value", value) }
+    abstract var Tag.value: T
 }
