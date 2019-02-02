@@ -40,26 +40,26 @@ class GridElementBuilder<T: Tag> internal constructor(
         get() = GridJustify.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["justify"])
         set(value) { setProp("justify", value.toString()) }
     var Tag.lg: GridUnit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["lg"]
-        set(value) { setProp("lg", value) }
+        get() = GridUnit(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["lg"])
+        set(value) { setProp("lg", value.value) }
     var Tag.md: GridUnit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["md"]
-        set(value) { setProp("md", value) }
+        get() = GridUnit(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["md"])
+        set(value) { setProp("md", value.value) }
     var Tag.sm: GridUnit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["sm"]
-        set(value) { setProp("sm", value) }
+        get() = GridUnit(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["sm"])
+        set(value) { setProp("sm", value.value) }
     var Tag.spacing: GridSpacing
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["spacing"]
-        set(value) { setProp("spacing", value) }
+        get() = GridSpacing(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["spacing"] as Int)
+        set(value) { setProp("spacing", value.value) }
     var Tag.wrap: GridWrap
         get() = GridWrap.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["wrap"])
         set(value) { setProp("wrap", value.toString()) }
     var Tag.xl: GridUnit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["xl"]
-        set(value) { setProp("xl", value) }
+        get() = GridUnit(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["xl"])
+        set(value) { setProp("xl", value.value) }
     var Tag.xs: GridUnit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["xs"]
-        set(value) { setProp("xs", value) }
+        get() = GridUnit(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["xs"])
+        set(value) { setProp("xs", value.value) }
     var Tag.zeroMinWidth: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["zeroMinWidth"]
         set(value) { setProp("zeroMinWidth", value) }
