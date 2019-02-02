@@ -5,7 +5,7 @@ import react.*
 
 class CssBaselineElementBuilder internal constructor(
     val type: RComponent<RProps, RState>,
-    protected val props: RProps = jsObject { }
+    private val props: RProps = jsObject { }
 ) : RBuilder() {
     fun attrs(handler: RProps.() -> Unit) {
         props.handler()
