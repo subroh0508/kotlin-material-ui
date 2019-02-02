@@ -7,7 +7,7 @@ import kotlinx.html.Tag
 import org.w3c.dom.events.Event
 import react.*
 
-class FormCotrolLabelElementBuilder internal constructor(
+class FormControlLabelElementBuilder internal constructor(
     type: RComponent<RProps, RState>
 ) : MaterialElementBuilder<LABEL>(type, { LABEL(mapOf(), it) }) {
 
