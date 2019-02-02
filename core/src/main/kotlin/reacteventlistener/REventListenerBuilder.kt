@@ -5,9 +5,9 @@ import react.*
 
 abstract class REventListenerBuilder internal constructor(
     val type: RComponent<RProps, RState>,
-    val props: RProps = jsObject { }
+    protected val props: RProps = jsObject { }
 ) : RBuilder() {
-    inline fun attrs(handler: RProps.() -> Unit) {
+    fun attrs(handler: RProps.() -> Unit) {
         props.handler()
     }
 
