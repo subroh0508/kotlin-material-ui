@@ -1,7 +1,6 @@
 package components.stepicon
 
 import kotlinext.js.jsObject
-import kotlinx.html.Tag
 import react.*
 
 class StepIconElementBuilder internal constructor(
@@ -14,19 +13,19 @@ class StepIconElementBuilder internal constructor(
 
     fun create() = createElement(type, props, *childList.toTypedArray())
 
-    var Tag.active: Boolean
+    var RProps.active: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["active"]
         set(value) { props.asDynamic()["active"] = value }
-    var Tag.classes: Any
+    var RProps.classes: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
         set(value) { props.asDynamic()["classes"] = value }
-    var Tag.completed: Boolean
+    var RProps.completed: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["completed"]
         set(value) { props.asDynamic()["completed"] = value }
-    var Tag.error: Boolean
+    var RProps.error: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["error"]
         set(value) { props.asDynamic()["error"] = value }
-    var Tag.icon: ReactElement
+    var RProps.icon: ReactElement
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["icon"]
         set(value) { props.asDynamic()["icon"] = value }
 }

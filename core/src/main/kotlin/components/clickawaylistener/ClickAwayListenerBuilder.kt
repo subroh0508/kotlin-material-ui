@@ -12,13 +12,13 @@ class ClickAwayListenerBuilder internal constructor(
     type: RComponent<RProps, RState>
 ) : REventListenerBuilder(type) {
 
-    var mouseEvent: ClickAwayListenerMouseEvent
+    var RProps.mouseEvent: ClickAwayListenerMouseEvent
         get() = ClickAwayListenerMouseEvent.fromDynamic(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["mouseEvent"])
         set(value) { props.asDynamic()["mouseEvent"] = value }
-    var onClickAway: (Event) -> Unit
+    var RProps.onClickAway: (Event) -> Unit
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onClickAway"]
         set(value) { props.asDynamic()["onClickAway"] = value }
-    var touchEvent: ClickAwayListenerTouchEvent
+    var RProps.touchEvent: ClickAwayListenerTouchEvent
         get() = ClickAwayListenerTouchEvent.fromDynamic(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["touchEvent"])
         set(value) { props.asDynamic()["onClickAway"] = value }
 }

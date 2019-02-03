@@ -1,7 +1,6 @@
 package components.nossr
 
 import kotlinext.js.jsObject
-import kotlinx.html.Tag
 import react.*
 
 class NoSsrElementBuilder internal constructor(
@@ -14,10 +13,10 @@ class NoSsrElementBuilder internal constructor(
 
     fun create() = createElement(type, props, *childList.toTypedArray())
 
-    var Tag.defer: Boolean
+    var RProps.defer: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["defer"]
         set(value) { props.asDynamic()["defer"] = value }
-    var Tag.fallback: ReactElement
+    var RProps.fallback: ReactElement
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["fallback"]
         set(value) { props.asDynamic()["fallback"] = value }
 }
