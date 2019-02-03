@@ -9,7 +9,7 @@ import react.RProps
 import react.RState
 import kotlin.reflect.KClass
 
-class FormLabelElementBuilder<T: Tag> internal constructor(
+open class FormLabelElementBuilder<T: Tag> internal constructor(
     type: RComponent<RProps, RState>,
     tag: KClass<T>,
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
