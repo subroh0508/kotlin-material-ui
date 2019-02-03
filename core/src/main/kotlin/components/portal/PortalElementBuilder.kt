@@ -1,7 +1,6 @@
 package components.portal
 
 import kotlinext.js.jsObject
-import kotlinx.html.Tag
 import react.*
 
 class PortalElementBuilder internal constructor(
@@ -14,13 +13,13 @@ class PortalElementBuilder internal constructor(
 
     fun create() = createElement(type, props, *childList.toTypedArray())
 
-    var Tag.container: Any
+    var RProps.container: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["container"]
         set(value) { props.asDynamic()["container"] = value }
-    var Tag.disablePortal: Boolean
+    var RProps.disablePortal: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disablePortal"]
         set(value) { props.asDynamic()["disablePortal"] = value }
-    var Tag.onRendered: () -> Unit
+    var RProps.onRendered: () -> Unit
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onRendered"]
         set(value) { props.asDynamic()["onRendered"] = value }
 }

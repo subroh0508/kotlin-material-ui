@@ -1,7 +1,6 @@
 package components.rootref
 
 import kotlinext.js.jsObject
-import kotlinx.html.Tag
 import react.*
 
 class RootRefElementBuilder internal constructor(
@@ -14,7 +13,7 @@ class RootRefElementBuilder internal constructor(
 
     fun create() = createElement(type, props, *childList.toTypedArray())
 
-    var Tag.rootRef: RRef
+    var RProps.rootRef: RRef
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["rootRef"]
         set(value) { props.asDynamic()["rootRef"] = value }
 }
