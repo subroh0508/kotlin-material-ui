@@ -15,7 +15,7 @@ private external val collapseModule: dynamic
 private val collapseComponent: RComponent<RProps, RState> = collapseModule.default
 
 fun RBuilder.collapse(block: CollapseElementBuilder<DIV>.() -> Unit)
-    = child(CollapseElementBuilder(collapseComponent, DIV::class) { DIV(mapOf(), it) }.apply(block).create())
+    = child(CollapseElementBuilder(collapseComponent, DIV::class, { DIV(mapOf(), it) }).apply(block).create())
 
 fun <T: Tag> RBuilder.collapse(tag: KClass<T>, block: CollapseElementBuilder<T>.() -> Unit)
     = child(CollapseElementBuilder(collapseComponent, tag).apply(block).create())
