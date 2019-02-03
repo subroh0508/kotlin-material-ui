@@ -13,4 +13,4 @@ private external val backdropModule: dynamic
 private val backdropComponent: RComponent<RProps, RState> = backdropModule.default
 
 fun RBuilder.backdrop(block: BackdropElementBuilder<DIV>.() -> Unit)
-    = child(BackdropElementBuilder(backdropComponent, DIV::class) { DIV(mapOf(), it) }.apply(block).create())
+    = child(BackdropElementBuilder(backdropComponent, DIV::class, { DIV(mapOf(), it) }).apply(block).create())
