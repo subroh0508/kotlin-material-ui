@@ -1,6 +1,6 @@
 package components.popover.enums
 
 @Suppress("EnumEntryName")
-enum class AnchorOriginHorizontal {
+enum class PopoverTransformOriginHorizontal {
     left, center, right
 }

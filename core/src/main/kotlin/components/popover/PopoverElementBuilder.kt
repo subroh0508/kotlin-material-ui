@@ -1,7 +1,11 @@
 package components.popover
 
-import components.popover.enums.AnchorReference
 import components.modal.ModalElementBuilder
+import components.popover.enums.PopoverAnchorReference
+import components.popover.values.PopoverAnchorOrigin
+import components.popover.values.PopoverAnchorPosition
+import components.popover.values.PopoverTransformOrigin
+import components.popover.values.PopoverTransitionDuration
 import kotlinx.html.Tag
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.Node
@@ -9,10 +13,6 @@ import react.RComponent
 import react.RProps
 import react.RState
 import react.ReactElement
-import components.popover.values.AnchorOrigin
-import components.popover.values.AnchorPosition
-import components.popover.values.TransformOrigin
-import components.popover.values.TransitionDuration
 
 open class PopoverElementBuilder(
     type: RComponent<RProps, RState>
@@ -24,14 +24,14 @@ open class PopoverElementBuilder(
     var Tag.anchorEl: ReactElement?
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["anchorEl"]
         set(value) { setProp("anchorEl", value) }
-    var Tag.anchorOrigin: AnchorOrigin
-        get() = AnchorOrigin(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["anchorOrigin"])
+    var Tag.anchorOrigin: PopoverAnchorOrigin
+        get() = PopoverAnchorOrigin(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["anchorOrigin"])
         set(value) { setProp("anchorOrigin", value.value) }
-    var Tag.anchorPosition: AnchorPosition
-        get() = AnchorPosition(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["anchorPosition"])
+    var Tag.anchorPosition: PopoverAnchorPosition
+        get() = PopoverAnchorPosition(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["anchorPosition"])
         set(value) { setProp("anchorPosition", value.value) }
-    var Tag.anchorReference: AnchorReference
-        get() = AnchorReference.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["anchorReference"])
+    var Tag.anchorReference: PopoverAnchorReference
+        get() = PopoverAnchorReference.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["anchorReference"])
         set(value) { setProp("anchorReference", value.toString()) }
     var Tag.elevation: Number
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["elevation"]
@@ -69,14 +69,14 @@ open class PopoverElementBuilder(
     var Tag.role: String
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["role"]
         set(value) { setProp("role", value) }
-    var Tag.transformOrigin: TransformOrigin
-        get() = TransformOrigin(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["transformOrigin"])
+    var Tag.transformOrigin: PopoverTransformOrigin
+        get() = PopoverTransformOrigin(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["transformOrigin"])
         set(value) { setProp("transformOrigin", value.value) }
     var Tag.transitionComponent: RComponent<RProps, RState>
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["TransitionComponent"]
         set(value) { setProp("TransitionComponent", value) }
-    var Tag.transitionDuration: TransitionDuration
-        get() = TransitionDuration.fromDynamic(props.asDynamic()["transitionDuration"])
+    var Tag.transitionDuration: PopoverTransitionDuration
+        get() = PopoverTransitionDuration.fromDynamic(props.asDynamic()["transitionDuration"])
         set(value) { setProp("transitionDuration", value.value) }
     var Tag.transitionProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["TransitionProps"]
