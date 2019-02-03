@@ -1,23 +1,23 @@
 package reacttransiton
 
-import kotlinx.html.Tag
 import org.w3c.dom.events.Event
+import react.RProps
 import react.ReactElement
 import reacttransiton.values.TransitionTimeout
 
 interface RTransition {
-    var Tag.`in`: Boolean
-    var Tag.mountOnEnter: Boolean
-    var Tag.unmountOnExit: Boolean
-    var Tag.appear: Boolean
-    var Tag.enter: Boolean
-    var Tag.exit: Boolean
-    var Tag.timeout: TransitionTimeout
-    var Tag.addEndListener: (ReactElement, (Event) -> Unit) -> Unit
-    var Tag.onEnter: (ReactElement, Boolean) -> Unit
-    var Tag.onEntering: (ReactElement, Boolean) -> Unit
-    var Tag.onEntered: (ReactElement, Boolean) -> Unit
-    var Tag.onExit: (ReactElement) -> Unit
-    var Tag.onExiting: (ReactElement) -> Unit
-    var Tag.onExited: (ReactElement) -> Unit
+    var RProps.`in`: Boolean
+    var RProps.mountOnEnter: Boolean
+    var RProps.unmountOnExit: Boolean
+    var RProps.appear: Boolean
+    var RProps.enter: Boolean
+    var RProps.exit: Boolean
+    var RProps.timeout: TransitionTimeout
+    var RProps.addEndListener: (ReactElement, (Event) -> Unit) -> Unit
+    var RProps.onEnter: (ReactElement, Boolean) -> Unit
+    var RProps.onEntering: (ReactElement, Boolean) -> Unit
+    var RProps.onEntered: (ReactElement, Boolean) -> Unit
+    var RProps.onExit: (ReactElement) -> Unit
+    var RProps.onExiting: (ReactElement) -> Unit
+    var RProps.onExited: (ReactElement) -> Unit
 }
