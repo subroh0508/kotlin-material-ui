@@ -16,7 +16,7 @@ class PopperElementBuilder internal constructor(
     var Tag.anchorEl: ReactElement?
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["anchorEl"]
         set(value) { setProp("anchorEl", value) }
-    var Tag.container: ReactElement
+    var Tag.container: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["container"]
         set(value) { setProp("container", value) }
     var Tag.disablePortal: Boolean
