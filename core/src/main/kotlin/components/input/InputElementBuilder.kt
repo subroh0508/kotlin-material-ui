@@ -6,7 +6,7 @@ import react.RComponent
 import react.RProps
 import react.RState
 
-class InputElementBuilder internal constructor(
+open class InputElementBuilder internal constructor(
     type: RComponent<RProps, RState>
 ) : InputBaseElementBuilder(type) {
 
