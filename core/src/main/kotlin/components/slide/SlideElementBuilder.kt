@@ -2,7 +2,6 @@ package components.slide
 
 import components.slide.enums.SlideDirection
 import kotlinext.js.jsObject
-import kotlinx.html.Tag
 import react.*
 import reacttransiton.RTransition
 import reacttransiton.RTransitionBuilder
@@ -16,15 +15,19 @@ class SlideElementBuilder internal constructor(
         transition.props = props
     }
 
+    fun attrs(handler: RProps.() -> Unit) {
+        props.handler()
+    }
+
     fun create() = createElement(type, props, *childList.toTypedArray())
 
-    var Tag.direction: SlideDirection
+    var RProps.direction: SlideDirection
         get() = SlideDirection.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["direction"])
         set(value) { props.asDynamic()["direction"] = value.toString() }
-    var Tag.style: Any
+    var RProps.style: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["style"]
         set(value) { props.asDynamic()["style"] = value }
-    var Tag.theme: Any
+    var RProps.theme: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["theme"]
         set(value) { props.asDynamic()["theme"] = value }
 }
