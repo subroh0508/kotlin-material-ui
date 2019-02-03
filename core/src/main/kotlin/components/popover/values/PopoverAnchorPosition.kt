@@ -2,7 +2,7 @@ package components.popover.values
 
 import kotlinext.js.js
 
-class AnchorPosition(
+class PopoverAnchorPosition(
     private val left: Number,
     private val top: Number
 ) {

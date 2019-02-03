@@ -1,6 +1,6 @@
 package components.popover.enums
 
 @Suppress("EnumEntryName")
-enum class TransformOriginVertical {
+enum class PopoverTransformOriginVertical {
     top, center, bottom
 }
