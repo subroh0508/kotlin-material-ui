@@ -6,10 +6,10 @@ import react.RProps
 import react.RState
 
 @JsModule("@material-ui/core/Grow")
-private external val growBarModule: dynamic
+private external val growModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val growBarComponent: RComponent<RProps, RState> = growBarModule.default
+private val growComponent: RComponent<RProps, RState> = growModule.default
 
 fun RBuilder.grow(block: GrowElementBuilder.() -> Unit)
-    = child(GrowElementBuilder(growBarComponent).apply(block).create())
+    = child(GrowElementBuilder(growComponent).apply(block).create())
