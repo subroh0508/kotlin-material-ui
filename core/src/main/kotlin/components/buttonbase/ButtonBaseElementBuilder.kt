@@ -1,6 +1,7 @@
 package components.buttonbase
 
 import components.MaterialElementBuilder
+import components.MaterialElementStyles
 import components.buttonbase.enums.ButtonBaseStyle
 import components.buttonbase.enums.ButtonType
 import components.consumers
@@ -26,8 +27,9 @@ open class ButtonBaseElementBuilder<T: Tag> internal constructor(
     var Tag.centerRipple: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["centerRipple"]
         set(value) { setProp("centerRipple", value) }
-    fun Tag.classes(handler: CSSBuilder.() -> Unit) {
-        setProp("classes", css.apply(handler).toDynamic)
+    fun Tag.classes(handler: MaterialElementStyles.() -> Unit) {
+        handler(styles)
+        setProp("classes", styles.toDynamic)
     }
     var Tag.disabled: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]
@@ -54,7 +56,7 @@ open class ButtonBaseElementBuilder<T: Tag> internal constructor(
         get() = ButtonType.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["type"])
         set(value) { setProp("type", value.toString()) }
 
-    fun CSSBuilder.styles(attrName: ButtonBaseStyle, handler: CSSBuilder.() -> Unit) {
-        declarations[attrName.toString()] = CSSBuilder().apply(handler).toDynamic
+    fun MaterialElementStyles.styles(attrName: ButtonBaseStyle, handler: CSSBuilder.() -> Unit) {
+        this[attrName.toString()] = CSSBuilder().apply(handler).toDynamic
     }
 }
