@@ -1,11 +1,14 @@
 package components.typography
 
 import components.MaterialElementBuilder
+import components.MaterialElementStyles
 import components.consumers
 import components.typography.enums.TypographyAlign
 import components.typography.enums.TypographyColor
+import components.typography.enums.TypographyStyle
 import components.typography.enums.TypographyVariant
 import components.typography.values.HeadlineMapping
+import kotlinx.css.CSSBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import react.RComponent
@@ -22,9 +25,9 @@ open class TypographyElementBuilder<T: Tag> internal constructor(
     var Tag.align: TypographyAlign
         get() = TypographyAlign.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["align"])
         set(value) { setProp("align", value.toString()) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
+    fun Tag.classes(handler: MaterialElementStyles.() -> Unit) {
+        setProp("classes", styles.apply(handler).toDynamic)
+    }
     var Tag.color: TypographyColor
         get() = TypographyColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
         set(value) { setProp("color", value.toString()) }
@@ -52,4 +55,8 @@ open class TypographyElementBuilder<T: Tag> internal constructor(
     var Tag.variant: TypographyVariant
         get() = TypographyVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
         set(value) { setProp("variant", value.toString()) }
+
+    fun MaterialElementStyles.styles(attrName: TypographyStyle, handler: CSSBuilder.() -> Unit) {
+        this[attrName.toString()] = CSSBuilder().apply(handler).toDynamic
+    }
 }
