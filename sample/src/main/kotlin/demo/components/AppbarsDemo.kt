@@ -10,6 +10,7 @@ import components.toolbar.toolbar
 import components.typography.enums.TypographyColor
 import components.typography.enums.TypographyVariant
 import components.typography.typography
+import kotlinx.css.px
 import react.RBuilder
 import react.RComponent
 import react.RProps
@@ -21,6 +22,7 @@ import styled.styledDiv
 
 class AppbarsDemo : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
+        console.log(props)
         div {
             h2 {
                 +"App Bar with buttons"
@@ -40,8 +42,13 @@ class AppbarsDemo : RComponent<RProps, RState>() {
                 toolbar {
                     iconButton {
                         attrs {
+                            classes {
+                                rootStyle {
+                                    marginLeft = (-12).px
+                                    marginRight = 20.px
+                                }
+                            }
                             color = ButtonColor.inherit
-
                         }
 
                         icon {
@@ -50,6 +57,12 @@ class AppbarsDemo : RComponent<RProps, RState>() {
                     }
                     typography {
                         attrs {
+                            classes {
+                                rootStyle {
+                                    flexGrow = 1.0
+                                }
+                            }
+
                             variant = TypographyVariant.h6
                             color = TypographyColor.inherit
                         }
