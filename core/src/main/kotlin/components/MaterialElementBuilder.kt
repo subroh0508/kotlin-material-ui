@@ -7,6 +7,7 @@ import kotlinx.html.TagConsumer
 import react.*
 import react.dom.InnerHTML
 import react.dom.RDOMBuilder
+import styles.withStyles
 
 abstract class MaterialElementBuilder<T: Tag>(
     val type: RComponent<RProps, RState>,
@@ -27,7 +28,7 @@ abstract class MaterialElementBuilder<T: Tag>(
     protected val CSSBuilder.toDynamic: Any
         get() = js {
            declarations.forEach { (key, value) ->
-                this[key] = value
+                this[key] = value.toString()
             }
          } as Any
 
@@ -42,5 +43,11 @@ abstract class MaterialElementBuilder<T: Tag>(
         this["root"] = CSSBuilder().apply(handler).toDynamic
     }
 
-    override fun create(): ReactElement = createElement(type, props, *childList.toTypedArray())
+    override fun create(): ReactElement {
+        if (styles.isEmpty()) {
+            return createElement(type, props, *childList.toTypedArray())
+        }
+
+        return createElement(withStyles(styles.toDynamic)(type), props, *childList.toTypedArray())
+    }
 }
