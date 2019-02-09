@@ -5,7 +5,7 @@ import react.RComponent
 import react.RProps
 import react.RState
 
-@JsModule("@material-ui/core/ListAvatar")
+@JsModule("@material-ui/core/ListItemAvatar")
 private external val listAvatarModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
