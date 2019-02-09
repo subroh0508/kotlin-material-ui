@@ -5,7 +5,7 @@ import react.RComponent
 import react.RProps
 import react.RState
 
-@JsModule("@material-ui/core/MuiThemeProvider")
+@JsModule("@material-ui/core/styles/MuiThemeProvider")
 private external val muiThemeProviderModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")

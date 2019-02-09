@@ -8,7 +8,7 @@ import react.RProps
 import react.RState
 import kotlin.reflect.KClass
 
-@JsModule("@material-ui/core/TouchRipple")
+@JsModule("@material-ui/core/ButtonBase/TouchRipple")
 private external val touchRippleModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")

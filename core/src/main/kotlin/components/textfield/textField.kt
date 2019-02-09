@@ -8,7 +8,7 @@ import react.RProps
 import react.RState
 import kotlin.reflect.KClass
 
-@JsModule("@material-ui/core/TableField")
+@JsModule("@material-ui/core/TextField")
 private external val tableFieldModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
