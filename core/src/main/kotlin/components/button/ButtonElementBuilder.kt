@@ -1,5 +1,6 @@
 package components.button
 
+import components.MaterialElementStyles
 import components.button.enums.ButtonColor
 import components.button.enums.ButtonSize
 import components.button.enums.ButtonStyle
@@ -39,7 +40,7 @@ class ButtonElementBuilder<T: Tag> internal constructor(
         get() = ButtonVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
         set(value) { setProp("variant", value.toString()) }
 
-    fun CSSBuilder.styles(attrName: ButtonStyle, handler: CSSBuilder.() -> Unit) {
-        declarations[attrName.toString()] = CSSBuilder().apply(handler).toDynamic
+    fun MaterialElementStyles.styles(attrName: ButtonStyle, handler: CSSBuilder.() -> Unit) {
+        this[attrName.toString()] = CSSBuilder().apply(handler).toDynamic
     }
 }
