@@ -19,7 +19,7 @@ open class PaperElementBuilder<T: Tag> internal constructor(
 ) : MaterialElementBuilder<T>(type, factory) {
 
     fun Tag.classes(handler: MaterialElementStyles.() -> Unit) {
-        setProp("classes", styles.apply(handler).toDynamic)
+        styles.apply(handler)
     }
     var Tag.elevation: Number
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["elevation"]
