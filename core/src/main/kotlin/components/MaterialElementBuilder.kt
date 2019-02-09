@@ -1,5 +1,7 @@
 package components
 
+import kotlinext.js.js
+import kotlinx.css.CSSBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import react.*
@@ -13,6 +15,15 @@ abstract class MaterialElementBuilder<T: Tag>(
     init {
         setProp("component", attrs.tagName)
     }
+
+    protected val css: CSSBuilder = CSSBuilder()
+
+    internal val CSSBuilder.toDynamic: Any
+        get() = js {
+            declarations.forEach { (key, value) ->
+                this[key] = value
+            }
+        } as Any
 
     var Tag.className: String?
         get() = props.className

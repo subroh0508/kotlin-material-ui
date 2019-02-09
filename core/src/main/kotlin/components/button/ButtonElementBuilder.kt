@@ -2,9 +2,11 @@ package components.button
 
 import components.button.enums.ButtonColor
 import components.button.enums.ButtonSize
+import components.button.enums.ButtonStyle
 import components.button.enums.ButtonVariant
 import components.buttonbase.ButtonBaseElementBuilder
 import components.consumers
+import kotlinx.css.CSSBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import react.RComponent
@@ -36,4 +38,8 @@ class ButtonElementBuilder<T: Tag> internal constructor(
     var Tag.variant: ButtonVariant
         get() = ButtonVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
         set(value) { setProp("variant", value.toString()) }
+
+    fun CSSBuilder.styles(attrName: ButtonStyle, handler: CSSBuilder.() -> Unit) {
+        declarations[attrName.toString()] = CSSBuilder().apply(handler).toDynamic
+    }
 }
