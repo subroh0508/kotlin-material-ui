@@ -26,13 +26,21 @@ abstract class MaterialElementBuilder<T: Tag>(
         set(value) { props.dangerouslySetInnerHTML = value }
 
     protected fun setClasses(classMap: List<Pair<String, String>>) {
-        val jsObject = js {
-            classMap.forEach {
-                this[it.first] = it.second
-            }
-        } as Any
+        val classes = props.asDynamic()["classes"]
+        val rootClass = if (classes != null) classes["root"] else null
 
-        setProp("classes", jsObject)
+        val jsObject = classes ?: js { }
+
+        jsObject["root"] = rootClass
+        classMap.forEach {
+            jsObject[it.first] = it.second
+        }
+
+        setProp("classes", jsObject as Any)
+    }
+
+    fun Tag.rootClass(className: String) {
+        setClasses(listOf("root" to className))
     }
 
     override fun create() = createElement(type, props, *childList.toTypedArray())
