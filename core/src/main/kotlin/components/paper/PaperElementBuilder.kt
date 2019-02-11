@@ -27,8 +27,4 @@ open class PaperElementBuilder<T: Tag> internal constructor(
     var Tag.square: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["square"]
         set(value) { setProp("square", value) }
-
-    fun MaterialElementStyles.styles(attrName: PaperStyle, handler: CSSBuilder.() -> Unit) {
-        this[attrName.toString()] = CSSBuilder().apply(handler).toDynamic
-    }
 }

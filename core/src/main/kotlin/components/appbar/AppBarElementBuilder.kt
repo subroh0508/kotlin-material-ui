@@ -1,12 +1,9 @@
 package components.appbar
 
-import components.MaterialElementStyles
 import components.appbar.enums.AppBarColor
 import components.appbar.enums.AppBarPosition
-import components.appbar.enums.AppBarStyle
 import components.consumers
 import components.paper.PaperElementBuilder
-import kotlinx.css.CSSBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import react.RComponent
@@ -26,8 +23,4 @@ class AppBarElementBuilder<T: Tag> internal constructor(
     var Tag.position: AppBarPosition
         get() = AppBarPosition.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["position"])
         set(value) { setProp("position", value.toString()) }
-
-    fun MaterialElementStyles.styles(attrName: AppBarStyle, handler: CSSBuilder.() -> Unit) {
-        this[attrName.toString()] = CSSBuilder().apply(handler).toDynamic
-    }
 }
