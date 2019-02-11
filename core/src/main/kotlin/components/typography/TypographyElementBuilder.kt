@@ -1,14 +1,12 @@
 package components.typography
 
 import components.MaterialElementBuilder
-import components.MaterialElementStyles
 import components.consumers
 import components.typography.enums.TypographyAlign
 import components.typography.enums.TypographyColor
 import components.typography.enums.TypographyStyle
 import components.typography.enums.TypographyVariant
 import components.typography.values.HeadlineMapping
-import kotlinx.css.CSSBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import react.RComponent
@@ -25,8 +23,8 @@ open class TypographyElementBuilder<T: Tag> internal constructor(
     var Tag.align: TypographyAlign
         get() = TypographyAlign.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["align"])
         set(value) { setProp("align", value.toString()) }
-    fun Tag.classes(handler: MaterialElementStyles.() -> Unit) {
-        styles.apply(handler)
+    fun Tag.classes(vararg classMap: Pair<TypographyStyle, String>) {
+        setClasses(classMap.map { it.first.toString() to it.second })
     }
     var Tag.color: TypographyColor
         get() = TypographyColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])

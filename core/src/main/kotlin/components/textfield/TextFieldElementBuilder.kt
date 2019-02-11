@@ -2,10 +2,14 @@ package components.textfield
 
 import components.consumers
 import components.formcontrol.FormControlElementBuilder
+import components.input.InputElementBuilder
+import components.input.input
 import components.textfield.values.TextFieldValue
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import react.*
+import react.dom.RDOMBuilder
+import react.dom.tag
 import kotlin.reflect.KClass
 
 class TextFieldElementBuilder<T: Tag> internal constructor(
@@ -38,15 +42,23 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
     var Tag.InputProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["InputProps"]
         set(value) { setProp("InputProps", value) }
+    fun Tag.InputProps(block: InputElementBuilder.() -> Unit) {
+        val inputProps = RBuilder().input(block = block).props
+
+        setProp("InputProps", inputProps)
+    }
     var Tag.inputProps: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["inputProps"]
         set(value) { setProp("inputProps", value) }
     var Tag.inputRef: RRef
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["inputRef"]
         set(value) { setProp("inputRef", value) }
-    var Tag.label: ReactElement
+    var Tag.label: String
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["label"]
         set(value) { setProp("label", value) }
+    fun <T: Tag> Tag.label(block: RDOMBuilder<T>.() -> Unit, factory: (TagConsumer<Unit>) -> T) {
+        setProp("label", RBuilder().tag(block, factory))
+    }
     var Tag.multiline: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["multiline"]
         set(value) { setProp("multiline", value) }
@@ -73,5 +85,5 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
         set(value) { setProp("type", value) }
     var Tag.value: TextFieldValue
         get() = TextFieldValue.fromDynamic(props.asDynamic()["value"])
-        set(value) { setProp("value", value.toString()) }
+        set(value) { setProp("value", value.value) }
 }
