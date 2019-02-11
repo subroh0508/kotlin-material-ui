@@ -54,8 +54,4 @@ open class ButtonBaseElementBuilder<T: Tag> internal constructor(
     var Tag.type: ButtonType
         get() = ButtonType.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["type"])
         set(value) { setProp("type", value.toString()) }
-
-    fun MaterialElementStyles.styles(attrName: ButtonBaseStyle, handler: CSSBuilder.() -> Unit) {
-        this[attrName.toString()] = CSSBuilder().apply(handler).toDynamic
-    }
 }
