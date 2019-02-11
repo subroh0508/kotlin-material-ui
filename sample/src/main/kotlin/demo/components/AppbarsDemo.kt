@@ -10,6 +10,7 @@ import components.toolbar.toolbar
 import components.typography.enums.TypographyColor
 import components.typography.enums.TypographyVariant
 import components.typography.typography
+import kotlinx.css.CSSBuilder
 import kotlinx.css.px
 import react.RBuilder
 import react.RComponent
@@ -17,23 +18,21 @@ import react.RProps
 import react.RState
 import react.dom.div
 import react.dom.h2
-import styled.css
-import styled.styledDiv
+import styles.childWithStyles
 
 class AppbarsDemo : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
-        console.log(props)
+        val rootStyle = props.asDynamic()["classes"]["root"] as String
+        val growStyle = props.asDynamic()["classes"]["grow"] as String
+        val menuButtonStyle = props.asDynamic()["classes"]["menuButton"] as String
+
         div {
             h2 {
                 +"App Bar with buttons"
             }
         }
 
-        styledDiv {
-            css {
-                flexGrow = 1.0
-            }
-
+        div(classes = rootStyle) {
             appBar {
                 attrs {
                     position = AppBarPosition.static
@@ -42,12 +41,7 @@ class AppbarsDemo : RComponent<RProps, RState>() {
                 toolbar {
                     iconButton {
                         attrs {
-                            classes {
-                                rootStyle {
-                                    marginLeft = (-12).px
-                                    marginRight = 20.px
-                                }
-                            }
+                            rootClass(menuButtonStyle)
                             color = ButtonColor.inherit
                         }
 
@@ -57,11 +51,7 @@ class AppbarsDemo : RComponent<RProps, RState>() {
                     }
                     typography {
                         attrs {
-                            classes {
-                                rootStyle {
-                                    flexGrow = 1.0
-                                }
-                            }
+                            rootClass(growStyle)
 
                             variant = TypographyVariant.h6
                             color = TypographyColor.inherit
@@ -76,6 +66,28 @@ class AppbarsDemo : RComponent<RProps, RState>() {
                     }
                 }
             }
+        }
+    }
+
+    companion object {
+        fun render(rBuilder: RBuilder) = rBuilder.childWithStyles(
+            AppbarsDemo::class,
+            "root" to root,
+            "grow" to grow,
+            "menuButton" to menuButton
+        ) { }
+
+        private val root = CSSBuilder().apply {
+            flexGrow = 1.0
+        }
+
+        private val grow = CSSBuilder().apply {
+            flexGrow = 1.0
+        }
+
+        private val menuButton = CSSBuilder().apply {
+            marginLeft = (-12).px
+            marginRight = 20.px
         }
     }
 }
