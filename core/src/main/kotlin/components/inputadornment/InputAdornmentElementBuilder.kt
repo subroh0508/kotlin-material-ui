@@ -30,9 +30,9 @@ class InputAdornmentElementBuilder<T: Tag> internal constructor(
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["muiFormControl"]
         set(value) { setProp("muiFormControl", value) }
     var Tag.position: InputAdornmentPosition
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["position"]
-        set(value) { setProp("position", value) }
+        get() = InputAdornmentPosition.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["position"])
+        set(value) { setProp("position", value.toString()) }
     var Tag.variant: InputAdornmentVariant
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"]
-        set(value) { setProp("variant", value) }
+        get() = InputAdornmentVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
+        set(value) { setProp("variant", value.toString()) }
 }

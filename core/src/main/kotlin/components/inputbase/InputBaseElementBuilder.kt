@@ -1,12 +1,18 @@
 package components.inputbase
 
 import components.MaterialElementBuilder
+import components.inputadornment.InputAdornmentElementBuilder
+import components.inputadornment.inputAdornment
+import components.inputbase.enums.InputBaseStyle
 import components.inputbase.enums.InputMargin
 import components.inputbase.values.InputValue
 import kotlinx.html.DIV
+import kotlinx.html.INPUT
 import kotlinx.html.Tag
 import org.w3c.dom.events.Event
 import react.*
+import react.dom.RDOMBuilder
+import react.dom.input
 
 open class InputBaseElementBuilder internal constructor(
     type: RComponent<RProps, RState>
@@ -18,9 +24,9 @@ open class InputBaseElementBuilder internal constructor(
     var Tag.autoFocus: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["autoFocus"]
         set(value) { setProp("autoFocus", value) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
+    fun Tag.classes(vararg classMap: Pair<InputBaseStyle, String>) {
+        setClasses(classMap.map { it.first.toString() to it.second })
+    }
     var Tag.defaultValue: InputValue
         get() = InputValue.fromDynamic(props.asDynamic()["defaultValue"])
         set(value) { setProp("defaultValue", value.value) }
@@ -30,6 +36,11 @@ open class InputBaseElementBuilder internal constructor(
     var Tag.endAdornment: ReactElement
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["endAdornment"]
         set(value) { setProp("endAdornment", value) }
+    fun Tag.endAdornment(block: InputAdornmentElementBuilder<DIV>.() -> Unit) {
+        val adornment = RBuilder().inputAdornment(block)
+
+        setProp("endAdornment", adornment)
+    }
     var Tag.error: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["error"]
         set(value) { setProp("error", value) }
@@ -39,9 +50,16 @@ open class InputBaseElementBuilder internal constructor(
     var Tag.id: String
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["id"]
         set(value) { setProp("id", value) }
-    var Tag.inputComponent: RComponent<RProps, RState>
+    // todo ReactElementをElementBuilder経由で渡してpropsだけinputPropsでsetPropする形式
+    var Tag.inputComponent: ReactElement
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["inputComponent"]
         set(value) { setProp("inputComponent", value) }
+    fun Tag.inputComponent(handler: RDOMBuilder<INPUT>.() -> Unit) {
+        val inputProps = RBuilder().input(block = handler).props
+
+        setProp("inputComponent", "input")
+        setProp("inputProps", inputProps)
+    }
     var Tag.inputProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["inputProps"]
         set(value) { setProp("inputProps", value) }
@@ -87,6 +105,11 @@ open class InputBaseElementBuilder internal constructor(
     var Tag.startAdornment: ReactElement
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["startAdornment"]
         set(value) { setProp("startAdornment", value) }
+    fun Tag.startAdornment(block: InputAdornmentElementBuilder<DIV>.() -> Unit) {
+        val adornment = RBuilder().inputAdornment(block)
+
+        setProp("startAdornment", adornment)
+    }
     var Tag.type: String
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["type"]
         set(value) { setProp("type", value) }

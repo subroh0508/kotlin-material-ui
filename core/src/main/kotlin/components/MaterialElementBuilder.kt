@@ -1,5 +1,6 @@
 package components
 
+import kotlinext.js.js
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import react.RComponent
@@ -23,6 +24,16 @@ abstract class MaterialElementBuilder<T: Tag>(
     var Tag.dangerouslySetInnerHTML: InnerHTML?
         get() = props.dangerouslySetInnerHTML
         set(value) { props.dangerouslySetInnerHTML = value }
+
+    protected fun setClasses(classMap: List<Pair<String, String>>) {
+        val jsObject = js {
+            classMap.forEach {
+                this[it.first] = it.second
+            }
+        } as Any
+
+        setProp("classes", jsObject)
+    }
 
     override fun create() = createElement(type, props, *childList.toTypedArray())
 }
