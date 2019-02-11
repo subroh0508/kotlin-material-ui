@@ -29,7 +29,7 @@ class App : RComponent<RProps, RState>() {
             AppbarsDemo.render(this)
         }
         div {
-            child(ButtonsDemo::class) { }
+            ButtonsDemo.render(this)
         }
         div {
             InputAdornmentsDemo.render(this)

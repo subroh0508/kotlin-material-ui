@@ -2,6 +2,7 @@ package components.button
 
 import components.button.enums.ButtonColor
 import components.button.enums.ButtonSize
+import components.button.enums.ButtonStyle
 import components.button.enums.ButtonVariant
 import components.buttonbase.ButtonBaseElementBuilder
 import components.consumers
@@ -18,6 +19,9 @@ class ButtonElementBuilder<T: Tag> internal constructor(
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
 ) : ButtonBaseElementBuilder<T>(type, tag, factory) {
 
+    fun Tag.classes(vararg classMap: Pair<ButtonStyle, String>) {
+        setClasses(classMap.map { it.first.toString() to it.second })
+    }
     var Tag.color: ButtonColor
         get() = ButtonColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
         set(value) { setProp("color", value.toString()) }

@@ -2,6 +2,7 @@ package components.button
 
 import kotlinx.html.BUTTON
 import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
 import react.RBuilder
 import react.RComponent
 import react.RProps
@@ -19,3 +20,6 @@ fun RBuilder.button(block: ButtonElementBuilder<BUTTON>.() -> Unit)
 
 fun <T: Tag> RBuilder.button(tag: KClass<T>, block: ButtonElementBuilder<T>.() -> Unit)
     = child(ButtonElementBuilder(buttonComponent, tag).apply(block).create())
+
+fun <T: Tag> RBuilder.button(tag: KClass<T>, block: ButtonElementBuilder<T>.() -> Unit, factory: (TagConsumer<Unit>) -> T)
+        = child(ButtonElementBuilder(buttonComponent, tag, factory).apply(block).create())
