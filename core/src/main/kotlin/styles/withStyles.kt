@@ -26,7 +26,17 @@ private val CSSBuilder.toDynamic: Any
         }
     } as Any
 
-fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(klazz: KClass<C>, styles: MaterialElementStyles, handler: RHandler<P>): ReactElement {
+fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
+    klazz: KClass<C>,
+    styles: MaterialElementStyles,
+    handler: RHandler<P>
+): ReactElement {
     val rClass = withStyles(styles.toDynamic)(klazz.js) as RClass<P>
     return rClass(handler)
 }
+
+fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
+    klazz: KClass<C>,
+    vararg styles: Pair<String, CSSBuilder>,
+    handler: RHandler<P>
+) = childWithStyles(klazz, styles.map { it.first to it.second }.toMap(), handler)
