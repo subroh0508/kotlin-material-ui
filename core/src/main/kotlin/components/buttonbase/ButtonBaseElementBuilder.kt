@@ -1,11 +1,9 @@
 package components.buttonbase
 
 import components.MaterialElementBuilder
-import components.MaterialElementStyles
 import components.buttonbase.enums.ButtonBaseStyle
 import components.buttonbase.enums.ButtonType
 import components.consumers
-import kotlinx.css.CSSBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import org.w3c.dom.events.Event
@@ -27,8 +25,8 @@ open class ButtonBaseElementBuilder<T: Tag> internal constructor(
     var Tag.centerRipple: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["centerRipple"]
         set(value) { setProp("centerRipple", value) }
-    fun Tag.classes(handler: MaterialElementStyles.() -> Unit) {
-        styles.apply(handler)
+    fun Tag.classes(vararg classMap: Pair<ButtonBaseStyle, String>) {
+        setClasses(classMap.map { it.first.toString() to it.second })
     }
     var Tag.disabled: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]

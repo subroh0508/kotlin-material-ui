@@ -1,10 +1,8 @@
 package components.paper
 
 import components.MaterialElementBuilder
-import components.MaterialElementStyles
 import components.consumers
 import components.paper.enums.PaperStyle
-import kotlinx.css.CSSBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import react.RComponent
@@ -18,8 +16,8 @@ open class PaperElementBuilder<T: Tag> internal constructor(
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
 ) : MaterialElementBuilder<T>(type, factory) {
 
-    fun Tag.classes(handler: MaterialElementStyles.() -> Unit) {
-        styles.apply(handler)
+    fun Tag.classes(vararg classMap: Pair<PaperStyle, String>) {
+        setClasses(classMap.map { it.first.toString() to it.second })
     }
     var Tag.elevation: Number
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["elevation"]

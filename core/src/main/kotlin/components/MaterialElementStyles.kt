@@ -1,3 +1,5 @@
 package components
 
-typealias MaterialElementStyles = HashMap<String, Any>
+import kotlinx.css.CSSBuilder
+
+typealias MaterialElementStyles = HashMap<String, CSSBuilder>
