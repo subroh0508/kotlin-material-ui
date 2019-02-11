@@ -1,9 +1,12 @@
 package components.formcontrol
 
 import components.MaterialElementBuilder
+import components.MaterialElementStyles
 import components.consumers
 import components.formcontrol.enums.FormControlMargin
+import components.formcontrol.enums.FormControlStyle
 import components.formcontrol.enums.FormControlVariant
+import kotlinx.css.CSSBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import react.RComponent
@@ -17,9 +20,9 @@ open class FormControlElementBuilder<T: Tag> internal constructor(
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
 ) : MaterialElementBuilder<T>(type, factory) {
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
+    fun Tag.classes(handler: MaterialElementStyles.() -> Unit) {
+        styles.apply(handler)
+    }
     var Tag.disabled: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]
         set(value) { setProp("disabled", value) }

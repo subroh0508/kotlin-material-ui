@@ -55,8 +55,4 @@ open class TypographyElementBuilder<T: Tag> internal constructor(
     var Tag.variant: TypographyVariant
         get() = TypographyVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
         set(value) { setProp("variant", value.toString()) }
-
-    fun MaterialElementStyles.styles(attrName: TypographyStyle, handler: CSSBuilder.() -> Unit) {
-        this[attrName.toString()] = CSSBuilder().apply(handler).toDynamic
-    }
 }

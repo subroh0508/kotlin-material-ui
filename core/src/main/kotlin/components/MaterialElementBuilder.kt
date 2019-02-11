@@ -1,13 +1,13 @@
 package components
 
-import kotlinext.js.js
-import kotlinx.css.CSSBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.*
+import react.RComponent
+import react.RProps
+import react.RState
+import react.createElement
 import react.dom.InnerHTML
 import react.dom.RDOMBuilder
-import styles.withStyles
 
 abstract class MaterialElementBuilder<T: Tag>(
     val type: RComponent<RProps, RState>,
@@ -17,21 +17,6 @@ abstract class MaterialElementBuilder<T: Tag>(
         setProp("component", attrs.tagName)
     }
 
-    protected val styles: MaterialElementStyles = LinkedHashMap()
-    protected val MaterialElementStyles.toDynamic: Any
-        get() = js {
-            forEach { (key, value) ->
-                this[key] = value
-            }
-        } as Any
-
-    protected val CSSBuilder.toDynamic: Any
-        get() = js {
-           declarations.forEach { (key, value) ->
-                this[key] = value.toString()
-            }
-         } as Any
-
     var Tag.className: String?
         get() = props.className
         set(value) { props.className = value }
@@ -39,15 +24,5 @@ abstract class MaterialElementBuilder<T: Tag>(
         get() = props.dangerouslySetInnerHTML
         set(value) { props.dangerouslySetInnerHTML = value }
 
-    fun MaterialElementStyles.rootStyle(handler: CSSBuilder.() -> Unit) {
-        this["root"] = CSSBuilder().apply(handler).toDynamic
-    }
-
-    override fun create(): ReactElement {
-        if (styles.isEmpty()) {
-            return createElement(type, props, *childList.toTypedArray())
-        }
-
-        return createElement(withStyles(styles.toDynamic)(type), props, *childList.toTypedArray())
-    }
+    override fun create() = createElement(type, props, *childList.toTypedArray())
 }
