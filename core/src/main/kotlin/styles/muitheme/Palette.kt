@@ -9,28 +9,28 @@ data class CommonColorSets internal constructor(
     internal val jsObject: dynamic
 ) {
     var black: Color
-        get() = Color(asDynamic()["black"] as String)
-        set(value) { asDynamic()["black"] = value.toString() }
+        get() = Color(jsObject["black"] as String)
+        set(value) { jsObject["black"] = value.toString() }
     var white: Color
-        get() = Color(asDynamic()["white"] as String)
-        set(value) { asDynamic()["white"] = value.toString() }
+        get() = Color(jsObject["white"] as String)
+        set(value) { jsObject["white"] = value.toString() }
 }
 
 data class ColorSets internal constructor(
     internal val jsObject: dynamic
 ) {
     var light: Color
-        get() = Color(asDynamic()["light"] as String)
-        set(value) { asDynamic()["light"] = value.toString() }
+        get() = Color(jsObject["light"] as String)
+        set(value) { jsObject["light"] = value.toString() }
     var main: Color
-        get() = Color(asDynamic()["main"] as String)
-        set(value) { asDynamic()["main"] = value.toString() }
+        get() = Color(jsObject["main"] as String)
+        set(value) { jsObject["main"] = value.toString() }
     var dark: Color
-        get() = Color(asDynamic()["dark"] as String)
-        set(value) { asDynamic()["dark"] = value.toString() }
+        get() = Color(jsObject["dark"] as String)
+        set(value) { jsObject["dark"] = value.toString() }
     var contrastText: Color
-        get() = Color(asDynamic()["contrastText"] as String)
-        set(value) { asDynamic()["contrastText"] = value.toString() }
+        get() = Color(jsObject["contrastText"] as String)
+        set(value) { jsObject["contrastText"] = value.toString() }
 }
 
 fun colorSets(
@@ -46,51 +46,51 @@ data class TextColorSets internal constructor(
     internal val jsObject: dynamic
 ) {
     var primary: Color
-        get() = Color(asDynamic()["primary"] as String)
-        set(value) { asDynamic()["primary"] = value.toString() }
+        get() = Color(jsObject["primary"] as String)
+        set(value) { jsObject["primary"] = value.toString() }
     var secondary: Color
-        get() = Color(asDynamic()["secondary"] as String)
-        set(value) { asDynamic()["secondary"] = value.toString() }
+        get() = Color(jsObject["secondary"] as String)
+        set(value) { jsObject["secondary"] = value.toString() }
     var disabled: Color
-        get() = Color(asDynamic()["disabled"] as String)
-        set(value) { asDynamic()["disabled"] = value.toString() }
+        get() = Color(jsObject["disabled"] as String)
+        set(value) { jsObject["disabled"] = value.toString() }
     var hint: Color
-        get() = Color(asDynamic()["hint"] as String)
-        set(value) { asDynamic()["hint"] = value.toString() }
+        get() = Color(jsObject["hint"] as String)
+        set(value) { jsObject["hint"] = value.toString() }
 }
 
 data class BackgroundColorSets internal constructor(
     internal val jsObject: dynamic
 ) {
     var paper: Color
-        get() = Color(asDynamic()["paper"] as String)
-        set(value) { asDynamic()["paper"] = value.toString() }
+        get() = Color(jsObject["paper"] as String)
+        set(value) { jsObject["paper"] = value.toString() }
     var default: Color
-        get() = Color(asDynamic()["default"] as String)
-        set(value) { asDynamic()["default"] = value.toString() }
+        get() = Color(jsObject["default"] as String)
+        set(value) { jsObject["default"] = value.toString() }
 }
 
 data class ActionColorSets internal constructor(
     internal val jsObject: dynamic
 ) {
    var active: Color
-        get() = Color(asDynamic()["active"] as String)
-        set(value) { asDynamic()["active"] = value.toString() }
+        get() = Color(jsObject["active"] as String)
+        set(value) { jsObject["active"] = value.toString() }
    var hover: Color
-        get() = Color(asDynamic()["hover"] as String)
-        set(value) { asDynamic()["hover"] = value.toString() }
+        get() = Color(jsObject["hover"] as String)
+        set(value) { jsObject["hover"] = value.toString() }
    var hoverOpacity: Color
-        get() = Color(asDynamic()["hoverOpacity"] as String)
-        set(value) { asDynamic()["hoverOpacity"] = value.toString() }
+        get() = Color(jsObject["hoverOpacity"] as String)
+        set(value) { jsObject["hoverOpacity"] = value.toString() }
    var selected: Color
-        get() = Color(asDynamic()["selected"] as String)
-        set(value) { asDynamic()["selected"] = value.toString() }
+        get() = Color(jsObject["selected"] as String)
+        set(value) { jsObject["selected"] = value.toString() }
    var disabled: Color
-        get() = Color(asDynamic()["disabled"] as String)
-        set(value) { asDynamic()["disabled"] = value.toString() }
+        get() = Color(jsObject["disabled"] as String)
+        set(value) { jsObject["disabled"] = value.toString() }
    var disabledBackground: Color
-        get() = Color(asDynamic()["disabledBackground"] as String)
-        set(value) { asDynamic()["disabledBackground"] = value.toString() }
+        get() = Color(jsObject["disabledBackground"] as String)
+        set(value) { jsObject["disabledBackground"] = value.toString() }
 }
 
 data class GreySets internal constructor(
@@ -191,11 +191,11 @@ var Palette.getContrastText: (Color) -> Color
 
 var Palette.augmentColor: (Color, Int, Int, Int) -> ColorSets
     get() = { color, mainShade, lightShade, darkShade ->
-        asDynamic()["augmentColor"](color.toString(), mainShade, lightShade, darkShade) as ColorSets
+        ColorSets(asDynamic()["augmentColor"](color.toString(), mainShade, lightShade, darkShade))
     }
     set(value) {
         asDynamic()["augmentColor"] = { colorStr: String, mainShade: Int, lightShade: Int, darkShade: Int ->
-            value(Color(colorStr), mainShade, lightShade, darkShade)
+            value(Color(colorStr), mainShade, lightShade, darkShade).jsObject
         }
     }
 
