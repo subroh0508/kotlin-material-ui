@@ -9,11 +9,6 @@ import react.RComponent
 import react.RState
 import react.dom.div
 import styles.childWithStyles
-import styles.createMuiTheme
-import styles.muitheme.get
-import styles.muitheme.gutters
-import styles.muitheme.minHeight
-import styles.muitheme.toolbar
 
 class Header : RComponent<HeaderProps, RState>() {
     override fun RBuilder.render() {
@@ -35,20 +30,6 @@ class Header : RComponent<HeaderProps, RState>() {
 
         private val header = CSSBuilder().apply {
             boxShadow = BoxShadows.none
-        }
-
-        fun test() {
-
-            createMuiTheme {
-                palette {
-
-                }
-                mixins {
-                    gutters("")[""]
-                    toolbar.minHeight
-                    toolbar[""]
-                }
-            }
         }
     }
 }
