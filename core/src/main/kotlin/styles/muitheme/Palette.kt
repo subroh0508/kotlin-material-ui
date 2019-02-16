@@ -2,6 +2,7 @@
 
 package styles.muitheme
 
+import kotlinext.js.js
 import kotlinx.css.Color
 import styles.muitheme.palettes.*
 
@@ -18,6 +19,15 @@ inline operator fun ColorSets.get(key: PaletteColor): Color = Color(asDynamic()[
 inline operator fun ColorSets.set(key: PaletteColor, value: Color) {
     asDynamic()[key.toString()] = value.toString()
 }
+
+fun colorSets(
+    light: Color, main: Color, dark: Color, contrastText: Color
+) = js {
+    this["light"] = light.toString()
+    this["main"] = main.toString()
+    this["dark"] = dark.toString()
+    this["contrastText"] = contrastText.toString()
+} as ColorSets
 
 external interface TextColorSets
 
