@@ -100,32 +100,32 @@ data class GreySets internal constructor(
         get() = Color(jsObject["50"] as String)
         set(value) { jsObject["50"] = value.toString() }
     var _100: Color
-        get() = Color(jsObject["_100"] as String)
-        set(value) { jsObject["_100"] = value.toString() }
+        get() = Color(jsObject["100"] as String)
+        set(value) { jsObject["100"] = value.toString() }
     var _200: Color
-        get() = Color(jsObject["_200"] as String)
-        set(value) { jsObject["_200"] = value.toString() }
+        get() = Color(jsObject["200"] as String)
+        set(value) { jsObject["200"] = value.toString() }
     var _300: Color
-        get() = Color(jsObject["_300"] as String)
-        set(value) { jsObject["_300"] = value.toString() }
+        get() = Color(jsObject["300"] as String)
+        set(value) { jsObject["300"] = value.toString() }
     var _400: Color
-        get() = Color(jsObject["_400"] as String)
-        set(value) { jsObject["_400"] = value.toString() }
+        get() = Color(jsObject["400"] as String)
+        set(value) { jsObject["400"] = value.toString() }
     var _500: Color
-        get() = Color(jsObject["_500"] as String)
-        set(value) { jsObject["_500"] = value.toString() }
+        get() = Color(jsObject["500"] as String)
+        set(value) { jsObject["500"] = value.toString() }
     var _600: Color
-        get() = Color(jsObject["_600"] as String)
-        set(value) { jsObject["_600"] = value.toString() }
+        get() = Color(jsObject["600"] as String)
+        set(value) { jsObject["600"] = value.toString() }
     var _700: Color
-        get() = Color(jsObject["_700"] as String)
-        set(value) { jsObject["_700"] = value.toString() }
+        get() = Color(jsObject["700"] as String)
+        set(value) { jsObject["700"] = value.toString() }
     var _800: Color
-        get() = Color(jsObject["_800"] as String)
-        set(value) { jsObject["_800"] = value.toString() }
+        get() = Color(jsObject["800"] as String)
+        set(value) { jsObject["800"] = value.toString() }
     var _900: Color
-        get() = Color(jsObject["_900"] as String)
-        set(value) { jsObject["_900"] = value.toString() }
+        get() = Color(jsObject["900"] as String)
+        set(value) { jsObject["900"] = value.toString() }
     var A100: Color
         get() = Color(jsObject["A100"] as String)
         set(value) { jsObject["A100"] = value.toString() }
