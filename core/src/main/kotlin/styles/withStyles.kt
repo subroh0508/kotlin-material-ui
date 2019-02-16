@@ -2,8 +2,10 @@ package styles
 
 import components.MaterialElementStyles
 import kotlinext.js.js
+import kotlinext.js.jsObject
 import kotlinx.css.CSSBuilder
 import react.*
+import styles.muitheme.MuiTheme
 import kotlin.reflect.KClass
 
 @JsModule("@material-ui/core/styles/withStyles")
@@ -28,11 +30,30 @@ private val CSSBuilder.toDynamic: Any
 
 fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
     klazz: KClass<C>,
+    styles: (MuiTheme) -> MaterialElementStyles,
+    handler: RHandler<P>
+): ReactElement {
+    val rClass = withStyles({ theme: Any -> styles(MuiTheme(theme)).toDynamic }, jsObject { })(klazz.js) as RClass<P>
+    return rClass(handler)
+}
+
+fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
+    klazz: KClass<C>,
+    vararg styles: Pair<String, (MuiTheme) -> CSSBuilder>,
+    handler: RHandler<P>
+) = childWithStyles(
+    klazz,
+    { theme: MuiTheme -> styles.map { it.first to it.second(theme) }.toMap() },
+    handler
+)
+
+fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
+    klazz: KClass<C>,
     styles: MaterialElementStyles,
     withTheme: Boolean = false,
     handler: RHandler<P>
 ): ReactElement {
-    val rClass = withStyles({ theme: Any -> styles.toDynamic }, js { this["withTheme"] = withTheme })(klazz.js) as RClass<P>
+    val rClass = withStyles(styles.toDynamic, js { this["withTheme"] = withTheme })(klazz.js) as RClass<P>
     return rClass(handler)
 }
 
