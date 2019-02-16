@@ -13,4 +13,4 @@ private val createDynamicMuiTheme: (dynamic) -> (dynamic) = createMuiThemeModule
 val defaultMuiTheme: MuiTheme
     get() = MuiTheme(createDynamicMuiTheme(jsObject {}))
 
-fun createMuiTheme(handler: MuiTheme.() -> Unit) = MuiTheme(createDynamicMuiTheme(defaultMuiTheme.apply(handler)))
+fun createMuiTheme(handler: MuiTheme.() -> Unit) = MuiTheme(createDynamicMuiTheme(defaultMuiTheme.apply(handler).toDynamic))
