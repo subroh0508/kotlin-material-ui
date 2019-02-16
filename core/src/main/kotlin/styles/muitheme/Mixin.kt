@@ -2,7 +2,7 @@
 
 package styles.muitheme
 
-import kotlinext.js.jsObject
+import kotlinext.js.js
 import styles.muitheme.mixins.MixinGutter
 import styles.muitheme.mixins.MixinToolbar
 
@@ -18,6 +18,15 @@ inline operator fun MixinGutterSets.set(key: String, handler: MixinGutterSets.()
     asDynamic()[key] = get(key).apply(handler)
 }
 
+fun mixinGutters(
+    paddingLeft: Int, paddingRight: Int,
+    vararg obj: Pair<String, MixinGutterSets>
+) = js {
+    this["paddingLeft"] = paddingLeft
+    this["paddingRight"] = paddingRight
+    obj.forEach { o -> this[o.first] = o.second }
+} as MixinGutterSets
+
 external interface MixinToolbarSets
 
 inline operator fun MixinToolbarSets.get(key: MixinToolbar) = asDynamic()[key.toString()] as Int
@@ -32,15 +41,9 @@ inline operator fun MixinToolbarSets.set(key: String, handler: MixinToolbarSets.
 
 external interface Mixin
 
-fun Mixin.gutters(func: (Any, MixinGutterSets) -> MixinGutterSets) {
-    asDynamic()["gutters"] = { any: Any -> func(any, defaultGutters) }
-}
-
-val Mixin.gutters: (Any) -> MixinGutterSets
+var Mixin.gutters: (Any) -> MixinGutterSets
     get() = asDynamic()["gutters"] as (Any) -> MixinGutterSets
-
-private val Mixin.defaultGutters: MixinGutterSets
-    get() = asDynamic()["gutters"](jsObject { }) as MixinGutterSets
+    set(value) { asDynamic()["gutters"] = value }
 
 inline fun Mixin.toolbar(handler: MixinToolbarSets.() -> Unit) {
     asDynamic()["toolbar"] = toolbar.apply(handler)
