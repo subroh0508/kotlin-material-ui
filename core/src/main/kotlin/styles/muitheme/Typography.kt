@@ -4,7 +4,6 @@ package styles.muitheme
 
 import kotlinx.css.Color
 import kotlinx.css.LinearDimension
-import styles.muitheme.typographys.TypographyAttributes
 
 external interface TypographyAttributeSets
 
@@ -74,8 +73,75 @@ var Typography.useNextVariants: Boolean
     get() = asDynamic()["useNextVariants"] as Boolean
     set(value) { asDynamic()["useNextVariants"] = value }
 
-inline operator fun Typography.get(key: TypographyAttributes): TypographyAttributeSets
-    = asDynamic()[key.toString()] as TypographyAttributeSets
-inline operator fun Typography.set(key: TypographyAttributes, handler: TypographyAttributeSets.() -> Unit) {
-    asDynamic()[key.toString()] = get(key).apply(handler)
-}
+var Typography.display1: TypographyAttributeSets
+    get() = asDynamic()["display1"] as TypographyAttributeSets
+    set(value) { asDynamic()["display1"] = value }
+var Typography.display2: TypographyAttributeSets
+    get() = asDynamic()["display2"] as TypographyAttributeSets
+    set(value) { asDynamic()["display2"] = value }
+var Typography.display3: TypographyAttributeSets
+    get() = asDynamic()["display3"] as TypographyAttributeSets
+    set(value) { asDynamic()["display3"] = value }
+var Typography.display4: TypographyAttributeSets
+    get() = asDynamic()["display4"] as TypographyAttributeSets
+    set(value) { asDynamic()["display4"] = value }
+var Typography.headline: TypographyAttributeSets
+    get() = asDynamic()["headline"] as TypographyAttributeSets
+    set(value) { asDynamic()["headline"] = value }
+var Typography.title: TypographyAttributeSets
+    get() = asDynamic()["title"] as TypographyAttributeSets
+    set(value) { asDynamic()["title"] = value }
+var Typography.subheading: TypographyAttributeSets
+    get() = asDynamic()["subheading"] as TypographyAttributeSets
+    set(value) { asDynamic()["subheading"] = value }
+var Typography.body1: TypographyAttributeSets
+    get() = asDynamic()["body1"] as TypographyAttributeSets
+    set(value) { asDynamic()["body1"] = value }
+var Typography.body2: TypographyAttributeSets
+    get() = asDynamic()["body2"] as TypographyAttributeSets
+    set(value) { asDynamic()["body2"] = value }
+var Typography.caption: TypographyAttributeSets
+    get() = asDynamic()["caption"] as TypographyAttributeSets
+    set(value) { asDynamic()["caption"] = value }
+var Typography.button: TypographyAttributeSets
+    get() = asDynamic()["button"] as TypographyAttributeSets
+    set(value) { asDynamic()["button"] = value }
+var Typography.h1: TypographyAttributeSets
+    get() = asDynamic()["h1"] as TypographyAttributeSets
+    set(value) { asDynamic()["h1"] = value }
+var Typography.h2: TypographyAttributeSets
+    get() = asDynamic()["h2"] as TypographyAttributeSets
+    set(value) { asDynamic()["h2"] = value }
+var Typography.h3: TypographyAttributeSets
+    get() = asDynamic()["h3"] as TypographyAttributeSets
+    set(value) { asDynamic()["h3"] = value }
+var Typography.h4: TypographyAttributeSets
+    get() = asDynamic()["h4"] as TypographyAttributeSets
+    set(value) { asDynamic()["h4"] = value }
+var Typography.h5: TypographyAttributeSets
+    get() = asDynamic()["h5"] as TypographyAttributeSets
+    set(value) { asDynamic()["h5"] = value }
+var Typography.h6: TypographyAttributeSets
+    get() = asDynamic()["h6"] as TypographyAttributeSets
+    set(value) { asDynamic()["h6"] = value }
+var Typography.subtitle1: TypographyAttributeSets
+    get() = asDynamic()["subtitle1"] as TypographyAttributeSets
+    set(value) { asDynamic()["subtitle1"] = value }
+var Typography.subtitle2: TypographyAttributeSets
+    get() = asDynamic()["subtitle2"] as TypographyAttributeSets
+    set(value) { asDynamic()["subtitle2"] = value }
+var Typography.body1Next: TypographyAttributeSets
+    get() = asDynamic()["body1Next"] as TypographyAttributeSets
+    set(value) { asDynamic()["body1Next"] = value }
+var Typography.body2Next: TypographyAttributeSets
+    get() = asDynamic()["body2Next"] as TypographyAttributeSets
+    set(value) { asDynamic()["body2Next"] = value }
+var Typography.buttonNext: TypographyAttributeSets
+    get() = asDynamic()["buttonNext"] as TypographyAttributeSets
+    set(value) { asDynamic()["buttonNext"] = value }
+var Typography.captionNext: TypographyAttributeSets
+    get() = asDynamic()["captionNext"] as TypographyAttributeSets
+    set(value) { asDynamic()["captionNext"] = value }
+var Typography.overline: TypographyAttributeSets
+    get() = asDynamic()["overline"] as TypographyAttributeSets
+    set(value) { asDynamic()["overline"] = value }
