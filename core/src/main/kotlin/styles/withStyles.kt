@@ -10,7 +10,7 @@ import kotlin.reflect.KClass
 private external val withStylesModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val withStyles: (dynamic) -> ((Any) -> JsClass<*>) = withStylesModule.default
+private val withStyles: (dynamic, dynamic) -> ((Any) -> JsClass<*>) = withStylesModule.default
 
 private val MaterialElementStyles.toDynamic: Any
     get() = js {
@@ -29,14 +29,16 @@ private val CSSBuilder.toDynamic: Any
 fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
     klazz: KClass<C>,
     styles: MaterialElementStyles,
+    withTheme: Boolean = false,
     handler: RHandler<P>
 ): ReactElement {
-    val rClass = withStyles(styles.toDynamic)(klazz.js) as RClass<P>
+    val rClass = withStyles({ theme: Any -> styles.toDynamic }, js { this["withTheme"] = withTheme })(klazz.js) as RClass<P>
     return rClass(handler)
 }
 
 fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
     klazz: KClass<C>,
     vararg styles: Pair<String, CSSBuilder>,
+    withTheme: Boolean = false,
     handler: RHandler<P>
-) = childWithStyles(klazz, styles.map { it.first to it.second }.toMap(), handler)
+) = childWithStyles(klazz, styles.map { it.first to it.second }.toMap(), withTheme, handler)
