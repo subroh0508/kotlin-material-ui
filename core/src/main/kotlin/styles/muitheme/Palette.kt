@@ -7,43 +7,43 @@ import styles.muitheme.palettes.*
 
 external interface CommonColorSets
 
-inline operator fun CommonColorSets.get(key: CommonAttr): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun CommonColorSets.set(key: CommonAttr, value: Color) {
+inline operator fun CommonColorSets.get(key: PaletteCommon): Color = Color(asDynamic()[key.toString()] as String)
+inline operator fun CommonColorSets.set(key: PaletteCommon, value: Color) {
     asDynamic()[key.toString()] = value.toString()
 }
 
 external interface ColorSets
 
-inline operator fun ColorSets.get(key: ColorAttr): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun ColorSets.set(key: ColorAttr, value: Color) {
+inline operator fun ColorSets.get(key: PaletteColor): Color = Color(asDynamic()[key.toString()] as String)
+inline operator fun ColorSets.set(key: PaletteColor, value: Color) {
     asDynamic()[key.toString()] = value.toString()
 }
 
 external interface TextColorSets
 
-inline operator fun TextColorSets.get(key: TextAttr): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun TextColorSets.set(key: TextAttr, value: Color) {
+inline operator fun TextColorSets.get(key: PaletteText): Color = Color(asDynamic()[key.toString()] as String)
+inline operator fun TextColorSets.set(key: PaletteText, value: Color) {
     asDynamic()[key.toString()] = value.toString()
 }
 
 external interface BackgroundColorSets
 
-inline operator fun BackgroundColorSets.get(key: BackgroundAttr): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun BackgroundColorSets.set(key: BackgroundAttr, value: Color) {
+inline operator fun BackgroundColorSets.get(key: PaletteBackground): Color = Color(asDynamic()[key.toString()] as String)
+inline operator fun BackgroundColorSets.set(key: PaletteBackground, value: Color) {
     asDynamic()[key.toString()] = value.toString()
 }
 
 external interface ActionColorSets
 
-inline operator fun ActionColorSets.get(key: ActionAttr): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun ActionColorSets.set(key: ActionAttr, value: Color) {
+inline operator fun ActionColorSets.get(key: PaletteAction): Color = Color(asDynamic()[key.toString()] as String)
+inline operator fun ActionColorSets.set(key: PaletteAction, value: Color) {
     asDynamic()[key.toString()] = value.toString()
 }
 
 external interface GreySets
 
-inline operator fun GreySets.get(key: GreyAttr): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun GreySets.set(key: GreyAttr, value: Color) {
+inline operator fun GreySets.get(key: PaletteGrey): Color = Color(asDynamic()[key.toString()] as String)
+inline operator fun GreySets.set(key: PaletteGrey, value: Color) {
     asDynamic()[key.toString()] = value.toString()
 }
 

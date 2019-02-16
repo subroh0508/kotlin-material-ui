@@ -1,6 +1,6 @@
 package styles.muitheme.palettes
 
 @Suppress("EnumEntryName")
-enum class BackgroundAttr {
-    paper, default
+enum class PaletteColor {
+    light, main, dark, contrastText
 }
