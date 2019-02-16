@@ -2,11 +2,17 @@ package styles.muithemeprovider
 
 import kotlinext.js.jsObject
 import react.*
+import styles.muitheme.MuiTheme
 
 class MuiThemeProviderBuilder internal constructor(
     val type: RComponent<RProps, RState>,
+    val theme: MuiTheme,
     private val props: RProps = jsObject { }
 ) : RBuilder() {
+    init {
+        props.asDynamic()["theme"] = theme.toDynamic
+    }
+
     fun attrs(handler: RProps.() -> Unit) {
         props.handler()
     }
@@ -22,7 +28,4 @@ class MuiThemeProviderBuilder internal constructor(
     var RProps.sheetsManager: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["sheetsManager"]
         set(value) { props.asDynamic()["sheetsManager"] = value }
-    var RProps.theme: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["theme"]
-        set(value) { props.asDynamic()["theme"] = value }
 }
