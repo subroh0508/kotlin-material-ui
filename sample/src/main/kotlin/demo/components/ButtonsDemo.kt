@@ -15,6 +15,8 @@ import react.dom.*
 import styled.css
 import styled.styledDiv
 import styles.childWithStyles
+import styles.muitheme.MuiTheme
+import styles.muitheme.unit
 
 class ButtonsDemo : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
@@ -117,12 +119,16 @@ class ButtonsDemo : RComponent<RProps, RState>() {
             "input" to input
         ) { }
 
-        private val button = CSSBuilder().apply {
-            margin(8.px)
+        private val button = { theme: MuiTheme ->
+            CSSBuilder().apply {
+                margin(theme.spacing.unit.px)
+            }
         }
 
-        private val input = CSSBuilder().apply {
-            display = Display.none
+        private val input = { _: MuiTheme ->
+            CSSBuilder().apply {
+                display = Display.none
+            }
         }
     }
 }
