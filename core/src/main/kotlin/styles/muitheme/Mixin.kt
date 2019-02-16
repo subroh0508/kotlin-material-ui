@@ -2,37 +2,49 @@
 
 package styles.muitheme
 
-external interface MixinGutter
+import kotlinext.js.jsObject
+import styles.muitheme.mixins.MixinGutter
+import styles.muitheme.mixins.MixinToolbar
 
-var MixinGutter.paddingLeft: Int
-    get() = asDynamic()["paddingLeft"] as Int
-    set(value) { asDynamic()["paddingLeft"] = value }
-var MixinGutter.paddingRight: Int
-    get() = asDynamic()["paddingRight"] as Int
-    set(value) { asDynamic()["paddingRight"] = value }
+external interface MixinGutterSets
 
-inline operator fun MixinGutter.get(key: String): MixinGutter = asDynamic()[key] as MixinGutter
-inline operator fun MixinGutter.set(key: String, value: MixinGutter) {
-    asDynamic()[key] = value
+inline operator fun MixinGutterSets.get(key: MixinGutter): Int = asDynamic()[key.toString()] as Int
+inline operator fun MixinGutterSets.set(key: MixinGutter, value: Int) {
+    asDynamic()[key.toString()] = value
 }
 
-external interface MixinToolbar
+inline operator fun MixinGutterSets.get(key: String): MixinGutterSets = asDynamic()[key] as MixinGutterSets
+inline operator fun MixinGutterSets.set(key: String, handler: MixinGutterSets.() -> Unit) {
+    asDynamic()[key] = get(key).apply(handler)
+}
 
-var MixinToolbar.minHeight: Int
-    get() = asDynamic()["minHeight"] as Int
-    set(value) { asDynamic()["minHeight"] = value }
+external interface MixinToolbarSets
 
-inline operator fun MixinToolbar.get(key: String): MixinToolbar = asDynamic()[key] as MixinToolbar
-inline operator fun MixinToolbar.set(key: String, value: MixinToolbar) {
-    asDynamic()[key] = value
+inline operator fun MixinToolbarSets.get(key: MixinToolbar) = asDynamic()[key.toString()] as Int
+inline operator fun MixinToolbarSets.set(key: MixinToolbar, value: Int) {
+    asDynamic()[key.toString()] = value
+}
+
+inline operator fun MixinToolbarSets.get(key: String): MixinToolbarSets = asDynamic()[key] as MixinToolbarSets
+inline operator fun MixinToolbarSets.set(key: String, handler: MixinToolbarSets.() -> Unit) {
+    asDynamic()[key] = get(key).apply(handler)
 }
 
 external interface Mixin
 
-var Mixin.gutters: (Any) -> MixinGutter
-    get() = asDynamic()["gutters"] as (Any) -> MixinGutter
-    set(value) { asDynamic()["gutters"] = value }
+fun Mixin.gutters(func: (Any, MixinGutterSets) -> MixinGutterSets) {
+    asDynamic()["gutters"] = { any: Any -> func(any, defaultGutters) }
+}
 
-var Mixin.toolbar: MixinToolbar
-    get() = asDynamic()["toolbar"] as MixinToolbar
-    set(value) { asDynamic()["toolbar"] = value }
+val Mixin.gutters: (Any) -> MixinGutterSets
+    get() = asDynamic()["gutters"] as (Any) -> MixinGutterSets
+
+private val Mixin.defaultGutters: MixinGutterSets
+    get() = asDynamic()["gutters"](jsObject { }) as MixinGutterSets
+
+inline fun Mixin.toolbar(handler: MixinToolbarSets.() -> Unit) {
+    asDynamic()["toolbar"] = toolbar.apply(handler)
+}
+
+val Mixin.toolbar: MixinToolbarSets
+    get() = asDynamic()["toolbar"] as MixinToolbarSets
