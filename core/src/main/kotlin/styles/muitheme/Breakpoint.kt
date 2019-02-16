@@ -2,12 +2,23 @@
 
 package styles.muitheme
 
+import styles.muitheme.breakpoints.BreakpointValue
+
+external interface BreakpointValueSets
+
+inline operator fun BreakpointValueSets.get(key: BreakpointValue): Int = asDynamic()[key.toString()] as Int
+inline operator fun BreakpointValueSets.set(key: BreakpointValue, value: Int) {
+    asDynamic()[key.toString()] = value
+}
+
 external interface Breakpoint
 
-external interface BreakpointValue
+inline fun Breakpoint.values(handler: BreakpointValueSets.() -> Unit) {
+    asDynamic()["values"] = values.apply(handler)
+}
 
-val Breakpoint.values: BreakpointValue
-    get() = asDynamic()["value"] as BreakpointValue
+val Breakpoint.values: BreakpointValueSets
+    get() = asDynamic()["values"] as BreakpointValueSets
 
 var Breakpoint.up: (String) -> String
     get() = asDynamic()["up"] as (String) -> String
@@ -28,23 +39,3 @@ var Breakpoint.only: (String) -> String
 var Breakpoint.width: (String) -> Int
     get() = asDynamic()["width"] as (String) -> Int
     set(value) { asDynamic()["width"] = value }
-
-var BreakpointValue.xs: Int
-    get() = asDynamic()["xs"] as Int
-    set(value) { asDynamic()["xs"] = value }
-
-var BreakpointValue.sm: Int
-    get() = asDynamic()["sm"] as Int
-    set(value) { asDynamic()["sm"] = value }
-
-var BreakpointValue.md: Int
-    get() = asDynamic()["md"] as Int
-    set(value) { asDynamic()["md"] = value }
-
-var BreakpointValue.lg: Int
-    get() = asDynamic()["lg"] as Int
-    set(value) { asDynamic()["lg"] = value }
-
-var BreakpointValue.xl: Int
-    get() = asDynamic()["xl"] as Int
-    set(value) { asDynamic()["xl"] = value }
