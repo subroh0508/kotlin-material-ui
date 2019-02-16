@@ -21,6 +21,13 @@ data class MuiTheme(
     val transitions: Transitions,
     val zIndex: ZIndex
 ) {
+    companion object {
+        private const val REAL_NUMBER_PATTERN: String = """[+-]?(?:\d+\.?\d*|\.\d+)"""
+        private const val RGBA_PATTERN: String = """rgba\(.*?\)"""
+        private const val BOX_SHADOWS_PATTERN: String
+            = "${REAL_NUMBER_PATTERN}px ${REAL_NUMBER_PATTERN}px ${REAL_NUMBER_PATTERN}px ${REAL_NUMBER_PATTERN}px $RGBA_PATTERN"
+    }
+
     internal constructor(jsObject: dynamic) : this(
         breakpoints = jsObject["breakpoints"] as Breakpoint,
         direction = Direction.valueOf(jsObject["direction"] as String),
@@ -32,8 +39,8 @@ data class MuiTheme(
             }
 
             BoxShadows().also { boxShadows ->
-                shadow.split(",").forEach { element ->
-                    val elements = element.split(" ")
+                BOX_SHADOWS_PATTERN.toRegex().findAll(shadow).forEach { element ->
+                    val elements = element.value.split(" ")
 
                     boxShadows += BoxShadow(
                         false,
