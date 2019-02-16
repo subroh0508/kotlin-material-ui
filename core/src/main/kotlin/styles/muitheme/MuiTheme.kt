@@ -65,7 +65,7 @@ data class MuiTheme(
         this.direction = direction.toString()
         this.mixins = mixins.asDynamic()
         this.palette = palette.asDynamic()
-        this.shadows = shadows.map(BoxShadows::toString).asDynamic()
+        this.shadows = shadows.map(BoxShadows::toString).toTypedArray()
         this.typography = typography.asDynamic()
         this.shape = shape.asDynamic()
         this.spacing = spacing.asDynamic()
