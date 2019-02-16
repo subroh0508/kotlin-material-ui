@@ -2,101 +2,184 @@
 
 package styles.muitheme
 
-import kotlinext.js.js
+import kotlinext.js.jsObject
 import kotlinx.css.Color
-import styles.muitheme.palettes.*
 
-external interface CommonColorSets
-
-inline operator fun CommonColorSets.get(key: PaletteCommon): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun CommonColorSets.set(key: PaletteCommon, value: Color) {
-    asDynamic()[key.toString()] = value.toString()
+data class CommonColorSets internal constructor(
+    internal val jsObject: dynamic
+) {
+    var black: Color
+        get() = Color(asDynamic()["black"] as String)
+        set(value) { asDynamic()["black"] = value.toString() }
+    var white: Color
+        get() = Color(asDynamic()["white"] as String)
+        set(value) { asDynamic()["white"] = value.toString() }
 }
 
-external interface ColorSets
-
-inline operator fun ColorSets.get(key: PaletteColor): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun ColorSets.set(key: PaletteColor, value: Color) {
-    asDynamic()[key.toString()] = value.toString()
+data class ColorSets internal constructor(
+    internal val jsObject: dynamic
+) {
+    var light: Color
+        get() = Color(asDynamic()["light"] as String)
+        set(value) { asDynamic()["light"] = value.toString() }
+    var main: Color
+        get() = Color(asDynamic()["main"] as String)
+        set(value) { asDynamic()["main"] = value.toString() }
+    var dark: Color
+        get() = Color(asDynamic()["dark"] as String)
+        set(value) { asDynamic()["dark"] = value.toString() }
+    var contrastText: Color
+        get() = Color(asDynamic()["contrastText"] as String)
+        set(value) { asDynamic()["contrastText"] = value.toString() }
 }
 
 fun colorSets(
     light: Color, main: Color, dark: Color, contrastText: Color
-) = js {
-    this["light"] = light.toString()
-    this["main"] = main.toString()
-    this["dark"] = dark.toString()
-    this["contrastText"] = contrastText.toString()
-} as ColorSets
-
-external interface TextColorSets
-
-inline operator fun TextColorSets.get(key: PaletteText): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun TextColorSets.set(key: PaletteText, value: Color) {
-    asDynamic()[key.toString()] = value.toString()
+) = ColorSets(jsObject {}).also {
+    it.light = light
+    it.main = main
+    it.dark = dark
+    it.contrastText = contrastText
 }
 
-external interface BackgroundColorSets
-
-inline operator fun BackgroundColorSets.get(key: PaletteBackground): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun BackgroundColorSets.set(key: PaletteBackground, value: Color) {
-    asDynamic()[key.toString()] = value.toString()
+data class TextColorSets internal constructor(
+    internal val jsObject: dynamic
+) {
+    var primary: Color
+        get() = Color(asDynamic()["primary"] as String)
+        set(value) { asDynamic()["primary"] = value.toString() }
+    var secondary: Color
+        get() = Color(asDynamic()["secondary"] as String)
+        set(value) { asDynamic()["secondary"] = value.toString() }
+    var disabled: Color
+        get() = Color(asDynamic()["disabled"] as String)
+        set(value) { asDynamic()["disabled"] = value.toString() }
+    var hint: Color
+        get() = Color(asDynamic()["hint"] as String)
+        set(value) { asDynamic()["hint"] = value.toString() }
 }
 
-external interface ActionColorSets
-
-inline operator fun ActionColorSets.get(key: PaletteAction): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun ActionColorSets.set(key: PaletteAction, value: Color) {
-    asDynamic()[key.toString()] = value.toString()
+data class BackgroundColorSets internal constructor(
+    internal val jsObject: dynamic
+) {
+    var paper: Color
+        get() = Color(asDynamic()["paper"] as String)
+        set(value) { asDynamic()["paper"] = value.toString() }
+    var default: Color
+        get() = Color(asDynamic()["default"] as String)
+        set(value) { asDynamic()["default"] = value.toString() }
 }
 
-external interface GreySets
+data class ActionColorSets internal constructor(
+    internal val jsObject: dynamic
+) {
+   var active: Color
+        get() = Color(asDynamic()["active"] as String)
+        set(value) { asDynamic()["active"] = value.toString() }
+   var hover: Color
+        get() = Color(asDynamic()["hover"] as String)
+        set(value) { asDynamic()["hover"] = value.toString() }
+   var hoverOpacity: Color
+        get() = Color(asDynamic()["hoverOpacity"] as String)
+        set(value) { asDynamic()["hoverOpacity"] = value.toString() }
+   var selected: Color
+        get() = Color(asDynamic()["selected"] as String)
+        set(value) { asDynamic()["selected"] = value.toString() }
+   var disabled: Color
+        get() = Color(asDynamic()["disabled"] as String)
+        set(value) { asDynamic()["disabled"] = value.toString() }
+   var disabledBackground: Color
+        get() = Color(asDynamic()["disabledBackground"] as String)
+        set(value) { asDynamic()["disabledBackground"] = value.toString() }
+}
 
-inline operator fun GreySets.get(key: PaletteGrey): Color = Color(asDynamic()[key.toString()] as String)
-inline operator fun GreySets.set(key: PaletteGrey, value: Color) {
-    asDynamic()[key.toString()] = value.toString()
+data class GreySets internal constructor(
+    internal val jsObject: dynamic
+) {
+    var _50: Color
+        get() = Color(jsObject["50"] as String)
+        set(value) { jsObject["50"] = value.toString() }
+    var _100: Color
+        get() = Color(jsObject["_100"] as String)
+        set(value) { jsObject["_100"] = value.toString() }
+    var _200: Color
+        get() = Color(jsObject["_200"] as String)
+        set(value) { jsObject["_200"] = value.toString() }
+    var _300: Color
+        get() = Color(jsObject["_300"] as String)
+        set(value) { jsObject["_300"] = value.toString() }
+    var _400: Color
+        get() = Color(jsObject["_400"] as String)
+        set(value) { jsObject["_400"] = value.toString() }
+    var _500: Color
+        get() = Color(jsObject["_500"] as String)
+        set(value) { jsObject["_500"] = value.toString() }
+    var _600: Color
+        get() = Color(jsObject["_600"] as String)
+        set(value) { jsObject["_600"] = value.toString() }
+    var _700: Color
+        get() = Color(jsObject["_700"] as String)
+        set(value) { jsObject["_700"] = value.toString() }
+    var _800: Color
+        get() = Color(jsObject["_800"] as String)
+        set(value) { jsObject["_800"] = value.toString() }
+    var _900: Color
+        get() = Color(jsObject["_900"] as String)
+        set(value) { jsObject["_900"] = value.toString() }
+    var A100: Color
+        get() = Color(jsObject["A100"] as String)
+        set(value) { jsObject["A100"] = value.toString() }
+    var A200: Color
+        get() = Color(jsObject["A200"] as String)
+        set(value) { jsObject["A200"] = value.toString() }
+    var A400: Color
+        get() = Color(jsObject["A400"] as String)
+        set(value) { jsObject["A400"] = value.toString() }
+    var A700: Color
+        get() = Color(jsObject["A700"] as String)
+        set(value) { jsObject["A700"] = value.toString() }
 }
 
 external interface Palette
 
-inline fun Palette.common(handler: CommonColorSets.() -> Unit) {
-    asDynamic()["common"] = common.apply(handler)
+fun Palette.common(handler: CommonColorSets.() -> Unit) {
+    asDynamic()["common"] = common.apply(handler).jsObject
 }
 
 val Palette.common: CommonColorSets
-    get() = asDynamic()["common"] as CommonColorSets
+    get() = CommonColorSets(asDynamic()["common"])
 
 var Palette.type: String
     get() = asDynamic()["type"] as String
     set(value) { asDynamic()["type"] = value }
 
-inline fun Palette.primary(handler: ColorSets.() -> Unit) {
-    asDynamic()["primary"] = primary.apply(handler)
+fun Palette.primary(handler: ColorSets.() -> Unit) {
+    asDynamic()["primary"] = primary.apply(handler).jsObject
 }
 
 val Palette.primary: ColorSets
-    get() = asDynamic()["primary"] as ColorSets
+    get() = ColorSets(asDynamic()["primary"])
 
-inline fun Palette.secondary(handler: ColorSets.() -> Unit) {
-    asDynamic()["secondary"] = secondary.apply(handler)
+fun Palette.secondary(handler: ColorSets.() -> Unit) {
+    asDynamic()["secondary"] = secondary.apply(handler).jsObject
 }
 
 val Palette.secondary: ColorSets
-    get() = asDynamic()["secondary"] as ColorSets
+    get() = ColorSets(asDynamic()["secondary"])
 
-inline fun Palette.error(handler: ColorSets.() -> Unit) {
-    asDynamic()["error"] = error.apply(handler)
+fun Palette.error(handler: ColorSets.() -> Unit) {
+    asDynamic()["error"] = error.apply(handler).jsObject
 }
 
 val Palette.error: ColorSets
-    get() = asDynamic()["error"] as ColorSets
+    get() = ColorSets(asDynamic()["error"])
 
-inline fun Palette.grey(handler: ColorSets.() -> Unit) {
-    asDynamic()["grey"] = grey.apply(handler)
+fun Palette.grey(handler: GreySets.() -> Unit) {
+    asDynamic()["grey"] = grey.apply(handler).jsObject
 }
 
-val Palette.grey: ColorSets
-    get() = asDynamic()["grey"] as ColorSets
+val Palette.grey: GreySets
+    get() = GreySets(asDynamic()["grey"])
 
 var Palette.contrastThreshold: Int
     get() = asDynamic()["contrastThreshold"] as Int
@@ -120,29 +203,29 @@ var Palette.tonalOffset: Float
     get() = asDynamic()["tonalOffset"] as Float
     set(value) { asDynamic()["tonalOffset"] = value }
 
-inline fun Palette.text(handler: TextColorSets.() -> Unit) {
-    asDynamic()["text"] = text.apply(handler)
+fun Palette.text(handler: TextColorSets.() -> Unit) {
+    asDynamic()["text"] = text.apply(handler).jsObject
 }
 
 val Palette.text: TextColorSets
-    get() = asDynamic()["text"] as TextColorSets
+    get() = TextColorSets(asDynamic()["text"])
 
 var Palette.divider: Color
     get() = Color(asDynamic()["divider"] as String)
     set(value) { asDynamic()["divider"] = value.toString() }
 
-inline fun Palette.background(handler: BackgroundColorSets.() -> Unit) {
-    asDynamic()["background"] = background.apply(handler)
+fun Palette.background(handler: BackgroundColorSets.() -> Unit) {
+    asDynamic()["background"] = background.apply(handler).jsObject
 }
 
 val Palette.background: BackgroundColorSets
-    get() = asDynamic()["background"] as BackgroundColorSets
+    get() = BackgroundColorSets(asDynamic()["background"])
 
-inline fun Palette.action(handler: ActionColorSets.() -> Unit) {
-    asDynamic()["action"] = action.apply(handler)
+fun Palette.action(handler: ActionColorSets.() -> Unit) {
+    asDynamic()["action"] = action.apply(handler).jsObject
 }
 
 val Palette.action: ActionColorSets
-    get() = asDynamic()["action"] as ActionColorSets
+    get() = ActionColorSets(asDynamic()["action"])
 
 
