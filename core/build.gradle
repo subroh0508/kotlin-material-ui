@@ -1,5 +1,5 @@
 group 'subroh0508.net.kotlinmaterialui'
-version '1.0-SNAPSHOT'
+version '0.0.1'
 
 buildscript {
     dependencies {
@@ -11,6 +11,8 @@ buildscript {
 apply plugin: 'kotlin2js'
 apply plugin: 'kotlin-dce-js'
 apply plugin: 'org.jetbrains.kotlin.frontend'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-js:${kotlinVersion}"
@@ -20,6 +22,8 @@ dependencies {
     implementation "org.jetbrains:kotlin-styled:${kotlinJsWrappersVersion}"
     testImplementation "org.jetbrains.kotlin:kotlin-test-js:${kotlinVersion}"
 }
+
+apply from: file(new File(rootDir, 'gradle/bintray.gradle'))
 
 kotlinFrontend {
     // downloadNodeJsVersion = "11.0.0"

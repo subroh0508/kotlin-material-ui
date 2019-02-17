@@ -5,6 +5,7 @@ subprojects { p ->
     p.buildscript {
         ext.kotlinVersion = '1.3.20'
         ext.kotlinFrontendPluginVersion = '0.0.44'
+        ext.bintrayPluginVersion = '1.7.3'
 
         repositories {
             mavenCentral()
@@ -15,6 +16,7 @@ subprojects { p ->
         dependencies {
             classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
             classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:$kotlinFrontendPluginVersion"
+            classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintrayPluginVersion"
         }
     }
 
