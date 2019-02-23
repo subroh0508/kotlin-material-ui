@@ -63,7 +63,7 @@ class TooltipElementBuilder internal constructor(
     var RProps.theme: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["theme"]
         set(value) { props.asDynamic()["theme"] = value }
-    var RProps.title: ReactElement
+    var RProps.title: Any
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["title"]
         set(value) { props.asDynamic()["title"] = value }
     var RProps.TransitionComponent: RComponent<RProps, RState>
