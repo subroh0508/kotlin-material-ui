@@ -3,15 +3,13 @@ package demo
 import demo.components.AppbarsDemo
 import demo.components.ButtonsDemo
 import demo.components.InputAdornmentsDemo
+import demo.components.header.Header
 import kotlinx.css.Color
 import react.RBuilder
 import react.RComponent
 import react.RProps
 import react.RState
-import react.dom.code
-import react.dom.div
-import react.dom.h2
-import react.dom.p
+import react.dom.*
 import styles.createMuiTheme
 import styles.muitheme.MuiTheme
 import styles.muitheme.primary
@@ -20,6 +18,9 @@ import styles.muithemeprovider.muiThemeProvider
 class App : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
         muiThemeProvider(theme) {
+            header {
+                Header.render(this)
+            }
             div {
                 h2 {
                     +"Welcome to React with Kotlin"
