@@ -1,9 +1,12 @@
 package components.avatar
 
 import components.MaterialElementBuilder
+import components.avatar.enum.AvatarStyle
 import components.consumers
+import kotlinx.html.IMG
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
+import kotlinx.html.stream.createHTML
 import react.RComponent
 import react.RProps
 import react.RState
@@ -15,18 +18,15 @@ class AvatarElementBuilder<T: Tag> internal constructor(
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
 ) : MaterialElementBuilder<T>(type, factory) {
 
+    fun Tag.classes(vararg classMap: Pair<AvatarStyle, String>) = setClasses(*classMap)
+    fun Tag.imgProps(block: IMG.() -> Unit) = setProp("imgProps", IMG(mapOf(), createHTML()).apply(block))
+
     var Tag.alt: String
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["alt"]
         set(value) { setProp("alt", value) }
     var Tag.childrenClassName: String
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["childrenClassName"]
         set(value) { setProp("childrenClassName", value) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.imgProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["imgProps"]
-        set(value) { setProp("imgProps", value) }
     var Tag.sizes: String
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["sizes"]
         set(value) { setProp("sizes", value) }
