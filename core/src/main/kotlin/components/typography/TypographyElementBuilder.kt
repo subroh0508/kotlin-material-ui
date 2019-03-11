@@ -23,9 +23,7 @@ open class TypographyElementBuilder<T: Tag> internal constructor(
     var Tag.align: TypographyAlign
         get() = TypographyAlign.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["align"])
         set(value) { setProp("align", value.toString()) }
-    fun Tag.classes(vararg classMap: Pair<TypographyStyle, String>) {
-        setClasses(classMap.map { it.first.toString() to it.second })
-    }
+    fun Tag.classes(vararg classMap: Pair<TypographyStyle, String>) = setClasses(*classMap)
     var Tag.color: TypographyColor
         get() = TypographyColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
         set(value) { setProp("color", value.toString()) }

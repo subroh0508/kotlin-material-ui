@@ -18,9 +18,7 @@ open class FormControlElementBuilder<T: Tag> internal constructor(
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
 ) : MaterialElementBuilder<T>(type, factory) {
 
-    fun Tag.classes(vararg classMap: Pair<FormControlStyle, String>) {
-        setClasses(classMap.map { it.first.toString() to it.second })
-    }
+    fun Tag.classes(vararg classMap: Pair<FormControlStyle, String>) = setClasses(*classMap)
     var Tag.disabled: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]
         set(value) { setProp("disabled", value) }

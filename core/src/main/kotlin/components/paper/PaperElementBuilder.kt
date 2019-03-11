@@ -16,9 +16,7 @@ open class PaperElementBuilder<T: Tag> internal constructor(
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
 ) : MaterialElementBuilder<T>(type, factory) {
 
-    fun Tag.classes(vararg classMap: Pair<PaperStyle, String>) {
-        setClasses(classMap.map { it.first.toString() to it.second })
-    }
+    fun Tag.classes(vararg classMap: Pair<PaperStyle, String>) = setClasses(*classMap)
     var Tag.elevation: Number
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["elevation"]
         set(value) { setProp("elevation", value) }

@@ -25,9 +25,7 @@ open class ButtonBaseElementBuilder<T: Tag> internal constructor(
     var Tag.centerRipple: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["centerRipple"]
         set(value) { setProp("centerRipple", value) }
-    fun Tag.classes(vararg classMap: Pair<ButtonBaseStyle, String>) {
-        setClasses(classMap.map { it.first.toString() to it.second })
-    }
+    fun Tag.classes(vararg classMap: Pair<ButtonBaseStyle, String>) = setClasses(*classMap)
     var Tag.disabled: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]
         set(value) { setProp("disabled", value) }
