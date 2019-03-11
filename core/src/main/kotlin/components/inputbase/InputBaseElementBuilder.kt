@@ -24,9 +24,7 @@ open class InputBaseElementBuilder internal constructor(
     var Tag.autoFocus: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["autoFocus"]
         set(value) { setProp("autoFocus", value) }
-    fun Tag.classes(vararg classMap: Pair<InputBaseStyle, String>) {
-        setClasses(classMap.map { it.first.toString() to it.second })
-    }
+    fun Tag.classes(vararg classMap: Pair<InputBaseStyle, String>) = setClasses(*classMap)
     var Tag.defaultValue: InputValue
         get() = InputValue.fromDynamic(props.asDynamic()["defaultValue"])
         set(value) { setProp("defaultValue", value.value) }

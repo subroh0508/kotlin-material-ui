@@ -25,7 +25,10 @@ abstract class MaterialElementBuilder<T: Tag>(
         get() = props.dangerouslySetInnerHTML
         set(value) { props.dangerouslySetInnerHTML = value }
 
-    protected fun setClasses(classMap: List<Pair<String, String>>) {
+    protected fun setClasses(vararg classMap: Pair<Enum<*>, String>)
+            = setClasses(classMap.map { it.first.toString() to it.second })
+
+    private fun setClasses(classMap: List<Pair<String, String>>) {
         val classes = props.asDynamic()["classes"]
         val rootClass = if (classes != null) classes["root"] else null
 
