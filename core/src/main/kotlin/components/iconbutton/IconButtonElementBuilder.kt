@@ -17,9 +17,7 @@ class IconButtonElementBuilder<T: Tag>(
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
 ) : ButtonBaseElementBuilder<T>(type, tag, factory) {
 
-    fun Tag.classes(vararg classMap: Pair<IconButtonStyle, String>) {
-        setClasses(classMap.map { it.first.toString() to it.second })
-    }
+    fun Tag.classes(vararg classMap: Pair<IconButtonStyle, String>) = setClasses(*classMap)
     var Tag.color: ButtonColor
         get() = ButtonColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
         set(value) { setProp("color", value.toString()) }
