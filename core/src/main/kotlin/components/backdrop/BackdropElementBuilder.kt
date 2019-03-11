@@ -1,6 +1,7 @@
 package components.backdrop
 
 import components.MaterialElementBuilder
+import components.backdrop.enum.BackdropStyle
 import components.backdrop.values.TransitionDuration
 import components.consumers
 import kotlinx.html.Tag
@@ -22,9 +23,8 @@ class BackdropElementBuilder<T: Tag> internal constructor(
         transition.props = props
     }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
+    fun Tag.classes(vararg classMap: Pair<BackdropStyle, String>) = setClasses(*classMap)
+
     var Tag.invisible: Boolean
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["invisible"]
         set(value) { setProp("invisible", value) }
