@@ -7,7 +7,7 @@ import components.icon.icon
 import components.iconbutton.iconButton
 import components.toolbar.toolbar
 import components.tooltip.tooltip
-import demo.components.appsearch.AppSearch
+import demo.components.appsearch.appSearch
 import kotlinx.css.*
 import kotlinx.css.properties.BoxShadows
 import react.RBuilder
@@ -38,7 +38,7 @@ class Header : RComponent<HeaderProps, RState>() {
                         }
                     }
                     div(props.classes["grow"] as String) {}
-                    child(AppSearch::class) { }
+                    appSearch {  }
                     tooltip {
                         attrs {
                             title = "Change language"
@@ -63,7 +63,7 @@ class Header : RComponent<HeaderProps, RState>() {
                                 color = ButtonColor.inherit
                             }
                             icon {
-                                +"colors_icon"
+                                +"invert_colors_icon"
                             }
                         }
 
@@ -106,7 +106,7 @@ class Header : RComponent<HeaderProps, RState>() {
                                 color = ButtonColor.inherit
                             }
                             icon {
-                                +"github_icon"
+                                +"GitHub"
                             }
                         }
                     }
