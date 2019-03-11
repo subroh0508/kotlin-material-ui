@@ -140,6 +140,12 @@ data class GreySets internal constructor(
         set(value) { jsObject["A700"] = value.toString() }
 }
 
+@Suppress("EnumEntryName")
+enum class PaletteType {
+    light,
+    dark
+}
+
 external interface Palette
 
 fun Palette.common(handler: CommonColorSets.() -> Unit) {
@@ -149,9 +155,9 @@ fun Palette.common(handler: CommonColorSets.() -> Unit) {
 val Palette.common: CommonColorSets
     get() = CommonColorSets(asDynamic()["common"])
 
-var Palette.type: String
-    get() = asDynamic()["type"] as String
-    set(value) { asDynamic()["type"] = value }
+var Palette.type: PaletteType
+    get() = PaletteType.valueOf(asDynamic()["type"] as String)
+    set(value) { asDynamic()["type"] = value.toString() }
 
 fun Palette.primary(handler: ColorSets.() -> Unit) {
     asDynamic()["primary"] = primary.apply(handler).jsObject
