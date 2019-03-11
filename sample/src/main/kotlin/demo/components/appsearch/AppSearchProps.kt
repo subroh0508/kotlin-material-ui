@@ -2,15 +2,15 @@ package demo.components.appsearch
 
 import react.RProps
 
-interface AppSearchProps : RProps {
+external interface AppSearchProps : RProps {
     val classes: dynamic
-
-    val rootStyle: String
-        get() = classes["rootStyle"] as String
-    val searchStyle: String
-        get() = classes["searchStyle"] as String
-    val inputRootStyle: String
-        get() = classes["inputRootStyle"] as String
-    val inputInputStyle: String
-        get() = classes["inputInputStyle"] as String
 }
+
+val AppSearchProps.rootStyle: String
+    get() = classes["root"] as String
+val AppSearchProps.searchStyle: String
+    get() = classes["search"] as String
+val AppSearchProps.inputRootStyle: String
+    get() = classes["inputRoot"] as String
+val AppSearchProps.inputInputStyle: String
+    get() = classes["inputInput"] as String
