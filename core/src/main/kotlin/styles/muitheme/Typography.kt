@@ -3,6 +3,7 @@
 package styles.muitheme
 
 import kotlinx.css.Color
+import kotlinx.css.FontWeight
 import kotlinx.css.LinearDimension
 
 external interface TypographyAttributeSets
@@ -11,9 +12,9 @@ var TypographyAttributeSets.fontSize: LinearDimension
     get() = LinearDimension(asDynamic()["fontSize"] as String)
     set(value) { asDynamic()["fontSize"] = value.toString() }
 
-var TypographyAttributeSets.fontWeight: Int
-    get() = asDynamic()["fontWeight"] as Int
-    set(value) { asDynamic()["fontWeight"] = value }
+var TypographyAttributeSets.fontWeight: FontWeight
+    get() = FontWeight(asDynamic()["fontWeight"].toString())
+    set(value) { asDynamic()["fontWeight"] = value.toString() }
 
 var TypographyAttributeSets.fontFamily: String
     get() = asDynamic()["fontFamily"] as String
@@ -57,17 +58,17 @@ var Typography.fontSize: Int
     get() = asDynamic()["fontSize"] as Int
     set(value) { asDynamic()["fontSize"] = value }
 
-var Typography.fontWeightLight: Int
-    get() = asDynamic()["fontWeightLight"] as Int
-    set(value) { asDynamic()["fontWeightLight"] = value }
+var Typography.fontWeightLight: FontWeight
+    get() = FontWeight(asDynamic()["fontWeightLight"].toString())
+    set(value) { asDynamic()["fontWeightLight"] = value.toString() }
 
-var Typography.fontWeightRegular: Int
-    get() = asDynamic()["fontWeightRegular"] as Int
-    set(value) { asDynamic()["fontWeightRegular"] = value }
+var Typography.fontWeightRegular: FontWeight
+    get() = FontWeight(asDynamic()["fontWeightRegular"].toString())
+    set(value) { asDynamic()["fontWeightRegular"] = value.toString() }
 
-var Typography.fontWeightMedium: Int
-    get() = asDynamic()["fontWeightMedium"] as Int
-    set(value) { asDynamic()["fontWeightMedium"] = value }
+var Typography.fontWeightMedium: FontWeight
+    get() = FontWeight(asDynamic()["fontWeightMedium"].toString())
+    set(value) { asDynamic()["fontWeightMedium"] = value.toString() }
 
 var Typography.useNextVariants: Boolean
     get() = asDynamic()["useNextVariants"] as Boolean
