@@ -4,7 +4,7 @@ version '0.0.1'
 buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
-        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.44"
+        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.45"
     }
 }
 
@@ -28,11 +28,7 @@ apply from: file(new File(rootDir, 'gradle/bintray.gradle'))
 kotlinFrontend {
     // downloadNodeJsVersion = "11.0.0"
 
-    npm {
-        replaceVersion("kotlinx-html-js", "1.1.0")
-        replaceVersion("kotlinx-html-shared", "1.1.0")
-        replaceVersion("kotlin-js-library", "1.1.0")
-
+    npm { 
         dependency("react")
         dependency("react-dom")
         dependency("react-router")
