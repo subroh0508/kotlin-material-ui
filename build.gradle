@@ -4,8 +4,8 @@ version '1.0-SNAPSHOT'
 subprojects { p ->
     p.buildscript {
         ext.kotlinVersion = '1.3.20'
-        ext.kotlinFrontendPluginVersion = '0.0.44'
-        ext.bintrayPluginVersion = '1.7.3'
+        ext.kotlinFrontendPluginVersion = '0.0.45'
+        ext.bintrayPluginVersion = '1.8.4'
 
         repositories {
             mavenCentral()
@@ -25,9 +25,9 @@ subprojects { p ->
 subprojects {
     ext.kotlinVersion = "1.3.20"
     ext.kotlinxHtmlVersion = "0.6.12"
-    ext.kotlinJsWrappersVersion = "1.0.0-pre.66-kotlin-1.3.11"
-    ext.kotlinReactVersion = '16.6.0-pre.66-kotlin-1.3.11'
-    ext.ktorVersion = "1.1.1"
+    ext.kotlinJsWrappersVersion = "1.0.0-pre.67-kotlin-1.3.20"
+    ext.kotlinReactVersion = '16.6.0-pre.67-kotlin-1.3.20'
+    ext.ktorVersion = "1.1.4"
 
     repositories {
         mavenLocal()
