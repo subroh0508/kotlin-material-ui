@@ -1,8 +1,8 @@
 package demo.components
 
-import components.button.button
-import components.button.enums.ButtonColor
-import components.button.enums.ButtonVariant
+import materialui.components.button.button
+import materialui.components.button.enums.ButtonColor
+import materialui.components.button.enums.ButtonVariant
 import kotlinx.css.*
 import kotlinx.html.InputType
 import kotlinx.html.SPAN
@@ -14,9 +14,9 @@ import react.RState
 import react.dom.*
 import styled.css
 import styled.styledDiv
-import styles.childWithStyles
-import styles.muitheme.MuiTheme
-import styles.muitheme.unit
+import materialui.styles.childWithStyles
+import materialui.styles.muitheme.MuiTheme
+import materialui.styles.muitheme.unit
 
 class ButtonsDemo : RComponent<RProps, RState>() {
     override fun RBuilder.render() {

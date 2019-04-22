@@ -1,14 +1,14 @@
 package demo.components
 
-import components.formcontrol.formControl
-import components.input.input
-import components.inputadornment.InputAdornmentElementBuilder
-import components.inputadornment.enums.InputAdornmentPosition
-import components.inputbase.values.InputValue
-import components.inputlabel.inputLabel
-import components.menuitem.menuItem
-import components.textfield.textField
-import components.textfield.values.TextFieldValue
+import materialui.components.formcontrol.formControl
+import materialui.components.input.input
+import materialui.components.inputadornment.InputAdornmentElementBuilder
+import materialui.components.inputadornment.enums.InputAdornmentPosition
+import materialui.components.inputbase.values.InputValue
+import materialui.components.inputlabel.inputLabel
+import materialui.components.menuitem.menuItem
+import materialui.components.textfield.textField
+import materialui.components.textfield.values.TextFieldValue
 import kotlinx.css.*
 import kotlinx.html.DIV
 import kotlinx.html.js.onChangeFunction
@@ -18,7 +18,7 @@ import react.dom.div
 import react.dom.h2
 import styled.css
 import styled.styledDiv
-import styles.childWithStyles
+import materialui.styles.childWithStyles
 
 val ranges: List<Pair<String, String>>
     get() = listOf(
