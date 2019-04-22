@@ -10,10 +10,10 @@ import react.RComponent
 import react.RProps
 import react.RState
 import react.dom.*
-import styles.createMuiTheme
-import styles.muitheme.MuiTheme
-import styles.muitheme.primary
-import styles.muithemeprovider.muiThemeProvider
+import materialui.styles.createMuiTheme
+import materialui.styles.muitheme.MuiTheme
+import materialui.styles.muitheme.primary
+import materialui.styles.muithemeprovider.muiThemeProvider
 
 class App : RComponent<RProps, RState>() {
     override fun RBuilder.render() {

@@ -1,12 +1,12 @@
 package demo.components.header
 
-import components.appbar.appBar
-import components.button.enums.ButtonColor
-import components.cssbaseline.cssBaseline
-import components.icon.icon
-import components.iconbutton.iconButton
-import components.toolbar.toolbar
-import components.tooltip.tooltip
+import materialui.components.appbar.appBar
+import materialui.components.button.enums.ButtonColor
+import materialui.components.cssbaseline.cssBaseline
+import materialui.components.icon.icon
+import materialui.components.iconbutton.iconButton
+import materialui.components.toolbar.toolbar
+import materialui.components.tooltip.tooltip
 import demo.components.appsearch.appSearch
 import kotlinx.css.*
 import kotlinx.css.properties.BoxShadows
@@ -14,10 +14,10 @@ import react.RBuilder
 import react.RComponent
 import react.RState
 import react.dom.div
-import styles.childWithStyles
-import styles.muitheme.MuiTheme
-import styles.muitheme.create
-import styles.muitheme.up
+import materialui.styles.childWithStyles
+import materialui.styles.muitheme.MuiTheme
+import materialui.styles.muitheme.create
+import materialui.styles.muitheme.up
 
 class Header : RComponent<HeaderProps, RState>() {
     override fun RBuilder.render() {

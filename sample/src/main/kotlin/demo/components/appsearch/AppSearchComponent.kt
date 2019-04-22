@@ -1,8 +1,8 @@
 package demo.components.appsearch
 
-import components.icon.icon
-import components.input.input
-import components.inputbase.enums.InputBaseStyle
+import materialui.components.icon.icon
+import materialui.components.input.input
+import materialui.components.inputbase.enums.InputBaseStyle
 import kotlinx.css.Display
 import react.RBuilder
 import react.RComponent
