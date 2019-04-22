@@ -1,15 +1,15 @@
 package demo.components
 
-import components.appbar.appBar
-import components.appbar.enums.AppBarPosition
-import components.button.button
-import components.button.enums.ButtonColor
-import components.icon.icon
-import components.iconbutton.iconButton
-import components.toolbar.toolbar
-import components.typography.enums.TypographyColor
-import components.typography.enums.TypographyVariant
-import components.typography.typography
+import materialui.components.appbar.appBar
+import materialui.components.appbar.enums.AppBarPosition
+import materialui.components.button.button
+import materialui.components.button.enums.ButtonColor
+import materialui.components.icon.icon
+import materialui.components.iconbutton.iconButton
+import materialui.components.toolbar.toolbar
+import materialui.components.typography.enums.TypographyColor
+import materialui.components.typography.enums.TypographyVariant
+import materialui.components.typography.typography
 import kotlinx.css.CSSBuilder
 import kotlinx.css.px
 import react.RBuilder
@@ -18,7 +18,7 @@ import react.RProps
 import react.RState
 import react.dom.div
 import react.dom.h2
-import styles.childWithStyles
+import materialui.styles.childWithStyles
 
 class AppbarsDemo : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
