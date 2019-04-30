@@ -5,15 +5,15 @@ import demo.components.ButtonsDemo
 import demo.components.InputAdornmentsDemo
 import demo.components.header.Header
 import kotlinx.css.Color
+import materialui.styles.createMuiTheme
+import materialui.styles.muitheme.MuiTheme
+import materialui.styles.muitheme.primary
+import materialui.styles.muithemeprovider.muiThemeProvider
 import react.RBuilder
 import react.RComponent
 import react.RProps
 import react.RState
 import react.dom.*
-import materialui.styles.createMuiTheme
-import materialui.styles.muitheme.MuiTheme
-import materialui.styles.muitheme.primary
-import materialui.styles.muithemeprovider.muiThemeProvider
 
 class App : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
@@ -30,6 +30,9 @@ class App : RComponent<RProps, RState>() {
                 +"To get started, edit "
                 code { +"app/App.kt" }
                 +" and save to reload."
+            }
+            div {
+
             }
             div {
                 AppbarsDemo.render(this)
