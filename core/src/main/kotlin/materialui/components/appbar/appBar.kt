@@ -11,6 +11,15 @@ import kotlin.reflect.KClass
 @JsModule("@material-ui/core/AppBar")
 private external val appBarModule: dynamic
 
+external interface AppBarProps : RProps {
+    var color: String?
+        get() = definedExternally
+        set(value) = definedExternally
+    var position: String?
+        get() = definedExternally
+        set(value) = definedExternally
+}
+
 @Suppress("UnsafeCastFromDynamic")
 private val appBarComponent: RComponent<RProps, RState> = appBarModule.default
 
