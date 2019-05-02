@@ -16,15 +16,20 @@ object ReadOnlyGutterDelegate {
 }
 
 object GutterDelegate {
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): Gutters = { cssBuilder: CSSBuilder ->
-        val gutter = asDynamic()[property.name] as (dynamic) -> (dynamic)
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): Gutters? {
+        val gutter = asDynamic()[property.name] as ((dynamic) -> (dynamic))? ?: return null
 
-        buildCssBuilder(CSSBuilder(), gutter.invoke(cssBuilder.toDynamic()))
+        return { cssBuilder: CSSBuilder -> buildCssBuilder(CSSBuilder(), gutter.invoke(cssBuilder.toDynamic())) }
     }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: Gutters?) {
+        if (value == null) {
+            asDynamic()[property.name] = null
+            return
+        }
+
         asDynamic()[property.name] = { jsObject: dynamic ->
-            value?.invoke(buildCssBuilder(CSSBuilder(), jsObject))?.toDynamic()
+            value.invoke(buildCssBuilder(CSSBuilder(), jsObject)).toDynamic()
         }
     }
 }
@@ -35,8 +40,11 @@ object ReadOnlyToolbarDelegate {
 }
 
 object ToolbarDelegate {
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): CSSBuilder
-        = buildCssBuilder(CSSBuilder(), asDynamic()[property.name])
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): CSSBuilder?
+        = if (keys(asDynamic()[property.name] as Any).isEmpty())
+              null
+          else
+              buildCssBuilder(CSSBuilder(), asDynamic()[property.name])
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: CSSBuilder?) {
         asDynamic()[property.name] = value?.toDynamic()

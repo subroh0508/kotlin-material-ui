@@ -1,8 +1,10 @@
 package materialui.styles.transitions
 
-external interface Easing {
-    val easeInOut: String
-    val easeOut: String
-    val easeIn: String
-    val sharp: String
-}
+import kotlinx.css.properties.Timing
+
+external interface Easing
+
+val Easing.easeInOut: Timing by ReadOnlyEasingDelegate
+val Easing.easeOut: Timing by ReadOnlyEasingDelegate
+val Easing.easeIn: Timing by ReadOnlyEasingDelegate
+val Easing.sharp: Timing by ReadOnlyEasingDelegate
