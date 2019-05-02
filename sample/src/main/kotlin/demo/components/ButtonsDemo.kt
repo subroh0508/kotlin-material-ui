@@ -16,7 +16,6 @@ import styled.css
 import styled.styledDiv
 import materialui.styles.childWithStyles
 import materialui.styles.muitheme.MuiTheme
-import materialui.styles.muitheme.unit
 
 class ButtonsDemo : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
