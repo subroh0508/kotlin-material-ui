@@ -1,8 +1,11 @@
 package materialui.styles.transitions.options
 
-external interface EasingOptions {
-    var easeInOut: String?
-    var easeOut: String?
-    var easeIn: String?
-    var sharp: String?
-}
+import kotlinx.css.properties.Timing
+import materialui.styles.transitions.EasingDelegate
+
+external interface EasingOptions
+
+var EasingOptions.easeInOut: Timing? by EasingDelegate
+var EasingOptions.easeOut: Timing? by EasingDelegate
+var EasingOptions.easeIn: Timing? by EasingDelegate
+var EasingOptions.sharp: Timing? by EasingDelegate

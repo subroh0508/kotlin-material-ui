@@ -8,4 +8,10 @@ external interface BreakpointValues {
     val xl: Number
 }
 
-operator fun BreakpointValues.get(key: String): Number? = asDynamic()[key] as Number?
+operator fun BreakpointValues.get(key: Breakpoint): Number = when (key) {
+    Breakpoint.xs -> xs
+    Breakpoint.sm -> sm
+    Breakpoint.md -> md
+    Breakpoint.lg -> lg
+    Breakpoint.xl -> xl
+}

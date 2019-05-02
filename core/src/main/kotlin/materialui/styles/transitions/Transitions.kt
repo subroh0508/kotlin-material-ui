@@ -1,8 +1,17 @@
 package materialui.styles.transitions
 
+import kotlinx.css.properties.Timing
+
 external interface Transitions {
     val easing: Easing
     val duration: Duration
-    val create: (dynamic, dynamic) -> String
     val getAutoHeightDuration: (Number) -> Number
 }
+
+internal val Transitions.create: TransitionsCreate by ReadOnlyTransitionsCreateDelegate
+
+fun Transitions.create(prop: String = "all", duration: Number? = null, easing: Timing? = null, delay: Number? = null): Timing
+    = create.invoke(listOf(prop), duration, easing, delay)
+
+fun Transitions.create(props: List<String> = listOf("all"), duration: Number? = null, easing: Timing? = null, delay: Number? = null): Timing
+    = create.invoke(props, duration, easing, delay)
