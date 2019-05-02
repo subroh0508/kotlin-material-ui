@@ -7,5 +7,5 @@ import materialui.styles.mixins.ToolbarDelegate
 
 external interface MixinsOptions
 
-var MixinsOptions.gutters: Gutters by GutterDelegate
-var MixinsOptions.toolbar: CSSBuilder by ToolbarDelegate
+var MixinsOptions.gutters: Gutters? by GutterDelegate
+var MixinsOptions.toolbar: CSSBuilder? by ToolbarDelegate

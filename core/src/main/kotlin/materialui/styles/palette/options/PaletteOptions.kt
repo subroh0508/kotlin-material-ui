@@ -1,5 +1,6 @@
 package materialui.styles.palette.options
 
+import kotlinext.js.jsObject
 import kotlinx.css.Color
 import materialui.styles.ColorDelegate
 import materialui.styles.palette.GetContrastText
@@ -35,3 +36,7 @@ var PaletteOptions.getContrastText: ((Color) -> Color)?
             value?.invoke(Color(color))?.toString()
         }
     }
+
+fun PaletteOptions.primary(block: PaletteColorOptions.() -> Unit) {
+    primary = (primary ?: jsObject { }).apply(block)
+}

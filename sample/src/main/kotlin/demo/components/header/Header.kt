@@ -1,5 +1,8 @@
 package demo.components.header
 
+import demo.components.appsearch.appSearch
+import kotlinx.css.*
+import kotlinx.css.properties.BoxShadows
 import materialui.components.appbar.appBar
 import materialui.components.button.enums.ButtonColor
 import materialui.components.cssbaseline.cssBaseline
@@ -7,17 +10,15 @@ import materialui.components.icon.icon
 import materialui.components.iconbutton.iconButton
 import materialui.components.toolbar.toolbar
 import materialui.components.tooltip.tooltip
-import demo.components.appsearch.appSearch
-import kotlinx.css.*
-import kotlinx.css.properties.BoxShadows
+import materialui.styles.breakpoint.Breakpoint
+import materialui.styles.breakpoint.up
+import materialui.styles.childWithStyles
+import materialui.styles.muitheme.MuiTheme
+import materialui.styles.transitions.create
 import react.RBuilder
 import react.RComponent
 import react.RState
 import react.dom.div
-import materialui.styles.childWithStyles
-import materialui.styles.muitheme.MuiTheme
-import materialui.styles.muitheme.create
-import materialui.styles.muitheme.up
 
 class Header : RComponent<HeaderProps, RState>() {
     override fun RBuilder.render() {
@@ -164,7 +165,7 @@ class Header : RComponent<HeaderProps, RState>() {
 
         private val appBarShift = { theme: MuiTheme ->
             CSSBuilder().apply {
-                theme.breakpoints.up("lg").invoke {
+                theme.breakpoints.up(Breakpoint.lg).invoke {
                     width = 100.pct - 240.px
                 }
             }
@@ -172,7 +173,7 @@ class Header : RComponent<HeaderProps, RState>() {
 
         private val drawer = { theme: MuiTheme ->
             CSSBuilder().apply {
-                theme.breakpoints.up("lg").invoke {
+                theme.breakpoints.up(Breakpoint.lg).invoke {
                     width = 240.px
                 }
             }
@@ -180,7 +181,7 @@ class Header : RComponent<HeaderProps, RState>() {
 
         private val navIconHide = { theme: MuiTheme ->
             CSSBuilder().apply {
-                theme.breakpoints.up("lg").invoke {
+                theme.breakpoints.up(Breakpoint.lg).invoke {
                     display = Display.none
                 }
             }

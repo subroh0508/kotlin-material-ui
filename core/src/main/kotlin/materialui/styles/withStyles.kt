@@ -33,7 +33,7 @@ fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
     styles: (MuiTheme) -> MaterialElementStyles,
     handler: RHandler<P>
 ): ReactElement {
-    val rClass = withStyles({ theme: Any -> styles(MuiTheme(theme)).toDynamic }, jsObject { })(klazz.js) as RClass<P>
+    val rClass = withStyles({ theme: MuiTheme -> styles(theme).toDynamic }, jsObject { })(klazz.js) as RClass<P>
     return rClass(handler)
 }
 
