@@ -1,17 +1,14 @@
 package materialui.styles
 
-import kotlinx.css.Color
-import kotlinx.css.FontWeight
-import kotlinx.css.LinearDimension
-import kotlinx.css.TextTransform
+import kotlinx.css.*
 import kotlin.reflect.KProperty
 
 object FontWeightDelegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): FontWeight?
-            = (thisRef?.asDynamic()[property.name] as String?)?.let { FontWeight(it) }
+            = (thisRef.asDynamic()[property.name] as String?)?.let { FontWeight(it) }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: FontWeight?) {
-        thisRef?.asDynamic()[property.name] = value?.toString()
+        thisRef.asDynamic()[property.name] = value?.toString()
     }
 }
 
@@ -22,10 +19,10 @@ object ReadOnlyFontWeightDelegate {
 
 object LinearDimensionDelegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): LinearDimension?
-            = (thisRef?.asDynamic()[property.name] as String?)?.let { LinearDimension(it) }
+            = (thisRef.asDynamic()[property.name] as String?)?.let { LinearDimension(it) }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: LinearDimension?) {
-        thisRef?.asDynamic()[property.name] = value?.toString()
+        thisRef.asDynamic()[property.name] = value?.toString()
     }
 }
 
@@ -36,10 +33,10 @@ object ReadOnlyLinearDimensionDelegate {
 
 object ColorDelegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): Color?
-            = (thisRef?.asDynamic()[property.name] as String?)?.let { Color(it) }
+            = (thisRef.asDynamic()[property.name] as String?)?.let { Color(it) }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: Color?) {
-        thisRef?.asDynamic()[property.name] = value?.toString()
+        thisRef.asDynamic()[property.name] = value?.toString()
     }
 }
 
@@ -48,17 +45,31 @@ object ReadOnlyColorDelegate {
             = Color(thisRef.asDynamic()[property.name] as String)
 }
 
+object DirectionDelegate {
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): Direction?
+            = (thisRef.asDynamic()[property.name] as String?)?.let { Direction.valueOf(it) }
+
+    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: Direction?) {
+        thisRef.asDynamic()[property.name] = value?.toString()
+    }
+}
+
+object ReadOnlyDirectionDelegate {
+    operator fun getValue(thisRef: Any, property: KProperty<*>): Direction
+            = Direction.valueOf(thisRef.asDynamic()[property.name] as String)
+}
+
 object TextTransformDelegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): TextTransform?
-            = (thisRef?.asDynamic()[property.name] as String?)?.let { TextTransform.values().find { enum -> enum.toString() == it } }
+            = (thisRef.asDynamic()[property.name] as String?)?.let { TextTransform.values().find { enum -> enum.toString() == it } }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: TextTransform?) {
-        thisRef?.asDynamic()[property.name] = value?.toString()
+        thisRef.asDynamic()[property.name] = value?.toString()
     }
 }
 
 object ReadOnlyTextTransformDelegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): TextTransform
-            = (thisRef?.asDynamic()[property.name] as String?)?.let { TextTransform.values().find { enum -> enum.toString() == it } }
+            = (thisRef.asDynamic()[property.name] as String?)?.let { TextTransform.values().find { enum -> enum.toString() == it } }
                 ?: throw IllegalArgumentException()
 }
