@@ -14,8 +14,8 @@ external interface TransitionsOptions {
 
 internal var Transitions.create: TransitionsCreate? by TransitionsCreateDelegate
 
-fun Transitions.create(prop: String = "all", duration: Number? = null, easing: Timing? = null, delay: Number? = null): Timing
+fun Transitions.create(prop: String = "all", duration: Number? = null, easing: Timing? = null, delay: Number? = null): kotlinx.css.properties.Transitions
         = create.invoke(listOf(prop), duration, easing, delay)
 
-fun Transitions.create(props: List<String> = listOf("all"), duration: Number? = null, easing: Timing? = null, delay: Number? = null): Timing
+fun Transitions.create(props: List<String> = listOf("all"), duration: Number? = null, easing: Timing? = null, delay: Number? = null): kotlinx.css.properties.Transitions
         = create.invoke(props, duration, easing, delay)

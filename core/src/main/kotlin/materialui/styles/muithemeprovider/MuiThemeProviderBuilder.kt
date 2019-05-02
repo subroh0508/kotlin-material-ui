@@ -1,8 +1,8 @@
 package materialui.styles.muithemeprovider
 
 import kotlinext.js.jsObject
-import react.*
 import materialui.styles.muitheme.MuiTheme
+import react.*
 
 class MuiThemeProviderBuilder internal constructor(
     val type: RComponent<RProps, RState>,
@@ -10,7 +10,7 @@ class MuiThemeProviderBuilder internal constructor(
     private val props: RProps = jsObject { }
 ) : RBuilder() {
     init {
-        props.asDynamic()["theme"] = theme.toDynamic
+        props.asDynamic()["theme"] = theme
     }
 
     fun attrs(handler: RProps.() -> Unit) {

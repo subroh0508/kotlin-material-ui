@@ -7,8 +7,10 @@ import demo.components.header.Header
 import kotlinx.css.Color
 import materialui.styles.createMuiTheme
 import materialui.styles.muitheme.MuiTheme
-import materialui.styles.muitheme.primary
+import materialui.styles.muitheme.options.palette
 import materialui.styles.muithemeprovider.muiThemeProvider
+import materialui.styles.palette.options.main
+import materialui.styles.palette.options.primary
 import react.RBuilder
 import react.RComponent
 import react.RProps

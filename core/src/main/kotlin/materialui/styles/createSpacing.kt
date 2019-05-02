@@ -2,9 +2,7 @@
 
 package materialui.styles
 
-import kotlinx.css.LinearDimension
-import materialui.styles.spacing.Spacing
-
+/*
 @JsModule("@material-ui/core/styles/createSpacing")
 private external val createSpacingModule: dynamic
 
@@ -36,3 +34,5 @@ fun createSpacing(func: (LinearDimension, LinearDimension, LinearDimension, Line
         = createSpacingModule.default { factor1: String, factor2: String, factor3: String, factor4: String -> func(LinearDimension(factor1), LinearDimension(factor2), LinearDimension(factor3), LinearDimension(factor4)) } as Spacing
 
 fun defaultSpacing(): Spacing = createSpacingModule.default() as Spacing
+*/
+
