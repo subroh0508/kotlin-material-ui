@@ -2,9 +2,14 @@ package demo.components.appsearch
 
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
-import react.RBuilder
 import materialui.styles.childWithStyles
-import materialui.styles.muitheme.*
+import materialui.styles.muitheme.MuiTheme
+import materialui.styles.muitheme.shadows
+import materialui.styles.palette.*
+import materialui.styles.transitions.create
+import materialui.styles.typography.fontWeightMedium
+import materialui.styles.typography.fontWeightRegular
+import react.RBuilder
 
 fun RBuilder.appSearch(handler: RBuilder.() -> Unit) = childWithStyles(
     AppSearchComponent::class,
