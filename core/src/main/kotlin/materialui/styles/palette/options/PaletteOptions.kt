@@ -4,7 +4,6 @@ import kotlinext.js.jsObject
 import kotlinx.css.Color
 import materialui.styles.ColorDelegate
 import materialui.styles.palette.GetContrastText
-import materialui.styles.palette.GreyColors
 import materialui.styles.palette.PaletteType
 
 external interface PaletteOptions {
@@ -14,7 +13,7 @@ external interface PaletteOptions {
     var primary: PaletteColorOptions?
     var secondary: PaletteColorOptions?
     var error: PaletteColorOptions?
-    var grey: GreyColors?
+    var grey: GreyColorsOptions?
     var text: TypeTextOptions?
     var action: TypeActionOptions?
     var background: TypeBackgroundOptions?
@@ -37,6 +36,11 @@ var PaletteOptions.getContrastText: ((Color) -> Color)?
         }
     }
 
-fun PaletteOptions.primary(block: PaletteColorOptions.() -> Unit) {
-    primary = (primary ?: jsObject { }).apply(block)
-}
+fun PaletteOptions.common(block: CommonColorsOptions.() -> Unit) { common = (common ?: jsObject { }).apply(block) }
+fun PaletteOptions.primary(block: PaletteColorOptions.() -> Unit) { primary = (primary ?: jsObject { }).apply(block) }
+fun PaletteOptions.secondary(block: PaletteColorOptions.() -> Unit) { secondary = (secondary ?: jsObject { }).apply(block) }
+fun PaletteOptions.error(block: PaletteColorOptions.() -> Unit) { error = (error ?: jsObject { }).apply(block) }
+fun PaletteOptions.grey(block: GreyColorsOptions.() -> Unit) { grey = (grey ?: jsObject { }).apply(block) }
+fun PaletteOptions.text(block: TypeTextOptions.() -> Unit) { text = (text ?: jsObject { }).apply(block) }
+fun PaletteOptions.action(block: TypeActionOptions.() -> Unit) { action = (action ?: jsObject { }).apply(block) }
+fun PaletteOptions.background(block: TypeBackgroundOptions.() -> Unit) { background = (background ?: jsObject { }).apply(block) }

@@ -36,6 +36,10 @@ fun MuiThemeOptions.shadows(vararg boxShadows: Pair<Int, BoxShadows>) {
     }
 }
 
-fun MuiThemeOptions.palette(block: PaletteOptions.() -> Unit) {
-    palette = (palette ?: jsObject {}).apply(block)
-}
+fun MuiThemeOptions.breakpoints(block: BreakpointsOptions.() -> Unit) { breakpoints = (breakpoints ?: jsObject { }).apply(block) }
+fun MuiThemeOptions.mixins(block: MixinsOptions.() -> Unit) { mixins = (mixins ?: jsObject { }).apply(block) }
+fun MuiThemeOptions.palette(block: PaletteOptions.() -> Unit) { palette = (palette ?: jsObject { }).apply(block) }
+fun MuiThemeOptions.typography(block: TypographyOptions.() -> Unit) { typography = (typography ?: jsObject { }).apply(block) }
+fun MuiThemeOptions.shape(block: ShapeOptions.() -> Unit) { shape = (shape ?: jsObject { }).apply(block) }
+fun MuiThemeOptions.transitions(block: TransitionsOptions.() -> Unit) { transitions = (transitions ?: jsObject { }).apply(block) }
+fun MuiThemeOptions.zIndex(block: ZIndexOptions.() -> Unit) { zIndex = (zIndex ?: jsObject { }).apply(block) }
