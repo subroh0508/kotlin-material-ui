@@ -1,5 +1,6 @@
 package materialui.styles.breakpoint.options
 
+import kotlinext.js.jsObject
 import materialui.styles.breakpoint.*
 
 external interface BreakpointsOptions {
@@ -57,3 +58,5 @@ fun BreakpointsOptions.width(key: Breakpoint) = width?.invoke(key.toString())
 fun BreakpointsOptions.width(block: (Breakpoint) -> Number) {
     width = { key: String -> block(Breakpoint.valueOf(key)) }
 }
+
+fun BreakpointsOptions.values(block: BreakpointValuesOptions.() -> Unit) { values = (values ?: jsObject { }).apply(block) }
