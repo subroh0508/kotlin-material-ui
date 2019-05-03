@@ -11,11 +11,7 @@ private external val paperModule: dynamic
 
 external interface PaperProps : StandardProps {
     var elevation: Number?
-        get() = definedExternally
-        set(value) = definedExternally
     var square: Boolean?
-        get() = definedExternally
-        set(value) = definedExternally
 }
 
 @Suppress("UnsafeCastFromDynamic")
