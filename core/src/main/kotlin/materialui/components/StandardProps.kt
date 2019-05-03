@@ -1,13 +1,10 @@
 package materialui.components
 
 import kotlinext.js.js
-import react.RProps
+import react.dom.DOMProps
 import kotlin.reflect.KProperty
 
-external interface StandardProps : RProps {
-    var className: String?
-        get() = definedExternally
-        set(value) = definedExternally
+external interface StandardProps : DOMProps {
     var classes: dynamic
     var component: dynamic
 }
@@ -24,9 +21,18 @@ fun StandardProps.classes(classMap: List<Pair<Enum<*>, String>>) {
     }
 }
 
+operator fun StandardProps.get(key: String): Any? = asDynamic()[key]
+
 operator fun StandardProps.getValue(thisRef: Any?, property: KProperty<*>): dynamic
-        = thisRef?.asDynamic()[property.name]
+        = asDynamic()[property.name]
 
 operator fun StandardProps.setValue(thisRef: Any?, property: KProperty<*>, value: dynamic) {
-    thisRef?.asDynamic()[property.name] = value
+    asDynamic()[property.name] = value
+}
+
+inline operator fun <reified T: Enum<T>> StandardProps.getValue(thisRef: Any?, property: KProperty<*>): T?
+        = (asDynamic()[property.name] as String?)?.let { enumValueOf<T>(it) }
+
+inline operator fun <reified T: Enum<T>> StandardProps.setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
+    asDynamic()[property.name] = value?.toString()
 }
