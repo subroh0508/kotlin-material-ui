@@ -1,34 +1,26 @@
 package materialui.components.expansionpanel
 
-import materialui.components.consumers
-import materialui.components.paper._PaperElementBuilder
+import kotlinext.js.jsObject
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
+import materialui.components.getValue
+import materialui.components.paper.PaperElementBuilder
+import materialui.components.setValue
 import org.w3c.dom.events.Event
-import react.RComponent
+import react.RClass
 import react.RProps
-import react.RState
-import kotlin.reflect.KClass
 
 class ExpansionPanelElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : _PaperElementBuilder<T>(type, tag, factory) {
+    type: RClass<ExpansionPanelProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : PaperElementBuilder<T, ExpansionPanelProps>(type, classMap, factory) {
 
-    var Tag.collapseProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["CollapseProps"]
-        set(value) { setProp("CollapseProps", value) }
-    var Tag.defaultExpanded: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["defaultExpanded"]
-        set(value) { setProp("defaultExpanded", value) }
-    var Tag.disabled: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]
-        set(value) { setProp("disabled", value) }
-    var Tag.expanded: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["expanded"]
-        set(value) { setProp("expanded", value) }
-    var Tag.onChange: (Event, Boolean) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onChange"]
-        set(value) { setProp("onChange", value) }
+    var Tag.CollapseProps: RProps by materialProps
+    var Tag.defaultExpanded: Boolean? by materialProps
+    var Tag.disabled: Boolean? by materialProps
+    var Tag.expanded: Boolean? by materialProps
+    var Tag.onChange: ((Event, Boolean) -> Unit)? by materialProps
+
+    fun <T: RProps> Tag.collapseProps(block: T.() -> Unit) { CollapseProps = jsObject<T> { }.apply(block) }
 }
