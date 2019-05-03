@@ -1,26 +1,24 @@
 package materialui.components.appbar
 
-import materialui.components.appbar.enums.AppBarColor
-import materialui.components.appbar.enums.AppBarPosition
-import materialui.components.consumers
-import materialui.components.paper.PaperElementBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.appbar.enums.AppBarColor
+import materialui.components.appbar.enums.AppBarPosition
+import materialui.components.appbar.enums.AppBarStyle
+import materialui.components.getValue
+import materialui.components.paper.PaperElementBuilder
+import materialui.components.setValue
+import react.RClass
 
 class AppBarElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : PaperElementBuilder<T>(type, tag, factory) {
+    type: RClass<AppBarProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : PaperElementBuilder<T, AppBarProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<AppBarStyle, String>) {
+        classes(classMap.map { it.first to it.second })
+    }
 
-    var Tag.color: AppBarColor
-        get() = AppBarColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
-        set(value) { setProp("color", value.toString()) }
-    var Tag.position: AppBarPosition
-        get() = AppBarPosition.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["position"])
-        set(value) { setProp("position", value.toString()) }
+    var Tag.color: AppBarColor? by materialProps
+    var Tag.position: AppBarPosition? by materialProps
 }

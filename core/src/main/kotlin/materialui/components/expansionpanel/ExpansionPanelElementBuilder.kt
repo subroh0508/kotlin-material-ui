@@ -1,7 +1,7 @@
 package materialui.components.expansionpanel
 
 import materialui.components.consumers
-import materialui.components.paper.PaperElementBuilder
+import materialui.components.paper._PaperElementBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import org.w3c.dom.events.Event
@@ -14,7 +14,7 @@ class ExpansionPanelElementBuilder<T: Tag> internal constructor(
     type: RComponent<RProps, RState>,
     tag: KClass<T>,
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : PaperElementBuilder<T>(type, tag, factory) {
+) : _PaperElementBuilder<T>(type, tag, factory) {
 
     var Tag.collapseProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["CollapseProps"]

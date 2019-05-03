@@ -4,6 +4,7 @@ import demo.components.appsearch.appSearch
 import kotlinx.css.*
 import kotlinx.css.properties.BoxShadows
 import materialui.components.appbar.appBar
+import materialui.components.appbar.enums.AppBarStyle
 import materialui.components.button.enums.ButtonColor
 import materialui.components.cssbaseline.cssBaseline
 import materialui.components.icon.icon
@@ -22,12 +23,11 @@ import react.dom.div
 
 class Header : RComponent<HeaderProps, RState>() {
     override fun RBuilder.render() {
-        console.log(props.classes)
         div(props.rootStyle) {
             cssBaseline {  }
             appBar {
                 attrs {
-                   rootClass("${props.appBar} ${props.appBarHome}")
+                    classes(AppBarStyle.root to "${props.appBar} ${props.appBarHome}")
                 }
                 toolbar {
                     iconButton {
