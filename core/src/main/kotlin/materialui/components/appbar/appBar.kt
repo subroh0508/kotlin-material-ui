@@ -13,11 +13,7 @@ private external val appBarModule: dynamic
 
 external interface AppBarProps : PaperProps {
     var color: String?
-        get() = definedExternally
-        set(value) = definedExternally
     var position: String?
-        get() = definedExternally
-        set(value) = definedExternally
 }
 
 @Suppress("UnsafeCastFromDynamic")
