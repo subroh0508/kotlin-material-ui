@@ -2,20 +2,26 @@ package materialui.components.snackbarcontent
 
 import kotlinx.html.DIV
 import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import materialui.components.paper.PaperProps
+import materialui.components.paper.enums.PaperStyle
 import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import react.RClass
+import react.ReactElement
 
 @JsModule("@material-ui/core/SnackbarContent")
 private external val snackbarContentModule: dynamic
 
+external interface SnackbarContentProps : PaperProps {
+    var action: ReactElement?
+    var message: ReactElement?
+}
+
 @Suppress("UnsafeCastFromDynamic")
-private val snackbarContentComponent: RComponent<RProps, RState> = snackbarContentModule.default
+private val snackbarContentComponent: RClass<SnackbarContentProps> = snackbarContentModule.default
 
-fun RBuilder.snackbarContent(block: SnackbarContentElementBuilder<DIV>.() -> Unit)
-    = child(SnackbarContentElementBuilder(snackbarContentComponent, DIV::class) { DIV(mapOf(), it) }.apply(block).create())
+fun RBuilder.snackbarContent(vararg classMap: Pair<PaperStyle, String>, block: SnackbarContentElementBuilder<DIV>.() -> Unit)
+    = child(SnackbarContentElementBuilder(snackbarContentComponent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.snackbarContent(tag: KClass<T>, block: SnackbarContentElementBuilder<T>.() -> Unit)
-    = child(SnackbarContentElementBuilder(snackbarContentComponent, tag).apply(block).create())
+fun <T: Tag> RBuilder.snackbarContent(vararg classMap: Pair<PaperStyle, String>, factory: (TagConsumer<Unit>) -> T, block: SnackbarContentElementBuilder<T>.() -> Unit)
+    = child(SnackbarContentElementBuilder(snackbarContentComponent, classMap.toList(), factory).apply(block).create())

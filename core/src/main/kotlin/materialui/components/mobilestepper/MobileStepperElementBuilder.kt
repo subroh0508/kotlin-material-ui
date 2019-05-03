@@ -1,42 +1,30 @@
 package materialui.components.mobilestepper
 
-import materialui.components.consumers
-import materialui.components.mobilestepper.enums.MobileStepperPosition
-import materialui.components.mobilestepper.enums.MobileStepperVariant
-import materialui.components.paper._PaperElementBuilder
+import kotlinext.js.jsObject
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import react.ReactElement
-import kotlin.reflect.KClass
+import materialui.components.getValue
+import materialui.components.mobilestepper.enums.MobileStepperPosition
+import materialui.components.mobilestepper.enums.MobileStepperVariant
+import materialui.components.paper.PaperElementBuilder
+import materialui.components.setValue
+import react.*
 
 class MobileStepperElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : _PaperElementBuilder<T>(type, tag, factory) {
+    type: RClass<MobileStepperProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : PaperElementBuilder<T, MobileStepperProps>(type, classMap, factory) {
 
-    var Tag.activeStep: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["activeStep"]
-        set(value) { setProp("activeStep", value) }
-    var Tag.backButton: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["backButton"]
-        set(value) { setProp("backButton", value) }
-    var Tag.linearProgressProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["LinearProgressProps"]
-        set(value) { setProp("LinearProgressProps", value) }
-    var Tag.nextButton: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["nextButton"]
-        set(value) { setProp("nextButton", value) }
-    var Tag.position: MobileStepperPosition
-        get() = MobileStepperPosition.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["position"])
-        set(value) { setProp("position", value.toString()) }
-    var Tag.steps: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["steps"]
-        set(value) { setProp("steps", value) }
-    var Tag.variant: MobileStepperVariant
-        get() = MobileStepperVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
-        set(value) { setProp("variant", value.toString()) }
+    var Tag.activeStep: Number? by materialProps
+    var Tag.backButton: ReactElement? by materialProps
+    var Tag.LinearProgressProps: RProps? by materialProps
+    var Tag.nextButton: ReactElement? by materialProps
+    var Tag.position: MobileStepperPosition? by materialProps
+    var Tag.steps: Number? by materialProps
+    var Tag.variant: MobileStepperVariant? by materialProps
+
+    fun Tag.backButton(block: RBuilder.() -> Unit) { backButton = buildElement(block) }
+    fun <T: RProps> Tag.LinearProgressProps(block: T.() -> Unit) { LinearProgressProps = jsObject<T> { }.apply(block) }
+    fun Tag.nextButton(block: RBuilder.() -> Unit) { nextButton = buildElement(block) }
 }

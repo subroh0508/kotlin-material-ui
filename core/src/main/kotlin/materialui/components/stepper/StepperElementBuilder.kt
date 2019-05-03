@@ -1,35 +1,27 @@
 package materialui.components.stepper
 
-import materialui.components.consumers
-import materialui.components.paper._PaperElementBuilder
-import materialui.components.step.enums.StepOrientation
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.getValue
+import materialui.components.paper.PaperElementBuilder
+import materialui.components.setValue
+import materialui.components.step.enums.StepOrientation
+import react.RBuilder
+import react.RClass
 import react.ReactElement
-import kotlin.reflect.KClass
+import react.buildElement
 
 class StepperElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : _PaperElementBuilder<T>(type, tag, factory) {
+    type: RClass<StepperProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : PaperElementBuilder<T, StepperProps>(type, classMap, factory) {
 
-    var Tag.activeStep: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["activeStep"]
-        set(value) { setProp("activeStep", value) }
-    var Tag.alternativeLabel: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["alternativeLabel"]
-        set(value) { setProp("alternativeLabel", value) }
-    var Tag.connector: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["connector"]
-        set(value) { setProp("connector", value) }
-    var Tag.nonLinear: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["nonLinear"]
-        set(value) { setProp("nonLinear", value) }
-    var Tag.orientation: StepOrientation
-        get() = StepOrientation.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["orientation"])
-        set(value) { setProp("orientation", value.toString()) }
+    var Tag.activeStep: Number? by materialProps
+    var Tag.alternativeLabel: Boolean? by materialProps
+    var Tag.connector: ReactElement? by materialProps
+    var Tag.nonLinear: Boolean? by materialProps
+    var Tag.orientation: StepOrientation? by materialProps
+
+    fun Tag.connector(block: RBuilder.() -> Unit) { connector = buildElement(block) }
 }

@@ -1,25 +1,24 @@
 package materialui.components.snackbarcontent
 
-import materialui.components.consumers
-import materialui.components.paper._PaperElementBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.getValue
+import materialui.components.paper.PaperElementBuilder
+import materialui.components.setValue
+import react.RBuilder
+import react.RClass
 import react.ReactElement
-import kotlin.reflect.KClass
+import react.buildElement
 
 class SnackbarContentElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : _PaperElementBuilder<T>(type, tag, factory) {
+    type: RClass<SnackbarContentProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : PaperElementBuilder<T, SnackbarContentProps>(type, classMap, factory) {
 
-    var Tag.action: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["action"]
-        set(value) { setProp("action", value) }
-    var Tag.message: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["message"]
-        set(value) { setProp("message", value) }
+    var Tag.action: ReactElement? by materialProps
+    var Tag.message: ReactElement? by materialProps
+
+    fun Tag.action(block: RBuilder.() -> Unit) { action = buildElement(block) }
+    fun Tag.message(block: RBuilder.() -> Unit) { message = buildElement(block) }
 }
