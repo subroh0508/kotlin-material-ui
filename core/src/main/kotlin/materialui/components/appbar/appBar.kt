@@ -2,16 +2,16 @@ package materialui.components.appbar
 
 import kotlinx.html.DIV
 import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import materialui.components.appbar.enums.AppBarStyle
+import materialui.components.paper.PaperProps
 import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import react.RClass
 
 @JsModule("@material-ui/core/AppBar")
 private external val appBarModule: dynamic
 
-external interface AppBarProps : RProps {
+external interface AppBarProps : PaperProps {
     var color: String?
         get() = definedExternally
         set(value) = definedExternally
@@ -21,10 +21,10 @@ external interface AppBarProps : RProps {
 }
 
 @Suppress("UnsafeCastFromDynamic")
-private val appBarComponent: RComponent<RProps, RState> = appBarModule.default
+private val appBarComponent: RClass<AppBarProps> = appBarModule.default
 
-fun RBuilder.appBar(block: AppBarElementBuilder<DIV>.() -> Unit)
-    = child(AppBarElementBuilder(appBarComponent, DIV::class) { DIV(mapOf(), it) }.apply(block).create())
+fun RBuilder.appBar(vararg classMap: Pair<AppBarStyle, String>, block: AppBarElementBuilder<DIV>.() -> Unit)
+    = child(AppBarElementBuilder(appBarComponent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.appBar(tag: KClass<T>, block: AppBarElementBuilder<T>.() -> Unit)
-    = child(AppBarElementBuilder(appBarComponent, tag).apply(block).create())
+fun <T: Tag> RBuilder.appBar(vararg classMap: Pair<AppBarStyle, String>, factory: (TagConsumer<Unit>) -> T, block: AppBarElementBuilder<T>.() -> Unit)
+    = child(AppBarElementBuilder(appBarComponent, classMap.toList(), factory).apply(block).create())

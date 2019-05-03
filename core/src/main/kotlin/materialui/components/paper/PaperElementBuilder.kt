@@ -1,26 +1,22 @@
 package materialui.components.paper
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
-import materialui.components.paper.enums.PaperStyle
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.paper.enums.PaperStyle
+import materialui.components.setValue
+import react.RClass
 
-open class PaperElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+open class PaperElementBuilder<T: Tag, Props: PaperProps> internal constructor(
+    type: RClass<Props>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, Props>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<PaperStyle, String>) {
+        classes(classMap.map { it.first to it.second })
+    }
 
-    fun Tag.classes(vararg classMap: Pair<PaperStyle, String>) = setClasses(*classMap)
-    var Tag.elevation: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["elevation"]
-        set(value) { setProp("elevation", value) }
-    var Tag.square: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["square"]
-        set(value) { setProp("square", value) }
+    var Tag.elevation: Number? by materialProps
+    var Tag.square: Boolean? by materialProps
 }

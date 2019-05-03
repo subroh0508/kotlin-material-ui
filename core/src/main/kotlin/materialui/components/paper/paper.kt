@@ -4,8 +4,7 @@ import kotlinx.html.DIV
 import materialui.components.StandardProps
 import materialui.components.paper.enums.PaperStyle
 import react.RBuilder
-import react.RComponent
-import react.RState
+import react.RClass
 
 @JsModule("@material-ui/core/Paper")
 private external val paperModule: dynamic
@@ -20,7 +19,7 @@ external interface PaperProps : StandardProps {
 }
 
 @Suppress("UnsafeCastFromDynamic")
-private val paperComponent: RComponent<PaperProps, RState> = paperModule.default
+private val paperComponent: RClass<PaperProps> = paperModule.default
 
-fun RBuilder.paper(vararg classMap: Pair<PaperStyle, String>, block: MPaperElementBuilder<DIV>.() -> Unit)
-    = child(MPaperElementBuilder(paperComponent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+fun RBuilder.paper(vararg classMap: Pair<PaperStyle, String>, block: PaperElementBuilder<DIV, PaperProps>.() -> Unit)
+    = child(PaperElementBuilder(paperComponent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())

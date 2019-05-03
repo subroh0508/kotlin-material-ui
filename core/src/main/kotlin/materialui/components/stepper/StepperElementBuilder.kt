@@ -1,7 +1,7 @@
 package materialui.components.stepper
 
 import materialui.components.consumers
-import materialui.components.paper.PaperElementBuilder
+import materialui.components.paper._PaperElementBuilder
 import materialui.components.step.enums.StepOrientation
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
@@ -15,7 +15,7 @@ class StepperElementBuilder<T: Tag> internal constructor(
     type: RComponent<RProps, RState>,
     tag: KClass<T>,
     factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : PaperElementBuilder<T>(type, tag, factory) {
+) : _PaperElementBuilder<T>(type, tag, factory) {
 
     var Tag.activeStep: Number
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["activeStep"]
