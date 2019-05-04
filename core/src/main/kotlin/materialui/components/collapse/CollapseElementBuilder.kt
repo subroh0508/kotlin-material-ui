@@ -5,7 +5,7 @@ import kotlinx.css.LinearDimension
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.MMaterialElementBuilder
-import materialui.components.collapse.enums.CollapseType
+import materialui.components.collapse.enums.CollapseStyle
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.styles.muitheme.MuiTheme
@@ -18,7 +18,7 @@ class CollapseElementBuilder<T: Tag> internal constructor(
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MMaterialElementBuilder<T, CollapseProps>(type, classMap, factory) {
-    fun Tag.classes(vararg classMap: Pair<CollapseType, String>) {
+    fun Tag.classes(vararg classMap: Pair<CollapseStyle, String>) {
         classes(classMap.map { it.first to it.second })
     }
 
