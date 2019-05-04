@@ -1,33 +1,18 @@
 package materialui.components.slide
 
-import materialui.components.slide.enums.SlideDirection
+import kotlinext.js.js
 import kotlinext.js.jsObject
-import react.*
-import materialui.reacttransiton.RTransition
+import materialui.components.slide.enums.SlideDirection
 import materialui.reacttransiton.RTransitionBuilder
+import materialui.reacttransiton.getValue
+import materialui.reacttransiton.setValue
+import react.RClass
 
 class SlideElementBuilder internal constructor(
-    private val type: RComponent<RProps, RState>,
-    private val props: RProps = jsObject { },
-    transition: RTransitionBuilder = RTransitionBuilder()
-) : RBuilder(), RTransition by transition {
-    init {
-        transition.props = props
-    }
+    type: RClass<SlideProps>
+) : RTransitionBuilder<SlideProps>(type, jsObject { }) {
+    var SlideProps.direction: SlideDirection by props
 
-    fun attrs(handler: RProps.() -> Unit) {
-        props.handler()
-    }
-
-    fun create() = createElement(type, props, *childList.toTypedArray())
-
-    var RProps.direction: SlideDirection
-        get() = SlideDirection.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["direction"])
-        set(value) { props.asDynamic()["direction"] = value.toString() }
-    var RProps.style: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["style"]
-        set(value) { props.asDynamic()["style"] = value }
-    var RProps.theme: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["theme"]
-        set(value) { props.asDynamic()["theme"] = value }
+    fun SlideProps.timeout(msec: Long) { timeout = msec }
+    fun SlideProps.timeout(enter: Long? = null, exit: Long? = null) { timeout = js { this["enter"] = enter; this["exit"] = exit } }
 }
