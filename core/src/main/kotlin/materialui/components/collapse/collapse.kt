@@ -5,7 +5,7 @@ import kotlinx.html.DIV
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.StandardProps
-import materialui.components.collapse.enums.CollapseType
+import materialui.components.collapse.enums.CollapseStyle
 import materialui.reacttransiton.RTransitionProps
 import materialui.styles.LinearDimensionDelegate
 import materialui.styles.muitheme.MuiTheme
@@ -25,8 +25,8 @@ var CollapseProps.collapsedHeight: LinearDimension? by LinearDimensionDelegate
 @Suppress("UnsafeCastFromDynamic")
 private val collapseComponent: RClass<CollapseProps> = collapseModule.default
 
-fun RBuilder.collapse(vararg classMap: Pair<CollapseType, String>, block: CollapseElementBuilder<DIV>.() -> Unit)
+fun RBuilder.collapse(vararg classMap: Pair<CollapseStyle, String>, block: CollapseElementBuilder<DIV>.() -> Unit)
     = child(CollapseElementBuilder(collapseComponent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.collapse(vararg classMap: Pair<CollapseType, String>, factory: (TagConsumer<Unit>) -> T, block: CollapseElementBuilder<T>.() -> Unit)
+fun <T: Tag> RBuilder.collapse(vararg classMap: Pair<CollapseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: CollapseElementBuilder<T>.() -> Unit)
     = child(CollapseElementBuilder(collapseComponent, classMap.toList(), factory).apply(block).create())
