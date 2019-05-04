@@ -16,6 +16,10 @@ abstract class MMaterialElementBuilder<T: Tag, Props: StandardProps>(
 ) : RDOMBuilder<T>(factory) {
     protected val materialProps: Props = jsObject { }
 
+    fun Tag.classes(rootStyle: String) {
+        classes(listOf(MaterialStyle.root to rootStyle))
+    }
+
     fun Tag.classes(vararg classMap: Pair<Enum<*>, String>) {
         classes(classMap.map { (key, value) -> key to value })
     }

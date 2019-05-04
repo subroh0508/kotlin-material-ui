@@ -1,17 +1,20 @@
 package materialui.components.cardactions
 
-import materialui.components.MaterialElementBuilder
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.MMaterialElementBuilder
+import materialui.components.cardactions.enums.CardActionsStyle
+import materialui.components.getValue
+import materialui.components.setValue
+import react.RClass
 
 class CardActionsElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
+    type: RClass<CardActionsProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<DIV, CardActionsProps>(type, classMap.toList(), { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<CardActionsStyle, String>) {
+        classes(classMap.map { it.first to it.second })
+    }
 
-    var Tag.disableActionSpacing: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableActionSpacing"]
-        set(value) { setProp("disableActionSpacing", value) }
+    var Tag.disableActionSpacing: Boolean? by materialProps
 }

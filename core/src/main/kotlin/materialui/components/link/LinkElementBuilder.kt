@@ -1,28 +1,37 @@
 package materialui.components.link
 
-import materialui.components.consumers
-import materialui.components.link.enums.LinkUnderline
-import materialui.components.typography.TypographyElementBuilder
+import kotlinext.js.jsObject
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.getValue
+import materialui.components.link.enums.LinkStyle
+import materialui.components.link.enums.LinkUnderline
+import materialui.components.setValue
+import materialui.components.typography.TypographyElementBuilder
+import materialui.components.typography.enums.TypographyStyle
+import react.RClass
 
 class LinkElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : TypographyElementBuilder<T>(type, tag, factory) {
+    type: RClass<LinkProps>,
+    classMap: List<Pair<LinkStyle, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : TypographyElementBuilder<T, LinkProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<LinkStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.block: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["block"]
-        set(value) { setProp("block", value) }
-    var Tag.TypographyClasses: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["TypographyClasses"]
-        set(value) { setProp("TypographyClasses", value) }
-    var Tag.underline: LinkUnderline
-        get() = LinkUnderline.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["underline"])
-        set(value) { setProp("underline", value.toString()) }
+    var Tag.block: Boolean? by materialProps
+    var Tag.underline: LinkUnderline? by materialProps
+
+    fun Tag.typographyClasses(vararg classMap: Pair<TypographyStyle, String>) {
+        if (classMap.isEmpty()) {
+            return
+        }
+
+        val classesObj: dynamic = jsObject { }
+
+        classMap.forEach { (key, value) -> classesObj[key] = value }
+
+        materialProps.TypographyClasses = classesObj as Any
+    }
 }

@@ -1,39 +1,41 @@
 package materialui.components.avatar
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.avatar.enum.AvatarStyle
-import materialui.components.consumers
+import kotlinext.js.js
 import kotlinx.html.IMG
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import kotlinx.html.stream.createHTML
-import react.RComponent
+import materialui.components.MMaterialElementBuilder
+import materialui.components.avatar.enum.AvatarStyle
+import materialui.components.getValue
+import materialui.components.setValue
+import react.RClass
 import react.RProps
-import react.RState
-import kotlin.reflect.KClass
 
 class AvatarElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+    type: RClass<AvatarProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, AvatarProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<AvatarStyle, String>) {
+        classes(classMap.map { it.first to it.second })
+    }
 
-    fun Tag.classes(vararg classMap: Pair<AvatarStyle, String>) = setClasses(*classMap)
-    fun Tag.imgProps(block: IMG.() -> Unit) = setProp("imgProps", IMG(mapOf(), createHTML()).apply(block))
+    var Tag.imgProps: RProps? by materialProps
+    var Tag.alt: String? by materialProps
+    var Tag.childrenClassName: String? by materialProps
+    var Tag.sizes: String? by materialProps
+    var Tag.src: String? by materialProps
+    var Tag.srcSet: String? by materialProps
 
-    var Tag.alt: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["alt"]
-        set(value) { setProp("alt", value) }
-    var Tag.childrenClassName: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["childrenClassName"]
-        set(value) { setProp("childrenClassName", value) }
-    var Tag.sizes: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["sizes"]
-        set(value) { setProp("sizes", value) }
-    var Tag.src: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["src"]
-        set(value) { setProp("src", value) }
-    var Tag.srcSet: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["srcSet"]
-        set(value) { setProp("srcSet", value) }
+    fun Tag.imgProps(block: IMG.() -> Unit) {
+        val props = js {  }
+
+        IMG(mapOf(), createHTML()).apply(block).attributesEntries.forEach { (key, value) ->
+            props[key] = value
+        }
+
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        imgProps = props as RProps
+    }
 }

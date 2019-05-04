@@ -1,15 +1,18 @@
 package materialui.components.cssbaseline
 
+import kotlinext.js.jsObject
 import react.RBuilder
-import react.RComponent
+import react.RClass
 import react.RProps
-import react.RState
+import react.createElement
 
 @JsModule("@material-ui/core/CssBaseline")
 private external val cssBaselineModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val cssBaselineComponent: RComponent<RProps, RState> = cssBaselineModule.default
+external interface CssBaselineProps : RProps
 
-fun RBuilder.cssBaseline(block: CssBaselineElementBuilder.() -> Unit)
-    = child(CssBaselineElementBuilder(cssBaselineComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val cssBaselineComponent: RClass<CssBaselineProps> = cssBaselineModule.default
+
+fun RBuilder.cssBaseline(block: RBuilder.() -> Unit)
+    = child(createElement(cssBaselineComponent, jsObject<CssBaselineProps> { }, *RBuilder().apply(block).childList.toTypedArray()))
