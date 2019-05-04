@@ -1,24 +1,20 @@
 package materialui.components.buttonbase
 
-import materialui.components.consumers
+import kotlinx.html.SPAN
 import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.buttonbase.enums.TouchRippleStyle
 import materialui.reacttransiton.RTransitionGroupBuilder
-import kotlin.reflect.KClass
+import materialui.reacttransiton.getValue
+import materialui.reacttransiton.setValue
+import react.RClass
 
-class TouchRippleElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : RTransitionGroupBuilder<T>(type, factory) {
+class TouchRippleElementBuilder internal constructor(
+    type: RClass<TouchRippleProps>,
+    classMap: List<Pair<TouchRippleStyle, String>>
+) : RTransitionGroupBuilder<SPAN, TouchRippleProps>(type, classMap, { SPAN(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<TouchRippleStyle, String>) {
+        classes(classMap.map { it.first to it.second })
+    }
 
-    var Tag.center: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["center"]
-        set(value) { setProp("center", value) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
+    var Tag.center: Boolean? by groupProps
 }
