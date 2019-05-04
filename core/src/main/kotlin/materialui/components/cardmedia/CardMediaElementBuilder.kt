@@ -1,30 +1,23 @@
 package materialui.components.cardmedia
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.MMaterialElementBuilder
+import materialui.components.cardmedia.enums.CardMediaStyle
+import materialui.components.getValue
+import materialui.components.setValue
+import react.RClass
 
 class CardMediaElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+    type: RClass<CardMediaProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, CardMediaProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<CardMediaStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.image: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["image"]
-        set(value) { setProp("image", value) }
-    var Tag.src: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["src"]
-        set(value) { setProp("src", value) }
-    var Tag.style: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["style"]
-        set(value) { setProp("style", value) }
+    var Tag.image: String? by materialProps
+    var Tag.src: String? by materialProps
+    var Tag.style: Any? by materialProps
 }

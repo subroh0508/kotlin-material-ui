@@ -1,43 +1,50 @@
 package materialui.components.cardheader
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
+import kotlinx.html.P
+import kotlinx.html.SPAN
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import react.ReactElement
-import kotlin.reflect.KClass
+import materialui.components.MMaterialElementBuilder
+import materialui.components.cardheader.enums.CardHeaderStyle
+import materialui.components.getValue
+import materialui.components.setValue
+import materialui.components.typography.TypographyElementBuilder
+import materialui.components.typography.TypographyProps
+import materialui.components.typography.typography
+import react.*
 
 class CardHeaderElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+    type: RClass<CardHeaderProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, CardHeaderProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<CardHeaderStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.action: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["action"]
-        set(value) { setProp("action", value) }
-    var Tag.avatar: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["avatar"]
-        set(value) { setProp("avatar", value) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.disableTypography: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableTypography"]
-        set(value) { setProp("disableTypography", value) }
-    var Tag.subheader: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["subheader"]
-        set(value) { setProp("subheader", value) }
-    var Tag.subheaderTypographyProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["subheaderTypographyProps"]
-        set(value) { setProp("subheaderTypographyProps", value) }
-    var Tag.title: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["title"]
-        set(value) { setProp("title", value) }
-    var Tag.titleTypographyProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["titleTypographyProps"]
-        set(value) { setProp("titleTypographyProps", value) }
+    var Tag.action: ReactElement? by materialProps
+    var Tag.avatar: ReactElement? by materialProps
+    var Tag.disableTypography: Boolean? by materialProps
+    var Tag.subheader: ReactElement? by materialProps
+    var Tag.subheaderTypographyProps: RProps? by materialProps
+    var Tag.title: ReactElement? by materialProps
+    var Tag.titleTypographyProps: RProps? by materialProps
+
+    fun Tag.action(block: RBuilder.() -> Unit) { action = buildElement(block) }
+    fun Tag.avatar(block: RBuilder.() -> Unit) { avatar = buildElement(block) }
+    fun Tag.subheader(block: RBuilder.() -> Unit) { subheader = buildElement(block) }
+    fun Tag.title(block: RBuilder.() -> Unit) { title = buildElement(block) }
+
+    fun Tag.subheaderTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
+        subheaderTypographyProps = RBuilder().typography(block = block).props
+    }
+    fun Tag.subheaderTypographyProps(block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) {
+        subheaderTypographyProps = RBuilder().typography(p = true, block = block).props
+    }
+    fun Tag.titleTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
+        titleTypographyProps = RBuilder().typography(block = block).props
+    }
+    fun Tag.titleTypographyProps(block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) {
+        titleTypographyProps = RBuilder().typography(p = true, block = block).props
+    }
 }

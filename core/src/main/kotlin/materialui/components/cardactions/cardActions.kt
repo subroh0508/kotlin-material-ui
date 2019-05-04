@@ -1,15 +1,18 @@
 package materialui.components.cardactions
 
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.StandardProps
+import materialui.components.cardactions.enums.CardActionsStyle
+import react.*
 
 @JsModule("@material-ui/core/CardActions")
 private external val cardActionsModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val cardActionsComponent: RComponent<RProps, RState> = cardActionsModule.default
+external interface CardActionsProps : StandardProps {
+    var disableActionSpacing: Boolean?
+}
 
-fun RBuilder.cardActions(block: CardActionsElementBuilder.() -> Unit)
-    = child(CardActionsElementBuilder(cardActionsComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val cardActionsComponent: RClass<CardActionsProps> = cardActionsModule.default
+
+fun RBuilder.cardActions(vararg classMap: Pair<CardActionsStyle, String>, block: CardActionsElementBuilder.() -> Unit)
+    = child(CardActionsElementBuilder(cardActionsComponent, classMap.toList()).apply(block).create())

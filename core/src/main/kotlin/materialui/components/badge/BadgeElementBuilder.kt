@@ -1,37 +1,33 @@
 package materialui.components.badge
 
-import materialui.components.MaterialElementBuilder
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import materialui.components.MMaterialElementBuilder
 import materialui.components.badge.enums.BadgeColor
 import materialui.components.badge.enums.BadgeStyle
 import materialui.components.badge.enums.BadgeVariant
-import materialui.components.consumers
-import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
-import react.*
-import kotlin.reflect.KClass
+import materialui.components.getValue
+import materialui.components.setValue
+import react.RBuilder
+import react.RClass
+import react.ReactElement
+import react.buildElement
 
 class BadgeElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+    type: RClass<BadgeProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, BadgeProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<BadgeStyle, String>) {
+        classes(classMap.map { it.first to it.second })
+    }
 
-    fun Tag.classes(vararg classMap: Pair<BadgeStyle, String>) = setClasses(*classMap)
-    fun Tag.badgeContent(handler: RBuilder.() -> Unit) = setProp("badgeContent", buildElement(handler))
+    var Tag.badgeContent: ReactElement? by materialProps
+    var Tag.color: BadgeColor? by materialProps
+    var Tag.invisible: Boolean? by materialProps
+    var Tag.max: Number? by materialProps
+    var Tag.showZero: Boolean? by materialProps
+    var Tag.variant: BadgeVariant? by materialProps
 
-    var Tag.color: BadgeColor
-        get() = BadgeColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
-        set(value) { setProp("color", value.toString()) }
-    var Tag.invisible: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["invisible"]
-        set(value) { setProp("invisible", value) }
-    var Tag.max: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["max"]
-        set(value) { setProp("max", value) }
-    var Tag.showZero: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["showZero"]
-        set(value) { setProp("showZero", value) }
-    var Tag.variant: BadgeVariant
-        get() = BadgeVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
-        set(value) { setProp("variant", value.toString()) }
+    fun Tag.badgeContent(block: RBuilder.() -> Unit) { badgeContent = buildElement(block) }
 }

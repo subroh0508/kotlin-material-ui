@@ -1,54 +1,38 @@
 package materialui.components.typography
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
+import kotlinext.js.jsObject
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.setValue
 import materialui.components.typography.enums.TypographyAlign
 import materialui.components.typography.enums.TypographyColor
 import materialui.components.typography.enums.TypographyStyle
 import materialui.components.typography.enums.TypographyVariant
 import materialui.components.typography.values.HeadlineMapping
-import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.styles.muitheme.MuiTheme
+import react.RClass
 
-open class TypographyElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory)  {
+open class TypographyElementBuilder<T: Tag, Props: TypographyProps> internal constructor(
+    type: RClass<Props>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, Props>(type, classMap, factory)  {
+    fun Tag.classes(vararg classMap: Pair<TypographyStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.align: TypographyAlign
-        get() = TypographyAlign.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["align"])
-        set(value) { setProp("align", value.toString()) }
-    fun Tag.classes(vararg classMap: Pair<TypographyStyle, String>) = setClasses(*classMap)
-    var Tag.color: TypographyColor
-        get() = TypographyColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
-        set(value) { setProp("color", value.toString()) }
-    var Tag.gutterBottom: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["gutterBottom"]
-        set(value) { setProp("gutterBottom", value) }
-    var Tag.headlineMapping: HeadlineMapping
-        get() = HeadlineMapping.fromDynamic(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["headlineMapping"])
-        set(value) { setProp("headlineMapping", value.value) }
-    var Tag.inline: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["inline"]
-        set(value) { setProp("inline", value) }
-    var Tag.internalDeprecatedVariant: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["internalDeprecatedVariant"]
-        set(value) { setProp("internalDeprecatedVariant", value) }
-    var Tag.noWrap: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["noWrap"]
-        set(value) { setProp("noWrap", value) }
-    var Tag.paragraph: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["paragraph"]
-        set(value) { setProp("paragraph", value) }
-    var Tag.theme: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["theme"]
-        set(value) { setProp("theme", value) }
-    var Tag.variant: TypographyVariant
-        get() = TypographyVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
-        set(value) { setProp("variant", value.toString()) }
+    var Tag.align: TypographyAlign? by materialProps
+    var Tag.color: TypographyColor? by materialProps
+    var Tag.gutterBottom: Boolean? by materialProps
+    var Tag.headlineMapping: HeadlineMapping? by materialProps
+    var Tag.inline: Boolean? by materialProps
+    var Tag.internalDeprecatedVariant: Boolean? by materialProps
+    var Tag.noWrap: Boolean? by materialProps
+    var Tag.paragraph: Boolean? by materialProps
+    var Tag.theme: MuiTheme? by materialProps
+    var Tag.variant: TypographyVariant? by materialProps
+
+    fun Tag.headlineMapping(block: HeadlineMapping.() -> Unit) { headlineMapping = jsObject(block) }
 }
