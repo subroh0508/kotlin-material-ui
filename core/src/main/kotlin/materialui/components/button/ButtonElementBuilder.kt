@@ -1,41 +1,29 @@
 package materialui.components.button
 
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
 import materialui.components.button.enums.ButtonColor
 import materialui.components.button.enums.ButtonSize
 import materialui.components.button.enums.ButtonStyle
 import materialui.components.button.enums.ButtonVariant
 import materialui.components.buttonbase.ButtonBaseElementBuilder
-import materialui.components.consumers
-import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.getValue
+import materialui.components.setValue
+import react.RClass
 
 class ButtonElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : ButtonBaseElementBuilder<T>(type, tag, factory) {
+    type: RClass<ButtonProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : ButtonBaseElementBuilder<T, ButtonProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<ButtonStyle, String>) {
+        classes(classMap.map { it.first to it.second })
+    }
 
-    fun Tag.classes(vararg classMap: Pair<ButtonStyle, String>) = setClasses(*classMap)
-    var Tag.color: ButtonColor
-        get() = ButtonColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
-        set(value) { setProp("color", value.toString()) }
-    var Tag.fullWidth: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["fullWidth"]
-        set(value) { setProp("fullWidth", value) }
-    var Tag.href: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["href"]
-        set(value) { setProp("href", value) }
-    var Tag.mini: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["mini"]
-        set(value) { setProp("mini", value) }
-    var Tag.size: ButtonSize
-        get() = ButtonSize.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["size"])
-        set(value) { setProp("size", value.toString()) }
-    var Tag.variant: ButtonVariant
-        get() = ButtonVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
-        set(value) { setProp("variant", value.toString()) }
+    var Tag.color: ButtonColor? by materialProps
+    var Tag.fullWidth: Boolean? by materialProps
+    var Tag.href: String? by materialProps
+    var Tag.mini: Boolean? by materialProps
+    var Tag.size: ButtonSize? by materialProps
+    var Tag.variant: ButtonVariant? by materialProps
 }

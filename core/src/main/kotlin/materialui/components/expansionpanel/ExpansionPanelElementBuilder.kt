@@ -22,5 +22,5 @@ class ExpansionPanelElementBuilder<T: Tag> internal constructor(
     var Tag.expanded: Boolean? by materialProps
     var Tag.onChange: ((Event, Boolean) -> Unit)? by materialProps
 
-    fun <T: RProps> Tag.collapseProps(block: T.() -> Unit) { CollapseProps = jsObject<T> { }.apply(block) }
+    fun <P: RProps> Tag.collapseProps(block: P.() -> Unit) { CollapseProps = jsObject(block) }
 }

@@ -1,16 +1,12 @@
 package materialui.components.cardactionarea
 
-import materialui.components.buttonbase.ButtonBaseElementBuilder
-import materialui.components.consumers
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.buttonbase.ButtonBaseElementBuilder
+import react.RClass
 
 class CardActionAreaElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : ButtonBaseElementBuilder<T>(type, tag, factory)
+    type: RClass<CardActionAreaProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : ButtonBaseElementBuilder<T, CardActionAreaProps>(type, classMap, factory)

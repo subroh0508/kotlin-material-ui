@@ -1,12 +1,15 @@
 package demo.components
 
-import materialui.components.button.button
-import materialui.components.button.enums.ButtonColor
-import materialui.components.button.enums.ButtonVariant
 import kotlinx.css.*
 import kotlinx.html.InputType
 import kotlinx.html.SPAN
 import kotlinx.html.id
+import materialui.components.button.button
+import materialui.components.button.enums.ButtonColor
+import materialui.components.button.enums.ButtonStyle
+import materialui.components.button.enums.ButtonVariant
+import materialui.styles.childWithStyles
+import materialui.styles.muitheme.MuiTheme
 import react.RBuilder
 import react.RComponent
 import react.RProps
@@ -14,8 +17,6 @@ import react.RState
 import react.dom.*
 import styled.css
 import styled.styledDiv
-import materialui.styles.childWithStyles
-import materialui.styles.muitheme.MuiTheme
 
 class ButtonsDemo : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
@@ -45,7 +46,7 @@ class ButtonsDemo : RComponent<RProps, RState>() {
                 button {
                     attrs {
                         variant = ButtonVariant.contained
-                        rootClass(buttonStyle)
+                        classes(ButtonStyle.root to buttonStyle)
                     }
 
                     +"Default"
@@ -54,7 +55,7 @@ class ButtonsDemo : RComponent<RProps, RState>() {
                     attrs {
                         variant = ButtonVariant.contained
                         color = ButtonColor.primary
-                        rootClass(buttonStyle)
+                        classes(ButtonStyle.root to buttonStyle)
                     }
 
                     +"Primary"
@@ -63,7 +64,7 @@ class ButtonsDemo : RComponent<RProps, RState>() {
                     attrs {
                         variant = ButtonVariant.contained
                         color = ButtonColor.secondary
-                        rootClass(buttonStyle)
+                        classes(ButtonStyle.root to buttonStyle)
                     }
 
                     +"Secondary"
@@ -73,7 +74,7 @@ class ButtonsDemo : RComponent<RProps, RState>() {
                         variant = ButtonVariant.contained
                         color = ButtonColor.secondary
                         disabled = true
-                        rootClass(buttonStyle)
+                        classes(ButtonStyle.root to buttonStyle)
                     }
 
                     +"Disabled"
@@ -82,7 +83,7 @@ class ButtonsDemo : RComponent<RProps, RState>() {
                     attrs {
                         variant = ButtonVariant.contained
                         href = "#contained-buttons"
-                        rootClass(buttonStyle)
+                        classes(ButtonStyle.root to buttonStyle)
                     }
 
                     +"Link"
@@ -98,14 +99,14 @@ class ButtonsDemo : RComponent<RProps, RState>() {
                 label {
                     setProp("htmlFor", "contained-button-file")
 
-                    button(SPAN::class, {
+                    button(factory = { SPAN(mapOf(), it) }, block = {
                         attrs {
                             variant = ButtonVariant.contained
-                            rootClass(buttonStyle)
+                            classes(ButtonStyle.root to buttonStyle)
                         }
 
                         +"Upload"
-                    }, { SPAN(mapOf(), it) })
+                    })
                 }
             }
         }

@@ -1,31 +1,30 @@
 package materialui.components.tablesortlabel
 
-import materialui.components.buttonbase.ButtonBaseElementBuilder
-import materialui.components.consumers
-import materialui.components.tablesortlabel.enums.TableSortLabelDirection
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
+import materialui.components.buttonbase.ButtonBaseElementBuilder
+import materialui.components.getValue
+import materialui.components.setValue
+import materialui.components.tablesortlabel.enums.TableSortLabelDirection
+import react.Component
+import react.RClass
 import react.RProps
-import react.RState
 import kotlin.reflect.KClass
 
 class TableSortLabelElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : ButtonBaseElementBuilder<T>(type, tag, factory) {
+    type: RClass<TableSortLabelProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : ButtonBaseElementBuilder<T, TableSortLabelProps>(type, classMap, factory) {
 
-    var Tag.active: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["active"]
-        set(value) { setProp("active", value) }
-    var Tag.direction: TableSortLabelDirection
-        get() = TableSortLabelDirection.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["direction"])
-        set(value) { setProp("direction", value.toString()) }
-    var Tag.hideSortIcon: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["hideSortIcon"]
-        set(value) { setProp("hideSortIcon", value) }
-    var Tag.IconComponent: RComponent<RProps, RState>
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["IconComponent"]
-        set(value) { setProp("IconComponent", value) }
+    var Tag.active: Boolean? by materialProps
+    var Tag.direction: TableSortLabelDirection? by materialProps
+    var Tag.hideSortIcon: Boolean? by materialProps
+    var Tag.IconComponent: RClass<*>? by materialProps
+
+    fun <P : RProps, C : Component<P, *>> Tag.iconComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        IconComponent = kClass.js as RClass<P>
+    }
 }

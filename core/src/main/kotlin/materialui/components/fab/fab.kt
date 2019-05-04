@@ -2,20 +2,27 @@ package materialui.components.fab
 
 import kotlinx.html.BUTTON
 import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import materialui.components.buttonbase.ButtonBaseProps
+import materialui.components.buttonbase.enums.ButtonBaseStyle
 import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import react.RClass
 
 @JsModule("@material-ui/core/Fab")
 private external val fabModule: dynamic
 
+external interface FabProps : ButtonBaseProps {
+    var color: String?
+    var href: String?
+    var size: String?
+    var variant: String?
+}
+
 @Suppress("UnsafeCastFromDynamic")
-private val fabComponent: RComponent<RProps, RState> = fabModule.default
+private val fabComponent: RClass<FabProps> = fabModule.default
 
-fun RBuilder.fab(block: FabElementBuilder<BUTTON>.() -> Unit)
-    = child(FabElementBuilder(fabComponent, BUTTON::class) { BUTTON(mapOf(), it) }.apply(block).create())
+fun RBuilder.fab(vararg classMap: Pair<ButtonBaseStyle, String>, block: FabElementBuilder<BUTTON>.() -> Unit)
+    = child(FabElementBuilder(fabComponent, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.fab(tag: KClass<T>, block: FabElementBuilder<T>.() -> Unit)
-    = child(FabElementBuilder(fabComponent, tag).apply(block).create())
+fun <T: Tag> RBuilder.fab(vararg classMap: Pair<ButtonBaseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: FabElementBuilder<T>.() -> Unit)
+    = child(FabElementBuilder(fabComponent, classMap.toList(), factory).apply(block).create())
