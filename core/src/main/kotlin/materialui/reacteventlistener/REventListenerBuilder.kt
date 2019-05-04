@@ -1,19 +1,18 @@
 package materialui.reacteventlistener
 
 import kotlinext.js.jsObject
-import react.*
+import react.RBuilder
+import react.RClass
+import react.RProps
+import react.createElement
 
-abstract class REventListenerBuilder internal constructor(
-    val type: RComponent<RProps, RState>,
-    protected val props: RProps = jsObject { }
+abstract class REventListenerBuilder<Props: RProps> internal constructor(
+    val type: RClass<Props>,
+    protected val props: Props = jsObject { }
 ) : RBuilder() {
-    fun attrs(handler: RProps.() -> Unit) {
+    fun attrs(handler: Props.() -> Unit) {
         props.handler()
     }
 
     fun create() = createElement(type, props, *childList.toTypedArray())
-
-    var RProps.target: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["target"]
-        set(value) { props.asDynamic()["target"] = value }
 }
