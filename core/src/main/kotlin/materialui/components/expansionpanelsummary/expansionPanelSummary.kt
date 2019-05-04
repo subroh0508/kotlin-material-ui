@@ -2,20 +2,28 @@ package materialui.components.expansionpanelsummary
 
 import kotlinx.html.BUTTON
 import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import materialui.components.buttonbase.ButtonBaseProps
+import materialui.components.buttonbase.enums.ButtonBaseStyle
 import react.RBuilder
-import react.RComponent
+import react.RClass
 import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import react.ReactElement
 
 @JsModule("@material-ui/core/ExpansionPanelSummary")
 private external val expansionPanelSummaryModule: dynamic
 
+external interface ExpansionPanelSummaryProps : ButtonBaseProps {
+    var expanded: Boolean?
+    var expandIcon: ReactElement?
+    var IconButtonProps: RProps?
+}
+
 @Suppress("UnsafeCastFromDynamic")
-private val expansionPanelSummaryComponent: RComponent<RProps, RState> = expansionPanelSummaryModule.default
+private val expansionPanelSummaryComponent: RClass<ExpansionPanelSummaryProps> = expansionPanelSummaryModule.default
 
-fun RBuilder.expansionPanelSummary(block: ExpansionPanelSummaryElementBuilder<BUTTON>.() -> Unit)
-    = child(ExpansionPanelSummaryElementBuilder(expansionPanelSummaryComponent, BUTTON::class) { BUTTON(mapOf(), it) }.apply(block).create())
+fun RBuilder.expansionPanelSummary(vararg classMap: Pair<ButtonBaseStyle, String>, block: ExpansionPanelSummaryElementBuilder<BUTTON>.() -> Unit)
+    = child(ExpansionPanelSummaryElementBuilder(expansionPanelSummaryComponent, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.expansionPanelSummary(tag: KClass<T>, block: ExpansionPanelSummaryElementBuilder<T>.() -> Unit)
-    = child(ExpansionPanelSummaryElementBuilder(expansionPanelSummaryComponent, tag).apply(block).create())
+fun <T: Tag> RBuilder.expansionPanelSummary(vararg classMap: Pair<ButtonBaseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ExpansionPanelSummaryElementBuilder<T>.() -> Unit)
+    = child(ExpansionPanelSummaryElementBuilder(expansionPanelSummaryComponent, classMap.toList(), factory).apply(block).create())

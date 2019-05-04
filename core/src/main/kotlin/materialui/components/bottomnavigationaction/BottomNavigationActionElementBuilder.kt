@@ -1,34 +1,28 @@
 package materialui.components.bottomnavigationaction
 
-import materialui.components.buttonbase.ButtonBaseElementBuilder
-import materialui.components.consumers
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.buttonbase.ButtonBaseElementBuilder
+import materialui.components.buttonbase.enums.ButtonBaseStyle
+import materialui.components.getValue
+import materialui.components.setValue
+import react.RBuilder
+import react.RClass
 import react.ReactElement
-import kotlin.reflect.KClass
+import react.buildElement
 
 class BottomNavigationActionElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : ButtonBaseElementBuilder<T>(type, tag, factory) {
+    type: RClass<BottomNavigationActionProps>,
+    classMap: List<Pair<ButtonBaseStyle, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : ButtonBaseElementBuilder<T, BottomNavigationActionProps>(type, classMap, factory) {
 
-    var Tag.icon: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["icon"]
-        set(value) { setProp("icon", value) }
-    var Tag.label: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["label"]
-        set(value) { setProp("label", value) }
-    var Tag.selected: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["selected"]
-        set(value) { setProp("selected", value) }
-    var Tag.showLabel: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["showLabel"]
-        set(value) { setProp("showLabel", value) }
-    var Tag.value: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["value"]
-        set(value) { setProp("value", value) }
+    var Tag.icon: ReactElement? by materialProps
+    var Tag.label: ReactElement? by materialProps
+    var Tag.selected: Boolean? by materialProps
+    var Tag.showLabel: Boolean? by materialProps
+    var Tag.value: Any? by materialProps
+
+    fun Tag.icon(block: RBuilder.() -> Unit) { icon = buildElement(block) }
+    fun Tag.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
 }

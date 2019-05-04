@@ -7,6 +7,7 @@ import materialui.components.appbar.enums.AppBarPosition
 import materialui.components.button.button
 import materialui.components.button.enums.ButtonColor
 import materialui.components.icon.icon
+import materialui.components.iconbutton.enums.IconButtonStyle
 import materialui.components.iconbutton.iconButton
 import materialui.components.toolbar.toolbar
 import materialui.components.typography.enums.TypographyColor
@@ -41,7 +42,7 @@ class AppbarsDemo : RComponent<RProps, RState>() {
                 toolbar {
                     iconButton {
                         attrs {
-                            rootClass(menuButtonStyle)
+                            classes(IconButtonStyle.root to menuButtonStyle)
                             color = ButtonColor.inherit
                         }
 

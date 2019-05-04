@@ -1,28 +1,23 @@
 package materialui.components.expansionpanelsummary
 
-import materialui.components.buttonbase.ButtonBaseElementBuilder
-import materialui.components.consumers
+import kotlinext.js.jsObject
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import react.ReactElement
-import kotlin.reflect.KClass
+import materialui.components.buttonbase.ButtonBaseElementBuilder
+import materialui.components.getValue
+import materialui.components.setValue
+import react.*
 
 class ExpansionPanelSummaryElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : ButtonBaseElementBuilder<T>(type, tag, factory) {
+    type: RClass<ExpansionPanelSummaryProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : ButtonBaseElementBuilder<T, ExpansionPanelSummaryProps>(type, classMap, factory) {
 
-    var Tag.expanded: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["expanded"]
-        set(value) { setProp("expanded", value) }
-    var Tag.expandIcon: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["expandIcon"]
-        set(value) { setProp("expandIcon", value) }
-    var Tag.iconButtonProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["IconButtonProps"]
-        set(value) { setProp("IconButtonProps", value) }
+    var Tag.expanded: Boolean? by materialProps
+    var Tag.expandIcon: ReactElement? by materialProps
+    var Tag.IconButtonProps: RProps? by materialProps
+
+    fun Tag.expandIcon(block: RBuilder.() -> Unit) { expandIcon = buildElement(block) }
+    fun <P: RProps> Tag.iconButtonProps(block: P.() -> Unit) { IconButtonProps = jsObject(block) }
 }
