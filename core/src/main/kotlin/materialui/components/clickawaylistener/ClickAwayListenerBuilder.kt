@@ -1,24 +1,29 @@
 package materialui.components.clickawaylistener
 
-import materialui.components.clickawaylistener.values.ClickAwayListenerMouseEvent
-import materialui.components.clickawaylistener.values.ClickAwayListenerTouchEvent
-import org.w3c.dom.events.Event
-import react.RComponent
-import react.RProps
-import react.RState
+import kotlinext.js.jsObject
+import materialui.components.clickawaylistener.values.ClickAwayMouseEvent
+import materialui.components.clickawaylistener.values.ClickAwayTouchEvent
 import materialui.reacteventlistener.REventListenerBuilder
+import react.RClass
 
 class ClickAwayListenerBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : REventListenerBuilder(type) {
+    type: RClass<ClickAwayListenerProps>
+) : REventListenerBuilder<ClickAwayListenerProps>(type, jsObject { }) {
 
-    var RProps.mouseEvent: ClickAwayListenerMouseEvent
-        get() = ClickAwayListenerMouseEvent.fromDynamic(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["mouseEvent"])
-        set(value) { props.asDynamic()["mouseEvent"] = value }
-    var RProps.onClickAway: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onClickAway"]
-        set(value) { props.asDynamic()["onClickAway"] = value }
-    var RProps.touchEvent: ClickAwayListenerTouchEvent
-        get() = ClickAwayListenerTouchEvent.fromDynamic(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["touchEvent"])
-        set(value) { props.asDynamic()["onClickAway"] = value }
+    fun ClickAwayListenerProps.mouseEvent(event: ClickAwayMouseEvent, enable: Boolean = true) {
+        if (!enable) {
+            mouseEvent = false
+            return
+        }
+
+        mouseEvent = event.toString()
+    }
+    fun ClickAwayListenerProps.touchEvent(event: ClickAwayTouchEvent, enable: Boolean = true) {
+        if (!enable) {
+            mouseEvent = false
+            return
+        }
+
+        touchEvent = event.toString()
+    }
 }
