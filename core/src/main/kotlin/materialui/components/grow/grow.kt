@@ -1,15 +1,21 @@
 package materialui.components.grow
 
+import materialui.reacttransiton.RTransitionProps
+import materialui.styles.muitheme.MuiTheme
 import react.RBuilder
-import react.RComponent
+import react.RClass
 import react.RProps
-import react.RState
 
 @JsModule("@material-ui/core/Grow")
 private external val growModule: dynamic
 
+external interface GrowProps : RTransitionProps, RProps {
+    var style: Any?
+    var theme: MuiTheme?
+}
+
 @Suppress("UnsafeCastFromDynamic")
-private val growComponent: RComponent<RProps, RState> = growModule.default
+private val growComponent: RClass<GrowProps> = growModule.default
 
 fun RBuilder.grow(block: GrowElementBuilder.() -> Unit)
     = child(GrowElementBuilder(growComponent).apply(block).create())

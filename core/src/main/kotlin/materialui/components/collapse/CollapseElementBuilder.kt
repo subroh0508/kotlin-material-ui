@@ -1,37 +1,48 @@
 package materialui.components.collapse
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
+import kotlinext.js.js
 import kotlinx.css.LinearDimension
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import materialui.reacttransiton.RTransition
-import materialui.reacttransiton.RTransitionBuilder
-import kotlin.reflect.KClass
+import materialui.components.MMaterialElementBuilder
+import materialui.components.collapse.enums.CollapseType
+import materialui.components.getValue
+import materialui.components.setValue
+import materialui.styles.muitheme.MuiTheme
+import org.w3c.dom.events.Event
+import react.RClass
+import react.ReactElement
 
 class CollapseElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag),
-    transition: RTransitionBuilder = RTransitionBuilder()
-) : MaterialElementBuilder<T>(type, factory), RTransition by transition {
-    init {
-        transition.props = props
+    type: RClass<CollapseProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, CollapseProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<CollapseType, String>) {
+        classes(classMap.map { it.first to it.second })
     }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.collapsedHeight: LinearDimension
-        get() = LinearDimension(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["collapsedHeight"])
-        set(value) { setProp("collapsedHeight", value.value) }
-    var Tag.style: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["style"]
-        set(value) { setProp("style", value) }
-    var Tag.theme: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["theme"]
-        set(value) { setProp("theme", value) }
+    var Tag.collapsedHeight: LinearDimension?
+        get() = materialProps.collapsedHeight
+        set(value) { materialProps.collapsedHeight = value }
+    var Tag.style: Any? by materialProps
+    var Tag.theme: MuiTheme? by materialProps
+
+    var Tag.`in`: Boolean? by materialProps
+    var Tag.mountOnEnter: Boolean? by materialProps
+    var Tag.unmountOnExit: Boolean? by materialProps
+    var Tag.appear: Boolean? by materialProps
+    var Tag.enter: Boolean? by materialProps
+    var Tag.exit: Boolean? by materialProps
+    var Tag.addEndListener: ((ReactElement, (Event) -> Unit) -> Unit)? by materialProps
+    var Tag.onEnter: ((ReactElement, Boolean) -> Unit)? by materialProps
+    var Tag.onEntering: ((ReactElement, Boolean) -> Unit)? by materialProps
+    var Tag.onEntered: ((ReactElement, Boolean) -> Unit)? by materialProps
+    var Tag.onExit: ((ReactElement) -> Unit)? by materialProps
+    var Tag.onExiting: ((ReactElement) -> Unit)? by materialProps
+    var Tag.onExited: ((ReactElement) -> Unit)? by materialProps
+
+    fun Tag.timeout(msec: Long) { materialProps.timeout = msec }
+    fun Tag.timeout(enter: Long, end: Long) { materialProps.timeout = js { this["enter"] = enter; this["end"] = end } }
+    fun Tag.timeout() { materialProps.timeout = "auto" }
 }

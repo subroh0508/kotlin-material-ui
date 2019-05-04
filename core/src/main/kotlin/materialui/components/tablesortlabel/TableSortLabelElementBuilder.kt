@@ -20,11 +20,13 @@ class TableSortLabelElementBuilder<T: Tag> internal constructor(
     var Tag.active: Boolean? by materialProps
     var Tag.direction: TableSortLabelDirection? by materialProps
     var Tag.hideSortIcon: Boolean? by materialProps
-    var Tag.IconComponent: RClass<*>? by materialProps
 
     fun <P : RProps, C : Component<P, *>> Tag.iconComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        IconComponent = kClass.js as RClass<P>
+        materialProps.IconComponent = kClass.js as RClass<P>
+    }
+    fun Tag.iconComponent(tagName: String) {
+        materialProps.IconComponent = tagName
     }
 }

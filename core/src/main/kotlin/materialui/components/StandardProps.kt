@@ -1,24 +1,11 @@
 package materialui.components
 
-import kotlinext.js.js
 import react.dom.DOMProps
 import kotlin.reflect.KProperty
 
 external interface StandardProps : DOMProps {
     var classes: dynamic
     var component: dynamic
-}
-
-fun StandardProps.classes(vararg classMap: Pair<Enum<*>, String>) {
-    classes(classMap.map { it.first to it.second })
-}
-
-fun StandardProps.classes(classMap: List<Pair<Enum<*>, String>>) {
-    classes = js {}.apply { obj ->
-        classMap.forEach {
-            obj[it.first.toString()] = it.second
-        }
-    }
 }
 
 operator fun StandardProps.get(key: String): Any? = asDynamic()[key]
