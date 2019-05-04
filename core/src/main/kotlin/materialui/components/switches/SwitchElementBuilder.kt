@@ -1,21 +1,24 @@
 package materialui.components.switches
 
-import materialui.components.internal.SwitchBaseElementBuilder
-import materialui.components.switches.enums.SwitchColor
-import materialui.components.switches.values.SwitchValue
 import kotlinx.html.Tag
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.getValue
+import materialui.components.internal.SwitchBaseElementBuilder
+import materialui.components.setValue
+import materialui.components.switches.enums.SwitchColor
+import materialui.components.switches.enums.SwitchStyle
+import react.RClass
 
 class SwitchElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : SwitchBaseElementBuilder<SwitchValue>(type) {
+    type: RClass<SwitchProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : SwitchBaseElementBuilder<SwitchProps>(type, classMap) {
+    fun Tag.classes(vararg classMap: Pair<SwitchStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.color: SwitchColor
-        get() = SwitchColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
-        set(value) { setProp("color", value) }
-    override var Tag.value: SwitchValue
-        get() = SwitchValue.fromDynamic(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["value"])
-        set(value) { setProp("value", value.value) }
+    var Tag.color: SwitchColor? by materialProps
+
+    fun Tag.value(v: String) { materialProps.value = v }
+    fun Tag.value(v: Number) { materialProps.value = v }
+    fun Tag.value(v: Boolean) { materialProps.value = v }
 }

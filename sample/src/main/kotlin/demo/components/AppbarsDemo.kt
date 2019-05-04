@@ -52,7 +52,7 @@ class AppbarsDemo : RComponent<RProps, RState>() {
                     }
                     typography {
                         attrs {
-                            rootClass(growStyle)
+                            classes(growStyle)
 
                             variant = TypographyVariant.h6
                             color = TypographyColor.inherit

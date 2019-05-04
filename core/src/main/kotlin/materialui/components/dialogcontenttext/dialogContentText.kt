@@ -2,20 +2,22 @@ package materialui.components.dialogcontenttext
 
 import kotlinx.html.P
 import kotlinx.html.Tag
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import kotlinx.html.TagConsumer
+import materialui.components.MaterialStyle
+import materialui.components.typography.TypographyProps
+import react.*
 import kotlin.reflect.KClass
 
 @JsModule("@material-ui/core/DialogContentText")
 private external val dialogContentTextModule: dynamic
 
+external interface DialogContextTextProps : TypographyProps
+
 @Suppress("UnsafeCastFromDynamic")
-private val dialogContentTextComponent: RComponent<RProps, RState> = dialogContentTextModule.default
+private val dialogContentTextComponent: RClass<DialogContextTextProps> = dialogContentTextModule.default
 
-fun RBuilder.dialogContentText(block: DialogContentTextElementBuilder<P>.() -> Unit)
-    = child(DialogContentTextElementBuilder(dialogContentTextComponent, P::class) { P(mapOf(), it) }.apply(block).create())
+fun RBuilder.dialogContentText(rootStyle: String?, block: DialogContentTextElementBuilder<P>.() -> Unit)
+    = child(DialogContentTextElementBuilder(dialogContentTextComponent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { P(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.dialogContentText(tag: KClass<T>, block: DialogContentTextElementBuilder<T>.() -> Unit)
-    = child(DialogContentTextElementBuilder(dialogContentTextComponent, tag).apply(block).create())
+fun <T: Tag> RBuilder.dialogContentText(rootStyle: String?, factory: (TagConsumer<Unit>) -> T, block: DialogContentTextElementBuilder<T>.() -> Unit)
+    = child(DialogContentTextElementBuilder(dialogContentTextComponent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it }), factory).apply(block).create())
