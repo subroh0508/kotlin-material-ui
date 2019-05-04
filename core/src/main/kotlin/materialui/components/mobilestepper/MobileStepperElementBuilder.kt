@@ -25,6 +25,6 @@ class MobileStepperElementBuilder<T: Tag> internal constructor(
     var Tag.variant: MobileStepperVariant? by materialProps
 
     fun Tag.backButton(block: RBuilder.() -> Unit) { backButton = buildElement(block) }
-    fun <T: RProps> Tag.LinearProgressProps(block: T.() -> Unit) { LinearProgressProps = jsObject<T> { }.apply(block) }
+    fun <P: RProps> Tag.LinearProgressProps(block: P.() -> Unit) { LinearProgressProps = jsObject(block) }
     fun Tag.nextButton(block: RBuilder.() -> Unit) { nextButton = buildElement(block) }
 }

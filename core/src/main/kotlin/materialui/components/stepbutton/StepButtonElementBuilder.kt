@@ -1,41 +1,30 @@
 package materialui.components.stepbutton
 
-import materialui.components.buttonbase.ButtonBaseElementBuilder
-import materialui.components.consumers
-import materialui.components.step.enums.StepOrientation
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.buttonbase.ButtonBaseElementBuilder
+import materialui.components.getValue
+import materialui.components.setValue
+import materialui.components.step.enums.StepOrientation
+import react.RBuilder
+import react.RClass
 import react.ReactElement
-import kotlin.reflect.KClass
+import react.buildElement
 
 class StepButtonElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : ButtonBaseElementBuilder<T>(type, tag, factory) {
+    type: RClass<StepButtonProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : ButtonBaseElementBuilder<T, StepButtonProps>(type, classMap, factory) {
 
-    var Tag.active: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["active"]
-        set(value) { setProp("active", value) }
-    var Tag.alternativeLabel: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["alternativeLabel"]
-        set(value) { setProp("alternativeLabel", value) }
-    var Tag.completed: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["completed"]
-        set(value) { setProp("completed", value) }
-    var Tag.icon: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["icon"]
-        set(value) { setProp("icon", value) }
-    var Tag.last: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["last"]
-        set(value) { setProp("last", value) }
-    var Tag.optional: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["optional"]
-        set(value) { setProp("optional", value) }
-    var Tag.orientation: StepOrientation
-        get() = StepOrientation.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["orientation"])
-        set(value) { setProp("orientation", value.toString()) }
+    var Tag.active: Boolean? by materialProps
+    var Tag.alternativeLabel: Boolean? by materialProps
+    var Tag.completed: Boolean? by materialProps
+    var Tag.icon: ReactElement? by materialProps
+    var Tag.last: Boolean? by materialProps
+    var Tag.optional: ReactElement? by materialProps
+    var Tag.orientation: StepOrientation? by materialProps
+
+    fun Tag.icon(block: RBuilder.() -> Unit) { icon = buildElement(block) }
+    fun Tag.optional(block: RBuilder.() -> Unit) { optional = buildElement(block) }
 }

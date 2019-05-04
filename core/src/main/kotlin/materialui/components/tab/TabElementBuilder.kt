@@ -1,41 +1,31 @@
 package materialui.components.tab
 
-import materialui.components.buttonbase.ButtonBaseElementBuilder
-import materialui.components.consumers
-import materialui.components.tab.enums.TabTextColor
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.buttonbase.ButtonBaseElementBuilder
+import materialui.components.getValue
+import materialui.components.setValue
+import materialui.components.tab.enums.TabTextColor
+import react.RBuilder
+import react.RClass
 import react.ReactElement
-import kotlin.reflect.KClass
+import react.buildElement
 
 class TabElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : ButtonBaseElementBuilder<T>(type, tag, factory) {
+    type: RClass<TabProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : ButtonBaseElementBuilder<T, TabProps>(type, classMap, factory) {
 
-    var Tag.fullWidth: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["fullWidth"]
-        set(value) { setProp("fullWidth", value) }
-    var Tag.icon: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["icon"]
-        set(value) { setProp("icon", value) }
-    var Tag.indicator: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["indicator"]
-        set(value) { setProp("indicator", value) }
-    var Tag.label: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["label"]
-        set(value) { setProp("label", value) }
-    var Tag.selected: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["selected"]
-        set(value) { setProp("selected", value) }
-    var Tag.textColor: TabTextColor
-        get() = TabTextColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["textColor"])
-        set(value) { setProp("textColor", value.toString()) }
-    var Tag.value: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["value"]
-        set(value) { setProp("value", value) }
+    var Tag.fullWidth: Boolean? by materialProps
+    var Tag.icon: ReactElement? by materialProps
+    var Tag.indicator: ReactElement? by materialProps
+    var Tag.label: ReactElement? by materialProps
+    var Tag.selected: Boolean? by materialProps
+    var Tag.textColor: TabTextColor? by materialProps
+    var Tag.value: Any? by materialProps
+
+    fun Tag.icon(block: RBuilder.() -> Unit) { icon = buildElement(block) }
+    fun Tag.indicator(block: RBuilder.() -> Unit) { indicator = buildElement(block) }
+    fun Tag.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
 }
