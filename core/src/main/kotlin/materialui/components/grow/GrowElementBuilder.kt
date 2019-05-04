@@ -1,29 +1,15 @@
 package materialui.components.grow
 
+import kotlinext.js.js
 import kotlinext.js.jsObject
-import react.*
-import materialui.reacttransiton.RTransition
 import materialui.reacttransiton.RTransitionBuilder
+import react.RClass
 
 class GrowElementBuilder internal constructor(
-    private val type: RComponent<RProps, RState>,
-    private val props: RProps = jsObject { },
-    transition: RTransitionBuilder = RTransitionBuilder()
-) : RBuilder(), RTransition by transition {
-    init {
-        transition.props = props
-    }
+    type: RClass<GrowProps>
+) : RTransitionBuilder<GrowProps>(type, jsObject { }) {
 
-    fun attrs(handler: RProps.() -> Unit) {
-        props.handler()
-    }
-
-    fun create() = createElement(type, props, *childList.toTypedArray())
-
-    var RProps.style: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["style"]
-        set(value) { props.asDynamic()["style"] = value }
-    var RProps.theme: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["theme"]
-        set(value) { props.asDynamic()["theme"] = value }
+    fun GrowProps.timeout(msec: Long) { timeout = msec }
+    fun GrowProps.timeout(enter: Long? = null, exit: Long? = null) { timeout = js { this["enter"] = enter; this["exit"] = exit } }
+    fun GrowProps.timeout() { timeout = "auto" }
 }

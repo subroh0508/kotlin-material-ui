@@ -1,16 +1,22 @@
 package materialui.components.backdrop
 
-import kotlinx.html.DIV
+import materialui.components.backdrop.enum.BackdropStyle
+import materialui.components.fade.FadeProps
 import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import react.RClass
 
 @JsModule("@material-ui/core/Backdrop")
 private external val backdropModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val backdropComponent: RComponent<RProps, RState> = backdropModule.default
+external interface BackdropProps : FadeProps {
+    var classes: Any?
+    var invisible: Boolean?
+    var open: Boolean?
+    var transitionDuration: dynamic
+}
 
-fun RBuilder.backdrop(block: BackdropElementBuilder<DIV>.() -> Unit)
-    = child(BackdropElementBuilder(backdropComponent, DIV::class, { DIV(mapOf(), it) }).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val backdropComponent: RClass<BackdropProps> = backdropModule.default
+
+fun RBuilder.backdrop(vararg classMap: Pair<BackdropStyle, String>, block: BackdropElementBuilder.() -> Unit)
+    = child(BackdropElementBuilder(backdropComponent, classMap.toList()).apply(block).create())

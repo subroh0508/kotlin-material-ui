@@ -15,7 +15,7 @@ external interface TableSortLabelProps : ButtonBaseProps {
     var active: Boolean?
     var direction: String?
     var hideSortIcon: Boolean?
-    var IconComponent: RClass<*>?
+    var IconComponent: dynamic
 }
 
 @Suppress("UnsafeCastFromDynamic")

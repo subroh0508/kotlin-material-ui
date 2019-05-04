@@ -1,29 +1,15 @@
 package materialui.components.fade
 
+import kotlinext.js.js
 import kotlinext.js.jsObject
-import react.*
-import materialui.reacttransiton.RTransition
 import materialui.reacttransiton.RTransitionBuilder
+import react.RClass
 
 class FadeElementBuilder internal constructor(
-    private val type: RComponent<RProps, RState>,
-    private val props: RProps = jsObject { },
-    transition: RTransitionBuilder = RTransitionBuilder()
-) : RBuilder(), RTransition by transition {
-    init {
-        transition.props = props
-    }
+    type: RClass<FadeProps>,
+    props: FadeProps = jsObject { }
+) : RTransitionBuilder<FadeProps>(type, props) {
 
-    fun attrs(handler: RProps.() -> Unit) {
-        props.handler()
-    }
-
-    fun create() = createElement(type, props, *childList.toTypedArray())
-
-    var RProps.theme: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["theme"]
-        set(value) { props.asDynamic()["theme"] = value }
-    var RProps.style: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["style"]
-        set(value) { props.asDynamic()["style"] = value }
+    fun FadeProps.timeout(msec: Long) { timeout = msec }
+    fun FadeProps.timeout(enter: Long? = null, exit: Long? = null) { timeout = js { this["enter"] = enter; this["exit"] = exit } }
 }
