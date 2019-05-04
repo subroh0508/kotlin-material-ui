@@ -1,21 +1,20 @@
 package materialui.components.buttonbase
 
-import kotlinx.html.SPAN
-import kotlinx.html.Tag
+import materialui.components.StandardProps
+import materialui.components.buttonbase.enums.TouchRippleStyle
+import materialui.reacttransiton.RTransitionGroupProps
 import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import react.RClass
 
 @JsModule("@material-ui/core/ButtonBase/TouchRipple")
 private external val touchRippleModule: dynamic
 
+external interface TouchRippleProps : RTransitionGroupProps, StandardProps {
+    var center: Boolean?
+}
+
 @Suppress("UnsafeCastFromDynamic")
-private val touchRippleComponent: RComponent<RProps, RState> = touchRippleModule.default
+private val touchRippleComponent: RClass<TouchRippleProps> = touchRippleModule.default
 
-fun RBuilder.touchRipple(block: TouchRippleElementBuilder<SPAN>.() -> Unit)
-    = child(TouchRippleElementBuilder(touchRippleComponent, SPAN::class) { SPAN(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.touchRipple(tag: KClass<T>, block: TouchRippleElementBuilder<T>.() -> Unit)
-    = child(TouchRippleElementBuilder(touchRippleComponent, tag).apply(block).create())
+fun RBuilder.touchRipple(vararg classMap: Pair<TouchRippleStyle, String>, block: TouchRippleElementBuilder.() -> Unit)
+    = child(TouchRippleElementBuilder(touchRippleComponent, classMap.toList()).apply(block).create())

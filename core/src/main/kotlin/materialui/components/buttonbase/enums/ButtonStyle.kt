@@ -1,6 +1,6 @@
 package materialui.components.buttonbase.enums
 
 @Suppress("EnumEntryName")
-enum class ButtonType {
-    button, submit, reset
+enum class ButtonStyle {
+    root, button, submit, reset
 }

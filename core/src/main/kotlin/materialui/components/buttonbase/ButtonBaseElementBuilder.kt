@@ -5,7 +5,7 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.MMaterialElementBuilder
 import materialui.components.buttonbase.enums.ButtonBaseStyle
-import materialui.components.buttonbase.enums.ButtonType
+import materialui.components.buttonbase.enums.ButtonStyle
 import materialui.components.getValue
 import materialui.components.setValue
 import org.w3c.dom.events.Event
@@ -31,7 +31,7 @@ open class ButtonBaseElementBuilder<T: Tag, Props: ButtonBaseProps> internal con
     var Tag.focusVisibleClassName: String? by materialProps
     var Tag.onFocusVisible: ((Event) -> Unit)? by materialProps
     var Tag.touchRippleProps: RProps? by materialProps
-    var Tag.type: ButtonType? by materialProps
+    var Tag.type: ButtonStyle? by materialProps
 
     fun <P: RProps> Tag.touchRippleProps(block: P.() -> Unit) { touchRippleProps = jsObject(block) }
 }
