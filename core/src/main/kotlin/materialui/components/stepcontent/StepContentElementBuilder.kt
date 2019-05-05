@@ -1,46 +1,45 @@
 package materialui.components.stepcontent
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.step.enums.StepOrientation
-import materialui.components.stepcontent.values.StepContentTransitionDuration
+import kotlinext.js.js
+import kotlinext.js.jsObject
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import react.RComponent
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.setValue
+import materialui.components.step.enums.StepOrientation
+import materialui.components.stepcontent.enums.StepContentStyle
+import materialui.reacttransiton.RTransitionProps
+import react.Component
+import react.RClass
 import react.RProps
-import react.RState
+import kotlin.reflect.KClass
 
 class StepContentElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
+    type: RClass<StepContentProps>,
+    classMap: List<Pair<StepContentStyle, String>>
+) : MMaterialElementBuilder<DIV, StepContentProps>(type, classMap, { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<StepContentStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.active: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["active"]
-        set(value) { setProp("active", value) }
-    var Tag.alternativeLabel: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["alternativeLabel"]
-        set(value) { setProp("alternativeLabel", value) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.completed: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["completed"]
-        set(value) { setProp("completed", value) }
-    var Tag.last: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["last"]
-        set(value) { setProp("last", value) }
-    var Tag.optional: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["optional"]
-        set(value) { setProp("optional", value) }
-    var Tag.orientation: StepOrientation
-        get() = StepOrientation.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["orientation"])
-        set(value) { setProp("orientation", value.toString()) }
-    var Tag.TransitionComponent: RComponent<RProps, RState>
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["TransitionComponent"]
-        set(value) { setProp("TransitionComponent", value) }
-    var Tag.transitionDuration: StepContentTransitionDuration
-        get() = StepContentTransitionDuration(jsObject = props.asDynamic()["transitionDuration"])
-        set(value) { setProp("transitionDuration", value.value) }
-    var Tag.TransitionProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["TransitionProps"]
-        set(value) { setProp("TransitionProps", value) }
+    var Tag.active: Boolean? by materialProps
+    var Tag.alternativeLabel: Boolean? by materialProps
+    var Tag.completed: Boolean? by materialProps
+    var Tag.last: Boolean? by materialProps
+    var Tag.optional: Boolean? by materialProps
+    var Tag.orientation: StepOrientation? by materialProps
+    var Tag.transitionDuration: Any? by materialProps
+    var Tag.TransitionProps: RTransitionProps? by materialProps
+
+    fun <P: RProps, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        materialProps.TransitionComponent = kClass.js as RClass<P>
+    }
+    fun Tag.transitionComponent(tagName: String) { materialProps.TransitionComponent = tagName }
+    fun Tag.transitionDuration(msec: Long) { materialProps.transitionDuration = msec }
+    fun Tag.transitionDuration(start: Long? = null, exit: Long? = null) { materialProps.transitionDuration = js { this["start"] = start; this["exit"] = exit } }
+    fun Tag.transitionDuration(auto: String = "auto") { materialProps.transitionDuration = auto }
+    fun Tag.transitionProps(block: RTransitionProps.() -> Unit) { TransitionProps = jsObject(block) }
 }

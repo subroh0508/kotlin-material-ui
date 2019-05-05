@@ -1,52 +1,43 @@
 package materialui.components.steplabel
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.step.enums.StepOrientation
+import kotlinext.js.jsObject
 import kotlinx.html.SPAN
 import kotlinx.html.Tag
-import react.RComponent
-import react.RProps
-import react.RState
-import react.ReactElement
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.setValue
+import materialui.components.step.enums.StepOrientation
+import materialui.components.stepicon.StepIconProps
+import materialui.components.steplabel.enums.StepLabelStyle
+import react.*
+import kotlin.reflect.KClass
 
 class StepLabelElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<SPAN>(type, { SPAN(mapOf(), it) }) {
+    type: RClass<StepLabelProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<SPAN, StepLabelProps>(type, classMap, { SPAN(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<StepLabelStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.active: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["active"]
-        set(value) { setProp("active", value) }
-    var Tag.alternativeLabel: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["alternativeLabel"]
-        set(value) { setProp("alternativeLabel", value) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.completed: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["completed"]
-        set(value) { setProp("completed", value) }
-    var Tag.disabled: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]
-        set(value) { setProp("disabled", value) }
-    var Tag.error: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["error"]
-        set(value) { setProp("error", value) }
-    var Tag.icon: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["icon"]
-        set(value) { setProp("icon", value) }
-    var Tag.last: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["last"]
-        set(value) { setProp("last", value) }
-    var Tag.optional: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["optional"]
-        set(value) { setProp("optional", value) }
-    var Tag.orientation: StepOrientation
-        get() = StepOrientation.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["orientation"])
-        set(value) { setProp("orientation", value.toString()) }
-    var Tag.StepIconComponent: RComponent<RProps, RState>
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["StepIconComponent"]
-        set(value) { setProp("StepIconComponent", value) }
-    var Tag.StepIconProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["StepIconProps"]
-        set(value) { setProp("StepIconProps", value) }
+    var Tag.active: Boolean? by materialProps
+    var Tag.alternativeLabel: Boolean? by materialProps
+    var Tag.completed: Boolean? by materialProps
+    var Tag.disabled: Boolean? by materialProps
+    var Tag.error: Boolean? by materialProps
+    var Tag.icon: ReactElement? by materialProps
+    var Tag.last: Boolean? by materialProps
+    var Tag.optional: ReactElement? by materialProps
+    var Tag.orientation: StepOrientation? by materialProps
+    var Tag.StepIconProps: RProps? by materialProps
+
+    fun Tag.icon(block: RBuilder.() -> Unit) { icon = buildElement(block) }
+    fun <P: RProps, C: Component<P, *>> Tag.stepIconComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        materialProps.StepIconComponent = kClass.js as RClass<P>
+    }
+    fun Tag.optional(block: RBuilder.() -> Unit) { optional = buildElement(block) }
+    fun Tag.stepIconComponent(tagName: String) { materialProps.StepIconComponent = tagName }
+    fun Tag.stepIconProps(block: StepIconProps.() -> Unit) { StepIconProps = jsObject(block) }
 }
