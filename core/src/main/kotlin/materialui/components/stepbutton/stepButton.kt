@@ -4,7 +4,7 @@ import kotlinx.html.BUTTON
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.buttonbase.ButtonBaseProps
-import materialui.components.buttonbase.enums.ButtonBaseStyle
+import materialui.components.stepbutton.enums.StepButtonStyle
 import react.RBuilder
 import react.RClass
 import react.ReactElement
@@ -25,8 +25,8 @@ external interface StepButtonProps : ButtonBaseProps {
 @Suppress("UnsafeCastFromDynamic")
 private val stepButtonComponent: RClass<StepButtonProps> = stepButtonModule.default
 
-fun RBuilder.stepButton(vararg classMap: Pair<ButtonBaseStyle, String>, block: StepButtonElementBuilder<BUTTON>.() -> Unit)
+fun RBuilder.stepButton(vararg classMap: Pair<StepButtonStyle, String>, block: StepButtonElementBuilder<BUTTON>.() -> Unit)
     = child(StepButtonElementBuilder(stepButtonComponent, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.stepButton(vararg classMap: Pair<ButtonBaseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: StepButtonElementBuilder<T>.() -> Unit)
+fun <T: Tag> RBuilder.stepButton(vararg classMap: Pair<StepButtonStyle, String>, factory: (TagConsumer<Unit>) -> T, block: StepButtonElementBuilder<T>.() -> Unit)
     = child(StepButtonElementBuilder(stepButtonComponent, classMap.toList(), factory).apply(block).create())

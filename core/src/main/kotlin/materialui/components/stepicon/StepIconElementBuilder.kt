@@ -4,28 +4,43 @@ import kotlinext.js.jsObject
 import react.*
 
 class StepIconElementBuilder internal constructor(
-    private val type: RComponent<RProps, RState>,
-    private val props: RProps = jsObject { }
+    private val type: RClass<StepIconProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    private val props: StepIconProps = jsObject {  }
 ) : RBuilder() {
+    init {
+        props.classes(classMap)
+    }
+
     fun attrs(handler: RProps.() -> Unit) {
         props.handler()
     }
 
     fun create() = createElement(type, props, *childList.toTypedArray())
 
-    var RProps.active: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["active"]
-        set(value) { props.asDynamic()["active"] = value }
-    var RProps.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { props.asDynamic()["classes"] = value }
-    var RProps.completed: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["completed"]
-        set(value) { props.asDynamic()["completed"] = value }
-    var RProps.error: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["error"]
-        set(value) { props.asDynamic()["error"] = value }
-    var RProps.icon: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["icon"]
-        set(value) { props.asDynamic()["icon"] = value }
+    fun StepIconProps.classes(vararg classMap: Pair<Enum<*>, String>) {
+        classes(classMap.map { (key, value) -> key to value })
+    }
+
+    fun StepIconProps.classes(classMap: List<Pair<Enum<*>, String>>) {
+        classes(classMap.map { (key, value) -> key.toString() to value })
+    }
+
+    fun StepIconProps.classes(vararg classMap: Pair<String, String>) {
+        classes(classMap.map { (key, value) -> key to value })
+    }
+
+    fun StepIconProps.classes(classMap: List<Pair<String, String>>) {
+        if (classMap.isEmpty()) {
+            return
+        }
+
+        val classesObj: dynamic = jsObject { }
+
+        classMap.forEach { (key, value) -> classesObj[key] = value }
+
+        asDynamic()["classes"] = classesObj as Any
+    }
+
+    fun StepIconProps.icon(block: RBuilder.() -> Unit) { icon = buildElement(block) }
 }

@@ -4,7 +4,7 @@ import kotlinx.html.DIV
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.paper.PaperProps
-import materialui.components.paper.enums.PaperStyle
+import materialui.components.stepper.enums.StepperStyle
 import react.RBuilder
 import react.RClass
 import react.ReactElement
@@ -23,8 +23,8 @@ external interface StepperProps : PaperProps {
 @Suppress("UnsafeCastFromDynamic")
 private val stepperComponent: RClass<StepperProps> = stepperModule.default
 
-fun RBuilder.stepper(vararg classMap: Pair<PaperStyle, String>, block: StepperElementBuilder<DIV>.() -> Unit)
+fun RBuilder.stepper(vararg classMap: Pair<StepperStyle, String>, block: StepperElementBuilder<DIV>.() -> Unit)
     = child(StepperElementBuilder(stepperComponent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.stepper(vararg classMap: Pair<PaperStyle, String>, factory: (TagConsumer<Unit>) -> T, block: StepperElementBuilder<T>.() -> Unit)
+fun <T: Tag> RBuilder.stepper(vararg classMap: Pair<StepperStyle, String>, factory: (TagConsumer<Unit>) -> T, block: StepperElementBuilder<T>.() -> Unit)
     = child(StepperElementBuilder(stepperComponent, classMap.toList(), factory).apply(block).create())
