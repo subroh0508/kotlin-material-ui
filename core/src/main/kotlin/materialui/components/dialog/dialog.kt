@@ -1,15 +1,28 @@
 package materialui.components.dialog
 
+import materialui.components.dialog.enums.DialogStyle
+import materialui.components.modal.ModalProps
 import react.RBuilder
-import react.RComponent
+import react.RClass
 import react.RProps
-import react.RState
 
 @JsModule("@material-ui/core/Dialog")
 private external val dialogModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val dialogComponent: RComponent<RProps, RState> = dialogModule.default
+external interface DialogProps : ModalProps {
+    var fullScreen: Boolean?
+    var fullWidth: Boolean?
+    var maxWidth: String?
+    var PaperComponent: dynamic
+    var PaperProps: RProps?
+    var scroll: String?
+    var TransitionComponent: dynamic
+    var transitionDuration: dynamic
+    var TransitionProps: RProps?
+}
 
-fun RBuilder.dialog(block: DialogElementBuilder.() -> Unit)
-    = child(DialogElementBuilder(dialogComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val dialogComponent: RClass<DialogProps> = dialogModule.default
+
+fun RBuilder.dialog(vararg classMap: Pair<DialogStyle, String>, block: DialogElementBuilder.() -> Unit)
+    = child(DialogElementBuilder(dialogComponent, classMap.toList()).apply(block).create())

@@ -1,41 +1,39 @@
 package materialui.components.swipeabledrawer
 
-import materialui.components.drawer.DrawerElementBuilder
+import kotlinext.js.js
+import kotlinx.html.DIV
 import kotlinx.html.Tag
+import kotlinx.html.stream.createHTML
+import materialui.components.drawer.DrawerElementBuilder
+import materialui.components.getValue
+import materialui.components.setValue
 import org.w3c.dom.events.Event
-import react.RComponent
+import react.RClass
 import react.RProps
-import react.RState
 
 class SwipeableDrawerElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : DrawerElementBuilder(type) {
+    type: RClass<SwipeableDrawerProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : DrawerElementBuilder<SwipeableDrawerProps>(type, classMap) {
 
-    var Tag.disableBackdropTransition: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableBackdropTransition"]
-        set(value) { setProp("disableBackdropTransition", value) }
-    var Tag.disableDiscovery: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableDiscovery"]
-        set(value) { setProp("disableDiscovery", value) }
-    var Tag.disableSwipeToOpen: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableSwipeToOpen"]
-        set(value) { setProp("disableSwipeToOpen", value) }
-    var Tag.hideBackdrop: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["hideBackdrop"]
-        set(value) { setProp("hideBackdrop", value) }
-    var Tag.hysteresis: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["hysteresis"]
-        set(value) { setProp("hysteresis", value) }
-    var Tag.minFlingVelocity: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["minFlingVelocity"]
-        set(value) { setProp("minFlingVelocity", value) }
-    var Tag.onOpen: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onOpen"]
-        set(value) { setProp("onOpen", value) }
-    var Tag.swipeAreaProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["SwipeAreaProps"]
-        set(value) { setProp("SwipeAreaProps", value) }
-    var Tag.swipeAreaWidth: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["swipeAreaWidth"]
-        set(value) { setProp("swipeAreaWidth", value) }
+    var Tag.disableBackdropTransition: Boolean? by materialProps
+    var Tag.disableDiscovery: Boolean? by materialProps
+    var Tag.disableSwipeToOpen: Boolean? by materialProps
+    var Tag.hideBackdrop: Boolean? by materialProps
+    var Tag.hysteresis: Number? by materialProps
+    var Tag.minFlingVelocity: Number? by materialProps
+    var Tag.onOpen: ((Event) -> Unit)? by materialProps
+    var Tag.SwipeAreaProps: RProps? by materialProps
+    var Tag.swipeAreaWidth: Number? by materialProps
+
+    fun Tag.swipeAreaProps(block: DIV.() -> Unit) {
+        val props = js {  }
+
+        DIV(mapOf(), createHTML()).apply(block).attributesEntries.forEach { (key, value) ->
+            props[key] = value
+        }
+
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        SwipeAreaProps = props as RProps
+    }
 }

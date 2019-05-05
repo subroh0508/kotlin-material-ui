@@ -1,43 +1,60 @@
 package materialui.components.dialog
 
+import kotlinext.js.js
+import kotlinext.js.jsObject
+import kotlinx.html.DIV
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
 import materialui.components.dialog.enums.DialogMaxWidth
 import materialui.components.dialog.enums.DialogScroll
-import materialui.components.dialog.values.TransitionDuration
+import materialui.components.dialog.enums.DialogStyle
+import materialui.components.getValue
 import materialui.components.modal.ModalElementBuilder
-import kotlinx.html.Tag
-import react.RComponent
+import materialui.components.paper.PaperElementBuilder
+import materialui.components.paper.PaperProps
+import materialui.components.paper.paper
+import materialui.components.setValue
+import materialui.reacttransiton.RTransitionProps
+import react.Component
+import react.RBuilder
+import react.RClass
 import react.RProps
-import react.RState
+import kotlin.reflect.KClass
 
 class DialogElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : ModalElementBuilder(type) {
+    type: RClass<DialogProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : ModalElementBuilder<DialogProps>(type, classMap) {
+    fun Tag.classes(vararg classMap: Pair<DialogStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.fullScreen: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["fullScreen"]
-        set(value) { setProp("fullScreen", value) }
-    var Tag.fullWidth: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["fullWidth"]
-        set(value) { setProp("fullWidth", value) }
-    var Tag.maxWidth: DialogMaxWidth
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["maxWidth"]
-        set(value) { setProp("maxWidth", value) }
-    var Tag.paperComponent: RComponent<RProps, RState>
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["PaperComponent"]
-        set(value) { setProp("PaperComponent", value) }
-    var Tag.paperProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["PaperProps"]
-        set(value) { setProp("PaperProps", value) }
-    var Tag.scroll: DialogScroll
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["scroll"]
-        set(value) { setProp("scroll", value) }
-    var Tag.transitionComponent: RComponent<RProps, RState>
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["TransitionComponent"]
-        set(value) { setProp("TransitionComponent", value) }
-    var Tag.transitionDuration: TransitionDuration
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["transitionDuration"]
-        set(value) { setProp("transitionDuration", value) }
-    var Tag.transitionProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["TransitionProps"]
-        set(value) { setProp("TransitionProps", value) }
+    var Tag.fullScreen: Boolean? by materialProps
+    var Tag.fullWidth: Boolean? by materialProps
+    var Tag.maxWidth: DialogMaxWidth? by materialProps
+    var Tag.PaperProps: RProps? by materialProps
+    var Tag.scroll: DialogScroll? by materialProps
+    var Tag.TransitionProps: RProps? by materialProps
+
+    fun <P: RProps, C: Component<P, *>> Tag.paperComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        materialProps.PaperComponent = kClass.js as RClass<P>
+    }
+    fun Tag.paperComponent(tagName: String) { materialProps.PaperComponent = tagName }
+    fun Tag.paperProps(block: PaperElementBuilder<DIV, PaperProps>.() -> Unit) {
+        PaperProps = RBuilder().paper(block = block).props
+    }
+    fun <T: Tag, P: PaperProps> Tag.paperProps(factory: (TagConsumer<Unit>) -> T, block: PaperElementBuilder<T, P>.() -> Unit) {
+        PaperProps = RBuilder().paper(factory = factory, block = block).props
+    }
+    fun Tag.transitionDuration(duration: Number) { materialProps.transitionDuration = duration }
+    fun Tag.transitionDuration(enter: Number? = null, exit: Number? = null) { materialProps.transitionDuration = js { this["enter"] = enter; this["end"] = exit } }
+    fun <P: RProps, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        materialProps.TransitionComponent = kClass.js as RClass<P>
+    }
+    fun Tag.transitionComponent(tagName: String) { materialProps.TransitionComponent = tagName }
+    fun Tag.transitionProps(block: RTransitionProps.() -> Unit) { TransitionProps = jsObject(block) }
 }

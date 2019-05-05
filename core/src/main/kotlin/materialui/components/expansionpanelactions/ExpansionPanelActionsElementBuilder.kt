@@ -1,17 +1,16 @@
 package materialui.components.expansionpanelactions
 
-import materialui.components.MaterialElementBuilder
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.MMaterialElementBuilder
+import materialui.components.expansionpanelactions.enums.ExpansionPanelActionsStyle
+import react.RClass
 
 class ExpansionPanelActionsElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
-
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
+    type: RClass<ExpansionPanelActionsProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<DIV, ExpansionPanelActionsProps>(type, classMap, { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<ExpansionPanelActionsStyle, String>) {
+        classes(classMap.toList())
+    }
 }

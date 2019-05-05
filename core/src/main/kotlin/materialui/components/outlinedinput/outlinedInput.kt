@@ -1,15 +1,19 @@
 package materialui.components.outlinedinput
 
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.inputbase.InputBaseProps
+import materialui.components.outlinedinput.enums.OutlinedInputStyle
+import react.*
 
 @JsModule("@material-ui/core/OutlinedInput")
 private external val outlinedInputModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val outlinedInputComponent: RComponent<RProps, RState> = outlinedInputModule.default
+external interface OutlinedInputProps : InputBaseProps {
+    var labelWidth: Number?
+    var notched: Boolean?
+}
 
-fun RBuilder.outlinedInput(block: OutlinedInputElementBuilder.() -> Unit)
-    = child(OutlinedInputElementBuilder(outlinedInputComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val outlinedInputComponent: RClass<OutlinedInputProps> = outlinedInputModule.default
+
+fun RBuilder.outlinedInput(vararg classMap: Pair<OutlinedInputStyle, String>, block: OutlinedInputElementBuilder.() -> Unit)
+    = child(OutlinedInputElementBuilder(outlinedInputComponent, classMap.toList()).apply(block).create())

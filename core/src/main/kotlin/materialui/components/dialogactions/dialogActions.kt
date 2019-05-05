@@ -1,15 +1,19 @@
 package materialui.components.dialogactions
 
+import materialui.components.StandardProps
+import materialui.components.dialogactions.enums.DialogActionsStyle
 import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import react.RClass
 
 @JsModule("@material-ui/core/DialogActions")
 private external val dialogActionsModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val dialogActionsComponent: RComponent<RProps, RState> = dialogActionsModule.default
+external interface DialogActionProps : StandardProps {
+    var disableActionSpacing: Boolean?
+}
 
-fun RBuilder.dialogActions(block: DialogActionsElementBuilder.() -> Unit)
-    = child(DialogActionsElementBuilder(dialogActionsComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val dialogActionsComponent: RClass<DialogActionProps> = dialogActionsModule.default
+
+fun RBuilder.dialogActions(vararg classMap: Pair<DialogActionsStyle, String>, block: DialogActionsElementBuilder.() -> Unit)
+    = child(DialogActionsElementBuilder(dialogActionsComponent, classMap.toList()).apply(block).create())

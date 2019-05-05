@@ -1,10 +1,11 @@
 package materialui.reacttransiton
 
 import org.w3c.dom.events.Event
+import react.RProps
 import react.ReactElement
 import kotlin.reflect.KProperty
 
-external interface RTransitionProps {
+external interface RTransitionProps : RProps {
     var `in`: Boolean?
     var mountOnEnter: Boolean?
     var unmountOnExit: Boolean?

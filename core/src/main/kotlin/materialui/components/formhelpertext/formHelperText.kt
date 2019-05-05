@@ -2,20 +2,30 @@ package materialui.components.formhelpertext
 
 import kotlinx.html.P
 import kotlinx.html.Tag
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import kotlinx.html.TagConsumer
+import materialui.components.StandardProps
+import materialui.components.formhelpertext.enums.FormHelperTextStyle
+import react.*
 import kotlin.reflect.KClass
 
 @JsModule("@material-ui/core/FormHelperText")
 private external val formHelperTextModule: dynamic
 
+external interface FormHelperTextProps : StandardProps {
+    var disabled: Boolean?
+    var error: Boolean?
+    var filled: Boolean?
+    var focused: Boolean?
+    var margin: String?
+    var required: Boolean?
+    var variant: String?
+}
+
 @Suppress("UnsafeCastFromDynamic")
-private val formHelperTextComponent: RComponent<RProps, RState> = formHelperTextModule.default
+private val formHelperTextComponent: RClass<FormHelperTextProps> = formHelperTextModule.default
 
-fun RBuilder.formHelperText(block: FormHelperTextElementBuilder<P>.() -> Unit)
-    = child(FormHelperTextElementBuilder(formHelperTextComponent, P::class) { P(mapOf(), it) }.apply(block).create())
+fun RBuilder.formHelperText(vararg classMap: Pair<FormHelperTextStyle, String>, block: FormHelperTextElementBuilder<P>.() -> Unit)
+    = child(FormHelperTextElementBuilder(formHelperTextComponent, classMap.toList()) { P(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.formHelperText(tag: KClass<T>, block: FormHelperTextElementBuilder<T>.() -> Unit)
-    = child(FormHelperTextElementBuilder(formHelperTextComponent, tag).apply(block).create())
+fun <T: Tag> RBuilder.formHelperText(vararg classMap: Pair<FormHelperTextStyle, String>, factory: (TagConsumer<Unit>) -> T, block: FormHelperTextElementBuilder<T>.() -> Unit)
+    = child(FormHelperTextElementBuilder(formHelperTextComponent, classMap.toList(), factory).apply(block).create())

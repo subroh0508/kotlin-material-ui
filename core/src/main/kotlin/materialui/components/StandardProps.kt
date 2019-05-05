@@ -18,7 +18,7 @@ operator fun StandardProps.setValue(thisRef: Any?, property: KProperty<*>, value
 }
 
 inline operator fun <reified T: Enum<T>> StandardProps.getValue(thisRef: Any?, property: KProperty<*>): T?
-        = (asDynamic()[property.name] as String?)?.let { enumValueOf<T>(it) }
+        = (asDynamic()[property.name] as String?)?.let { name -> enumValues<T>().find { it.toString() == name } }
 
 inline operator fun <reified T: Enum<T>> StandardProps.setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
     asDynamic()[property.name] = value?.toString()

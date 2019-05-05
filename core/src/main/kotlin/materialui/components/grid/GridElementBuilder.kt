@@ -1,66 +1,51 @@
 package materialui.components.grid
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
-import materialui.components.grid.enums.*
-import materialui.components.grid.values.GridSpacing
-import materialui.components.grid.values.GridUnit
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.grid.enums.*
+import materialui.components.setValue
+import react.RClass
 
 class GridElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+    type: RClass<GridProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, GridProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<GridStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.alignContent: GridAlignContent
-        get() = GridAlignContent.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["alignContent"])
-        set(value) { setProp("alignContent", value.toString()) }
-    var Tag.alignItems: GridAlignItems
-        get() = GridAlignItems.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["alignItems"])
-        set(value) { setProp("alignItems", value.toString()) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.container: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["container"]
-        set(value) { setProp("container", value) }
-    var Tag.direction: GridDirection
-        get() = GridDirection.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["direction"])
-        set(value) { setProp("direction", value.toString()) }
-    var Tag.item: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["item"]
-        set(value) { setProp("item", value) }
-    var Tag.justify: GridJustify
-        get() = GridJustify.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["justify"])
-        set(value) { setProp("justify", value.toString()) }
-    var Tag.lg: GridUnit
-        get() = GridUnit(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["lg"])
-        set(value) { setProp("lg", value.value) }
-    var Tag.md: GridUnit
-        get() = GridUnit(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["md"])
-        set(value) { setProp("md", value.value) }
-    var Tag.sm: GridUnit
-        get() = GridUnit(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["sm"])
-        set(value) { setProp("sm", value.value) }
-    var Tag.spacing: GridSpacing
-        get() = GridSpacing(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["spacing"] as Int)
-        set(value) { setProp("spacing", value.value) }
-    var Tag.wrap: GridWrap
-        get() = GridWrap.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["wrap"])
-        set(value) { setProp("wrap", value.toString()) }
-    var Tag.xl: GridUnit
-        get() = GridUnit(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["xl"])
-        set(value) { setProp("xl", value.value) }
-    var Tag.xs: GridUnit
-        get() = GridUnit(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["xs"])
-        set(value) { setProp("xs", value.value) }
-    var Tag.zeroMinWidth: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["zeroMinWidth"]
-        set(value) { setProp("zeroMinWidth", value) }
+    var Tag.alignContent: GridAlignContent? by materialProps
+    var Tag.alignItems: GridAlignItems? by materialProps
+    var Tag.container: Boolean? by materialProps
+    var Tag.direction: GridDirection? by materialProps
+    var Tag.item: Boolean? by materialProps
+    var Tag.justify: GridJustify? by materialProps
+    val Tag.lg: Any? by materialProps
+    val Tag.md: Any? by materialProps
+    val Tag.sm: Any? by materialProps
+    val Tag.spacing: Int? by materialProps
+    var Tag.wrap: GridWrap? by materialProps
+    val Tag.xl: Any? by materialProps
+    val Tag.xs: Any? by materialProps
+    var Tag.zeroMinWidth: Boolean? by materialProps
+
+    fun Tag.lg(v: String = "auto") { materialProps.lg = v }
+    fun Tag.lg(v: Boolean) { materialProps.lg = v }
+    fun Tag.lg(v: Int) { require(v in 1..12); materialProps.lg = v }
+    fun Tag.md(v: String = "auto") { materialProps.md = v }
+    fun Tag.md(v: Boolean) { materialProps.md = v }
+    fun Tag.md(v: Int) { require(v in 1..12); materialProps.md = v }
+    fun Tag.sm(v: String = "auto") { materialProps.sm = v }
+    fun Tag.sm(v: Boolean) { materialProps.sm = v }
+    fun Tag.sm(v: Int) { require(v in 1..12); materialProps.sm = v }
+    fun Tag.spacing(v: Int) { require(listOf(0, 8, 16, 24, 32, 40).contains(v)); materialProps.spacing = v }
+    fun Tag.xl(v: String = "auto") { materialProps.xl = v }
+    fun Tag.xl(v: Boolean) { materialProps.xl = v }
+    fun Tag.xl(v: Int) { require(v in 1..12); materialProps.xl = v }
+    fun Tag.xs(v: String = "auto") { materialProps.xs = v }
+    fun Tag.xs(v: Boolean) { materialProps.xs = v }
+    fun Tag.xs(v: Int) { require(v in 1..12); materialProps.xs = v }
 }

@@ -2,8 +2,8 @@ package materialui.components.radio
 
 import materialui.components.internal.SwitchBaseProps
 import materialui.components.radio.enums.RadioStyle
-import materialui.components.radio.values.RadioValue
-import react.*
+import react.RBuilder
+import react.RClass
 
 @JsModule("@material-ui/core/Radio")
 private external val radioModule: dynamic
@@ -17,7 +17,3 @@ private val radioComponent: RClass<RadioProps> = radioModule.default
 
 fun RBuilder.radio(vararg classMap: Pair<RadioStyle, String>, block: RadioElementBuilder.() -> Unit)
     = child(RadioElementBuilder(radioComponent, classMap.toList()).apply(block).create())
-
-fun rv(v: String) = RadioValue(v)
-fun rv(v: Number) = RadioValue(v)
-fun rv(v: Boolean) = RadioValue(v)

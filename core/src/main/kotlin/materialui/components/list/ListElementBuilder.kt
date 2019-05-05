@@ -1,31 +1,28 @@
 package materialui.components.list
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.list.enums.ListStyle
+import materialui.components.setValue
+import react.RBuilder
+import react.RClass
 import react.ReactElement
-import kotlin.reflect.KClass
+import react.buildElement
 
-open class ListElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+open class ListElementBuilder<T: Tag, Props: ListProps> internal constructor(
+    type: RClass<Props>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, Props>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<ListStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.dense: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["dense"]
-        set(value) { setProp("dense", value) }
-    var Tag.disablePadding: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disablePadding"]
-        set(value) { setProp("disablePadding", value) }
-    var Tag.subheader: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["subheader"]
-        set(value) { setProp("subheader", value) }
+    var Tag.dense: Boolean? by materialProps
+    var Tag.disablePadding: Boolean? by materialProps
+    var Tag.subheader: ReactElement? by materialProps
+
+    fun Tag.subheader(block: RBuilder.() -> Unit) { subheader = buildElement(block) }
 }

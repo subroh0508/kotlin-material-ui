@@ -1,69 +1,54 @@
 package materialui.components.modal
 
-import materialui.components.MaterialElementBuilder
+import kotlinext.js.jsObject
 import kotlinx.html.DIV
 import kotlinx.html.Tag
+import materialui.components.MMaterialElementBuilder
+import materialui.components.backdrop.BackdropElementBuilder
+import materialui.components.backdrop.backdrop
+import materialui.components.getValue
+import materialui.components.modal.enums.ModalStyle
+import materialui.components.setValue
+import org.w3c.dom.HTMLElement
+import org.w3c.dom.Node
 import org.w3c.dom.events.Event
-import react.RComponent
-import react.RProps
-import react.RState
+import react.*
+import kotlin.reflect.KClass
 
-open class ModalElementBuilder(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
+open class ModalElementBuilder<Props: ModalProps>(
+    type: RClass<Props>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<DIV, Props>(type, classMap, { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<ModalStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.backdropComponent: RComponent<RProps, RState>
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["BackdropComponent"]
-        set(value) { setProp("BackdropComponent", value) }
-    var Tag.backdropProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["BackdropProps"]
-        set(value) { setProp("BackdropProps", value) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.container: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["container"]
-        set(value) { setProp("container", value) }
-    var Tag.disableAutoFocus: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableAutoFocus"]
-        set(value) { setProp("disableAutoFocus", value) }
-    var Tag.disableBackdropClick: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableBackdropClick"]
-        set(value) { setProp("disableBackdropClick", value) }
-    var Tag.disableEnforceFocus: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableEnforceFocus"]
-        set(value) { setProp("disableEnforceFocus", value) }
-    var Tag.disableEscapeKeyDown: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableEscapeKeyDown"]
-        set(value) { setProp("disableEscapeKeyDown", value) }
-    var Tag.disablePortal: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disablePortal"]
-        set(value) { setProp("disablePortal", value) }
-    var Tag.disableRestoreFocus: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableRestoreFocus"]
-        set(value) { setProp("disableRestoreFocus", value) }
-    var Tag.hideBackdrop: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["hideBackdrop"]
-        set(value) { setProp("hideBackdrop", value) }
-    var Tag.keepMounted: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["keepMounted"]
-        set(value) { setProp("keepMounted", value) }
-    var Tag.manager: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["manager"]
-        set(value) { setProp("manager", value) }
-    var Tag.onBackdropClick: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onBackdropClick"]
-        set(value) { setProp("onBackdropClick", value) }
-    var Tag.onClose: (Event, String) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onClose"]
-        set(value) { setProp("onClose", value) }
-    var Tag.onEscapeKeyDown: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onEscapeKeyDown"]
-        set(value) { setProp("onEscapeKeyDown", value) }
-    var Tag.onRendered: () -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onRendered"]
-        set(value) { setProp("onRendered", value) }
-    var Tag.open: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["open"]
-        set(value) { setProp("open", value) }
+    var Tag.BackdropProps: RProps? by materialProps
+    var Tag.disableAutoFocus: Boolean? by materialProps
+    var Tag.disableBackdropClick: Boolean? by materialProps
+    var Tag.disableEnforceFocus: Boolean? by materialProps
+    var Tag.disableEscapeKeyDown: Boolean? by materialProps
+    var Tag.disablePortal: Boolean? by materialProps
+    var Tag.disableRestoreFocus: Boolean? by materialProps
+    var Tag.hideBackdrop: Boolean? by materialProps
+    var Tag.keepMounted: Boolean? by materialProps
+    var Tag.onBackdropClick: ((Event) -> Unit)? by materialProps
+    var Tag.onClose: ((Event, String) -> Unit)? by materialProps
+    var Tag.onEscapeKeyDown: ((Event) -> Unit)? by materialProps
+    var Tag.onRendered: (() -> Unit)? by materialProps
+    var Tag.open: Boolean? by materialProps
+
+    fun <P : RProps, C : Component<P, *>> Tag.backdropComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        materialProps.BackdropComponent = kClass.js as RClass<P>
+    }
+    fun Tag.backdropComponent(tagName: String) { materialProps.BackdropComponent = tagName }
+    fun Tag.backdropProps(block: BackdropElementBuilder.() -> Unit) {
+        BackdropProps = RBuilder().backdrop(block = block).props
+    }
+    fun <P: RProps> Tag.backdropProps(block: P.() -> Unit) { BackdropProps = jsObject(block) }
+    fun Tag.container(node: Node) { materialProps.container = node }
+    fun Tag.container(htmlElement: HTMLElement) { materialProps.container = htmlElement }
+    fun Tag.container(block: RBuilder.() -> Unit) { materialProps.container = buildElement(block) }
 }

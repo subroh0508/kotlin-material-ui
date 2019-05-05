@@ -1,15 +1,16 @@
 package materialui.components.expansionpanelactions
 
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.StandardProps
+import materialui.components.expansionpanelactions.enums.ExpansionPanelActionsStyle
+import react.*
 
 @JsModule("@material-ui/core/ExpansionPanelActions")
 private external val expansionPanelActionsModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val expansionPanelActionsComponent: RComponent<RProps, RState> = expansionPanelActionsModule.default
+external interface ExpansionPanelActionsProps : StandardProps
 
-fun RBuilder.expansionPanelActions(block: ExpansionPanelActionsElementBuilder.() -> Unit)
-    = child(ExpansionPanelActionsElementBuilder(expansionPanelActionsComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val expansionPanelActionsComponent: RClass<ExpansionPanelActionsProps> = expansionPanelActionsModule.default
+
+fun RBuilder.expansionPanelActions(vararg classMap: Pair<ExpansionPanelActionsStyle, String>, block: ExpansionPanelActionsElementBuilder.() -> Unit)
+    = child(ExpansionPanelActionsElementBuilder(expansionPanelActionsComponent, classMap.toList()).apply(block).create())
