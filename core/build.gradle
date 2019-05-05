@@ -28,7 +28,8 @@ apply from: file(new File(rootDir, 'gradle/bintray.gradle'))
 kotlinFrontend {
     // downloadNodeJsVersion = "11.0.0"
 
-    npm { 
+    npm {
+        dependency("core-js", "3.0.0")
         dependency("react")
         dependency("react-dom")
         dependency("react-router")
