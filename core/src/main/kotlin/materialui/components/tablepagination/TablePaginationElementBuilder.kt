@@ -1,60 +1,70 @@
 package materialui.components.tablepagination
 
-import materialui.components.consumers
-import materialui.components.tablecell.TableCellElementBuilder
-import materialui.components.tablepagination.values.DisplayedRows
+import kotlinx.html.BUTTON
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
+import materialui.components.getValue
+import materialui.components.iconbutton.IconButtonElementBuilder
+import materialui.components.iconbutton.iconButton
+import materialui.components.select.SelectElementBuilder
+import materialui.components.select.select
+import materialui.components.setValue
+import materialui.components.tablecell.TableCellElementBuilder
+import materialui.components.tablepagination.enums.TablePaginationStyle
 import org.w3c.dom.events.Event
-import react.RComponent
-import react.RProps
-import react.RState
-import react.ReactElement
+import react.*
 import kotlin.reflect.KClass
 
 class TablePaginationElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : TableCellElementBuilder<T>(type, tag, factory) {
+    type: RClass<TablePaginationProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : TableCellElementBuilder<T, TablePaginationProps>(type, classMap, factory) {
+    init {
+        attrs.component = "TableCell"
+    }
 
-    var Tag.ActionsComponent: RComponent<RProps, RState>
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["ActionsComponent"]
-        set(value) { setProp("ActionsComponent", value) }
-    var Tag.backIconButtonProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["backIconButtonProps"]
-        set(value) { setProp("backIconButtonProps", value) }
-    var Tag.colSpan: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["colSpan"]
-        set(value) { setProp("colSpan", value) }
-    var Tag.count: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["count"]
-        set(value) { setProp("count", value) }
-    var Tag.labelDisplayedRows: (DisplayedRows) -> ReactElement?
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["labelDisplayedRows"]
-        set(value) { setProp("labelDisplayedRows", value) }
-    var Tag.labelRowsPerPage: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["labelRowsPerPage"]
-        set(value) { setProp("labelRowsPerPage", value) }
-    var Tag.nextIconButtonProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["nextIconButtonProps"]
-        set(value) { setProp("nextIconButtonProps", value) }
-    var Tag.onChangePage: (Event, Number) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onChangePage"]
-        set(value) { setProp("onChangePage", value) }
-    var Tag.onChangeRowsPerPage: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onChangeRowsPerPage"]
-        set(value) { setProp("onChangeRowsPerPage", value) }
-    var Tag.page: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["page"]
-        set(value) { setProp("page", value) }
-    var Tag.rowsPerPage: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["rowsPerPage"]
-        set(value) { setProp("rowsPerPage", value) }
-    var Tag.rowsPerPageOptions: List<Int>
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["rowsPerPageOptions"]
-        set(value) { setProp("rowsPerPageOptions", value) }
-    var Tag.SelectProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["SelectProps"]
-        set(value) { setProp("SelectProps", value) }
+    fun Tag.classes(vararg classMap: Pair<TablePaginationStyle, String>) {
+        classes(classMap.toList())
+    }
+
+    var Tag.backIconButtonProps: RProps? by materialProps
+    var Tag.count: Int? by materialProps
+    var Tag.labelDisplayedRows: ((LabelDisplayedRows) -> ReactElement)? by materialProps
+    var Tag.labelRowsPerPage: ReactElement? by materialProps
+    var Tag.nextIconButtonProps: RProps? by materialProps
+    var Tag.onChangePage: ((Event, Int) -> Unit)? by materialProps
+    var Tag.onChangeRowsPerPage: ((Event) -> Unit)? by materialProps
+    var Tag.page: Int? by materialProps
+    var Tag.rowsPerPage: Int? by materialProps
+    var Tag.rowsPerPageOptions: Array<Int>? by materialProps
+    var Tag.SelectProps: RProps? by materialProps
+
+    fun <P: RProps, C: Component<P, *>> Tag.actionsComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        materialProps.ActionsComponent = kClass.js as RClass<P>
+    }
+    fun Tag.actionsComponet(tagName: String) { materialProps.ActionsComponent = tagName }
+    fun Tag.backIconButtonProps(block: IconButtonElementBuilder<BUTTON>.() -> Unit) {
+        backIconButtonProps = RBuilder().iconButton(block = block).props
+    }
+    fun <T2: Tag> Tag.backIconButtonProps(factory: (TagConsumer<Unit>) -> T2, block: IconButtonElementBuilder<T2>.() -> Unit) {
+        backIconButtonProps = RBuilder().iconButton(factory = factory, block = block).props
+    }
+    fun Tag.labelDisplayedRows(block: (from: Int, to: Int, count: Int, page: Int) -> ReactElement) {
+        labelDisplayedRows = { obj -> block(obj.from, obj.to, obj.count, obj.page) }
+    }
+    fun Tag.labelRowsPerPage(block: RBuilder.() -> Unit) { labelRowsPerPage = buildElement(block) }
+    fun Tag.nextIconButtonProps(block: IconButtonElementBuilder<BUTTON>.() -> Unit) {
+        nextIconButtonProps = RBuilder().iconButton(block = block).props
+    }
+    fun <T2: Tag> Tag.nextIconButtonProps(factory: (TagConsumer<Unit>) -> T2, block: IconButtonElementBuilder<T2>.() -> Unit) {
+        nextIconButtonProps = RBuilder().iconButton(factory = factory, block = block).props
+    }
+    fun Tag.onChangePerPage(block: (Event, Int) -> Unit) { onChangePage = block }
+    fun Tag.onChangeRowsPerPage(block: (Event) -> Unit) { onChangeRowsPerPage = block }
+    fun Tag.selectProps(block: SelectElementBuilder.() -> Unit) {
+        SelectProps = RBuilder().select(block = block).props
+    }
 }
