@@ -1,31 +1,25 @@
 package materialui.components.linearprogress
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.linearprogress.enums.LinearProgressColor
-import materialui.components.linearprogress.enums.LinearProgressVariant
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.linearprogress.enums.LinearProgressColor
+import materialui.components.linearprogress.enums.LinearProgressStyle
+import materialui.components.linearprogress.enums.LinearProgressVariant
+import materialui.components.setValue
+import react.RClass
 
 class LinearProgressElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
+    type: RClass<LinearProgressProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<DIV, LinearProgressProps>(type, classMap, { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<LinearProgressStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.color: LinearProgressColor
-        get() = LinearProgressColor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["color"])
-        set(value) { setProp("color", value.toString()) }
-    var Tag.value: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["value"]
-        set(value) { setProp("value", value) }
-    var Tag.valueBuffer: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["valueBuffer"]
-        set(value) { setProp("valueBuffer", value) }
-    var Tag.variant: LinearProgressVariant
-        get() = LinearProgressVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
-        set(value) { setProp("variant", value.toString()) }
+    var Tag.color: LinearProgressColor? by materialProps
+    var Tag.value: Number? by materialProps
+    var Tag.valueBuffer: Number? by materialProps
+    var Tag.variant: LinearProgressVariant? by materialProps
 }
