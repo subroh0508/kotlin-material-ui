@@ -1,27 +1,22 @@
 package materialui.components.tablerow
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.setValue
+import materialui.components.tablerow.enums.TableRowStyle
+import react.RClass
 
 class TableRowElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+    type: RClass<TableRowProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, TableRowProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<TableRowStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.hover: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["hover"]
-        set(value) { setProp("hover", value) }
-    var Tag.selected: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["selected"]
-        set(value) { setProp("selected", value) }
+    var Tag.hover: Boolean? by materialProps
+    var Tag.selected: Boolean? by materialProps
 }

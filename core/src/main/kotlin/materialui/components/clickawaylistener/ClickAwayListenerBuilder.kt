@@ -1,8 +1,8 @@
 package materialui.components.clickawaylistener
 
 import kotlinext.js.jsObject
-import materialui.components.clickawaylistener.values.ClickAwayMouseEvent
-import materialui.components.clickawaylistener.values.ClickAwayTouchEvent
+import materialui.components.clickawaylistener.enums.ClickAwayMouseEvent
+import materialui.components.clickawaylistener.enums.ClickAwayTouchEvent
 import materialui.reacteventlistener.REventListenerBuilder
 import react.RClass
 

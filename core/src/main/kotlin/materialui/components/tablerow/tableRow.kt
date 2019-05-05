@@ -1,21 +1,27 @@
 package materialui.components.tablerow
 
+import kotlinx.css.Display
 import kotlinx.html.TR
 import kotlinx.html.Tag
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import kotlinx.html.TagConsumer
+import materialui.components.StandardProps
+import materialui.components.tablerow.enums.TableRowStyle
+import react.*
 import kotlin.reflect.KClass
 
 @JsModule("@material-ui/core/TableRow")
 private external val tableRowModule: dynamic
 
+external interface TableRowProps : StandardProps {
+    var hover: Boolean?
+    var selected: Boolean?
+}
+
 @Suppress("UnsafeCastFromDynamic")
-private val tableRowComponent: RComponent<RProps, RState> = tableRowModule.default
+private val tableRowComponent: RClass<TableRowProps> = tableRowModule.default
 
-fun RBuilder.tableRow(block: TableRowElementBuilder<TR>.() -> Unit)
-    = child(TableRowElementBuilder(tableRowComponent, TR::class) { TR(mapOf(), it) }.apply(block).create())
+fun RBuilder.tableRow(vararg classMap: Pair<TableRowStyle, String>, block: TableRowElementBuilder<TR>.() -> Unit)
+    = child(TableRowElementBuilder(tableRowComponent, classMap.toList()) { TR(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.tableRow(tag: KClass<T>, block: TableRowElementBuilder<T>.() -> Unit)
-    = child(TableRowElementBuilder(tableRowComponent, tag).apply(block).create())
+fun <T: Tag> RBuilder.tableRow(vararg classMap: Pair<TableRowStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TableRowElementBuilder<T>.() -> Unit)
+    = child(TableRowElementBuilder(tableRowComponent, classMap.toList(), factory).apply(block).create())

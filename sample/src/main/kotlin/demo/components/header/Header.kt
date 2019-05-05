@@ -4,7 +4,6 @@ import demo.components.appsearch.appSearch
 import kotlinx.css.*
 import kotlinx.css.properties.BoxShadows
 import materialui.components.appbar.appBar
-import materialui.components.appbar.enums.AppBarStyle
 import materialui.components.button.enums.ButtonColor
 import materialui.components.cssbaseline.cssBaseline
 import materialui.components.icon.icon
@@ -27,7 +26,7 @@ class Header : RComponent<HeaderProps, RState>() {
             cssBaseline {  }
             appBar {
                 attrs {
-                    classes(AppBarStyle.root to "${props.appBar} ${props.appBarHome}")
+                    classes("${props.appBar} ${props.appBarHome}")
                 }
                 toolbar {
                     iconButton {
@@ -42,7 +41,7 @@ class Header : RComponent<HeaderProps, RState>() {
                     appSearch {  }
                     tooltip {
                         attrs {
-                            title = "Change language"
+                            title { + "Change language" }
                             enterDelay = 300
                         }
                         iconButton {
@@ -56,7 +55,7 @@ class Header : RComponent<HeaderProps, RState>() {
                     }
                     tooltip {
                         attrs {
-                            title = "Edit doc colors"
+                            title { + "Edit doc colors" }
                             enterDelay = 300
                         }
                         iconButton {
@@ -71,7 +70,7 @@ class Header : RComponent<HeaderProps, RState>() {
                     }
                     tooltip {
                         attrs {
-                            title = "Toggle light/dark theme"
+                            title { + "Toggle light/dark theme" }
                             enterDelay = 300
                         }
                         iconButton {
@@ -85,7 +84,7 @@ class Header : RComponent<HeaderProps, RState>() {
                     }
                     tooltip {
                         attrs {
-                            title = "Toggle right-to-left/left-to-right"
+                            title { + "Toggle right-to-left/left-to-right" }
                             enterDelay = 300
                         }
                         iconButton {
@@ -99,7 +98,7 @@ class Header : RComponent<HeaderProps, RState>() {
                     }
                     tooltip {
                         attrs {
-                            title = "GitHub repository"
+                            title { + "GitHub repository" }
                             enterDelay = 300
                         }
                         iconButton {

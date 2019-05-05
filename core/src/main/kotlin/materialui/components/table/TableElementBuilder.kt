@@ -1,25 +1,18 @@
 package materialui.components.table
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
-import materialui.components.table.enums.TablePadding
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.setValue
+import materialui.components.table.enums.TablePadding
+import react.RClass
 
 class TableElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+    type: RClass<TableProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, TableProps>(type, classMap, factory) {
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.padding: TablePadding
-        get() = TablePadding.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["padding"])
-        set(value) { setProp("padding", value.toString()) }
+    var Tag.padding: TablePadding? by materialProps
 }
