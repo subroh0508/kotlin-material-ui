@@ -1,6 +1,6 @@
 package materialui.components.listsubheader.enums
 
 @Suppress("EnumEntryName")
-enum class MenuListColor {
+enum class ListSubheaderColor {
     default, primary, inherit
 }

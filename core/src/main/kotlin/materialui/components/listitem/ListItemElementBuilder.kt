@@ -1,49 +1,63 @@
 package materialui.components.listitem
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
-import materialui.components.listitem.enums.ListItemAlignItem
+import kotlinext.js.js
+import kotlinx.html.LI
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
+import kotlinx.html.stream.createHTML
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.listitem.enums.ListItemAlignItem
+import materialui.components.listitem.enums.ListItemStyle
+import materialui.components.setValue
+import react.Component
+import react.RClass
 import react.RProps
-import react.RState
+import react.dom.RDOMBuilder
 import kotlin.reflect.KClass
 
-open class ListItemElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<Tag>(type, factory) {
+open class ListItemElementBuilder<T: Tag, Props: ListItemProps> internal constructor(
+    type: RClass<Props>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<Tag, Props>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<ListItemStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.alignItems: ListItemAlignItem
-        get() = ListItemAlignItem.value(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["alignItems"])
-        set(value) { setProp("alignItems", value.value) }
-    var Tag.button: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["button"]
-        set(value) { setProp("button", value) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.containerComponent: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["ContainerComponent"]
-        set(value) { setProp("ContainerComponent", value) }
-    var Tag.containerProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["ContainerProps"]
-        set(value) { setProp("ContainerProps", value) }
-    var Tag.dense: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["dense"]
-        set(value) { setProp("dense", value) }
-    var Tag.disabled: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]
-        set(value) { setProp("disabled", value) }
-    var Tag.disableGutters: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableGutters"]
-        set(value) { setProp("disableGutters", value) }
-    var Tag.divider: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["divider"]
-        set(value) { setProp("divider", value) }
-    var Tag.selected: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["selected"]
-        set(value) { setProp("selected", value) }
+    var Tag.alignItems: ListItemAlignItem? by materialProps
+    var Tag.button: Boolean? by materialProps
+    var Tag.ContainerProps: RProps? by materialProps
+    var Tag.dense: Boolean? by materialProps
+    var Tag.disabled: Boolean? by materialProps
+    var Tag.disableGutters: Boolean? by materialProps
+    var Tag.divider: Boolean? by materialProps
+    var Tag.selected: Boolean? by materialProps
+
+    fun <P: RProps, C: Component<P, *>> Tag.containerComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        materialProps.ContainerComponent = kClass.js as RClass<P>
+    }
+    fun Tag.containerComponent(tagName: String) { materialProps.ContainerComponent = tagName }
+    fun Tag.containerProps(block: LI.() -> Unit) {
+        val props = js {  }
+
+        LI(mapOf(), createHTML()).apply(block).attributesEntries.forEach { (key, value) ->
+            props[key] = value
+        }
+
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        ContainerProps = props as RProps
+    }
+    fun <T2: Tag> Tag.containerProps(factory: (TagConsumer<Unit>) -> T2, block: RDOMBuilder<T2>.() -> Unit) {
+        val props = js {  }
+
+        RDOMBuilder(factory).apply(block).attrs.attributesEntries.forEach { (key, value) ->
+            props[key] = value
+        }
+
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        ContainerProps = props as RProps
+    }
 }

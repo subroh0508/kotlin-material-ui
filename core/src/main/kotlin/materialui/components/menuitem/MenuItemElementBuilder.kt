@@ -1,21 +1,17 @@
 package materialui.components.menuitem
 
-import materialui.components.consumers
-import materialui.components.listitem.ListItemElementBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.listitem.ListItemElementBuilder
+import materialui.components.menuitem.enums.MenuItemStyle
+import react.RClass
 
 class MenuItemElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : ListItemElementBuilder<T>(type, tag, factory) {
-
-    var Tag.role: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["role"]
-        set(value) { setProp("role", value) }
+    type: RClass<MenuItemProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : ListItemElementBuilder<T, MenuItemProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<MenuItemStyle, String>) {
+         classes(classMap.toList())
+    }
 }

@@ -1,43 +1,34 @@
 package materialui.components.popper
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.popper.enums.PopperPlacement
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import react.RComponent
-import react.RProps
-import react.RState
-import react.ReactElement
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.popper.enums.PopperPlacement
+import materialui.components.setValue
+import org.w3c.dom.HTMLElement
+import org.w3c.dom.Node
+import react.RBuilder
+import react.RClass
+import react.buildElement
 
 class PopperElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
+    type: RClass<PopperProps>
+) : MMaterialElementBuilder<DIV, PopperProps>(type, listOf(), { DIV(mapOf(), it) }) {
 
-    var Tag.anchorEl: ReactElement?
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["anchorEl"]
-        set(value) { setProp("anchorEl", value) }
-    var Tag.container: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["container"]
-        set(value) { setProp("container", value) }
-    var Tag.disablePortal: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disablePortal"]
-        set(value) { setProp("disablePortal", value) }
-    var Tag.keepMounted: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["keepMounted"]
-        set(value) { setProp("keepMounted", value) }
-    var Tag.modifiers: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["modifiers"]
-        set(value) { setProp("modifiers", value) }
-    var Tag.open: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["open"]
-        set(value) { setProp("open", value) }
-    var Tag.placement: PopperPlacement
-        get() = PopperPlacement.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["placement"])
-        set(value) { setProp("placement", value.value) }
-    var Tag.popperOptions: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["popperOptions"]
-        set(value) { setProp("popperOptions", value) }
-    var Tag.transition: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["transition"]
-        set(value) { setProp("transition", value) }
+    var Tag.disablePortal: Boolean? by materialProps
+    var Tag.keepMounted: Boolean? by materialProps
+    var Tag.modifiers: Any? by materialProps
+    var Tag.open: Boolean? by materialProps
+    var Tag.placement: PopperPlacement? by materialProps
+    var Tag.popperOptions: Any? by materialProps
+    var Tag.transition: Boolean? by materialProps
+
+    fun Tag.anchorEl(node: Node) { materialProps.anchorEl = node }
+    fun Tag.anchorEl(htmlElement: HTMLElement) { materialProps.anchorEl = htmlElement }
+    fun Tag.anchorEl(block: RBuilder.() -> Unit) { materialProps.anchorEl = buildElement(block) }
+    fun Tag.anchorEl(func: (HTMLElement) -> HTMLElement) { materialProps.anchorEl = func }
+    fun Tag.container(node: Node) { materialProps.container = node }
+    fun Tag.container(htmlElement: HTMLElement) { materialProps.container = htmlElement }
+    fun Tag.container(block: RBuilder.() -> Unit) { materialProps.container = buildElement(block) }
 }

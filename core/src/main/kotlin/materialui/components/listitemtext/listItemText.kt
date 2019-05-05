@@ -1,15 +1,25 @@
 package materialui.components.listitemtext
 
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import kotlinx.css.Display
+import materialui.components.StandardProps
+import materialui.components.listitemtext.enums.ListItemTextStyle
+import react.*
 
 @JsModule("@material-ui/core/ListItemText")
 private external val listItemTextModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val listItemTextComponent: RComponent<RProps, RState> = listItemTextModule.default
+external interface ListItemTextProps : StandardProps {
+    var disableTypography: Boolean?
+    var inset: Boolean?
+    var primary: ReactElement?
+    var primaryTypographyProps: RProps?
+    var secondary: ReactElement?
+    var secondaryTypographyProps: RProps?
+    var theme: Any?
+}
 
-fun RBuilder.listItemText(block: ListItemTextElementBuilder.() -> Unit)
-    = child(ListItemTextElementBuilder(listItemTextComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val listItemTextComponent: RClass<ListItemTextProps> = listItemTextModule.default
+
+fun RBuilder.listItemText(vararg classMap: Pair<ListItemTextStyle, String>, block: ListItemTextElementBuilder.() -> Unit)
+    = child(ListItemTextElementBuilder(listItemTextComponent, classMap.toList()).apply(block).create())

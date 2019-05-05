@@ -1,22 +1,20 @@
 package materialui.components.nossr
 
 import kotlinext.js.jsObject
-import react.*
+import react.RBuilder
+import react.RClass
+import react.buildElement
+import react.createElement
 
 class NoSsrElementBuilder internal constructor(
-    val type: RComponent<RProps, RState>,
-    private val props: RProps = jsObject { }
+    val type: RClass<NoSsrProps>,
+    private val props: NoSsrProps = jsObject { }
 ) : RBuilder() {
-    fun attrs(handler: RProps.() -> Unit) {
+    fun attrs(handler: NoSsrProps.() -> Unit) {
         props.handler()
     }
 
     fun create() = createElement(type, props, *childList.toTypedArray())
 
-    var RProps.defer: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["defer"]
-        set(value) { props.asDynamic()["defer"] = value }
-    var RProps.fallback: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["fallback"]
-        set(value) { props.asDynamic()["fallback"] = value }
+    fun NoSsrProps.fallback(block: RBuilder.() -> Unit) { fallback = buildElement(block) }
 }
