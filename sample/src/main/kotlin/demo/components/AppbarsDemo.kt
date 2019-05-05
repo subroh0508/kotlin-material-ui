@@ -1,7 +1,7 @@
 package demo.components
 
-import kotlinx.css.CSSBuilder
 import kotlinx.css.px
+import materialui.styles.StylesSet
 import materialui.components.appbar.appBar
 import materialui.components.appbar.enums.AppBarPosition
 import materialui.components.button.button
@@ -73,22 +73,20 @@ class AppbarsDemo : RComponent<RProps, RState>() {
     companion object {
         fun render(rBuilder: RBuilder) = rBuilder.childWithStyles(
             AppbarsDemo::class,
-            "root" to root,
-            "grow" to grow,
-            "menuButton" to menuButton
-        ) { }
+            styleSets
+        ) {  }
 
-        private val root = CSSBuilder().apply {
-            flexGrow = 1.0
-        }
-
-        private val grow = CSSBuilder().apply {
-            flexGrow = 1.0
-        }
-
-        private val menuButton = CSSBuilder().apply {
-            marginLeft = (-12).px
-            marginRight = 20.px
+        private val styleSets: StylesSet.() -> Unit = {
+            "root" {
+                flexGrow = 1.0
+            }
+            "grow" {
+                flexGrow = 1.0
+            }
+            "menuButton" {
+                marginLeft = (-12).px
+                marginRight = 20.px
+            }
         }
     }
 }

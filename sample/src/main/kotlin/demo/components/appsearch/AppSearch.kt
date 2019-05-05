@@ -2,28 +2,24 @@ package demo.components.appsearch
 
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
+import materialui.styles.StylesSet
 import materialui.styles.childWithStyles
-import materialui.styles.muitheme.MuiTheme
 import materialui.styles.muitheme.shadows
 import materialui.styles.palette.*
 import materialui.styles.transitions.create
 import materialui.styles.typography.fontWeightMedium
 import materialui.styles.typography.fontWeightRegular
+import materialui.styles.typography.typography
 import react.RBuilder
 
 fun RBuilder.appSearch(handler: RBuilder.() -> Unit) = childWithStyles(
     AppSearchComponent::class,
-    "@global" to global,
-    "root" to root,
-    "search" to search,
-    "inputRoot" to inputRoot,
-    "inputInput" to inputInput,
+    appSearchStyles,
     handler = handler
 )
 
-
-private val global = { theme: MuiTheme ->
-    CSSBuilder().apply {
+private val appSearchStyles: StylesSet.() -> Unit = {
+    "@global" {
         ".algolia-autocomplete" {
             descendants(".ds-dropdown-menu") {
                 boxShadow = theme.shadows[1]
@@ -63,10 +59,10 @@ private val global = { theme: MuiTheme ->
                 backgroundColor = theme.palette.background.paper
             }
             descendants(".algolia-docsearch-suggestion--title") {
-                +theme.typography.h6.toString()
+                typography(theme.typography.h6)
             }
             descendants(".algolia-docsearch-suggestion--text") {
-                +theme.typography.body2.toString()
+                typography(theme.typography.body2)
             }
             "&& .algolia-docsearch-suggestion--no-results" {
                 width = 100.pct
@@ -79,10 +75,7 @@ private val global = { theme: MuiTheme ->
             }
         }
     }
-}
-
-private val root = { theme: MuiTheme ->
-    CSSBuilder().apply {
+    "root" {
         fontFamily = theme.typography.fontFamily
         position = Position.relative
         marginRight = (theme.spacing.unit * 2).px
@@ -100,9 +93,7 @@ private val root = { theme: MuiTheme ->
             }
         }
     }
-}
-private val search = { theme: MuiTheme ->
-    CSSBuilder().apply {
+    "search" {
         width = (theme.spacing.unit * 9).px
         height = 100.pct
         position = Position.absolute
@@ -111,14 +102,15 @@ private val search = { theme: MuiTheme ->
         alignItems = Align.center
         justifyContent = JustifyContent.center
     }
-}
-private val inputRoot = { theme: MuiTheme ->
-    CSSBuilder().apply {
+    "inputRoot" {
         color = Color.inherit
     }
-}
-private val inputInput = { theme: MuiTheme ->
-    CSSBuilder().apply {
-        padding(theme.spacing.unit.px, theme.spacing.unit.px, theme.spacing.unit.px, (theme.spacing.unit * 9).px)
+    "inputInput" {
+        padding(
+            theme.spacing.unit.px,
+            theme.spacing.unit.px,
+            theme.spacing.unit.px,
+            (theme.spacing.unit * 9).px
+        )
     }
 }

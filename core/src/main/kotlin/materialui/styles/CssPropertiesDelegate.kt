@@ -5,7 +5,7 @@ import kotlin.reflect.KProperty
 
 object FontWeightDelegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): FontWeight?
-            = (thisRef.asDynamic()[property.name] as String?)?.let { FontWeight(it) }
+            = (thisRef.asDynamic()[property.name] as Int?)?.let { FontWeight(it.toString()) }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: FontWeight?) {
         thisRef.asDynamic()[property.name] = value?.toString()
@@ -14,12 +14,12 @@ object FontWeightDelegate {
 
 object ReadOnlyFontWeightDelegate {
     operator fun getValue(thisRef: Any, property: KProperty<*>): FontWeight
-            = FontWeight(thisRef.asDynamic()[property.name] as String)
+            = FontWeight((thisRef.asDynamic()[property.name] as Int).toString())
 }
 
 object LinearDimensionDelegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): LinearDimension?
-            = (thisRef.asDynamic()[property.name] as String?)?.let { LinearDimension(it) }
+        = (thisRef.asDynamic()[property.name] as Any?)?.let { LinearDimension(it.toString()) }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: LinearDimension?) {
         thisRef.asDynamic()[property.name] = value?.toString()
@@ -28,7 +28,7 @@ object LinearDimensionDelegate {
 
 object ReadOnlyLinearDimensionDelegate {
     operator fun getValue(thisRef: Any, property: KProperty<*>): LinearDimension
-            = LinearDimension(thisRef.asDynamic()[property.name] as String)
+            = LinearDimension((thisRef.asDynamic()[property.name] as Any).toString())
 }
 
 object ColorDelegate {
