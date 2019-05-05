@@ -50,7 +50,7 @@ external interface PopoverOrigin {
 fun PopoverOrigin.horizontal(horizontal: PopoverOriginHorizontal) { this.horizontal = horizontal.toString() }
 fun PopoverOrigin.horizontal(horizontal: Number) { this.horizontal = horizontal }
 fun PopoverOrigin.vertical(vertical: PopoverOriginVertical) { this.vertical = vertical.toString() }
-fun PopoverOrigin.vertical(vertival: Number) { this.vertical = vertical }
+fun PopoverOrigin.vertical(vertical: Number) { this.vertical = vertical }
 
 external interface PopoverPosition {
     var top: Number?

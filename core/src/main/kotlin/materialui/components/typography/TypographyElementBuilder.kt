@@ -10,7 +10,6 @@ import materialui.components.typography.enums.TypographyAlign
 import materialui.components.typography.enums.TypographyColor
 import materialui.components.typography.enums.TypographyStyle
 import materialui.components.typography.enums.TypographyVariant
-import materialui.components.typography.values.HeadlineMapping
 import materialui.styles.muitheme.MuiTheme
 import react.RClass
 
