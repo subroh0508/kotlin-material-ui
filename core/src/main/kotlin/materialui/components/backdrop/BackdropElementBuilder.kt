@@ -31,7 +31,7 @@ class BackdropElementBuilder internal constructor(
             return
         }
 
-        val classesObj: dynamic = kotlinext.js.jsObject { }
+        val classesObj: dynamic = jsObject { }
 
         classMap.forEach { (key, value) -> classesObj[key] = value }
 

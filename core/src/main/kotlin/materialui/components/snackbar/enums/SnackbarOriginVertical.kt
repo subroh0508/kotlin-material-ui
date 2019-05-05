@@ -1,6 +1,6 @@
 package materialui.components.snackbar.enums
 
 @Suppress("EnumEntryName")
-enum class SnackbarAnchorOriginVertical {
+enum class SnackbarOriginVertical {
     top, bottom
 }
