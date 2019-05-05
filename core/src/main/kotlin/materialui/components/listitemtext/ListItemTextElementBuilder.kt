@@ -1,39 +1,45 @@
 package materialui.components.listitemtext
 
-import materialui.components.MaterialElementBuilder
-import kotlinx.html.DIV
-import kotlinx.html.Tag
-import react.RComponent
+import kotlinx.html.*
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.listitemtext.enums.ListItemTextStyle
+import materialui.components.setValue
+import materialui.components.typography.TypographyElementBuilder
+import materialui.components.typography.TypographyProps
+import materialui.components.typography.typography
+import materialui.styles.muitheme.MuiTheme
+import react.RBuilder
+import react.RClass
 import react.RProps
-import react.RState
 import react.ReactElement
 
 class ListItemTextElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
+    type: RClass<ListItemTextProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<DIV, ListItemTextProps>(type, classMap, { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<ListItemTextStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.disableTypography: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableTypography"]
-        set(value) { setProp("disableTypography", value) }
-    var Tag.inset: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["inset"]
-        set(value) { setProp("inset", value) }
-    var Tag.primary: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["primary"]
-        set(value) { setProp("primary", value) }
-    var Tag.primaryTypographyProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["primaryTypographyProps"]
-        set(value) { setProp("primaryTypographyProps", value) }
-    var Tag.secondary: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["secondary"]
-        set(value) { setProp("secondary", value) }
-    var Tag.secondaryTypographyProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["secondaryTypographyProps"]
-        set(value) { setProp("secondaryTypographyProps", value) }
-    var Tag.theme: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["theme"]
-        set(value) { setProp("theme", value) }
+    var Tag.disableTypography: Boolean? by materialProps
+    var Tag.inset: Boolean? by materialProps
+    var Tag.primary: ReactElement? by materialProps
+    var Tag.primaryTypographyProps: RProps? by materialProps
+    var Tag.secondary: ReactElement? by materialProps
+    var Tag.secondaryTypographyProps: RProps? by materialProps
+    var Tag.theme: MuiTheme? by materialProps
+
+    fun Tag.primary(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) { primary = RBuilder().typography(block = block) }
+    fun Tag.primary(p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) { primary = RBuilder().typography(p, block = block) }
+    fun <T: Tag> Tag.primary(factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit) { primary = RBuilder().typography(factory = factory, block = block) }
+    fun Tag.primaryTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
+        primaryTypographyProps = RBuilder().typography(block = block).props
+    }
+    fun Tag.secondary(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) { secondary = RBuilder().typography(block = block) }
+    fun Tag.secondary(p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) { secondary = RBuilder().typography(p, block = block) }
+    fun <T: Tag> Tag.secondary(factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit) { secondary = RBuilder().typography(factory = factory, block = block) }
+    fun Tag.secondaryTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
+        secondaryTypographyProps = RBuilder().typography(block = block).props
+    }
 }

@@ -1,15 +1,17 @@
 package materialui.components.listitemsecondaryaction
 
+import materialui.components.MaterialStyle
+import materialui.components.StandardProps
 import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import react.RClass
 
 @JsModule("@material-ui/core/ListItemSecondaryAction")
 private external val listItemSecondaryActionModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val listItemSecondaryActionComponent: RComponent<RProps, RState> = listItemSecondaryActionModule.default
+external interface ListItemSecondaryActionProps : StandardProps
 
-fun RBuilder.listItemSecondaryAction(block: ListItemSecondaryActionElementBuilder.() -> Unit)
-    = child(ListItemSecondaryActionElementBuilder(listItemSecondaryActionComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val listItemSecondaryActionComponent: RClass<ListItemSecondaryActionProps> = listItemSecondaryActionModule.default
+
+fun RBuilder.listItemSecondaryAction(rootStyle: String? = null, block: ListItemSecondaryActionElementBuilder.() -> Unit)
+    = child(ListItemSecondaryActionElementBuilder(listItemSecondaryActionComponent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })).apply(block).create())

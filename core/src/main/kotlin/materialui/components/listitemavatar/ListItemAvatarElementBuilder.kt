@@ -1,22 +1,16 @@
 package materialui.components.listitemavatar
 
-import kotlinext.js.jsObject
-import react.*
+import kotlinx.html.DIV
+import kotlinx.html.Tag
+import materialui.components.MMaterialElementBuilder
+import materialui.components.listitemavatar.enums.ListItemAvaterStyle
+import react.RClass
 
 class ListItemAvatarElementBuilder internal constructor(
-    val type: RComponent<RProps, RState>,
-    private val props: RProps = jsObject { }
-) : RBuilder() {
-    fun attrs(handler: RProps.() -> Unit) {
-        props.handler()
+    type: RClass<ListItemAvatarProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<DIV, ListItemAvatarProps>(type, classMap, { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<ListItemAvaterStyle, String>) {
+        classes(classMap.toList())
     }
-
-    fun create() = createElement(type, props, *childList.toTypedArray())
-
-    var RProps.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { props.asDynamic()["classes"] = value }
-    var RProps.className: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["className"]
-        set(value) { props.asDynamic()["className"] = value }
 }

@@ -1,25 +1,25 @@
 package materialui.components.portal
 
 import kotlinext.js.jsObject
-import react.*
+import org.w3c.dom.HTMLElement
+import org.w3c.dom.Node
+import react.RBuilder
+import react.RClass
+import react.buildElement
+import react.createElement
 
 class PortalElementBuilder internal constructor(
-    val type: RComponent<RProps, RState>,
-    private val props: RProps = jsObject { }
+    val type: RClass<PortalProps>,
+    private val props: PortalProps = jsObject { }
 ) : RBuilder() {
-    fun attrs(handler: RProps.() -> Unit) {
+    fun attrs(handler: PortalProps.() -> Unit) {
         props.handler()
     }
 
     fun create() = createElement(type, props, *childList.toTypedArray())
 
-    var RProps.container: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["container"]
-        set(value) { props.asDynamic()["container"] = value }
-    var RProps.disablePortal: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disablePortal"]
-        set(value) { props.asDynamic()["disablePortal"] = value }
-    var RProps.onRendered: () -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onRendered"]
-        set(value) { props.asDynamic()["onRendered"] = value }
+    fun PortalProps.container(node: Node) { props.container = node }
+    fun PortalProps.container(htmlElement: HTMLElement) { props.container = htmlElement }
+    fun PortalProps.container(block: RBuilder.() -> Unit) { props.container = buildElement(block) }
+    fun PortalProps.onRendered(block: () -> Unit) { props.onRendered = block }
 }
