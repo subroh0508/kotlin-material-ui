@@ -1,15 +1,19 @@
 package materialui.components.formgroup
 
+import materialui.components.StandardProps
+import materialui.components.formgroup.enums.FormGroupStyle
 import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import react.RClass
 
 @JsModule("@material-ui/core/FormGroup")
 private external val formGroupModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val formGroupComponent: RComponent<RProps, RState> = formGroupModule.default
+external interface FormGroupProps : StandardProps {
+    var row: Boolean?
+}
 
-fun RBuilder.formGroup(block: FormGroupElementBuilder.() -> Unit)
-    = child(FormGroupElementBuilder(formGroupComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val formGroupComponent: RClass<FormGroupProps> = formGroupModule.default
+
+fun RBuilder.formGroup(vararg classMap: Pair<FormGroupStyle, String>, block: FormGroupElementBuilder<FormGroupProps>.() -> Unit)
+    = child(FormGroupElementBuilder(formGroupComponent, classMap.toList()).apply(block).create())

@@ -1,15 +1,19 @@
 package materialui.components.dialogtitle
 
+import materialui.components.MaterialStyle
+import materialui.components.StandardProps
 import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import react.RClass
 
 @JsModule("@material-ui/core/DialogTitle")
 private external val dialogTitleModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val dialogTitleComponent: RComponent<RProps, RState> = dialogTitleModule.default
+external interface DialogTitleProps : StandardProps {
+    var disableTypography: Boolean?
+}
 
-fun RBuilder.dialogTitle(block: DialogTitleElementBuilder.() -> Unit)
-    = child(DialogTitleElementBuilder(dialogTitleComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val dialogTitleComponent: RClass<DialogTitleProps> = dialogTitleModule.default
+
+fun RBuilder.dialogTitle(rootStyle: String? = null, block: DialogTitleElementBuilder.() -> Unit)
+    = child(DialogTitleElementBuilder(dialogTitleComponent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })).apply(block).create())

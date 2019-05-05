@@ -21,5 +21,5 @@ external interface SwitchBaseProps : StandardProps {
     var required: Boolean?
     var tabIndex: Any?
     var type: String?
-    var value: dynamic
+    var value: Any?
 }

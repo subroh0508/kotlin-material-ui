@@ -1,89 +1,88 @@
 package materialui.components.textfield
 
-import materialui.components.consumers
+import kotlinext.js.js
+import kotlinx.css.Color
+import kotlinx.html.*
+import kotlinx.html.stream.createHTML
 import materialui.components.formcontrol.FormControlElementBuilder
+import materialui.components.getValue
 import materialui.components.input.InputElementBuilder
+import materialui.components.input.InputProps
 import materialui.components.input.input
-import materialui.components.textfield.values.TextFieldValue
-import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
+import materialui.components.inputlabel.InputLabelElementBuilder
+import materialui.components.inputlabel.inputLabel
+import materialui.components.select.SelectElementBuilder
+import materialui.components.select.select
+import materialui.components.setValue
 import react.*
-import react.dom.RDOMBuilder
-import react.dom.tag
-import kotlin.reflect.KClass
+import kotlin.js.Date
 
 class TextFieldElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : FormControlElementBuilder<T>(type, tag, factory) {
+    type: RClass<TextFieldProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : FormControlElementBuilder<T, TextFieldProps>(type, classMap, factory) {
 
-    var Tag.autoComplete: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["autoComplete"]
-        set(value) { setProp("autoComplete", value) }
-    var Tag.autoFocus: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["autoFocus"]
-        set(value) { setProp("autoFocus", value) }
-    var Tag.defaultValue: TextFieldValue
-        get() = TextFieldValue.fromDynamic(props.asDynamic()["defaultValue"])
-        set(value) { setProp("defaultValue", value.value) }
+    var Tag.autoComplete: String? by materialProps
+    var Tag.autoFocus: Boolean? by materialProps
+    var Tag.defaultValue: Any? by materialProps
     var Tag.FormHelperTextProps: RProps
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["FormHelperTextProps"]
         set(value) { setProp("FormHelperTextProps", value) }
     var Tag.helperText: ReactElement
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["helperText"]
         set(value) { setProp("helperText", value) }
-    var Tag.id: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["id"]
-        set(value) { setProp("id", value) }
-    var Tag.InputLabelProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["InputLabelProps"]
-        set(value) { setProp("InputLabelProps", value) }
-    var Tag.InputProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["InputProps"]
-        set(value) { setProp("InputProps", value) }
-    fun Tag.InputProps(block: InputElementBuilder.() -> Unit) {
-        val inputProps = RBuilder().input(block = block).props
+    var Tag.id: String? by materialProps
+    var Tag.InputLabelProps: RProps? by materialProps
+    var Tag.InputProps: RProps? by materialProps
+    var Tag.inputProps: RProps? by materialProps
+    var Tag.inputRef: RRef? by materialProps
+    var Tag.label: ReactElement? by materialProps
+    var Tag.multiline: Boolean? by materialProps
+    var Tag.name: String? by materialProps
+    var Tag.placeholder: String? by materialProps
+    var Tag.rows: Any? by materialProps
+    var Tag.rowsMax: Any? by materialProps
+    var Tag.select: Boolean? by materialProps
+    var Tag.SelectProps: RProps? by materialProps
+    var Tag.type: InputType? by materialProps
+    var Tag.value: Any? by materialProps
 
-        setProp("InputProps", inputProps)
+    fun Tag.defaultValue(v: String) { defaultValue = v }
+    fun Tag.defaultValue(v: Number) { defaultValue = v }
+    fun Tag.defaultValue(v: Boolean) { defaultValue = v }
+    fun Tag.defaultValue(v: Date) { defaultValue = v }
+    fun Tag.defaultValue(v: Color) { defaultValue = v.toString() }
+    fun Tag.inputLabelProps(block: InputLabelElementBuilder<LABEL>.() -> Unit) {
+        InputLabelProps = RBuilder().inputLabel(block = block).props
     }
-    var Tag.inputProps: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["inputProps"]
-        set(value) { setProp("inputProps", value) }
-    var Tag.inputRef: RRef
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["inputRef"]
-        set(value) { setProp("inputRef", value) }
-    var Tag.label: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["label"]
-        set(value) { setProp("label", value) }
-    fun <T: Tag> Tag.label(block: RDOMBuilder<T>.() -> Unit, factory: (TagConsumer<Unit>) -> T) {
-        setProp("label", RBuilder().tag(block, factory))
+    fun <T2: Tag> Tag.inputLabelProps(factory: (TagConsumer<Unit>) -> T2, block: InputLabelElementBuilder<T2>.() -> Unit) {
+        InputLabelProps = RBuilder().inputLabel(factory = factory, block = block).props
     }
-    var Tag.multiline: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["multiline"]
-        set(value) { setProp("multiline", value) }
-    var Tag.name: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["name"]
-        set(value) { setProp("name", value) }
-    var Tag.placeholder: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["placeholder"]
-        set(value) { setProp("placeholder", value) }
-    var Tag.rows: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["rows"]
-        set(value) { setProp("rows", value) }
-    var Tag.rowsMax: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["rowsMax"]
-        set(value) { setProp("rowsMax", value) }
-    var Tag.select: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["select"]
-        set(value) { setProp("select", value) }
-    var Tag.SelectProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["SelectProps"]
-        set(value) { setProp("SelectProps", value) }
-    var Tag.type: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["type"]
-        set(value) { setProp("type", value) }
-    var Tag.value: TextFieldValue
-        get() = TextFieldValue.fromDynamic(props.asDynamic()["value"])
-        set(value) { setProp("value", value.value) }
+    fun Tag.inputProps(block: InputElementBuilder<InputProps>.() -> Unit) {
+        InputProps = RBuilder().input(block = block).props
+    }
+    fun Tag.nativeInputProps(block: INPUT.() -> Unit) {
+        val props = js {  }
+
+        INPUT(mapOf(), createHTML()).apply(block).attributesEntries.forEach { (key, value) ->
+            props[key] = value
+        }
+
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        inputProps = props as RProps
+    }
+    fun Tag.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
+    fun Tag.selectProps(block: SelectElementBuilder.() -> Unit) {
+        SelectProps = RBuilder().select(block = block).props
+    }
+    fun Tag.rows(v: String) { materialProps.rows = v }
+    fun Tag.rows(v: Number) { materialProps.rows = v }
+    fun Tag.rowsMax(v: String) { materialProps.rowsMax = v }
+    fun Tag.rowsMax(v: Number) { materialProps.rowsMax = v }
+    fun Tag.value(v: String) { value = v }
+    fun Tag.value(v: Number) { value = v }
+    fun Tag.value(v: Boolean) { value = v }
+    fun Tag.value(v: Date) { value = v }
+    fun Tag.value(v: Color) { value = v.toString() }
 }

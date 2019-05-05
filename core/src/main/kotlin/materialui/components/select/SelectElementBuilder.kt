@@ -1,55 +1,61 @@
 package materialui.components.select
 
-import materialui.components.input.InputElementBuilder
-import materialui.components.select.enums.SelectVariant
+import kotlinext.js.js
+import kotlinx.html.DIV
 import kotlinx.html.Tag
+import kotlinx.html.stream.createHTML
+import materialui.components.getValue
+import materialui.components.input.InputElementBuilder
+import materialui.components.input.InputProps
+import materialui.components.input.input
+import materialui.components.menu.MenuElementBuilder
+import materialui.components.menu.menu
+import materialui.components.select.enums.SelectStyle
+import materialui.components.select.enums.SelectVariant
+import materialui.components.setValue
 import org.w3c.dom.events.Event
-import react.RComponent
-import react.RProps
-import react.RState
-import react.ReactElement
+import react.*
+import kotlin.reflect.KClass
 
 class SelectElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : InputElementBuilder(type) {
+    type: RClass<SelectProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : InputElementBuilder<SelectProps>(type, classMap) {
+    fun Tag.classes(vararg classMap: Pair<SelectStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.autoWidth: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["autoWidth"]
-        set(value) { setProp("autoWidth", value) }
-    var Tag.displayEmpty: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["displayEmpty"]
-        set(value) { setProp("displayEmpty", value) }
-    var Tag.IconComponent: RComponent<RProps, RState>
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["IconComponent"]
-        set(value) { setProp("IconComponent", value) }
-    var Tag.input: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["input"]
-        set(value) { setProp("input", value) }
-    var Tag.MenuProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["MenuProps"]
-        set(value) { setProp("MenuProps", value) }
-    var Tag.multiple: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["multiple"]
-        set(value) { setProp("multiple", value) }
-    var Tag.native: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["native"]
-        set(value) { setProp("native", value) }
-    var Tag.onClose: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onClose"]
-        set(value) { setProp("onClose", value) }
-    var Tag.onOpen: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onOpen"]
-        set(value) { setProp("onOpen", value) }
-    var Tag.open: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["open"]
-        set(value) { setProp("open", value) }
-    var Tag.renderValue: (Any) -> ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["renderValue"]
-        set(value) { setProp("renderValue", value) }
-    var Tag.SelectDisplayProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["SelectDisplayProps"]
-        set(value) { setProp("SelectDisplayProps", value) }
-    var Tag.variant: SelectVariant
-        get() = SelectVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
-        set(value) { setProp("variant", value.toString()) }
+    var Tag.autoWidth: Boolean? by materialProps
+    var Tag.displayEmpty: Boolean? by materialProps
+    var Tag.input: ReactElement? by materialProps
+    var Tag.MenuProps: RProps? by materialProps
+    var Tag.multiple: Boolean? by materialProps
+    var Tag.native: Boolean? by materialProps
+    var Tag.onClose: ((Event) -> Unit)? by materialProps
+    var Tag.onOpen: ((Event) -> Unit)? by materialProps
+    var Tag.open: Boolean? by materialProps
+    var Tag.SelectDisplayProps: RProps? by materialProps
+    var Tag.variant: SelectVariant? by materialProps
+
+    fun <P : RProps, C : Component<P, *>> Tag.iconComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        materialProps.IconComponent = kClass.js as RClass<P>
+    }
+    fun Tag.input(block: InputElementBuilder<InputProps>.() -> Unit) { input = RBuilder().input(block = block) }
+    fun Tag.input(block: RBuilder.() -> Unit) { input = buildElement(block) }
+    fun Tag.menuProps(block: MenuElementBuilder.() -> Unit) {
+        MenuProps = RBuilder().menu(block = block).props
+    }
+    fun <V: Any> Tag.renderValue(block: (V) -> ReactElement) { materialProps.renderValue = block }
+    fun Tag.selectDisplayProps(block: DIV.() -> Unit) {
+        val props = js {  }
+
+        DIV(mapOf(), createHTML()).apply(block).attributesEntries.forEach { (key, value) ->
+            props[key] = value
+        }
+
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        SelectDisplayProps = props as RProps
+    }
 }

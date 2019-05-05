@@ -1,15 +1,17 @@
 package materialui.components.dialogcontent
 
+import materialui.components.MaterialStyle
+import materialui.components.StandardProps
 import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import react.RClass
 
 @JsModule("@material-ui/core/DialogContent")
 private external val dialogContentModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val dialogContentComponent: RComponent<RProps, RState> = dialogContentModule.default
+external interface DialogContentProps : StandardProps
 
-fun RBuilder.dialogContent(block: DialogContentElementBuilder.() -> Unit)
-    = child(DialogContentElementBuilder(dialogContentComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val dialogContentComponent: RClass<DialogContentProps> = dialogContentModule.default
+
+fun RBuilder.dialogContent(rootStyle: String? = null, block: DialogContentElementBuilder.() -> Unit)
+    = child(DialogContentElementBuilder(dialogContentComponent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })).apply(block).create())

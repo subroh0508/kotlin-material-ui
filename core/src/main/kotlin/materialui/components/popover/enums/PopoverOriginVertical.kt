@@ -1,6 +1,6 @@
 package materialui.components.popover.enums
 
 @Suppress("EnumEntryName")
-enum class PopoverAnchorOriginVertical {
+enum class PopoverOriginVertical {
     top, center, bottom
 }

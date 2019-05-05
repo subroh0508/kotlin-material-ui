@@ -1,38 +1,26 @@
 package materialui.components.inputadornment
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
-import materialui.components.inputadornment.enums.InputAdornmentPosition
-import materialui.components.inputadornment.enums.InputAdornmentVariant
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.inputadornment.enums.InputAdornmentPosition
+import materialui.components.inputadornment.enums.InputAdornmentStyle
+import materialui.components.inputadornment.enums.InputAdornmentVariant
+import materialui.components.setValue
+import react.RClass
 
 class InputAdornmentElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory){
+    type: RClass<InputAdornmentProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, InputAdornmentProps>(type, classMap, factory){
+    fun Tag.classes(vararg classMap: Pair<InputAdornmentStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.disablePointerEvents: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disablePointerEvents"]
-        set(value) { setProp("disablePointerEvents", value) }
-    var Tag.disableTypography: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableTypography"]
-        set(value) { setProp("disableTypography", value) }
-    var Tag.muiFormControl: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["muiFormControl"]
-        set(value) { setProp("muiFormControl", value) }
-    var Tag.position: InputAdornmentPosition
-        get() = InputAdornmentPosition.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["position"])
-        set(value) { setProp("position", value.toString()) }
-    var Tag.variant: InputAdornmentVariant
-        get() = InputAdornmentVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
-        set(value) { setProp("variant", value.toString()) }
+    var Tag.disablePointerEvents: Boolean? by materialProps
+    var Tag.disableTypography: Boolean? by materialProps
+    var Tag.position: InputAdornmentPosition? by materialProps
+    var Tag.variant: InputAdornmentVariant? by materialProps
 }

@@ -17,8 +17,9 @@ class SwitchElementBuilder internal constructor(
     }
 
     var Tag.color: SwitchColor? by materialProps
+    var Tag.value: Any? by materialProps
 
-    fun Tag.value(v: String) { materialProps.value = v }
-    fun Tag.value(v: Number) { materialProps.value = v }
-    fun Tag.value(v: Boolean) { materialProps.value = v }
+    fun Tag.value(v: String) { value = v }
+    fun Tag.value(v: Number) { value = v }
+    fun Tag.value(v: Boolean) { value = v }
 }

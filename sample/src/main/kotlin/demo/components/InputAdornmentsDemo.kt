@@ -1,24 +1,22 @@
 package demo.components
 
+import kotlinx.css.*
+import kotlinx.html.DIV
+import kotlinx.html.js.onChangeFunction
 import materialui.components.formcontrol.formControl
 import materialui.components.input.input
 import materialui.components.inputadornment.InputAdornmentElementBuilder
 import materialui.components.inputadornment.enums.InputAdornmentPosition
-import materialui.components.inputbase.values.InputValue
 import materialui.components.inputlabel.inputLabel
 import materialui.components.menuitem.menuItem
 import materialui.components.textfield.textField
-import materialui.components.textfield.values.TextFieldValue
-import kotlinx.css.*
-import kotlinx.html.DIV
-import kotlinx.html.js.onChangeFunction
+import materialui.styles.childWithStyles
 import org.w3c.dom.events.Event
 import react.*
 import react.dom.div
 import react.dom.h2
 import styled.css
 import styled.styledDiv
-import materialui.styles.childWithStyles
 
 val ranges: List<Pair<String, String>>
     get() = listOf(
@@ -69,9 +67,9 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
                 textField {
                     attrs {
                         id = "simple-start-adornment"
-                        label = "With normal TextField"
-                        rootClass("$marginStyle $textFieldStyle")
-                        InputProps {
+                        label { + "With normal TextField" }
+                        classes("$marginStyle $textFieldStyle")
+                        inputProps {
                             attrs {
                                 startAdornment(startAdornment("Kg"))
                             }
@@ -83,14 +81,14 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
                 textField {
                     attrs {
                         select = true
-                        label = "With Select"
-                        rootClass("$marginStyle $textFieldStyle")
-                        InputProps {
+                        label { + "With Select" }
+                        classes("$marginStyle $textFieldStyle")
+                        inputProps {
                             attrs {
                                 startAdornment(startAdornment("Kg"))
                             }
                         }
-                        value = TextFieldValue.String(state.weightRange)
+                        value(state.weightRange)
                         onChangeFunction = handleOnChange("weightRange")
                     }
                     ranges.forEach {
@@ -107,7 +105,7 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
                 formControl {
                     attrs {
                         fullWidth = true
-                        rootClass(marginStyle)
+                        classes(marginStyle)
                     }
                     inputLabel {
                         attrs {
@@ -118,7 +116,7 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
                     input {
                         attrs {
                             id = "adornment-amount"
-                            value = InputValue.String(state.amount)
+                            value(state.amount)
                             onChangeFunction = handleOnChange("amount")
                             startAdornment(startAdornment("$"))
                         }

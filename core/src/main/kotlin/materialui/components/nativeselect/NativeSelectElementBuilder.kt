@@ -1,24 +1,32 @@
 package materialui.components.nativeselect
 
-import materialui.components.input.InputElementBuilder
-import materialui.components.nativeselect.enums.NativeSelectVariant
 import kotlinx.html.Tag
-import react.RComponent
-import react.RProps
-import react.RState
-import react.ReactElement
+import materialui.components.getValue
+import materialui.components.input.InputElementBuilder
+import materialui.components.nativeselect.enums.NativeSelectStyle
+import materialui.components.nativeselect.enums.NativeSelectVariant
+import materialui.components.setValue
+import react.*
+import kotlin.reflect.KClass
 
 class NativeSelectElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : InputElementBuilder(type) {
+    type: RClass<NativeSelectProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : InputElementBuilder<NativeSelectProps>(type, classMap) {
+    fun Tag.classes(vararg classMap: Pair<NativeSelectStyle, String>) {
+        classes(classMap.toList())
+    }
 
     var Tag.iconComponent: RComponent<RProps, RState>
         get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["IconComponent"]
         set(value) { setProp("IconComponent", value) }
-    var Tag.input: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["input"]
-        set(value) { setProp("input", value) }
-    var Tag.variant: NativeSelectVariant
-        get() = NativeSelectVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
-        set(value) { setProp("variant", value.toString()) }
+    var Tag.input: ReactElement? by materialProps
+    var Tag.variant: NativeSelectVariant? by materialProps
+
+    fun <P : RProps, C : Component<P, *>> Tag.iconComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        materialProps.IconComponent = kClass.js as RClass<P>
+    }
+    fun Tag.iconComponent(tagName: String) { materialProps.IconComponent = tagName }
 }

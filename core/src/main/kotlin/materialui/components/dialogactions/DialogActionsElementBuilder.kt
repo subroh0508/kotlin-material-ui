@@ -1,20 +1,20 @@
 package materialui.components.dialogactions
 
-import materialui.components.MaterialElementBuilder
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.MMaterialElementBuilder
+import materialui.components.dialogactions.enums.DialogActionsStyle
+import materialui.components.getValue
+import materialui.components.setValue
+import react.RClass
 
 class DialogActionsElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
+    type: RClass<DialogActionProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<DIV, DialogActionProps>(type, classMap, { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<DialogActionsStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.disableActionSpacing: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableActionSpacing"]
-        set(value) { setProp("disableActionSpacing", value) }
+    var Tag.disableActionSpacing: Boolean? by materialProps
 }

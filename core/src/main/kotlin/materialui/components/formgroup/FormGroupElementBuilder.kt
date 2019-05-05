@@ -1,20 +1,20 @@
 package materialui.components.formgroup
 
-import materialui.components.MaterialElementBuilder
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.MMaterialElementBuilder
+import materialui.components.formgroup.enums.FormGroupStyle
+import materialui.components.getValue
+import materialui.components.setValue
+import react.RClass
 
-open class FormGroupElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
+open class FormGroupElementBuilder<Props: FormGroupProps> internal constructor(
+    type: RClass<Props>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<DIV, Props>(type, classMap, { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<FormGroupStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.row: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["row"]
-        set(value) { setProp("row", value) }
+    var Tag.row: Boolean? by materialProps
 }

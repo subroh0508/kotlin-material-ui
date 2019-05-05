@@ -1,21 +1,16 @@
 package materialui.components.menulist
 
-import materialui.components.consumers
-import materialui.components.list.ListElementBuilder
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.getValue
+import materialui.components.list.ListElementBuilder
+import materialui.components.setValue
+import react.RClass
 
 class MenuListElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : ListElementBuilder<T>(type, tag, factory) {
-
-    var Tag.disableListWrap: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableListWrap"]
-        set(value) { setProp("disableListWrap", value) }
+    type: RClass<MenuListProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : ListElementBuilder<T, MenuListProps>(type, classMap, factory) {
+    var Tag.disableListWrap: Boolean? by materialProps
 }

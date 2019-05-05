@@ -1,54 +1,38 @@
 package materialui.components.drawer
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.drawer.enums.DrawerAnchor
-import materialui.components.drawer.enums.DrawerVariant
-import materialui.components.drawer.values.TransitionDuration
+import kotlinext.js.js
 import kotlinx.html.DIV
 import kotlinx.html.Tag
+import materialui.components.MMaterialElementBuilder
+import materialui.components.drawer.enums.DrawerAnchor
+import materialui.components.drawer.enums.DrawerStyle
+import materialui.components.drawer.enums.DrawerVariant
+import materialui.components.getValue
+import materialui.components.setValue
+import materialui.styles.muitheme.MuiTheme
 import org.w3c.dom.events.Event
-import react.RComponent
+import react.RClass
 import react.RProps
-import react.RState
 
-open class DrawerElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
+open class DrawerElementBuilder<Props: DrawerProps> internal constructor(
+    type: RClass<Props>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<DIV,Props>(type, classMap, { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<DrawerStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.anchor: DrawerAnchor
-        get() = DrawerAnchor.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["anchor"])
-        set(value) { setProp("anchor", value.toString()) }
-    var Tag.backdropProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["BackdropProps"]
-        set(value) { setProp("BackdropProps", value) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.elevation: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["elevation"]
-        set(value) { setProp("elevation", value) }
-    var Tag.modalProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["ModalProps"]
-        set(value) { setProp("ModalProps", value) }
-    var Tag.onClose: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onClose"]
-        set(value) { setProp("onClose", value) }
-    var Tag.open: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["open"]
-        set(value) { setProp("open", value) }
-    var Tag.paperProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["PaperProps"]
-        set(value) { setProp("PaperProps", value) }
-    var Tag.slideProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["SlideProps"]
-        set(value) { setProp("SlideProps", value) }
-    var Tag.theme: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["theme"]
-        set(value) { setProp("theme", value) }
-    var Tag.transitionDuration: TransitionDuration
-        get() = TransitionDuration.fromDynamic(props.asDynamic()["transitionDuration"])
-        set(value) { setProp("transitionDuration", value.value) }
-    var Tag.variant: DrawerVariant
-        get() = DrawerVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
-        set(value) { setProp("variant", value.toString()) }
+    var Tag.anchor: DrawerAnchor? by materialProps
+    var Tag.BackdropProps: RProps? by materialProps
+    var Tag.elevation: Number? by materialProps
+    var Tag.ModalProps: RProps? by materialProps
+    var Tag.onClose: ((Event) -> Unit)? by materialProps
+    var Tag.open: Boolean? by materialProps
+    var Tag.PaperProps: RProps? by materialProps
+    var Tag.SlideProps: RProps? by materialProps
+    var Tag.theme: MuiTheme? by materialProps
+    var Tag.variant: DrawerVariant? by materialProps
+
+    fun Tag.transitionDuration(msec: Number) { materialProps.transitionDuration = msec }
+    fun Tag.transitionDuration(start: Number? = null, exit: Number? = null) { materialProps.transitionDuration = js { this["start"] = start; this["exit"] = exit } }
 }

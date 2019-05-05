@@ -1,15 +1,22 @@
 package materialui.components.gridlisttilebar
 
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.StandardProps
+import materialui.components.gridlisttile.enums.GridListTitleStyle
+import react.*
 
 @JsModule("@material-ui/core/GridListTileBar")
 private external val gridListTileBarModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val gridListTileBarComponent: RComponent<RProps, RState> = gridListTileBarModule.default
+external interface GridListTitleBarProps : StandardProps {
+    var actionIcon: ReactElement?
+    var actionPosition: String?
+    var subtitle: ReactElement?
+    var title: ReactElement?
+    var titlePosition: String?
+}
 
-fun RBuilder.gridListTileBar(block: GridListTileBarElementBuilder.() -> Unit)
-    = child(GridListTileBarElementBuilder(gridListTileBarComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val gridListTileBarComponent: RClass<GridListTitleBarProps> = gridListTileBarModule.default
+
+fun RBuilder.gridListTileBar(vararg classMap: Pair<GridListTitleStyle, String>, block: GridListTileBarElementBuilder.() -> Unit)
+    = child(GridListTileBarElementBuilder(gridListTileBarComponent, classMap.toList()).apply(block).create())

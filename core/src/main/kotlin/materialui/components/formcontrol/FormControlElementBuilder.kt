@@ -1,40 +1,28 @@
 package materialui.components.formcontrol
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import materialui.components.MMaterialElementBuilder
 import materialui.components.formcontrol.enums.FormControlMargin
 import materialui.components.formcontrol.enums.FormControlStyle
 import materialui.components.formcontrol.enums.FormControlVariant
-import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.getValue
+import materialui.components.setValue
+import react.RClass
 
-open class FormControlElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+open class FormControlElementBuilder<T: Tag, Props: FormControlProps> internal constructor(
+    type: RClass<Props>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, Props>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<FormControlStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    fun Tag.classes(vararg classMap: Pair<FormControlStyle, String>) = setClasses(*classMap)
-    var Tag.disabled: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]
-        set(value) { setProp("disabled", value) }
-    var Tag.error: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["error"]
-        set(value) { setProp("error", value) }
-    var Tag.fullWidth: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["fullWidth"]
-        set(value) { setProp("fullWidth", value) }
-    var Tag.margin: FormControlMargin
-        get() = FormControlMargin.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["margin"])
-        set(value) { setProp("margin", value.toString()) }
-    var Tag.required: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["required"]
-        set(value) { setProp("required", value) }
-    var Tag.variant: FormControlVariant
-        get() = FormControlVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
-        set(value) { setProp("variant", value.toString()) }
+    var Tag.disabled: Boolean? by materialProps
+    var Tag.error: Boolean? by materialProps
+    var Tag.fullWidth: Boolean? by materialProps
+    var Tag.margin: FormControlMargin? by materialProps
+    var Tag.required: Boolean? by materialProps
+    var Tag.variant: FormControlVariant? by materialProps
 }
