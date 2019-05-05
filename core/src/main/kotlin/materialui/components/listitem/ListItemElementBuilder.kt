@@ -5,7 +5,7 @@ import kotlinx.html.LI
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import kotlinx.html.stream.createHTML
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.listitem.enums.ListItemAlignItem
 import materialui.components.listitem.enums.ListItemStyle
@@ -20,7 +20,7 @@ open class ListItemElementBuilder<T: Tag, Props: ListItemProps> internal constru
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<Tag, Props>(type, classMap, factory) {
+) : MaterialElementBuilder<Tag, Props>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<ListItemStyle, String>) {
         classes(classMap.toList())
     }

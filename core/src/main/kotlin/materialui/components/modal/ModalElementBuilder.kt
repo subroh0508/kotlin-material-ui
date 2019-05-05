@@ -3,7 +3,7 @@ package materialui.components.modal
 import kotlinext.js.jsObject
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.backdrop.BackdropElementBuilder
 import materialui.components.backdrop.backdrop
 import materialui.components.getValue
@@ -18,7 +18,7 @@ import kotlin.reflect.KClass
 open class ModalElementBuilder<Props: ModalProps>(
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<DIV, Props>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, Props>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<ModalStyle, String>) {
         classes(classMap.toList())
     }

@@ -2,7 +2,7 @@ package materialui.components.circularprogress
 
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.circularprogress.enums.CircularProgressColor
 import materialui.components.circularprogress.enums.CircularProgressStyle
 import materialui.components.circularprogress.enums.CircularProgressVariant
@@ -13,7 +13,7 @@ import react.RClass
 class CircularProgressElementBuilder internal constructor(
     type: RClass<CircularProgressProps>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<DIV, CircularProgressProps>(type, classMap.toList(), { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, CircularProgressProps>(type, classMap.toList(), { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<CircularProgressStyle, String>) {
         classes(classMap.toList())
     }

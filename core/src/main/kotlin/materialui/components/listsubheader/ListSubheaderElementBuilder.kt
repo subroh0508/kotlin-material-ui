@@ -2,7 +2,7 @@ package materialui.components.listsubheader
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.listsubheader.enums.ListSubheaderColor
 import materialui.components.listsubheader.enums.ListSubheaderStyle
@@ -13,7 +13,7 @@ class ListSubheaderElementBuilder<T: Tag> internal constructor(
     type: RClass<ListSubheaderProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, ListSubheaderProps>(type, classMap, factory) {
+) : MaterialElementBuilder<T, ListSubheaderProps>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<ListSubheaderStyle, String>) {
         classes(classMap.toList())
     }

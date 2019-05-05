@@ -2,7 +2,7 @@ package materialui.components.chip
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.chip.enums.ChipColor
 import materialui.components.chip.enums.ChipStyle
 import materialui.components.chip.enums.ChipVariant
@@ -18,7 +18,7 @@ class ChipElementBuilder<T: Tag> internal constructor(
     type: RClass<ChipProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, ChipProps>(type, classMap, factory) {
+) : MaterialElementBuilder<T, ChipProps>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<ChipStyle, String>) {
         classes(classMap.toList())
     }

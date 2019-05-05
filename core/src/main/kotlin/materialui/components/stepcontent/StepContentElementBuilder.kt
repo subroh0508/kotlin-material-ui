@@ -4,7 +4,7 @@ import kotlinext.js.js
 import kotlinext.js.jsObject
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.step.enums.StepOrientation
@@ -18,7 +18,7 @@ import kotlin.reflect.KClass
 class StepContentElementBuilder internal constructor(
     type: RClass<StepContentProps>,
     classMap: List<Pair<StepContentStyle, String>>
-) : MMaterialElementBuilder<DIV, StepContentProps>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, StepContentProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<StepContentStyle, String>) {
         classes(classMap.toList())
     }

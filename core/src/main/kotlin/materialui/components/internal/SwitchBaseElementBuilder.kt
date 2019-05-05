@@ -6,7 +6,7 @@ import kotlinx.html.InputType
 import kotlinx.html.SPAN
 import kotlinx.html.Tag
 import kotlinx.html.stream.createHTML
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import react.*
@@ -14,7 +14,7 @@ import react.*
 abstract class SwitchBaseElementBuilder<Props: SwitchBaseProps> internal constructor(
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<SPAN, Props>(type, classMap, { SPAN(mapOf(), it) }) {
+) : MaterialElementBuilder<SPAN, Props>(type, classMap, { SPAN(mapOf(), it) }) {
 
     var Tag.autoFocus: Boolean? by materialProps
     var Tag.checked: Boolean? by materialProps

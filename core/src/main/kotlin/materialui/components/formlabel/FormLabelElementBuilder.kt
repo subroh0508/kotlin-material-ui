@@ -2,7 +2,7 @@ package materialui.components.formlabel
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.formlabel.enums.FormLabelStyle
 import materialui.components.getValue
 import materialui.components.setValue
@@ -12,7 +12,7 @@ open class FormLabelElementBuilder<T: Tag, Props: FormLabelProps> internal const
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, Props>(type, classMap, factory) {
+) : MaterialElementBuilder<T, Props>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<FormLabelStyle, String>) {
         classes(classMap.toList())
     }

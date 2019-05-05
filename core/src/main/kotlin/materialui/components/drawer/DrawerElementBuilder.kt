@@ -3,7 +3,7 @@ package materialui.components.drawer
 import kotlinext.js.js
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.drawer.enums.DrawerAnchor
 import materialui.components.drawer.enums.DrawerStyle
 import materialui.components.drawer.enums.DrawerVariant
@@ -17,7 +17,7 @@ import react.RProps
 open class DrawerElementBuilder<Props: DrawerProps> internal constructor(
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<DIV,Props>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV,Props>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<DrawerStyle, String>) {
         classes(classMap.toList())
     }
