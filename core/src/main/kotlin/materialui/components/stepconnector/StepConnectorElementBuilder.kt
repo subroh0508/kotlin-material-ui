@@ -2,7 +2,7 @@ package materialui.components.stepconnector
 
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.step.enums.StepOrientation
@@ -12,7 +12,7 @@ import react.RClass
 class StepConnectorElementBuilder internal constructor(
     type: RClass<StepConnectorProps>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<DIV, StepConnectorProps>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, StepConnectorProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<StepConnectorStyle, String>) {
         classes(classMap.toList())
     }

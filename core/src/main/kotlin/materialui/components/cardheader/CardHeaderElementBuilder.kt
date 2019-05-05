@@ -4,7 +4,7 @@ import kotlinx.html.P
 import kotlinx.html.SPAN
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.cardheader.enums.CardHeaderStyle
 import materialui.components.getValue
 import materialui.components.setValue
@@ -17,7 +17,7 @@ class CardHeaderElementBuilder<T: Tag> internal constructor(
     type: RClass<CardHeaderProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, CardHeaderProps>(type, classMap, factory) {
+) : MaterialElementBuilder<T, CardHeaderProps>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<CardHeaderStyle, String>) {
         classes(classMap.toList())
     }

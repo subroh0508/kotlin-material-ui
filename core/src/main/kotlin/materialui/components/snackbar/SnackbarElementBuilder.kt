@@ -5,7 +5,7 @@ import kotlinext.js.jsObject
 import kotlinx.html.DIV
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.clickawaylistener.ClickAwayListenerBuilder
 import materialui.components.clickawaylistener.clickAwayListener
 import materialui.components.getValue
@@ -21,7 +21,7 @@ import kotlin.reflect.KClass
 class SnackbarElementBuilder internal constructor(
     type: RClass<SnackbarProps>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<DIV, SnackbarProps>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, SnackbarProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<SnackbarStyle, String>) {
         classes(classMap.toList())
     }

@@ -3,7 +3,7 @@ package materialui.components.svgicon
 import kotlinx.css.Color
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.svgicon.enums.SvgIconColor
@@ -15,7 +15,7 @@ class SvgIconElementBuilder<T: Tag> internal constructor(
     type: RClass<SvgIconProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, SvgIconProps>(type, classMap, factory) {
+) : MaterialElementBuilder<T, SvgIconProps>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<SvgIconStyle, String>) {
         classes(classMap.toList())
     }

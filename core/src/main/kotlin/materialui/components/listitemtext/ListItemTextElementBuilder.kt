@@ -1,7 +1,7 @@
 package materialui.components.listitemtext
 
 import kotlinx.html.*
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.listitemtext.enums.ListItemTextStyle
 import materialui.components.setValue
@@ -17,7 +17,7 @@ import react.ReactElement
 class ListItemTextElementBuilder internal constructor(
     type: RClass<ListItemTextProps>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<DIV, ListItemTextProps>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, ListItemTextProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<ListItemTextStyle, String>) {
         classes(classMap.toList())
     }

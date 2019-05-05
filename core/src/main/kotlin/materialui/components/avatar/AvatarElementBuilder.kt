@@ -5,7 +5,7 @@ import kotlinx.html.IMG
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import kotlinx.html.stream.createHTML
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.avatar.enum.AvatarStyle
 import materialui.components.getValue
 import materialui.components.setValue
@@ -16,7 +16,7 @@ class AvatarElementBuilder<T: Tag> internal constructor(
     type: RClass<AvatarProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, AvatarProps>(type, classMap, factory) {
+) : MaterialElementBuilder<T, AvatarProps>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<AvatarStyle, String>) {
         classes(classMap.map { it.first to it.second })
     }

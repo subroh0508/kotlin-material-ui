@@ -2,7 +2,7 @@ package materialui.components.formcontrol
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.formcontrol.enums.FormControlMargin
 import materialui.components.formcontrol.enums.FormControlStyle
 import materialui.components.formcontrol.enums.FormControlVariant
@@ -14,7 +14,7 @@ open class FormControlElementBuilder<T: Tag, Props: FormControlProps> internal c
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, Props>(type, classMap, factory) {
+) : MaterialElementBuilder<T, Props>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<FormControlStyle, String>) {
         classes(classMap.toList())
     }

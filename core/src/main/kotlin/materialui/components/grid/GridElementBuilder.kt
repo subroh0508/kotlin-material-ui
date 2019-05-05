@@ -2,7 +2,7 @@ package materialui.components.grid
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.grid.enums.*
 import materialui.components.setValue
@@ -12,7 +12,7 @@ class GridElementBuilder<T: Tag> internal constructor(
     type: RClass<GridProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, GridProps>(type, classMap, factory) {
+) : MaterialElementBuilder<T, GridProps>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<GridStyle, String>) {
         classes(classMap.toList())
     }

@@ -3,7 +3,7 @@ package materialui.components.buttonbase
 import kotlinext.js.jsObject
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.buttonbase.enums.ButtonBaseStyle
 import materialui.components.buttonbase.enums.ButtonStyle
 import materialui.components.getValue
@@ -17,7 +17,7 @@ open class ButtonBaseElementBuilder<T: Tag, Props: ButtonBaseProps> internal con
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, Props>(type, classMap, factory) {
+) : MaterialElementBuilder<T, Props>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<ButtonBaseStyle, String>) {
         classes(classMap.map { it.first to it.second })
     }

@@ -2,7 +2,7 @@ package materialui.components.gridlisttile
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.gridlisttile.enums.GridListTitleStyle
 import materialui.components.setValue
@@ -12,7 +12,7 @@ class GridListTileElementBuilder<T: Tag> internal constructor(
     type: RClass<GridListTitleProps>,
     classMap: List<Pair<GridListTitleStyle, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, GridListTitleProps>(type, classMap, factory) {
+) : MaterialElementBuilder<T, GridListTitleProps>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<GridListTitleStyle, String>) {
         classes(classMap.toList())
     }

@@ -2,7 +2,7 @@ package materialui.components.linearprogress
 
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.linearprogress.enums.LinearProgressColor
 import materialui.components.linearprogress.enums.LinearProgressStyle
@@ -13,7 +13,7 @@ import react.RClass
 class LinearProgressElementBuilder internal constructor(
     type: RClass<LinearProgressProps>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<DIV, LinearProgressProps>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, LinearProgressProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<LinearProgressStyle, String>) {
         classes(classMap.toList())
     }

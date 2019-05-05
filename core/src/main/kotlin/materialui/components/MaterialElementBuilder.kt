@@ -1,50 +1,61 @@
 package materialui.components
 
-import kotlinext.js.js
+import kotlinext.js.Object
+import kotlinext.js.jsObject
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
+import react.RClass
+import react.ReactElement
 import react.createElement
-import react.dom.InnerHTML
 import react.dom.RDOMBuilder
 
-abstract class MaterialElementBuilder<T: Tag>(
-    val type: RComponent<RProps, RState>,
+abstract class MaterialElementBuilder<T: Tag, Props: StandardProps>(
+    val type: RClass<Props>,
+    classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : RDOMBuilder<T>(factory) {
-    init {
-        setProp("component", attrs.tagName)
+    protected val materialProps: Props = jsObject { }
+
+    fun Tag.classes(rootStyle: String) {
+        classes(listOf(MaterialStyle.root to rootStyle))
     }
 
-    var Tag.className: String?
-        get() = props.className
-        set(value) { props.className = value }
-    var Tag.dangerouslySetInnerHTML: InnerHTML?
-        get() = props.dangerouslySetInnerHTML
-        set(value) { props.dangerouslySetInnerHTML = value }
+    fun Tag.classes(vararg classMap: Pair<Enum<*>, String>) {
+        classes(classMap.map { (key, value) -> key to value })
+    }
 
-    protected fun setClasses(vararg classMap: Pair<Enum<*>, String>)
-            = setClasses(classMap.map { it.first.toString() to it.second })
+    fun Tag.classes(classMap: List<Pair<Enum<*>, String>>) {
+        classes(classMap.map { (key, value) -> key.toString() to value })
+    }
 
-    private fun setClasses(classMap: List<Pair<String, String>>) {
-        val classes = props.asDynamic()["classes"]
-        val rootClass = if (classes != null) classes["root"] else null
+    fun Tag.classes(vararg classMap: Pair<String, String>) {
+        classes(classMap.map { (key, value) -> key to value })
+    }
 
-        val jsObject = classes ?: js { }
-
-        jsObject["root"] = rootClass
-        classMap.forEach {
-            jsObject[it.first] = it.second
+    fun Tag.classes(classMap: List<Pair<String, String>>) {
+        if (classMap.isEmpty()) {
+            return
         }
 
-        setProp("classes", jsObject as Any)
+        val classesObj: dynamic = jsObject { }
+
+        classMap.forEach { (key, value) -> classesObj[key] = value }
+
+        classes = classesObj as Any
     }
 
-    fun Tag.rootClass(className: String) {
-        setClasses(listOf("root" to className))
+    var Tag.classes: Any? by materialProps
+    var Tag.className: String? by materialProps
+    var Tag.component: String? by materialProps
+
+    init {
+        attrs.classes(classMap)
+        attrs.component = attrs.tagName
     }
 
-    override fun create() = createElement(type, props, *childList.toTypedArray())
+    override fun create(): ReactElement {
+        Object.keys(materialProps).forEach { key -> setProp(key, materialProps[key]) }
+
+        return createElement(type, props, *childList.toTypedArray())
+    }
 }
