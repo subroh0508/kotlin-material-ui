@@ -4,12 +4,12 @@ import kotlinx.css.*
 import kotlinx.html.InputType
 import kotlinx.html.SPAN
 import kotlinx.html.id
+import materialui.styles.StylesSet
 import materialui.components.button.button
 import materialui.components.button.enums.ButtonColor
 import materialui.components.button.enums.ButtonStyle
 import materialui.components.button.enums.ButtonVariant
 import materialui.styles.childWithStyles
-import materialui.styles.muitheme.MuiTheme
 import react.RBuilder
 import react.RComponent
 import react.RProps
@@ -115,18 +115,14 @@ class ButtonsDemo : RComponent<RProps, RState>() {
     companion object {
         fun render(rBuilder: RBuilder) = rBuilder.childWithStyles(
             ButtonsDemo::class,
-            "button" to button,
-            "input" to input
+            styles
         ) { }
 
-        private val button = { theme: MuiTheme ->
-            CSSBuilder().apply {
+        private val styles: StylesSet.() -> Unit = {
+            "button" {
                 margin(theme.spacing.unit.px)
             }
-        }
-
-        private val input = { _: MuiTheme ->
-            CSSBuilder().apply {
+            "input" {
                 display = Display.none
             }
         }

@@ -3,6 +3,7 @@ package demo.components
 import kotlinx.css.*
 import kotlinx.html.DIV
 import kotlinx.html.js.onChangeFunction
+import materialui.styles.StylesSet
 import materialui.components.formcontrol.formControl
 import materialui.components.input.input
 import materialui.components.inputadornment.InputAdornmentElementBuilder
@@ -136,28 +137,24 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
     companion object {
         fun render(rBuilder: RBuilder) = rBuilder.childWithStyles(
             InputAdornmentsDemo::class,
-            "root" to root,
-            "margin" to margin,
-            "withoutLabel" to withoutLabel,
-            "textField" to textField
+            style
         ) { }
 
-        private val root = CSSBuilder().apply {
-            display = Display.flex
-            flexWrap = FlexWrap.wrap
-            boxSizing = BoxSizing.inherit
-        }
-
-        private val margin = CSSBuilder().apply {
-            margin(8.px)
-        }
-
-        private val withoutLabel = CSSBuilder().apply {
-            marginTop = 24.px
-        }
-
-        private val textField = CSSBuilder().apply {
-            flexBasis = 200.px.basis
+        private val style: StylesSet.() -> Unit = {
+            "root" {
+                display = Display.flex
+                flexWrap = FlexWrap.wrap
+                boxSizing = BoxSizing.inherit
+            }
+            "margin" {
+                margin(8.px)
+            }
+            "withoutLabel" {
+                marginTop = 24.px
+            }
+            "textField" {
+                flexBasis = 200.px.basis
+            }
         }
     }
 }
