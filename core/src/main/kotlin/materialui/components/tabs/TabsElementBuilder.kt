@@ -9,6 +9,7 @@ import materialui.components.tabs.enums.*
 import materialui.styles.muitheme.MuiTheme
 import org.w3c.dom.events.Event
 import react.Component
+import react.RBuilder
 import react.RClass
 import react.RProps
 import kotlin.reflect.KClass
@@ -44,6 +45,7 @@ class TabsElementBuilder<T: Tag> internal constructor(
         materialProps.ScrollButtonComponent = kClass.js as RClass<P>
     }
     fun Tag.scrollButtonComponent(tagName: String) { materialProps.ScrollButtonComponent = tagName }
-    // todo create TabIndicator
-    fun Tag.tabIndicatorProps() {}
+    fun Tag.tabIndicatorProps(block: TabIndicatorElementBuilder.() -> Unit) {
+        TabIndicatorProps = RBuilder().tabIndicator(block).props
+    }
 }
