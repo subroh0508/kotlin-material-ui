@@ -20,6 +20,5 @@ class CheckboxElementBuilder internal constructor(
     var Tag.color: CheckboxColor? by materialProps
     var Tag.indeterminate: Boolean? by materialProps
     var Tag.indeterminateIcon: ReactElement? by materialProps
-
-    fun Tag.value(v: String) { materialProps.value = v }
+    var Tag.value: String? by materialProps
 }

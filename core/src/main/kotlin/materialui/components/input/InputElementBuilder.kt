@@ -1,16 +1,19 @@
 package materialui.components.input
 
-import materialui.components.inputbase.InputBaseElementBuilder
 import kotlinx.html.Tag
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.getValue
+import materialui.components.input.enums.InputStyle
+import materialui.components.inputbase.InputBaseElementBuilder
+import materialui.components.setValue
+import react.RClass
 
-open class InputElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : InputBaseElementBuilder(type) {
+open class InputElementBuilder<Props: InputProps> internal constructor(
+    type: RClass<Props>,
+    classMap: List<Pair<Enum<*>, String>>
+) : InputBaseElementBuilder<Props>(type, classMap) {
+    fun Tag.classes(vararg classMap: Pair<InputStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.disableUnderline: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableUnderline"]
-        set(value) { setProp("disableUnderline", value) }
+    var Tag.disableUnderline: Boolean? by materialProps
 }

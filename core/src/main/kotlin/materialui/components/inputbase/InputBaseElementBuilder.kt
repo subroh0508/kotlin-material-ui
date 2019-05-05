@@ -1,117 +1,89 @@
 package materialui.components.inputbase
 
-import materialui.components.MaterialElementBuilder
+import kotlinext.js.js
+import kotlinx.css.Color
+import kotlinx.html.DIV
+import kotlinx.html.INPUT
+import kotlinx.html.InputType
+import kotlinx.html.Tag
+import kotlinx.html.stream.createHTML
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
 import materialui.components.inputadornment.InputAdornmentElementBuilder
 import materialui.components.inputadornment.inputAdornment
 import materialui.components.inputbase.enums.InputBaseStyle
 import materialui.components.inputbase.enums.InputMargin
-import materialui.components.inputbase.values.InputValue
-import kotlinx.html.DIV
-import kotlinx.html.INPUT
-import kotlinx.html.Tag
+import materialui.components.setValue
 import org.w3c.dom.events.Event
 import react.*
-import react.dom.RDOMBuilder
-import react.dom.input
+import kotlin.js.Date
+import kotlin.reflect.KClass
 
-open class InputBaseElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
+open class InputBaseElementBuilder<Props: InputBaseProps> internal constructor(
+    type: RClass<Props>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<DIV, Props>(type, classMap, { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<InputBaseStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.autoComplete: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["autoComplete"]
-        set(value) { setProp("autoComplete", value) }
-    var Tag.autoFocus: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["autoFocus"]
-        set(value) { setProp("autoFocus", value) }
-    fun Tag.classes(vararg classMap: Pair<InputBaseStyle, String>) = setClasses(*classMap)
-    var Tag.defaultValue: InputValue
-        get() = InputValue.fromDynamic(props.asDynamic()["defaultValue"])
-        set(value) { setProp("defaultValue", value.value) }
-    var Tag.disabled: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disabled"]
-        set(value) { setProp("disabled", value) }
-    var Tag.endAdornment: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["endAdornment"]
-        set(value) { setProp("endAdornment", value) }
+    var Tag.autoComplete: String? by materialProps
+    var Tag.autoFocus: Boolean? by materialProps
+    var Tag.defaultValue: Any? by materialProps
+    var Tag.disabled: Boolean? by materialProps
+    var Tag.endAdornment: ReactElement? by materialProps
+    var Tag.error: Boolean? by materialProps
+    var Tag.fullWidth: Boolean? by materialProps
+    var Tag.id: String? by materialProps
+    var Tag.inputProps: RProps? by materialProps
+    var Tag.inputRef: RRef? by materialProps
+    var Tag.margin: InputMargin? by materialProps
+    var Tag.multiline: Boolean? by materialProps
+    var Tag.name: String? by materialProps
+    var Tag.onEmpty: ((Event) -> Unit)? by materialProps
+    var Tag.onFilled: ((Event) -> Unit)? by materialProps
+    var Tag.placeholder: String? by materialProps
+    var Tag.readOnly: Boolean? by materialProps
+    var Tag.required: Boolean? by materialProps
+    var Tag.rows: String? by materialProps
+    var Tag.rowsMax: String? by materialProps
+    var Tag.startAdornment: ReactElement? by materialProps
+    var Tag.type: InputType? by materialProps
+    var Tag.value: Any? by materialProps
+
+    fun Tag.defaultValue(v: String) { defaultValue = v }
+    fun Tag.defaultValue(v: Number) { defaultValue = v }
+    fun Tag.defaultValue(v: Boolean) { defaultValue = v }
+    fun Tag.defaultValue(v: Date) { defaultValue = v }
+    fun Tag.defaultValue(v: Color) { defaultValue = v.toString() }
     fun Tag.endAdornment(block: InputAdornmentElementBuilder<DIV>.() -> Unit) {
-        val adornment = RBuilder().inputAdornment(block)
-
-        setProp("endAdornment", adornment)
+        endAdornment = RBuilder().inputAdornment(block = block)
     }
-    var Tag.error: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["error"]
-        set(value) { setProp("error", value) }
-    var Tag.fullWidth: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["fullWidth"]
-        set(value) { setProp("fullWidth", value) }
-    var Tag.id: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["id"]
-        set(value) { setProp("id", value) }
-    // todo ReactElementをElementBuilder経由で渡してpropsだけinputPropsでsetPropする形式
-    var Tag.inputComponent: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["inputComponent"]
-        set(value) { setProp("inputComponent", value) }
-    fun Tag.inputComponent(handler: RDOMBuilder<INPUT>.() -> Unit) {
-        val inputProps = RBuilder().input(block = handler).props
-
-        setProp("inputComponent", "input")
-        setProp("inputProps", inputProps)
+    fun <P: RProps, C: Component<P, *>> Tag.inputComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        materialProps.inputComponent = kClass.js as RClass<P>
     }
-    var Tag.inputProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["inputProps"]
-        set(value) { setProp("inputProps", value) }
-    var Tag.inputRef: RRef
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["inputRef"]
-        set(value) { setProp("inputRef", value) }
-    var Tag.margin: InputMargin
-        get() = InputMargin.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["margin"])
-        set(value) { setProp("margin", value.toString()) }
-    var Tag.muiFormControl: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["muiFormControl"]
-        set(value) { setProp("muiFormControl", value) }
-    var Tag.multiline: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["multiline"]
-        set(value) { setProp("multiline", value) }
-    var Tag.name: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["name"]
-        set(value) { setProp("name", value) }
-    var Tag.onEmpty: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onEmpty"]
-        set(value) { setProp("onEmpty", value) }
-    var Tag.onFilled: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onFilled"]
-        set(value) { setProp("onFilled", value) }
-    var Tag.placeholder: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["placeholder"]
-        set(value) { setProp("placeholder", value) }
-    var Tag.readOnly: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["readOnly"]
-        set(value) { setProp("readOnly", value) }
-    var Tag.renderPrefix: (dynamic) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["renderPrefix"]
-        set(value) { setProp("renderPrefix", value) }
-    var Tag.required: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["required"]
-        set(value) { setProp("required", value) }
-    var Tag.rows: Int
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["rows"]
-        set(value) { setProp("rows", value) }
-    var Tag.rowsMax: Int
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["rowsMax"]
-        set(value) { setProp("rowsMax", value) }
-    var Tag.startAdornment: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["startAdornment"]
-        set(value) { setProp("startAdornment", value) }
+    fun Tag.inputProps(block: INPUT.() -> Unit) {
+        val props = js {  }
+
+        INPUT(mapOf(), createHTML()).apply(block).attributesEntries.forEach { (key, value) ->
+            props[key] = value
+        }
+
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        inputProps = props as RProps
+    }
     fun Tag.startAdornment(block: InputAdornmentElementBuilder<DIV>.() -> Unit) {
-        val adornment = RBuilder().inputAdornment(block)
-
-        setProp("startAdornment", adornment)
+        startAdornment = RBuilder().inputAdornment(block = block)
     }
-    var Tag.type: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["type"]
-        set(value) { setProp("type", value) }
-    var Tag.value: InputValue
-        get() = InputValue.fromDynamic(props.asDynamic()["value"])
-        set(value) { setProp("value", value.value) }
+    fun Tag.rows(v: String) { materialProps.rows = v }
+    fun Tag.rows(v: Number) { materialProps.rows = v }
+    fun Tag.rowsMax(v: String) { materialProps.rowsMax = v }
+    fun Tag.rowsMax(v: Number) { materialProps.rowsMax = v }
+    fun Tag.value(v: String) { value = v }
+    fun Tag.value(v: Number) { value = v }
+    fun Tag.value(v: Boolean) { value = v }
+    fun Tag.value(v: Date) { value = v }
+    fun Tag.value(v: Color) { value = v.toString() }
 }

@@ -1,35 +1,33 @@
 package materialui.components.gridlisttilebar
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.gridlisttilebar.enums.GridListTileBarActionPosition
-import materialui.components.gridlisttilebar.enums.GridListTileBarTitlePosition
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.gridlisttilebar.enums.GridListTileBarActionPosition
+import materialui.components.gridlisttilebar.enums.GridListTileBarTitlePosition
+import materialui.components.gridlisttilebar.enums.GridListTitleBarStyle
+import materialui.components.setValue
+import react.RBuilder
+import react.RClass
 import react.ReactElement
+import react.buildElement
 
 class GridListTileBarElementBuilder internal constructor(
-    type: RComponent<RProps, RState>
-) : MaterialElementBuilder<DIV>(type, { DIV(mapOf(), it) }) {
+    type: RClass<GridListTitleBarProps>,
+    classMap: List<Pair<Enum<*>, String>>
+) : MMaterialElementBuilder<DIV, GridListTitleBarProps>(type, classMap, { DIV(mapOf(), it) }) {
+    fun Tag.classes(vararg classMap: Pair<GridListTitleBarStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.actionIcon: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["actionIcon"]
-        set(value) { setProp("actionIcon", value) }
-    var Tag.actionPosition: GridListTileBarActionPosition
-        get() = GridListTileBarActionPosition.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["actionPosition"])
-        set(value) { setProp("actionPosition", value.toString()) }
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.subtitle: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["subtitle"]
-        set(value) { setProp("subtitle", value) }
-    var Tag.title: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["title"]
-        set(value) { setProp("title", value) }
-    var Tag.titlePosition: GridListTileBarTitlePosition
-        get() = GridListTileBarTitlePosition.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["titlePosition"])
-        set(value) { setProp("titlePosition", value.toString()) }
+    var Tag.actionIcon: ReactElement? by materialProps
+    var Tag.actionPosition: GridListTileBarActionPosition? by materialProps
+    var Tag.subtitle: ReactElement? by materialProps
+    var Tag.title: ReactElement? by materialProps
+    var Tag.titlePosition: GridListTileBarTitlePosition? by materialProps
+
+    fun Tag.actionIcon(block: RBuilder.() -> Unit) { actionIcon = buildElement(block) }
+    fun Tag.subtitle(block: RBuilder.() -> Unit) { subtitle = buildElement(block) }
+    fun Tag.title(block: RBuilder.() -> Unit) { title = buildElement(block) }
 }

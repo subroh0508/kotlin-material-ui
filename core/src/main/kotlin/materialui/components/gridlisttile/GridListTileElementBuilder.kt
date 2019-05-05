@@ -1,27 +1,22 @@
 package materialui.components.gridlisttile
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.gridlisttile.enums.GridListTitleStyle
+import materialui.components.setValue
+import react.RClass
 
 class GridListTileElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+    type: RClass<GridListTitleProps>,
+    classMap: List<Pair<GridListTitleStyle, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, GridListTitleProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<GridListTitleStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.cols: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["cols"]
-        set(value) { setProp("cols", value) }
-    var Tag.rows: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["rows"]
-        set(value) { setProp("rows", value) }
+    var Tag.cols: Number? by materialProps
+    var Tag.rows: Number? by materialProps
 }

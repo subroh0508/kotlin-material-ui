@@ -4,7 +4,7 @@ import kotlinx.html.BUTTON
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.buttonbase.ButtonBaseProps
-import materialui.components.buttonbase.enums.ButtonBaseStyle
+import materialui.components.expansionpanelsummary.enums.ExpansionPanelSummaryStyle
 import react.RBuilder
 import react.RClass
 import react.RProps
@@ -22,8 +22,8 @@ external interface ExpansionPanelSummaryProps : ButtonBaseProps {
 @Suppress("UnsafeCastFromDynamic")
 private val expansionPanelSummaryComponent: RClass<ExpansionPanelSummaryProps> = expansionPanelSummaryModule.default
 
-fun RBuilder.expansionPanelSummary(vararg classMap: Pair<ButtonBaseStyle, String>, block: ExpansionPanelSummaryElementBuilder<BUTTON>.() -> Unit)
+fun RBuilder.expansionPanelSummary(vararg classMap: Pair<ExpansionPanelSummaryStyle, String>, block: ExpansionPanelSummaryElementBuilder<BUTTON>.() -> Unit)
     = child(ExpansionPanelSummaryElementBuilder(expansionPanelSummaryComponent, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.expansionPanelSummary(vararg classMap: Pair<ButtonBaseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ExpansionPanelSummaryElementBuilder<T>.() -> Unit)
+fun <T: Tag> RBuilder.expansionPanelSummary(vararg classMap: Pair<ExpansionPanelSummaryStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ExpansionPanelSummaryElementBuilder<T>.() -> Unit)
     = child(ExpansionPanelSummaryElementBuilder(expansionPanelSummaryComponent, classMap.toList(), factory).apply(block).create())

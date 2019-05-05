@@ -31,7 +31,6 @@ abstract class SwitchBaseElementBuilder<Props: SwitchBaseProps> internal constru
     var Tag.required: Boolean? by materialProps
     var Tag.tabIndex: String? by materialProps
     var Tag.type: InputType? by materialProps
-    var Tag.value: String? by materialProps
 
     fun Tag.checkedIcon(block: RBuilder.() -> Unit) { checkedIcon = buildElement(block) }
     fun Tag.icon(block: RBuilder.() -> Unit) { icon = buildElement(block) }

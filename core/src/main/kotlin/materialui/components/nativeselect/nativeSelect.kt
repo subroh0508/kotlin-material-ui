@@ -1,15 +1,20 @@
 package materialui.components.nativeselect
 
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import materialui.components.input.InputProps
+import materialui.components.nativeselect.enums.NativeSelectStyle
+import react.*
 
 @JsModule("@material-ui/core/NativeSelect")
 private external val nativeSelectModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val nativeSelectComponent: RComponent<RProps, RState> = nativeSelectModule.default
+external interface NativeSelectProps : InputProps {
+    var IconComponent: dynamic
+    var input: ReactElement?
+    var variant: String?
+}
 
-fun RBuilder.nativeSelect(block: NativeSelectElementBuilder.() -> Unit)
-    = child(NativeSelectElementBuilder(nativeSelectComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val nativeSelectComponent: RClass<NativeSelectProps> = nativeSelectModule.default
+
+fun RBuilder.nativeSelect(vararg classMap: Pair<NativeSelectStyle, String>, block: NativeSelectElementBuilder.() -> Unit)
+    = child(NativeSelectElementBuilder(nativeSelectComponent, classMap.toList()).apply(block).create())

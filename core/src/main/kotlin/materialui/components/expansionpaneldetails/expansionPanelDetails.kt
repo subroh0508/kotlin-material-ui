@@ -1,15 +1,17 @@
 package materialui.components.expansionpaneldetails
 
+import materialui.components.MaterialStyle
+import materialui.components.StandardProps
 import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import react.RClass
 
 @JsModule("@material-ui/core/ExpansionPanelDetails")
 private external val expansionPanelDetailsModule: dynamic
 
-@Suppress("UnsafeCastFromDynamic")
-private val expansionPanelDetailsComponent: RComponent<RProps, RState> = expansionPanelDetailsModule.default
+external interface ExpansionPanelDetailProps : StandardProps
 
-fun RBuilder.expansionPanelDetails(block: ExpansionPanelDetailsElementBuilder.() -> Unit)
-    = child(ExpansionPanelDetailsElementBuilder(expansionPanelDetailsComponent).apply(block).create())
+@Suppress("UnsafeCastFromDynamic")
+private val expansionPanelDetailsComponent: RClass<ExpansionPanelDetailProps> = expansionPanelDetailsModule.default
+
+fun RBuilder.expansionPanelDetails(rootStyle: String? = null, block: ExpansionPanelDetailsElementBuilder.() -> Unit)
+    = child(ExpansionPanelDetailsElementBuilder(expansionPanelDetailsComponent, listOfNotNull(rootStyle?.let{ MaterialStyle.root to it })).apply(block).create())
