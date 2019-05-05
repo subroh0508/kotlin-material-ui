@@ -1,28 +1,23 @@
 package materialui.components.toolbar
 
-import materialui.components.MaterialElementBuilder
-import materialui.components.consumers
-import materialui.components.toolbar.enums.ToolbarVariant
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RComponent
-import react.RProps
-import react.RState
-import kotlin.reflect.KClass
+import materialui.components.MMaterialElementBuilder
+import materialui.components.getValue
+import materialui.components.setValue
+import materialui.components.toolbar.enums.ToolbarStyle
+import materialui.components.toolbar.enums.ToolbarVariant
+import react.RClass
 
 class ToolbarElementBuilder<T: Tag> internal constructor(
-    type: RComponent<RProps, RState>,
-    tag: KClass<T>,
-    factory: (TagConsumer<Unit>) -> T = consumers(tag)
-) : MaterialElementBuilder<T>(type, factory) {
+    type: RClass<ToolbarProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    factory: (TagConsumer<Unit>) -> T
+) : MMaterialElementBuilder<T, ToolbarProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<ToolbarStyle, String>) {
+        classes(classMap.toList())
+    }
 
-    var Tag.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { setProp("classes", value) }
-    var Tag.disableGutters: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableGutters"]
-        set(value) { setProp("disableGutters", value) }
-    var Tag.variant: ToolbarVariant
-        get() = ToolbarVariant.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["variant"])
-        set(value) { setProp("variant", value.toString()) }
+    var Tag.disableGutters: Boolean? by materialProps
+    var Tag.variant: ToolbarVariant? by materialProps
 }

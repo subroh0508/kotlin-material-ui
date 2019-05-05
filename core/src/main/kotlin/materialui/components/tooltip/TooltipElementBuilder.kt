@@ -1,75 +1,63 @@
 package materialui.components.tooltip
 
-import materialui.components.tooltip.enums.TooltipPlacement
 import kotlinext.js.jsObject
+import materialui.components.popper.PopperElementBuilder
+import materialui.components.popper.popper
+import materialui.reacttransiton.RTransitionProps
 import org.w3c.dom.events.Event
 import react.*
+import kotlin.reflect.KClass
 
 class TooltipElementBuilder internal constructor(
-    private val type: RComponent<RProps, RState>,
-    private val props: RProps = jsObject { }
+    private val type: RClass<TooltipProps>,
+    classMap: List<Pair<Enum<*>, String>>,
+    private val props: TooltipProps = jsObject { }
 ) : RBuilder() {
-    fun attrs(handler: RProps.() -> Unit) {
+    init {
+        props.classes(classMap)
+    }
+
+    fun attrs(handler: TooltipProps.() -> Unit) {
         props.handler()
     }
 
     fun create() = createElement(type, props, *childList.toTypedArray())
 
-    var RProps.classes: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["classes"]
-        set(value) { props.asDynamic()["classes"] = value }
-    var RProps.disableFocusListener: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableFocusListener"]
-        set(value) { props.asDynamic()["disableFocusListener"] = value }
-    var RProps.disableHoverListener: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableHoverListener"]
-        set(value) { props.asDynamic()["disableHoverListener"] = value }
-    var RProps.disableTouchListener: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["disableTouchListener"]
-        set(value) { props.asDynamic()["disableTouchListener"] = value }
-    var RProps.enterDelay: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["enterDelay"]
-        set(value) { props.asDynamic()["enterDelay"] = value }
-    var RProps.enterTouchDelay: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["enterTouchDelay"]
-        set(value) { props.asDynamic()["enterTouchDelay"] = value }
-    var RProps.id: String
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["id"]
-        set(value) { props.asDynamic()["id"] = value }
-    var RProps.interactive: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["interactive"]
-        set(value) { props.asDynamic()["interactive"] = value }
-    var RProps.leaveDelay: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["leaveDelay"]
-        set(value) { props.asDynamic()["leaveDelay"] = value }
-    var RProps.leaveTouchDelay: Number
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["leaveTouchDelay"]
-        set(value) { props.asDynamic()["leaveTouchDelay"] = value }
-    var RProps.onClose: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onClose"]
-        set(value) { props.asDynamic()["onClose"] = value }
-    var RProps.onOpen: (Event) -> Unit
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["onOpen"]
-        set(value) { props.asDynamic()["onOpen"] = value }
-    var RProps.open: Boolean
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["open"]
-        set(value) { props.asDynamic()["open"] = value }
-    var RProps.placement: TooltipPlacement
-        get() = TooltipPlacement.valueOf(@Suppress("UnsafeCastFromDynamic") props.asDynamic()["placement"])
-        set(value) { props.asDynamic()["placement"] = value.value }
-    var RProps.PopperProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["PopperProps"]
-        set(value) { props.asDynamic()["PopperProps"] = value }
-    var RProps.theme: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["theme"]
-        set(value) { props.asDynamic()["theme"] = value }
-    var RProps.title: Any
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["title"]
-        set(value) { props.asDynamic()["title"] = value }
-    var RProps.TransitionComponent: RComponent<RProps, RState>
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["TransitionComponent"]
-        set(value) { props.asDynamic()["TransitionComponent"] = value }
-    var RProps.TransitionProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["TransitionProps"]
-        set(value) { props.asDynamic()["TransitionProps"] = value }
+    fun TooltipProps.classes(vararg classMap: Pair<Enum<*>, String>) {
+        classes(classMap.map { (key, value) -> key to value })
+    }
+
+    fun TooltipProps.classes(classMap: List<Pair<Enum<*>, String>>) {
+        classes(classMap.map { (key, value) -> key.toString() to value })
+    }
+
+    fun TooltipProps.classes(vararg classMap: Pair<String, String>) {
+        classes(classMap.map { (key, value) -> key to value })
+    }
+
+    fun TooltipProps.classes(classMap: List<Pair<String, String>>) {
+        if (classMap.isEmpty()) {
+            return
+        }
+
+        val classesObj: dynamic = jsObject { }
+
+        classMap.forEach { (key, value) -> classesObj[key] = value }
+
+        asDynamic()["classes"] = classesObj as Any
+    }
+
+    fun TooltipProps.onClose(block: (Event) -> Unit) { onClose = block }
+    fun TooltipProps.onOpen(block: (Event) -> Unit) { onOpen = block }
+    fun TooltipProps.PopperProps(block: PopperElementBuilder.() -> Unit) {
+        PopperProps = RBuilder().popper(block).props
+    }
+    fun TooltipProps.title(block: RBuilder.() -> Unit) { title = buildElement(block) }
+    fun <P: RProps, C: Component<P, *>> TooltipProps.transitionComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        @Suppress("UNCHECKED_CAST")
+        TransitionComponent = kClass.js as RClass<P>
+    }
+    fun TooltipProps.transitionComponet(tagName: String) { TransitionComponent = tagName }
+    fun TooltipProps.transitionProips(block: RTransitionProps.() -> Unit) { TransitionProps = jsObject(block) }
 }

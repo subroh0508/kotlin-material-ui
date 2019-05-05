@@ -1,7 +1,9 @@
 package materialui.components.tooltip.enums
 
+import kotlinx.html.AttributeEnum
+
 @Suppress("EnumEntryName")
-enum class TooltipPlacement(internal val value: String) {
+enum class TooltipPlacement(override val realValue: String) : AttributeEnum {
     bottomEnd("bottom-end"),
     bottomStart("bottom-start"),
     bottom("bottom"),
@@ -13,5 +15,7 @@ enum class TooltipPlacement(internal val value: String) {
     right("right"),
     topEnd("top-end"),
     topStart("top-start"),
-    top("top"),
+    top("top");
+
+    override fun toString(): String = realValue
 }

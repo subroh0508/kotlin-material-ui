@@ -1,4 +1,4 @@
-package materialui.components.clickawaylistener.values
+package materialui.components.clickawaylistener.enums
 
 @Suppress("EnumEntryName")
 enum class ClickAwayTouchEvent {
