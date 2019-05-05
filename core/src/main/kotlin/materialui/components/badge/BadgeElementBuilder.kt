@@ -2,7 +2,7 @@ package materialui.components.badge
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.badge.enums.BadgeColor
 import materialui.components.badge.enums.BadgeStyle
 import materialui.components.badge.enums.BadgeVariant
@@ -17,7 +17,7 @@ class BadgeElementBuilder<T: Tag> internal constructor(
     type: RClass<BadgeProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, BadgeProps>(type, classMap, factory) {
+) : MaterialElementBuilder<T, BadgeProps>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<BadgeStyle, String>) {
         classes(classMap.map { it.first to it.second })
     }

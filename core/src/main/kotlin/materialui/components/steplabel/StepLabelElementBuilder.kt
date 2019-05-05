@@ -3,7 +3,7 @@ package materialui.components.steplabel
 import kotlinext.js.jsObject
 import kotlinx.html.SPAN
 import kotlinx.html.Tag
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.step.enums.StepOrientation
@@ -15,7 +15,7 @@ import kotlin.reflect.KClass
 class StepLabelElementBuilder internal constructor(
     type: RClass<StepLabelProps>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<SPAN, StepLabelProps>(type, classMap, { SPAN(mapOf(), it) }) {
+) : MaterialElementBuilder<SPAN, StepLabelProps>(type, classMap, { SPAN(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<StepLabelStyle, String>) {
         classes(classMap.toList())
     }

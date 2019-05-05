@@ -2,7 +2,7 @@ package materialui.components.tabs
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.tabs.enums.*
@@ -18,7 +18,7 @@ class TabsElementBuilder<T: Tag> internal constructor(
     type: RClass<TabsProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, TabsProps>(type, classMap, factory) {
+) : MaterialElementBuilder<T, TabsProps>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<TabsStyle, String>) {
         classes(classMap.toList())
     }

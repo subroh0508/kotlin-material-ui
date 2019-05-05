@@ -2,7 +2,7 @@ package materialui.components.formcontrollabel
 
 import kotlinx.html.LABEL
 import kotlinx.html.Tag
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.formcontrollabel.enums.FormControlLabelPlacement
 import materialui.components.formcontrollabel.enums.FormControlLabelStyle
 import materialui.components.getValue
@@ -13,7 +13,7 @@ import react.*
 class FormControlLabelElementBuilder internal constructor(
     type: RClass<FormControlLabelProps>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<LABEL, FormControlLabelProps>(type, classMap, { LABEL(mapOf(), it) }) {
+) : MaterialElementBuilder<LABEL, FormControlLabelProps>(type, classMap, { LABEL(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<FormControlLabelStyle, String>) {
         classes(classMap.toList())
     }

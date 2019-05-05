@@ -3,7 +3,7 @@ package materialui.components.typography
 import kotlinext.js.jsObject
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.typography.enums.TypographyAlign
@@ -17,7 +17,7 @@ open class TypographyElementBuilder<T: Tag, Props: TypographyProps> internal con
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, Props>(type, classMap, factory)  {
+) : MaterialElementBuilder<T, Props>(type, classMap, factory)  {
     fun Tag.classes(vararg classMap: Pair<TypographyStyle, String>) {
         classes(classMap.toList())
     }

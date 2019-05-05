@@ -2,7 +2,7 @@ package materialui.components.formhelpertext
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.formhelpertext.enums.FormHelperTextMargin
 import materialui.components.formhelpertext.enums.FormHelperTextStyle
 import materialui.components.formhelpertext.enums.FormHelperTextVariant
@@ -14,7 +14,7 @@ class FormHelperTextElementBuilder<T: Tag> internal constructor(
     type: RClass<FormHelperTextProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, FormHelperTextProps>(type, classMap, factory) {
+) : MaterialElementBuilder<T, FormHelperTextProps>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<FormHelperTextStyle, String>) {
         classes(classMap.toList())
     }

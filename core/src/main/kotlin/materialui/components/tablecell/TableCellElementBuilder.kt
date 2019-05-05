@@ -2,7 +2,7 @@ package materialui.components.tablecell
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.tablecell.enums.*
@@ -12,7 +12,7 @@ open class TableCellElementBuilder<T: Tag, Props: TableCellProps> internal const
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, Props>(type, classMap, factory) {
+) : MaterialElementBuilder<T, Props>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<TableCellStyle, String>) {
         classes(classMap.toList())
     }

@@ -2,7 +2,7 @@ package materialui.components.popper
 
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.popper.enums.PopperPlacement
 import materialui.components.setValue
@@ -14,7 +14,7 @@ import react.buildElement
 
 class PopperElementBuilder internal constructor(
     type: RClass<PopperProps>
-) : MMaterialElementBuilder<DIV, PopperProps>(type, listOf(), { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, PopperProps>(type, listOf(), { DIV(mapOf(), it) }) {
 
     var Tag.disablePortal: Boolean? by materialProps
     var Tag.keepMounted: Boolean? by materialProps

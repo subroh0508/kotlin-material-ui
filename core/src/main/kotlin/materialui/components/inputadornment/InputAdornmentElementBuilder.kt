@@ -2,7 +2,7 @@ package materialui.components.inputadornment
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.inputadornment.enums.InputAdornmentPosition
 import materialui.components.inputadornment.enums.InputAdornmentStyle
@@ -14,7 +14,7 @@ class InputAdornmentElementBuilder<T: Tag> internal constructor(
     type: RClass<InputAdornmentProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MMaterialElementBuilder<T, InputAdornmentProps>(type, classMap, factory){
+) : MaterialElementBuilder<T, InputAdornmentProps>(type, classMap, factory){
     fun Tag.classes(vararg classMap: Pair<InputAdornmentStyle, String>) {
         classes(classMap.toList())
     }

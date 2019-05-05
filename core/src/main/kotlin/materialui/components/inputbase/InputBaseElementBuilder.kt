@@ -7,7 +7,7 @@ import kotlinx.html.INPUT
 import kotlinx.html.InputType
 import kotlinx.html.Tag
 import kotlinx.html.stream.createHTML
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.inputadornment.InputAdornmentElementBuilder
 import materialui.components.inputadornment.inputAdornment
@@ -22,7 +22,7 @@ import kotlin.reflect.KClass
 open class InputBaseElementBuilder<Props: InputBaseProps> internal constructor(
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<DIV, Props>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, Props>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<InputBaseStyle, String>) {
         classes(classMap.toList())
     }

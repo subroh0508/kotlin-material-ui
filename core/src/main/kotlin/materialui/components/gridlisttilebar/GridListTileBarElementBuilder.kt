@@ -2,7 +2,7 @@ package materialui.components.gridlisttilebar
 
 import kotlinx.html.DIV
 import kotlinx.html.Tag
-import materialui.components.MMaterialElementBuilder
+import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.gridlisttilebar.enums.GridListTileBarActionPosition
 import materialui.components.gridlisttilebar.enums.GridListTileBarTitlePosition
@@ -16,7 +16,7 @@ import react.buildElement
 class GridListTileBarElementBuilder internal constructor(
     type: RClass<GridListTitleBarProps>,
     classMap: List<Pair<Enum<*>, String>>
-) : MMaterialElementBuilder<DIV, GridListTitleBarProps>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, GridListTitleBarProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<GridListTitleBarStyle, String>) {
         classes(classMap.toList())
     }
