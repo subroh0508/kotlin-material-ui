@@ -17,6 +17,26 @@ fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
     withTheme: Boolean = false,
     handler: RHandler<P>
 ): ReactElement {
-    val rClass = withStyles({ theme: MuiTheme -> StylesBuilder(theme).apply(styleSet).toDynamic() }, js { this["withTheme"] = withTheme })(klazz.js) as RClass<P>
+    val rClass = withStyles(
+        { theme: MuiTheme -> StylesBuilder(theme).apply(styleSet).toDynamic() },
+        js { this["withTheme"] = withTheme }
+    )(klazz.js) as RClass<P>
+
     return rClass(handler)
+}
+
+fun <P: RProps> RBuilder.childWithStyles(
+    displayName: String,
+    styleSet: StylesSet.() -> Unit,
+    withTheme: Boolean = false,
+    render: RBuilder.(P) -> Unit
+): RClass<P> {
+    val fn = ({ props: P -> buildElement { render(props) } } as RClass<P>).apply {
+        this.displayName = displayName
+    }
+
+    return withStyles(
+        { theme: MuiTheme -> StylesBuilder(theme).apply(styleSet).toDynamic() },
+        js { this["withTheme"] = withTheme }
+    )(fn) as RClass<P>
 }
