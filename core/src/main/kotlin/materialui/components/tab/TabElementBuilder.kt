@@ -5,6 +5,7 @@ import kotlinx.html.TagConsumer
 import materialui.components.buttonbase.ButtonBaseElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
+import materialui.components.tab.enums.TabStyle
 import materialui.components.tab.enums.TabTextColor
 import react.RBuilder
 import react.RClass
@@ -16,6 +17,9 @@ class TabElementBuilder<T: Tag> internal constructor(
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, TabProps>(type, classMap, factory) {
+    fun Tag.classes(vararg classMap: Pair<TabStyle, String>) {
+        classes(classMap.toList())
+    }
 
     var Tag.fullWidth: Boolean? by materialProps
     var Tag.icon: ReactElement? by materialProps
