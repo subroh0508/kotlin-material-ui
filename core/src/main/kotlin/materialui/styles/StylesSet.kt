@@ -23,20 +23,20 @@ internal class StylesBuilder(
     fun toDynamic() = js {
         css.forEach { (key, value) -> this[key] = value.toDynamic }
     } as Any
-
-    private val CSSBuilder.toDynamic: Any
-        get() = js {
-            rules.forEach {
-                this[it.selector] = CSSBuilder().apply(it.block).toDynamic
-            }
-
-            declarations.forEach { (key, value) ->
-                this[key.hyphenize()] = when (value) {
-                    is CSSBuilder -> value.toDynamic
-                    else -> value.toString()
-                }
-            }
-        } as Any
 }
+
+internal val CSSBuilder.toDynamic: Any
+    get() = js {
+        rules.forEach {
+            this[it.selector] = CSSBuilder().apply(it.block).toDynamic
+        }
+
+        declarations.forEach { (key, value) ->
+            this[key.hyphenize()] = when (value) {
+                is CSSBuilder -> value.toDynamic
+                else -> value.toString()
+            }
+        }
+    } as Any
 
 internal typealias ClassesMap = Map<Enum<*>, String>
