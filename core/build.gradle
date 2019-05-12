@@ -1,5 +1,5 @@
 group 'subroh0508.net.kotlinmaterialui'
-version '0.1.3'
+version '0.1.5'
 
 buildscript {
     dependencies {
