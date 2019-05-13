@@ -31,13 +31,13 @@ class ListItemTextElementBuilder internal constructor(
     var Tag.theme: MuiTheme? by materialProps
 
     fun Tag.primary(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) { primary = RBuilder().typography(block = block) }
-    fun Tag.primary(p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) { primary = RBuilder().typography(p, block = block) }
+    fun Tag.primary(p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) { primary = RBuilder().typography(p = p, block = block) }
     fun <T: Tag> Tag.primary(factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit) { primary = RBuilder().typography(factory = factory, block = block) }
     fun Tag.primaryTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
         primaryTypographyProps = RBuilder().typography(block = block).props
     }
     fun Tag.secondary(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) { secondary = RBuilder().typography(block = block) }
-    fun Tag.secondary(p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) { secondary = RBuilder().typography(p, block = block) }
+    fun Tag.secondary(p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) { secondary = RBuilder().typography(p = p, block = block) }
     fun <T: Tag> Tag.secondary(factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit) { secondary = RBuilder().typography(factory = factory, block = block) }
     fun Tag.secondaryTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
         secondaryTypographyProps = RBuilder().typography(block = block).props
