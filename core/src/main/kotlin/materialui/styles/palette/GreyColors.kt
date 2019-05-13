@@ -6,4 +6,4 @@ import kotlinx.css.Color
 
 external interface GreyColors
 
-fun GreyColors.get(key: GreyType): Color = Color(asDynamic()[key.keyName] as String)
+operator fun GreyColors.get(key: GreyType): Color = Color(asDynamic()[key.keyName] as String)
