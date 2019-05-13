@@ -52,7 +52,7 @@ private val typographyComponent: RClass<TypographyProps> = typographyModule.defa
 fun RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit)
     = child(TypographyElementBuilder(typographyComponent, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())
 
-fun RBuilder.typography(p: Boolean, vararg classMap: Pair<TypographyStyle, String>, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit)
+fun RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit)
     = child(TypographyElementBuilder(typographyComponent, classMap.toList()) { P(mapOf(), it) }.apply {
         attrs.paragraph = p
         block()
@@ -60,5 +60,3 @@ fun RBuilder.typography(p: Boolean, vararg classMap: Pair<TypographyStyle, Strin
 
 fun <T: Tag> RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit)
      = child(TypographyElementBuilder(typographyComponent, classMap.toList(), factory).apply(block).create())
-
-
