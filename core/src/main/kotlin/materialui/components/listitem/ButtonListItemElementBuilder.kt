@@ -5,7 +5,7 @@ import kotlinx.html.DIV
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import kotlinx.html.stream.createHTML
-import materialui.components.MaterialElementBuilder
+import materialui.components.buttonbase.ButtonBaseElementBuilder
 import materialui.components.getValue
 import materialui.components.listitem.enums.ListItemAlignItem
 import materialui.components.listitem.enums.ListItemStyle
@@ -16,10 +16,10 @@ import react.RProps
 import react.dom.RDOMBuilder
 import kotlin.reflect.KClass
 
-class ButtonListItemElementBuilder(
+class ButtonListItemElementBuilder internal constructor(
     type: RClass<ButtonListItemProps>,
     classMap: List<Pair<Enum<*>, String>>
-) : MaterialElementBuilder<BUTTON, ButtonListItemProps>(type, classMap, { BUTTON(mapOf(), it) }) {
+) : ButtonBaseElementBuilder<BUTTON, ButtonListItemProps>(type, classMap, { BUTTON(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<ListItemStyle, String>) {
         classes(classMap.toList())
     }
@@ -28,7 +28,6 @@ class ButtonListItemElementBuilder(
     var Tag.button: Boolean? by materialProps
     var Tag.ContainerProps: RProps? by materialProps
     var Tag.dense: Boolean? by materialProps
-    var Tag.disabled: Boolean? by materialProps
     var Tag.disableGutters: Boolean? by materialProps
     var Tag.divider: Boolean? by materialProps
     var Tag.selected: Boolean? by materialProps
