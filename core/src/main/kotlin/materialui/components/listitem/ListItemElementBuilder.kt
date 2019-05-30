@@ -20,7 +20,7 @@ open class ListItemElementBuilder<T: Tag, Props: ListItemProps> internal constru
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MaterialElementBuilder<Tag, Props>(type, classMap, factory) {
+) : MaterialElementBuilder<T, Props>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<ListItemStyle, String>) {
         classes(classMap.toList())
     }
