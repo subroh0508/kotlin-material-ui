@@ -34,7 +34,10 @@ fun RBuilder.listItem(vararg classMap: Pair<ListItemStyle, String>, block: ListI
     = child(ListItemElementBuilder(listItemComponent, classMap.toList()) { LI(mapOf(), it) }.apply(block).create())
 
 fun RBuilder.buttonListItem(vararg classMap: Pair<ListItemStyle, String>, block: ButtonListItemElementBuilder.() -> Unit)
-    = child(ButtonListItemElementBuilder(listItemComponent, classMap.toList()).apply(block).create())
+    = child(ButtonListItemElementBuilder(listItemComponent, classMap.toList()).apply {
+        block()
+        attrs.button = true
+    }.create())
 
 fun <T: Tag> RBuilder.listItem(vararg classMap: Pair<ListItemStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ListItemElementBuilder<T, ListItemProps>.() -> Unit)
     = child(ListItemElementBuilder(listItemComponent, classMap.toList(), factory).apply(block).create())
