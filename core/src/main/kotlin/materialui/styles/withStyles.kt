@@ -30,13 +30,7 @@ fun <P: RProps> RBuilder.childWithStyles(
     styleSet: StylesSet.() -> Unit,
     withTheme: Boolean = false,
     render: RBuilder.(P) -> Unit
-): RClass<P> {
-    val fn = ({ props: P -> buildElement { render(props) } } as RClass<P>).apply {
-        this.displayName = displayName
-    }
-
-    return withStyles(
-        { theme: MuiTheme -> StylesBuilder(theme).apply(styleSet).toDynamic() },
-        js { this["withTheme"] = withTheme }
-    )(fn) as RClass<P>
-}
+): RClass<P> = withStyles(
+    { theme: MuiTheme -> StylesBuilder(theme).apply(styleSet).toDynamic() },
+    js { this["withTheme"] = withTheme }
+)(rFunction(displayName, render)) as RClass<P>
