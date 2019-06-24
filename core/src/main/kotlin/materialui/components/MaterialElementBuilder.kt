@@ -21,7 +21,7 @@ abstract class MaterialElementBuilder<T: Tag, Props: StandardProps>(
     }
 
     fun Tag.classes(vararg classMap: Pair<Enum<*>, String>) {
-        classes(classMap.map { (key, value) -> key to value })
+        classes(classMap.map { (key, value) -> key.toString() to value })
     }
 
     fun Tag.classes(classMap: List<Pair<Enum<*>, String>>) {
