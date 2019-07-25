@@ -1,7 +1,9 @@
 package demo.components
 
+import kotlinx.css.flexGrow
+import kotlinx.css.marginLeft
+import kotlinx.css.marginRight
 import kotlinx.css.px
-import materialui.styles.StylesSet
 import materialui.components.appbar.appBar
 import materialui.components.appbar.enums.AppBarPosition
 import materialui.components.button.button
@@ -13,6 +15,7 @@ import materialui.components.toolbar.toolbar
 import materialui.components.typography.enums.TypographyColor
 import materialui.components.typography.enums.TypographyVariant
 import materialui.components.typography.typography
+import materialui.styles.StylesSet
 import materialui.styles.childWithStyles
 import react.RBuilder
 import react.RComponent

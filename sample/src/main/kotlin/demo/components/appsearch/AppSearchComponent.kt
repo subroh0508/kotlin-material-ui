@@ -1,9 +1,10 @@
 package demo.components.appsearch
 
+import kotlinx.css.Display
+import kotlinx.css.display
 import materialui.components.icon.icon
 import materialui.components.input.input
 import materialui.components.inputbase.enums.InputBaseStyle
-import kotlinx.css.Display
 import react.RBuilder
 import react.RComponent
 import react.RState
