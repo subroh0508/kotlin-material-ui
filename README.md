@@ -1,6 +1,8 @@
 # kotlin-material-ui
 Kotlin Wrapper Library of Material-UI
 
+[ ![Download](https://api.bintray.com/packages/subroh0508/maven/Kotlin-Material-UI/images/download.svg) ](https://bintray.com/subroh0508/maven/Kotlin-Material-UI/_latestVersion)
+
 ## Installation
 
 ```
