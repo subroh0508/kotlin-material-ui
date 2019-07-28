@@ -41,7 +41,12 @@ kotlin {
                 implementation(npm("styled-components", Versions.Npm.styledComponent))
                 implementation(npm("inline-style-prefixer", Versions.Npm.inlineStyledPrefixer))
                 implementation(npm("@material-ui/core", Versions.Npm.materialUi))
-                //testImplementation(Libraries.KotlinJs.test)
+            }
+        }
+
+        val test by getting {
+            dependencies {
+                implementation(Libraries.KotlinJs.test)
             }
         }
     }
