@@ -23,15 +23,6 @@ def pomConfig = {
     }
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives sourcesJar
-}
-
 bintray {
     user = project.hasProperty('bintray_user') ? bintray_user : ''
     key = project.hasProperty('bintray_key') ? bintray_key : ''
@@ -56,8 +47,8 @@ bintray {
 publishing {
     publications {
         ToMavenPublication(MavenPublication) {
-            from components.java
-            artifact sourcesJar
+            from components.kotlin
+            artifact kotlinSourcesJar
             groupId project.group
             artifactId project.name
             version project.version
@@ -70,4 +61,8 @@ publishing {
             }
         }
     }
+}
+
+tasks.JsJar {
+    from "${rootDir.path}/build/js/packages/kotlin-material-ui-core/package.json"
 }

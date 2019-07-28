@@ -1,6 +1,11 @@
-group 'subroh0508.net'
-version '1.0-SNAPSHOT'
+group = "net.subroh0508.kotlinmaterialui"
+version = "1.0-SNAPSHOT"
 
+plugins {
+    kotlin("js")
+}
+
+/*
 subprojects { p ->
     p.buildscript {
         ext.kotlinVersion = '1.3.41'
@@ -37,3 +42,4 @@ subprojects {
         maven { url "http://dl.bintray.com/kotlin/ktor" }
     }
 }
+*/
