@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfigWriter
 
 group = Packages.group
+version = "1.0-SNAPSHOT"
 
 plugins {
     kotlin("js")
@@ -44,7 +45,12 @@ kotlin {
                 implementation(npm("styled-components", Versions.Npm.styledComponent))
                 implementation(npm("inline-style-prefixer", Versions.Npm.inlineStyledPrefixer))
                 implementation(npm("@material-ui/core", Versions.Npm.materialUi))
-                //testimplementation(Libraries.KotlinJs.test)
+            }
+        }
+
+        val test by getting {
+            dependencies {
+                implementation(Libraries.KotlinJs.test)
             }
         }
     }
