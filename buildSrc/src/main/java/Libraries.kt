@@ -13,5 +13,6 @@ object Libraries {
         const val react = "org.jetbrains:kotlin-react:${Versions.kotlinReact}"
         const val reactDom = "org.jetbrains:kotlin-react:${Versions.kotlinReact}"
         const val styled = "org.jetbrains:kotlin-styled:${Versions.kotlinJsWrappers}"
+        const val materialUi = "subroh0508.net.kotlinmaterialui:core:${Packages.version}"
     }
 }

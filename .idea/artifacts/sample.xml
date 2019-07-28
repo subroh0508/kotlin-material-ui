@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="sample">
+    <output-path>$PROJECT_DIR$/sample/build/libs</output-path>
+    <root id="archive" name="sample.jar">
+      <element id="module-output" name="subroh0508.net.kotlinmaterialui.sample.main" />
+    </root>
+  </artifact>
+</component>
