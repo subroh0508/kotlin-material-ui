@@ -25,6 +25,7 @@ kotlin {
                 sourceMapEmbedSources = null
             }
         }
+        nodejs()
     }
 
     sourceSets {
@@ -50,18 +51,6 @@ kotlin {
             }
         }
     }
-}
-
-kotlinNodeJs.packageJson {
-    main = null
-    dependencies.putAll(mapOf(
-        "core-js" to Versions.Npm.coreJs,
-        "react" to Versions.Npm.react,
-        "react-dom" to Versions.Npm.react,
-        "styled-components" to Versions.Npm.styledComponent,
-        "inline-styled-prefixer" to Versions.Npm.inlineStyledPrefixer,
-        "@material-ui/core" to Versions.Npm.materialUi
-    ))
 }
 
 apply(from = file("${rootDir.path}/gradle/bintray.gradle"))
