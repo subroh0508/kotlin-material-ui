@@ -25,7 +25,7 @@ kotlin {
                 sourceMapEmbedSources = null
             }
         }
-        nodejs()
+        browser()
     }
 
     sourceSets {
