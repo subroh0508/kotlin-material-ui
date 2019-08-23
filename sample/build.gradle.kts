@@ -28,6 +28,9 @@ kotlin {
                 )
                 archiveFileName = "kotlin-material-ui-sample.js"
             }
+            webpackTask {
+                archiveFileName = "kotlin-material-ui-sample.js"
+            }
         }
     }
 
