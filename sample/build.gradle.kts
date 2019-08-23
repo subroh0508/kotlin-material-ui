@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfigWriter
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 group = Packages.group
 version = "1.0-SNAPSHOT"
@@ -22,10 +22,11 @@ kotlin {
         browser {
             runTask {
                 sourceMaps = true
-                devServer = KotlinWebpackConfigWriter.DevServer(
+                devServer = KotlinWebpackConfig.DevServer(
                     port = 8080,
                     contentBase = listOf("${projectDir.path}/src/main/resources")
                 )
+                archiveFileName = "kotlin-material-ui-sample.js"
             }
         }
     }
@@ -33,12 +34,12 @@ kotlin {
     sourceSets {
         val main by getting {
             dependencies {
+                implementation(project(":core"))
                 implementation(Libraries.KotlinJs.stdlib)
                 implementation(Libraries.KotlinJs.html)
                 implementation(Libraries.KotlinJs.react)
                 implementation(Libraries.KotlinJs.reactDom)
                 implementation(Libraries.KotlinJs.styled)
-                implementation(Libraries.KotlinJs.materialUi)
                 implementation(npm("core-js", Versions.Npm.coreJs))
                 implementation(npm("react", Versions.Npm.react))
                 implementation(npm("react-dom", Versions.Npm.react))
