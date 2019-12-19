@@ -33,6 +33,7 @@
 # .idea/modules
 
 .idea/caches
+.idea/artifacts
 
 # CMake
 cmake-build-*/
