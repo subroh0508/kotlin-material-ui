@@ -1,8 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="kotlin-material-ui-1.0-SNAPSHOT">
     <output-path>$PROJECT_DIR$/build/libs</output-path>
-    <root id="archive" name="kotlin-material-ui-1.0-SNAPSHOT.jar">
-      <element id="module-output" name="subroh0508.net.kotlinmaterialui.kotlin-material-ui.main" />
-    </root>
+    <root id="archive" name="kotlin-material-ui-1.0-SNAPSHOT.jar" />
   </artifact>
 </component>

@@ -26,10 +26,10 @@ kotlin {
                     port = 8080,
                     contentBase = listOf("${projectDir.path}/src/main/resources")
                 )
-                archiveFileName = "kotlin-material-ui-sample.js"
+                outputFileName = "kotlin-material-ui-sample.js"
             }
             webpackTask {
-                archiveFileName = "kotlin-material-ui-sample.js"
+                outputFileName = "kotlin-material-ui-sample.js"
             }
         }
     }
