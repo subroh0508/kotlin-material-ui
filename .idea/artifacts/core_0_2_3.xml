@@ -1,6 +1,8 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="core-0.2.3">
     <output-path>$PROJECT_DIR$/core/build/libs</output-path>
-    <root id="archive" name="core-0.2.3.jar" />
+    <root id="archive" name="core-0.2.3.jar">
+      <element id="module-output" name="subroh0508.net.kotlinmaterialui.core.main" />
+    </root>
   </artifact>
 </component>
