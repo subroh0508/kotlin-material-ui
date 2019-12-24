@@ -41,7 +41,6 @@ kotlin {
                 implementation(Libraries.KotlinJs.stdlib)
                 implementation(Libraries.KotlinJs.html)
                 implementation(Libraries.KotlinJs.react)
-                implementation(Libraries.KotlinJs.reactDom)
                 implementation(Libraries.KotlinJs.styled)
                 implementation(npm("core-js", Versions.Npm.coreJs))
                 implementation(npm("react", Versions.Npm.react))

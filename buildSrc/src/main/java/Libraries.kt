@@ -10,7 +10,6 @@ object Libraries {
         const val test = "org.jetbrains.kotlin:kotlin-test-js:${Versions.kotlin}"
         const val html = "org.jetbrains.kotlinx:kotlinx-html-js:${Versions.kotlinxHtml}"
         const val react = "org.jetbrains:kotlin-react:${Versions.kotlinReact}"
-        const val reactDom = "org.jetbrains:kotlin-react:${Versions.kotlinReact}"
         const val styled = "org.jetbrains:kotlin-styled:${Versions.kotlinJsWrappers}"
     }
 }
