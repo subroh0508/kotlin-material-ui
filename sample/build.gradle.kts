@@ -37,7 +37,7 @@ kotlin {
     sourceSets {
         val main by getting {
             dependencies {
-                implementation(project(":kotlin-material-ui-core"))
+                implementation(project(":core"))
                 implementation(Libraries.KotlinJs.stdlib)
                 implementation(Libraries.KotlinJs.html)
                 implementation(Libraries.KotlinJs.react)
