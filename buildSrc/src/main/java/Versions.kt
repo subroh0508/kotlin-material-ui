@@ -8,8 +8,7 @@ object Versions {
     const val bintray = "1.8.4"
 
     object Npm {
-        const val coreJs = "~3.1.4"
-        const val materialUi = "3.9.2"
+        const val materialUi = "4.8.3"
         const val styledComponent = "^4.3.2"
         const val inlineStyledPrefixer = "^5.1.0"
         const val react = "16.9.0"
