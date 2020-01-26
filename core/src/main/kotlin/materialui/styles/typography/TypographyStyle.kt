@@ -19,7 +19,6 @@ fun CSSBuilder.typography(style: TypographyStyle) {
     fontFamily = style.fontFamily
     fontSize = style.fontSize
     fontWeight = style.fontWeight
-    color = style.color
     style.letterSpacing?.let { letterSpacing = it }
     style.lineHeight?.let { lineHeight = it.lh }
     style.textTransform?.let { textTransform = it }
