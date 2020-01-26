@@ -6,11 +6,11 @@ import react.RComponent
 import react.RProps
 import react.RState
 
-@JsModule("@material-ui/core/styles/MuiThemeProvider")
-private external val muiThemeProviderModule: dynamic
+@JsModule("@material-ui/core/styles")
+private external val stylesModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val muiThemeProviderComponent: RComponent<RProps, RState> = muiThemeProviderModule.default
+private val themeProviderComponent: RComponent<RProps, RState> = stylesModule.ThemeProvider
 
 fun RBuilder.muiThemeProvider(theme: MuiTheme, block: MuiThemeProviderBuilder.() -> Unit)
-    = child(MuiThemeProviderBuilder(muiThemeProviderComponent, theme).apply(block).create())
+    = child(MuiThemeProviderBuilder(themeProviderComponent, theme).apply(block).create())
