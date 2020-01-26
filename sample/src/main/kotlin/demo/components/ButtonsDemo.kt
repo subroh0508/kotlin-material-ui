@@ -4,12 +4,13 @@ import kotlinx.css.*
 import kotlinx.html.InputType
 import kotlinx.html.SPAN
 import kotlinx.html.id
-import materialui.styles.StylesSet
 import materialui.components.button.button
 import materialui.components.button.enums.ButtonColor
 import materialui.components.button.enums.ButtonStyle
 import materialui.components.button.enums.ButtonVariant
+import materialui.styles.StylesSet
 import materialui.styles.childWithStyles
+import materialui.styles.muitheme.spacing
 import react.RBuilder
 import react.RComponent
 import react.RProps
@@ -120,7 +121,7 @@ class ButtonsDemo : RComponent<RProps, RState>() {
 
         private val styles: StylesSet.() -> Unit = {
             "button" {
-                margin(theme.spacing.unit.px)
+                margin(theme.spacing())
             }
             "input" {
                 display = Display.none
