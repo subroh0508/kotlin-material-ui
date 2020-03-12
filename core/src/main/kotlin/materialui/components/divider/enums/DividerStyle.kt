@@ -6,5 +6,7 @@ enum class DividerStyle {
     absolute,
     inset,
     light,
-    middle
+    middle,
+    vertical,
+    flexItem
 }
