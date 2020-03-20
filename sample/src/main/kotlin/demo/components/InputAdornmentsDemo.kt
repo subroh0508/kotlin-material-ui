@@ -15,9 +15,12 @@ import materialui.styles.childWithStyles
 import org.w3c.dom.events.Event
 import react.*
 import react.dom.div
+import react.dom.h1
 import react.dom.h2
 import styled.css
 import styled.styledDiv
+import styled.styledH1
+import styled.styledH2
 
 val ranges: List<Pair<String, String>>
     get() = listOf(
@@ -50,7 +53,9 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
         val textFieldStyle = props.asDynamic()["classes"]["textField"] as String
 
         div {
-            h2 {
+            styledH1 {
+                css.fontWeight = FontWeight.w400
+
                 +"Input Adornments"
             }
         }
