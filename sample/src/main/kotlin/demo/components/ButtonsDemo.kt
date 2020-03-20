@@ -1,6 +1,7 @@
 package demo.components
 
 import kotlinx.css.*
+import kotlinx.html.H2
 import kotlinx.html.InputType
 import kotlinx.html.SPAN
 import kotlinx.html.id
@@ -8,6 +9,8 @@ import materialui.components.button.button
 import materialui.components.button.enums.ButtonColor
 import materialui.components.button.enums.ButtonStyle
 import materialui.components.button.enums.ButtonVariant
+import materialui.components.typography.enums.TypographyVariant
+import materialui.components.typography.typography
 import materialui.styles.StylesSet
 import materialui.styles.childWithStyles
 import materialui.styles.muitheme.spacing
@@ -18,6 +21,8 @@ import react.RState
 import react.dom.*
 import styled.css
 import styled.styledDiv
+import styled.styledH1
+import styled.styledH2
 
 class ButtonsDemo : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
@@ -25,7 +30,9 @@ class ButtonsDemo : RComponent<RProps, RState>() {
         val inputStyle = props.asDynamic()["classes"]["input"] as String
 
         div {
-            h2 {
+            styledH1 {
+                css.fontWeight = FontWeight.w400
+
                 +"Contained Buttons"
                 a {
                     attrs {
