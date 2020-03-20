@@ -38,23 +38,23 @@ kotlin {
         val main by getting {
             dependencies {
                 implementation(project(":core"))
-                implementation(Libraries.KotlinJs.stdlib)
-                implementation(Libraries.KotlinJs.html)
-                implementation(Libraries.KotlinJs.react)
-                implementation(Libraries.KotlinJs.reactDom)
-                implementation(Libraries.KotlinJs.css)
-                implementation(Libraries.KotlinJs.styled)
-                implementation(npm("react", Versions.Npm.react))
-                implementation(npm("react-dom", Versions.Npm.react))
-                implementation(npm("styled-components", Versions.Npm.styledComponent))
-                implementation(npm("inline-style-prefixer", Versions.Npm.inlineStyledPrefixer))
-                implementation(npm("@material-ui/core", Versions.Npm.materialUi))
+                implementation(Libraries.Kotlin.js)
+                implementation(Libraries.Kotlin.html)
+                implementation(Libraries.Kotlin.react)
+                implementation(Libraries.Kotlin.reactDom)
+                implementation(Libraries.Kotlin.css)
+                implementation(Libraries.Kotlin.styled)
+                implementation(npm("react", Libraries.Npm.react))
+                implementation(npm("react-dom", Libraries.Npm.react))
+                implementation(npm("styled-components", Libraries.Npm.styledComponent))
+                implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
+                implementation(npm("@material-ui/core", Libraries.Npm.materialUi))
             }
         }
 
         val test by getting {
             dependencies {
-                implementation(Libraries.KotlinJs.test)
+                implementation(Libraries.Kotlin.jsTest)
             }
         }
     }
