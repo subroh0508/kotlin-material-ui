@@ -13,7 +13,6 @@ private external val dividerModule: dynamic
 
 external interface DividerProps : StandardProps {
     var absolute: Boolean?
-    var inset: Boolean?
     var light: Boolean?
     var variant: String?
 }

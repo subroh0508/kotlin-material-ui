@@ -19,7 +19,6 @@ class DividerElementBuilder<T: Tag> internal constructor(
     }
 
     var Tag.absolute: Boolean? by materialProps
-    var Tag.inset: Boolean? by materialProps
     var Tag.light: Boolean? by materialProps
     var Tag.variant: DividerVariant? by materialProps
 }
