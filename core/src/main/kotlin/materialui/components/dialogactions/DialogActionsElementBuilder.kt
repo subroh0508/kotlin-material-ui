@@ -16,5 +16,5 @@ class DialogActionsElementBuilder internal constructor(
         classes(classMap.toList())
     }
 
-    var Tag.disableActionSpacing: Boolean? by materialProps
+    var Tag.disableSpacing: Boolean? by materialProps
 }
