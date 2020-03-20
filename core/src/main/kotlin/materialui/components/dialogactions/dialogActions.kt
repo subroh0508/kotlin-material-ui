@@ -9,7 +9,7 @@ import react.RClass
 private external val dialogActionsModule: dynamic
 
 external interface DialogActionProps : StandardProps {
-    var disableActionSpacing: Boolean?
+    var disableSpacing: Boolean?
 }
 
 @Suppress("UnsafeCastFromDynamic")

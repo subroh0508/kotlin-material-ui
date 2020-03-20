@@ -15,7 +15,6 @@ enum class InputBaseStyle {
     input,
     inputMarginDense,
     inputMultiline,
-    inputType,
     inputTypeSearch,
     inputAdornedStart,
     inputAdornedEnd

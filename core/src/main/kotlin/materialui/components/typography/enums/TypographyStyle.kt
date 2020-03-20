@@ -3,13 +3,6 @@ package materialui.components.typography.enums
 @Suppress("EnumEntryName")
 enum class TypographyStyle {
     root,
-    display4,
-    display3,
-    display2,
-    display1,
-    headline,
-    title,
-    subheading,
     body2,
     body1,
     caption,

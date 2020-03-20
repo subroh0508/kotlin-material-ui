@@ -13,7 +13,6 @@ import react.ReactElement
 private external val tabModule: dynamic
 
 external interface TabProps : ButtonBaseProps {
-    var fullWidth: Boolean?
     var icon: ReactElement?
     var indicator: ReactElement?
     var label: ReactElement?

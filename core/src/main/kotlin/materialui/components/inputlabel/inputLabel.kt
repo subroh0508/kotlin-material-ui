@@ -13,7 +13,6 @@ private external val inputLabelModule: dynamic
 
 external interface InputLabelProps : FormLabelProps {
     var disableAnimation: Boolean?
-    var FormLabelClasses: dynamic
     var margin: String?
     var shrink: Boolean?
     var variant: String?

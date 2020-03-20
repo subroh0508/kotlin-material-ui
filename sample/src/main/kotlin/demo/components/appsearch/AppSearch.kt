@@ -5,6 +5,7 @@ import kotlinx.css.properties.TextDecoration
 import materialui.styles.StylesSet
 import materialui.styles.childWithStyles
 import materialui.styles.muitheme.shadows
+import materialui.styles.muitheme.spacing
 import materialui.styles.palette.*
 import materialui.styles.transitions.create
 import materialui.styles.typography.fontWeightMedium
@@ -78,8 +79,8 @@ private val appSearchStyles: StylesSet.() -> Unit = {
     "root" {
         fontFamily = theme.typography.fontFamily
         position = Position.relative
-        marginRight = (theme.spacing.unit * 2).px
-        marginLeft = theme.spacing.unit.px
+        marginRight = theme.spacing(2)
+        marginLeft = theme.spacing(1)
         borderRadius = theme.shape.borderRadius.px
         backgroundColor = theme.palette.common.white.withAlpha(0.15)
         hover {
@@ -94,7 +95,7 @@ private val appSearchStyles: StylesSet.() -> Unit = {
         }
     }
     "search" {
-        width = (theme.spacing.unit * 9).px
+        width = theme.spacing(9)
         height = 100.pct
         position = Position.absolute
         pointerEvents = PointerEvents.none
@@ -106,11 +107,6 @@ private val appSearchStyles: StylesSet.() -> Unit = {
         color = Color.inherit
     }
     "inputInput" {
-        padding(
-            theme.spacing.unit.px,
-            theme.spacing.unit.px,
-            theme.spacing.unit.px,
-            (theme.spacing.unit * 9).px
-        )
+        padding = theme.spacing(top = 1, bottom = 1, right = 1, left = 9)
     }
 }

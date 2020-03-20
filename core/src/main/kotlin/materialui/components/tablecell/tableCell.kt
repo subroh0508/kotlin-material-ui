@@ -14,11 +14,10 @@ private external val tableCellModule: dynamic
 
 external interface TableCellProps : StandardProps {
     var align: String?
-    @Deprecated("Instead, use the `align` property.")
-    var numeric: Boolean?
     var padding: String?
     var scope: String?
     var sortDirection: String?
+    var size: String?
     var variant: String?
 }
 

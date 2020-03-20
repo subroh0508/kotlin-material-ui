@@ -1,9 +1,6 @@
 package demo.components
 
-import kotlinx.css.flexGrow
-import kotlinx.css.marginLeft
-import kotlinx.css.marginRight
-import kotlinx.css.px
+import kotlinx.css.*
 import materialui.components.appbar.appBar
 import materialui.components.appbar.enums.AppBarPosition
 import materialui.components.button.button
@@ -22,7 +19,9 @@ import react.RComponent
 import react.RProps
 import react.RState
 import react.dom.div
-import react.dom.h2
+import react.dom.h1
+import styled.styledH1
+import styled.styledH2
 
 class AppbarsDemo : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
@@ -31,7 +30,9 @@ class AppbarsDemo : RComponent<RProps, RState>() {
         val menuButtonStyle = props.asDynamic()["classes"]["menuButton"] as String
 
         div {
-            h2 {
+            styledH1 {
+                css.fontWeight = FontWeight.w400
+
                 +"App Bar with buttons"
             }
         }
