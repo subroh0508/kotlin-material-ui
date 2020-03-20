@@ -16,6 +16,7 @@ private external val typographyModule: dynamic
 external interface TypographyProps : StandardProps {
     var align: String?
     var color: String?
+    var display: String?
     var gutterBottom: Boolean?
     var headlineMapping: String?
     var inline: Boolean?
@@ -26,7 +27,7 @@ external interface TypographyProps : StandardProps {
     var variant: String?
 }
 
-external interface HeadlineMapping {
+external interface VariantMapping {
     var h1: String?
     var h2: String?
     var h3: String?
@@ -37,13 +38,6 @@ external interface HeadlineMapping {
     var subtitle2: String?
     var body1: String?
     var body2: String?
-    var display4: String?
-    var display3: String?
-    var display2: String?
-    var display1: String?
-    var headline: String?
-    var title: String?
-    var subheading: String?
 }
 
 @Suppress("UnsafeCastFromDynamic")
