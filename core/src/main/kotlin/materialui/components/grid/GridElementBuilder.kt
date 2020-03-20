@@ -41,7 +41,7 @@ class GridElementBuilder<T: Tag> internal constructor(
     fun Tag.sm(v: String = "auto") { materialProps.sm = v }
     fun Tag.sm(v: Boolean) { materialProps.sm = v }
     fun Tag.sm(v: Int) { require(v in 1..12); materialProps.sm = v }
-    fun Tag.spacing(v: Int) { require(listOf(0, 8, 16, 24, 32, 40).contains(v)); materialProps.spacing = v }
+    fun Tag.spacing(v: Int) { require(listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10).contains(v)); materialProps.spacing = v }
     fun Tag.xl(v: String = "auto") { materialProps.xl = v }
     fun Tag.xl(v: Boolean) { materialProps.xl = v }
     fun Tag.xl(v: Int) { require(v in 1..12); materialProps.xl = v }
