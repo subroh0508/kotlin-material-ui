@@ -22,9 +22,9 @@ class SvgIconElementBuilder<T: Tag> internal constructor(
 
     var Tag.color: SvgIconColor? by materialProps
     var Tag.fontSize: SvgIconFontSize? by materialProps
-    var Tag.nativeColor: Color?
-        get() = materialProps.nativeColor
-        set(value) { materialProps.nativeColor = value }
+    var Tag.htmlColor: Color?
+        get() = materialProps.htmlColor
+        set(value) { materialProps.htmlColor = value }
     var Tag.shapeRendering: String? by materialProps
     var Tag.titleAccess: String? by materialProps
     var Tag.viewBox: String? by materialProps
