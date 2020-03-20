@@ -4,7 +4,7 @@ version = Packages.version
 plugins {
     kotlin("js")
     `maven-publish`
-    id("com.jfrog.bintray") version Versions.bintray
+    id("com.jfrog.bintray") version Libraries.bintray
 }
 
 repositories {
@@ -31,20 +31,20 @@ kotlin {
     sourceSets {
         val main by getting {
             dependencies {
-                implementation(Libraries.KotlinJs.stdlib)
-                implementation(Libraries.KotlinJs.html)
-                implementation(Libraries.KotlinJs.react)
-                implementation(Libraries.KotlinJs.reactDom)
-                implementation(Libraries.KotlinJs.css)
-                implementation(npm("react", Versions.Npm.react))
-                implementation(npm("react-dom", Versions.Npm.react))
-                implementation(npm("@material-ui/core", Versions.Npm.materialUi))
+                implementation(Libraries.Kotlin.js)
+                implementation(Libraries.Kotlin.html)
+                implementation(Libraries.Kotlin.react)
+                implementation(Libraries.Kotlin.reactDom)
+                implementation(Libraries.Kotlin.css)
+                implementation(npm("react", Libraries.Npm.react))
+                implementation(npm("react-dom", Libraries.Npm.react))
+                implementation(npm("@material-ui/core", Libraries.Npm.materialUi))
             }
         }
 
         val test by getting {
             dependencies {
-                implementation(Libraries.KotlinJs.test)
+                implementation(Libraries.Kotlin.jsTest)
             }
         }
     }

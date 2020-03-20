@@ -9,7 +9,6 @@ buildscript {
 
     dependencies {
         classpath(Libraries.Plugin.kotlinGradle)
-        classpath(Libraries.Plugin.kotlinxSerialization)
     }
 }
 
