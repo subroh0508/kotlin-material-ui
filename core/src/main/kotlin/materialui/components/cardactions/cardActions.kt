@@ -8,7 +8,7 @@ import react.*
 private external val cardActionsModule: dynamic
 
 external interface CardActionsProps : StandardProps {
-    var disableActionSpacing: Boolean?
+    var disableSpacing: Boolean?
 }
 
 @Suppress("UnsafeCastFromDynamic")

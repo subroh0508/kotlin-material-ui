@@ -16,5 +16,5 @@ class CardActionsElementBuilder internal constructor(
         classes(classMap.map { it.first to it.second })
     }
 
-    var Tag.disableActionSpacing: Boolean? by materialProps
+    var Tag.disableSpacing: Boolean? by materialProps
 }
