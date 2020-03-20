@@ -1,5 +1,6 @@
 package materialui.components.expansionpanel
 
+import kotlinx.css.properties.Transition
 import kotlinx.html.DIV
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
@@ -14,8 +15,7 @@ import react.RProps
 private external val expansionPanelModule: dynamic
 
 external interface ExpansionPanelProps : PaperProps {
-    // todo replace TransitionComponent: dynamic/TransitionProps: RProps
-    var CollapseProps: RProps?
+    var TransitionProps: RProps?
     var defaultExpand: Boolean?
     var disabled: Boolean?
     var expanded: Boolean?

@@ -20,11 +20,11 @@ class ExpansionPanelElementBuilder<T: Tag> internal constructor(
         classes(classMap.toList())
     }
 
-    var Tag.CollapseProps: RProps by materialProps
+    var Tag.TransitionProps: RProps by materialProps
     var Tag.defaultExpanded: Boolean? by materialProps
     var Tag.disabled: Boolean? by materialProps
     var Tag.expanded: Boolean? by materialProps
     var Tag.onChange: ((Event, Boolean) -> Unit)? by materialProps
 
-    fun <P: RProps> Tag.collapseProps(block: P.() -> Unit) { CollapseProps = jsObject(block) }
+    fun <P: RProps> Tag.transitionProps(block: P.() -> Unit) { TransitionProps = jsObject(block) }
 }
