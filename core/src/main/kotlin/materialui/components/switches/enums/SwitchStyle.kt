@@ -3,12 +3,13 @@ package materialui.components.switches.enums
 @Suppress("EnumEntryName")
 enum class SwitchStyle {
     root,
-    icon,
-    iconChecked,
-    switchBase,
     checked,
+    disabled,
+    input,
+    switchBase,
     colorPrimary,
     colorSecondary,
-    disabled,
-    bar
+    sizeSmall,
+    thumb,
+    track,
 }
