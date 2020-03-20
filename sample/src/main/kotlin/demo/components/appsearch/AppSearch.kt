@@ -80,7 +80,7 @@ private val appSearchStyles: StylesSet.() -> Unit = {
         fontFamily = theme.typography.fontFamily
         position = Position.relative
         marginRight = theme.spacing(2)
-        marginLeft = theme.spacing()
+        marginLeft = theme.spacing(1)
         borderRadius = theme.shape.borderRadius.px
         backgroundColor = theme.palette.common.white.withAlpha(0.15)
         hover {
@@ -107,11 +107,6 @@ private val appSearchStyles: StylesSet.() -> Unit = {
         color = Color.inherit
     }
     "inputInput" {
-        padding(
-            theme.spacing(),
-            theme.spacing(),
-            theme.spacing(),
-            theme.spacing(9)
-        )
+        padding = theme.spacing(top = 1, bottom = 1, right = 1, left = 9)
     }
 }
