@@ -21,7 +21,6 @@ class TabElementBuilder<T: Tag> internal constructor(
         classes(classMap.toList())
     }
 
-    var Tag.fullWidth: Boolean? by materialProps
     var Tag.icon: ReactElement? by materialProps
     var Tag.indicator: ReactElement? by materialProps
     var Tag.label: ReactElement? by materialProps

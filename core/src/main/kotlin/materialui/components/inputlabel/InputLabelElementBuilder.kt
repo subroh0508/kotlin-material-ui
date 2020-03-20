@@ -22,20 +22,7 @@ class InputLabelElementBuilder<T: Tag> internal constructor(
     }
 
     var Tag.disableAnimation: Boolean? by materialProps
-    var Tag.FormLabelClasses: Any? by materialProps
     var Tag.margin: InputLabelMargin? by materialProps
     var Tag.shrink: Boolean? by materialProps
     var Tag.variant: InputLabelVariant? by materialProps
-
-    fun Tag.formLabelClasses(vararg classMap: Pair<FormLabelStyle, String>) {
-        if (classMap.isEmpty()) {
-            return
-        }
-
-        val classesObj: dynamic = jsObject { }
-
-        classMap.forEach { (key, value) -> classesObj[key] = value }
-
-        materialProps.FormLabelClasses = classesObj as Any
-    }
 }

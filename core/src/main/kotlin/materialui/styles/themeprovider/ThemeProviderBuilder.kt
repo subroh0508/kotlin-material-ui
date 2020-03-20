@@ -1,10 +1,10 @@
-package materialui.styles.muithemeprovider
+package materialui.styles.themeprovider
 
 import kotlinext.js.jsObject
 import materialui.styles.muitheme.MuiTheme
 import react.*
 
-class MuiThemeProviderBuilder internal constructor(
+class ThemeProviderBuilder internal constructor(
     val type: RComponent<RProps, RState>,
     val theme: MuiTheme,
     private val props: RProps = jsObject { }

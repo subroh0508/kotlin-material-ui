@@ -21,7 +21,7 @@ external interface SvgIconProps : StandardProps {
     var viewBox: String?
 }
 
-var SvgIconProps.nativeColor: Color? by ColorDelegate
+var SvgIconProps.htmlColor: Color? by ColorDelegate
 
 @Suppress("UnsafeCastFromDynamic")
 private val svgIconComponent: RClass<SvgIconProps> = svgIconModule.default
