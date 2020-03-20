@@ -121,7 +121,7 @@ class ButtonsDemo : RComponent<RProps, RState>() {
 
         private val styles: StylesSet.() -> Unit = {
             "button" {
-                margin(theme.spacing())
+                margin(theme.spacing(1))
             }
             "input" {
                 display = Display.none
