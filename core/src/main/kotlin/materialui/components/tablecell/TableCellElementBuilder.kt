@@ -18,10 +18,9 @@ open class TableCellElementBuilder<T: Tag, Props: TableCellProps> internal const
     }
 
     var Tag.align: TableCellAlign? by materialProps
-    @Deprecated("Instead, use the `align` property.")
-    var Tag.numeric: Boolean? by materialProps
     var Tag.padding: TableCellPadding? by materialProps
     var Tag.scope: String? by materialProps
+    var Tag.size: TableCellSize? by materialProps
     var Tag.sortDirection: TableCellSortDirection? by materialProps
     var Tag.variant: TableCellVariant? by materialProps
 }
