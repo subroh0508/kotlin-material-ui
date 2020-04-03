@@ -3,6 +3,7 @@ package materialui.styles.mixins
 import kotlinext.js.Object.keys
 import kotlinext.js.js
 import kotlinx.css.CSSBuilder
+import kotlinx.css.px
 import kotlin.reflect.KProperty
 
 typealias Gutters = (CSSBuilder) -> CSSBuilder
@@ -68,7 +69,7 @@ private fun buildCssBuilder(cssBuilder: CSSBuilder, jsObject: dynamic): CSSBuild
         keys(jsObject as Any).toList().forEach { key: String ->
             when (jsObject[key]) {
                 is String -> cssBuilder.declarations[key] = jsObject[key] as String
-                is Number -> cssBuilder.declarations[key] = jsObject[key] as Number
+                is Number -> cssBuilder.declarations[key] = (jsObject[key] as Number).px
                 else -> key { buildCssBuilder(this, jsObject[key]) }
             }
         }
