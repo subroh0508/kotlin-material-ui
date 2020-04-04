@@ -27,9 +27,13 @@ object Libraries {
 
     object Npm {
         const val coreJs = "~3.1.4"
-        const val materialUi = "4.9.6"
         const val styledComponent = "^4.3.2"
         const val inlineStyledPrefixer = "^5.1.0"
         const val react = "16.13.0"
+
+        object MaterialUi {
+            const val core = "4.9.6"
+            const val lab = "4.0.0-alpha.47"
+        }
     }
 }

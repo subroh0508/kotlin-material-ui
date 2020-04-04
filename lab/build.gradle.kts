@@ -1,10 +1,10 @@
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
-
 group = Packages.group
-version = "1.0-SNAPSHOT"
+version = Packages.version
 
 plugins {
     kotlin("js")
+    `maven-publish`
+    id("com.jfrog.bintray") version Libraries.bintray
 }
 
 repositories {
@@ -15,23 +15,17 @@ repositories {
     maven(url = "http://dl.bintray.com/kotlin/kotlin-js-wrappers")
 }
 
-
 kotlin {
     target {
-        useCommonJs()
-        browser {
-            runTask {
-                sourceMaps = true
-                devServer = KotlinWebpackConfig.DevServer(
-                    port = 8080,
-                    contentBase = listOf("${projectDir.path}/src/main/resources")
-                )
-                outputFileName = "kotlin-material-ui-sample.js"
-            }
-            webpackTask {
-                outputFileName = "kotlin-material-ui-sample.js"
+        compilations.all {
+            compileKotlinTask.kotlinOptions {
+                moduleKind = "commonjs"
+                sourceMap = true
+                metaInfo = true
+                sourceMapEmbedSources = null
             }
         }
+        browser()
     }
 
     sourceSets {
@@ -43,11 +37,10 @@ kotlin {
                 implementation(Libraries.Kotlin.react)
                 implementation(Libraries.Kotlin.reactDom)
                 implementation(Libraries.Kotlin.css)
-                implementation(Libraries.Kotlin.styled)
                 implementation(npm("react", Libraries.Npm.react))
                 implementation(npm("react-dom", Libraries.Npm.react))
-                implementation(npm("styled-components", Libraries.Npm.styledComponent))
-                implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
+                implementation(npm("@material-ui/core", Libraries.Npm.MaterialUi.core))
+                implementation(npm("@material-ui/lab", Libraries.Npm.MaterialUi.lab))
             }
         }
 
@@ -58,3 +51,5 @@ kotlin {
         }
     }
 }
+
+apply(from = file("${rootDir.path}/gradle/bintray.gradle"))
