@@ -2,6 +2,7 @@
 Kotlin Wrapper Library of Material-UI
 
 Core: [ ![Download](https://api.bintray.com/packages/subroh0508/maven/Kotlin-Material-UI/images/download.svg) ](https://bintray.com/subroh0508/maven/Kotlin-Material-UI/_latestVersion)
+
 Lab: [ ![Download](https://api.bintray.com/packages/subroh0508/maven/Kotlin-Material-UI-Lab/images/download.svg) ](https://bintray.com/subroh0508/maven/Kotlin-Material-UI-Lab/_latestVersion)
 
 ## Installation
