@@ -1,9 +1,9 @@
-package materialui.components.alert
+package materialui.lab.components.alert
 
 import kotlinx.html.DIV
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.alert.enums.AlertStyle
+import materialui.lab.components.alert.enums.AlertStyle
 import materialui.components.paper.PaperProps
 import org.w3c.dom.Node
 import react.RBuilder

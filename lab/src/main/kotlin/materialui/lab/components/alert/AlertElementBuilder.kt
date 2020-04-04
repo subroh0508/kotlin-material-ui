@@ -1,12 +1,11 @@
-package materialui.components.alert
+package materialui.lab.components.alert
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import materialui.components.alert.enums.AlertColor
-import materialui.components.alert.enums.AlertSeverity
-import materialui.components.alert.enums.AlertStyle
-import materialui.components.alert.enums.AlertVariant
-import materialui.components.appbar.enums.AppBarStyle
+import materialui.lab.components.alert.enums.AlertColor
+import materialui.lab.components.alert.enums.AlertSeverity
+import materialui.lab.components.alert.enums.AlertStyle
+import materialui.lab.components.alert.enums.AlertVariant
 import materialui.components.getValue
 import materialui.components.paper.PaperElementBuilder
 import materialui.components.setValue

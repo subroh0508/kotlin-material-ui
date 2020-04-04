@@ -1,4 +1,4 @@
-package materialui.components.alert.enums
+package materialui.lab.components.alert.enums
 
 @Suppress("EnumEntryName")
 enum class AlertVariant {

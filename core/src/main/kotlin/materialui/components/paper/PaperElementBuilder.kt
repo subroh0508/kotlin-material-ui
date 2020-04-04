@@ -8,7 +8,7 @@ import materialui.components.paper.enums.PaperStyle
 import materialui.components.setValue
 import react.RClass
 
-open class PaperElementBuilder<T: Tag, Props: PaperProps> internal constructor(
+open class PaperElementBuilder<T: Tag, Props: PaperProps>(
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
