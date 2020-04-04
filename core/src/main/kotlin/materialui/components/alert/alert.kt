@@ -9,7 +9,7 @@ import org.w3c.dom.Node
 import react.RBuilder
 import react.RClass
 
-@JsModule("@material-ui/core/Alert")
+@JsModule("@material-ui/lab/Alert")
 private external val alertModule: dynamic
 
 external interface AlertProps : PaperProps {
