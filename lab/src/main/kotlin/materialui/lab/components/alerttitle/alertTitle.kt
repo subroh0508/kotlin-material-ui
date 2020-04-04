@@ -14,5 +14,5 @@ external interface AlertTitleProps : RProps
 @Suppress("UnsafeCastFromDynamic")
 private val alertTitleComponent: RClass<AlertTitleProps> = alertTitleModule.default
 
-fun RBuilder.cssBaseline(block: RBuilder.() -> Unit)
+fun RBuilder.alertTitle(block: RBuilder.() -> Unit)
         = child(createElement(alertTitleComponent, jsObject<AlertTitleProps> { }, *RBuilder().apply(block).childList.toTypedArray()))
