@@ -32,7 +32,7 @@ object Libraries {
         const val react = "16.13.0"
 
         object MaterialUi {
-            const val core = "4.9.6"
+            const val core = "4.9.8"
             const val lab = "4.0.0-alpha.47"
         }
     }
