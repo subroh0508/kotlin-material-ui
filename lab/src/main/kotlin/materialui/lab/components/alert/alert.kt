@@ -6,6 +6,7 @@ import kotlinx.html.TagConsumer
 import materialui.lab.components.alert.enums.AlertStyle
 import materialui.components.paper.PaperProps
 import org.w3c.dom.Node
+import org.w3c.dom.events.Event
 import react.RBuilder
 import react.RClass
 
@@ -18,6 +19,7 @@ external interface AlertProps : PaperProps {
     var color: String?
     var icon: dynamic
     var iconMapping: AlertIconMapping
+    var onClose: ((event: Event) -> Unit)?
     var role: String
     var severity: String
     var variant: String

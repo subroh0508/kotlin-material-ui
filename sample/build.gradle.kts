@@ -38,6 +38,7 @@ kotlin {
         val main by getting {
             dependencies {
                 implementation(project(":core"))
+                implementation(project(":lab"))
                 implementation(Libraries.Kotlin.js)
                 implementation(Libraries.Kotlin.html)
                 implementation(Libraries.Kotlin.react)

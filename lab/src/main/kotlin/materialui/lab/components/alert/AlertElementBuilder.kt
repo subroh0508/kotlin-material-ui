@@ -9,6 +9,7 @@ import materialui.lab.components.alert.enums.AlertVariant
 import materialui.components.getValue
 import materialui.components.paper.PaperElementBuilder
 import materialui.components.setValue
+import org.w3c.dom.events.Event
 import react.RBuilder
 import react.RClass
 import react.ReactElement
@@ -28,6 +29,7 @@ class AlertElementBuilder<T: Tag> internal constructor(
     var Tag.color: AlertColor? by materialProps
     var Tag.icon: ReactElement? by materialProps
     var Tag.iconMapping: AlertIconMapping by materialProps
+    var Tag.onClose: ((event: Event) -> Unit)? by materialProps
     var Tag.role: String by materialProps
     var Tag.severity: AlertSeverity by materialProps
     var Tag.variant: AlertVariant by materialProps
