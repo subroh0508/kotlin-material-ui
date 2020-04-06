@@ -11,16 +11,28 @@ private external val withStylesModule: dynamic
 @Suppress("UnsafeCastFromDynamic")
 private val withStyles: (dynamic, dynamic) -> ((Any) -> JsClass<*>) = withStylesModule.default
 
-fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
+fun <P: RProps> withStyles(
+    rClass: RClass<P>,
+    styleSet: StylesSet.() -> Unit,
+    withTheme: Boolean = true
+): RClass<P> = withStyles(
+    { theme: MuiTheme -> StylesBuilder(theme).apply(styleSet).toDynamic() },
+    js { this["withTheme"] = withTheme }
+)(rClass).unsafeCast<RClass<P>>()
+
+fun <C : RComponent<P, *>, P : RProps> withStyles(
+    klazz: KClass<C>,
+    styleSet: StylesSet.() -> Unit,
+    withTheme: Boolean = false
+): RClass<P> = withStyles(klazz.rClass, styleSet, withTheme = withTheme)
+
+fun <P : RProps, C : RComponent<P, *>> RBuilder.childWithStyles(
     klazz: KClass<C>,
     styleSet: StylesSet.() -> Unit,
     withTheme: Boolean = false,
     handler: RHandler<P>
 ): ReactElement {
-    val rClass = withStyles(
-        { theme: MuiTheme -> StylesBuilder(theme).apply(styleSet).toDynamic() },
-        js { this["withTheme"] = withTheme }
-    )(klazz.js) as RClass<P>
+    val rClass = withStyles(klazz, styleSet, withTheme = withTheme)
 
     return rClass(handler)
 }
@@ -30,7 +42,4 @@ fun <P: RProps> RBuilder.childWithStyles(
     styleSet: StylesSet.() -> Unit,
     withTheme: Boolean = false,
     render: RBuilder.(P) -> Unit
-): RClass<P> = withStyles(
-    { theme: MuiTheme -> StylesBuilder(theme).apply(styleSet).toDynamic() },
-    js { this["withTheme"] = withTheme }
-)(rFunction(displayName, render)) as RClass<P>
+): RClass<P> = withStyles(rFunction(displayName, render), styleSet, withTheme = withTheme)
