@@ -1,10 +1,7 @@
 package demo.components
 
 import kotlinx.css.*
-import kotlinx.html.H2
-import kotlinx.html.InputType
-import kotlinx.html.SPAN
-import kotlinx.html.id
+import kotlinx.html.*
 import materialui.components.button.button
 import materialui.components.button.enums.ButtonColor
 import materialui.components.button.enums.ButtonStyle
@@ -81,7 +78,8 @@ class ButtonsDemo : RComponent<RProps, RState>() {
                     attrs {
                         variant = ButtonVariant.contained
                         color = ButtonColor.secondary
-                        disabled = true
+                        // for fix #6: https://github.com/subroh0508/kotlin-material-ui/issues/6
+                        (this as Tag).disabled = true
                         classes(ButtonStyle.root to buttonStyle)
                     }
 
