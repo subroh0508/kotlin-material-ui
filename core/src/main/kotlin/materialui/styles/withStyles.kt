@@ -20,13 +20,13 @@ fun <P: RProps> withStyles(
     js { this["withTheme"] = withTheme }
 )(rClass).unsafeCast<RClass<P>>()
 
-fun <C : RComponent<P, *>, P : RProps> withStyles(
+fun <C : Component<P, *>, P : RProps> withStyles(
     klazz: KClass<C>,
     styleSet: StylesSet.() -> Unit,
     withTheme: Boolean = false
-): RClass<P> = withStyles(klazz.rClass, styleSet, withTheme = withTheme)
+): RClass<P> = withStyles(klazz.js.unsafeCast<RClass<P>>(), styleSet, withTheme = withTheme)
 
-fun <P : RProps, C : RComponent<P, *>> RBuilder.childWithStyles(
+fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
     klazz: KClass<C>,
     styleSet: StylesSet.() -> Unit,
     withTheme: Boolean = false,
