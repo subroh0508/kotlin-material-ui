@@ -9,8 +9,8 @@ import materialui.components.button.enums.ButtonVariant
 import materialui.components.typography.enums.TypographyVariant
 import materialui.components.typography.typography
 import materialui.styles.StylesSet
-import materialui.styles.childWithStyles
 import materialui.styles.muitheme.spacing
+import materialui.styles.withStyles
 import react.RBuilder
 import react.RComponent
 import react.RProps
@@ -119,18 +119,15 @@ class ButtonsDemo : RComponent<RProps, RState>() {
     }
 
     companion object {
-        fun render(rBuilder: RBuilder) = rBuilder.childWithStyles(
-            ButtonsDemo::class,
-            styles
-        ) { }
+        fun render(rBuilder: RBuilder) = with (rBuilder) { styledComponent {} }
 
-        private val styles: StylesSet.() -> Unit = {
+        private val styledComponent = withStyles(ButtonsDemo::class, {
             "button" {
                 margin(theme.spacing(1))
             }
             "input" {
                 display = Display.none
             }
-        }
+        })
     }
 }

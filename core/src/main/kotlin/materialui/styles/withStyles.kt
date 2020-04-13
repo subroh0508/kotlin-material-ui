@@ -26,6 +26,16 @@ fun <C : Component<P, *>, P : RProps> withStyles(
     withTheme: Boolean = false
 ): RClass<P> = withStyles(klazz.js.unsafeCast<RClass<P>>(), styleSet, withTheme = withTheme)
 
+fun <P: RProps> withStyles(
+    displayName: String,
+    styleSet: StylesSet.() -> Unit,
+    withTheme: Boolean = false,
+    render: RBuilder.(P) -> Unit
+): RClass<P> = withStyles(rFunction(displayName, render), styleSet, withTheme = withTheme)
+
+@Deprecated(
+    "Use withStyles to create a reusable RClass instead, and call that to render the styled component."
+)
 fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
     klazz: KClass<C>,
     styleSet: StylesSet.() -> Unit,
@@ -37,6 +47,10 @@ fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
     return rClass(handler)
 }
 
+@Deprecated(
+    "Use withStyles instead",
+    replaceWith = ReplaceWith("withStyles(displayName, styleSet, withTheme, render)", "materialui.styles.withStyles")
+)
 fun <P: RProps> RBuilder.childWithStyles(
     displayName: String,
     styleSet: StylesSet.() -> Unit,
