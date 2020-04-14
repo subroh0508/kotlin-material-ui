@@ -12,16 +12,13 @@ import materialui.components.toolbar.toolbar
 import materialui.components.typography.enums.TypographyColor
 import materialui.components.typography.enums.TypographyVariant
 import materialui.components.typography.typography
-import materialui.styles.StylesSet
-import materialui.styles.childWithStyles
+import materialui.styles.withStyles
 import react.RBuilder
 import react.RComponent
 import react.RProps
 import react.RState
 import react.dom.div
-import react.dom.h1
 import styled.styledH1
-import styled.styledH2
 
 class AppbarsDemo : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
@@ -75,12 +72,10 @@ class AppbarsDemo : RComponent<RProps, RState>() {
     }
 
     companion object {
-        fun render(rBuilder: RBuilder) = rBuilder.childWithStyles(
-            AppbarsDemo::class,
-            styleSets
-        ) {  }
 
-        private val styleSets: StylesSet.() -> Unit = {
+        fun render(rBuilder: RBuilder) = with (rBuilder) { styledComponent { } }
+
+        private val styledComponent = withStyles(AppbarsDemo::class, {
             "root" {
                 flexGrow = 1.0
             }
@@ -91,6 +86,6 @@ class AppbarsDemo : RComponent<RProps, RState>() {
                 marginLeft = (-12).px
                 marginRight = 20.px
             }
-        }
+        })
     }
 }

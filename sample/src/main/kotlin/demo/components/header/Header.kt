@@ -3,7 +3,6 @@ package demo.components.header
 import demo.components.appsearch.appSearch
 import kotlinx.css.*
 import kotlinx.css.properties.BoxShadows
-import materialui.styles.StylesSet
 import materialui.components.appbar.appBar
 import materialui.components.button.enums.ButtonColor
 import materialui.components.cssbaseline.cssBaseline
@@ -13,8 +12,8 @@ import materialui.components.toolbar.toolbar
 import materialui.components.tooltip.tooltip
 import materialui.styles.breakpoint.Breakpoint
 import materialui.styles.breakpoint.up
-import materialui.styles.childWithStyles
 import materialui.styles.transitions.create
+import materialui.styles.withStyles
 import react.RBuilder
 import react.RComponent
 import react.RState
@@ -116,12 +115,9 @@ class Header : RComponent<HeaderProps, RState>() {
     }
 
     companion object {
-        fun render(rBuilder: RBuilder) = rBuilder.childWithStyles(
-            Header::class,
-            style
-        ) { }
+        fun render(rBuilder: RBuilder) = with (rBuilder) { styledComponent {} }
 
-        private val style: StylesSet.() -> Unit = {
+        private val styledComponent = withStyles(Header::class, {
             "root" {
                 display = Display.flex
             }
@@ -156,6 +152,6 @@ class Header : RComponent<HeaderProps, RState>() {
                     display = Display.none
                 }
             }
-        }
+        })
     }
 }
