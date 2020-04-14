@@ -3,7 +3,6 @@ package demo.components
 import kotlinx.css.*
 import kotlinx.html.DIV
 import kotlinx.html.js.onChangeFunction
-import materialui.styles.StylesSet
 import materialui.components.formcontrol.formControl
 import materialui.components.input.input
 import materialui.components.inputadornment.InputAdornmentElementBuilder
@@ -11,16 +10,13 @@ import materialui.components.inputadornment.enums.InputAdornmentPosition
 import materialui.components.inputlabel.inputLabel
 import materialui.components.menuitem.menuItem
 import materialui.components.textfield.textField
-import materialui.styles.childWithStyles
+import materialui.styles.withStyles
 import org.w3c.dom.events.Event
 import react.*
 import react.dom.div
-import react.dom.h1
-import react.dom.h2
 import styled.css
 import styled.styledDiv
 import styled.styledH1
-import styled.styledH2
 
 val ranges: List<Pair<String, String>>
     get() = listOf(
@@ -140,12 +136,9 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
         }
 
     companion object {
-        fun render(rBuilder: RBuilder) = rBuilder.childWithStyles(
-            InputAdornmentsDemo::class,
-            style
-        ) { }
+        fun render(rBuilder: RBuilder) = with(rBuilder) { styledComponent { } }
 
-        private val style: StylesSet.() -> Unit = {
+        private val styledComponent = withStyles(InputAdornmentsDemo::class, {
             "root" {
                 display = Display.flex
                 flexWrap = FlexWrap.wrap
@@ -160,7 +153,7 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
             "textField" {
                 flexBasis = 200.px.basis
             }
-        }
+        })
     }
 }
 

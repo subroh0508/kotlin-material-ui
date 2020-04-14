@@ -2,8 +2,6 @@ package demo.components.appsearch
 
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
-import materialui.styles.StylesSet
-import materialui.styles.childWithStyles
 import materialui.styles.muitheme.shadows
 import materialui.styles.muitheme.spacing
 import materialui.styles.palette.*
@@ -11,15 +9,12 @@ import materialui.styles.transitions.create
 import materialui.styles.typography.fontWeightMedium
 import materialui.styles.typography.fontWeightRegular
 import materialui.styles.typography.typography
+import materialui.styles.withStyles
 import react.RBuilder
 
-fun RBuilder.appSearch(handler: RBuilder.() -> Unit) = childWithStyles(
-    AppSearchComponent::class,
-    appSearchStyles,
-    handler = handler
-)
+fun RBuilder.appSearch(handler: RBuilder.() -> Unit) = styledAppSearch(handler)
 
-private val appSearchStyles: StylesSet.() -> Unit = {
+private val styledAppSearch = withStyles(AppSearchComponent::class, {
     "@global" {
         ".algolia-autocomplete" {
             descendants(".ds-dropdown-menu") {
@@ -109,4 +104,4 @@ private val appSearchStyles: StylesSet.() -> Unit = {
     "inputInput" {
         padding = theme.spacing(top = 1, bottom = 1, right = 1, left = 9)
     }
-}
+})
