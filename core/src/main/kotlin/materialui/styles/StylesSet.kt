@@ -10,39 +10,22 @@ import react.RProps
 
 interface StylesSet {
     val theme: MuiTheme
-    val css: MutableMap<String, CSSBuilder>
+    val css: dynamic
 
     operator fun String.invoke(block: RuleSet): String {
-        css[this] = CSSBuilder().apply(block)
+        css[this] = CSSBuilder().apply(block).toDynamic
         return this
     }
 }
 
-internal class StylesBuilder(
-    override val theme: MuiTheme,
-    override val css: MutableMap<String, CSSBuilder> = mutableMapOf()
-) : StylesSet {
-    fun toDynamic() = js {
-        css.forEach { (key, value) -> this[key] = value.toDynamic }
-    } as Any
-}
-
-interface CreateStylesSet<P: RProps> {
+class StylesBuilder<P: RProps> internal constructor(
     val theme: MuiTheme
-    val css: MutableMap<String, (P) -> dynamic>
+) {
+    internal val css: dynamic = js {  }
 
     operator fun String.invoke(block: CSSBuilder.(P) -> Unit): String {
         css[this] = { props: P -> CSSBuilder().apply { block(props) }.toDynamic }
         return this
-    }
-}
-
-internal class CreateStylesBuilder<P: RProps>(
-    override val theme: MuiTheme,
-    override val css: MutableMap<String, (P) -> dynamic> = mutableMapOf()
-): CreateStylesSet<P> {
-    fun toDynamic() = js {
-        css.forEach { (key, value) -> this[key] = value }
     }
 }
 
