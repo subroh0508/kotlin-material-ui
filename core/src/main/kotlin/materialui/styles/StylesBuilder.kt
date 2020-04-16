@@ -11,10 +11,15 @@ import react.RProps
 class StylesBuilder<P: RProps> internal constructor(
     val theme: MuiTheme
 ) {
-    internal val css: dynamic = js {  }
+    val css: dynamic = js {  }
 
     operator fun String.invoke(block: CSSBuilder.(P) -> Unit): String {
         css[this] = { props: P -> CSSBuilder().apply { block(props) }.toDynamic }
+        return this
+    }
+
+    operator fun String.invoke(builder: CSSBuilder): String {
+        css[this] = builder.toDynamic
         return this
     }
 }
