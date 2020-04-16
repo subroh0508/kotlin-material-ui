@@ -8,16 +8,6 @@ import kotlinx.css.hyphenize
 import materialui.styles.muitheme.MuiTheme
 import react.RProps
 
-interface StylesSet {
-    val theme: MuiTheme
-    val css: dynamic
-
-    operator fun String.invoke(block: RuleSet): String {
-        css[this] = CSSBuilder().apply(block).toDynamic
-        return this
-    }
-}
-
 class StylesBuilder<P: RProps> internal constructor(
     val theme: MuiTheme
 ) {
