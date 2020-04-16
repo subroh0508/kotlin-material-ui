@@ -12,8 +12,15 @@ private external val makeStylesModule: dynamic
 private val makeStyles: (dynamic, dynamic) -> ((RProps) -> dynamic) = makeStylesModule.default
 
 @Suppress("UNCHECKED_CAST")
-fun <Style> makeStyles(options: dynamic = js {  }, block: StylesSet.() -> Unit): () -> Style  =
+fun <Style> makeStyles(options: dynamic = js { }, block: StylesSet.() -> Unit): () -> Style  =
     makeStyles(
         { theme: MuiTheme -> StylesBuilder(theme).apply(block).toDynamic() },
         options as Any
     ) as () -> Style
+
+@Suppress("UNCHECKED_CAST")
+fun <Style, P: RProps> makeStyles(options: dynamic = js { }, block: CreateStylesSet<P>.() -> Unit): (P) -> Style =
+    makeStyles(
+        { theme: MuiTheme -> CreateStylesBuilder<P>(theme).apply(block).toDynamic() },
+        options as Any
+    ) as (P) -> Style
