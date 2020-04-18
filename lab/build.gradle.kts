@@ -33,6 +33,7 @@ kotlin {
             dependencies {
                 implementation(project(":core"))
                 implementation(Libraries.Kotlin.js)
+                implementation(Libraries.Kotlin.kotlinext)
                 implementation(Libraries.Kotlin.html)
                 implementation(Libraries.Kotlin.react)
                 implementation(Libraries.Kotlin.reactDom)
