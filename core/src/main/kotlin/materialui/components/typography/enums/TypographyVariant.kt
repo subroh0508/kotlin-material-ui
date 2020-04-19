@@ -16,12 +16,5 @@ enum class TypographyVariant {
     button,
     overline,
     srOnly,
-    inherit,
-    display4,
-    display3,
-    display2,
-    display1,
-    headline,
-    title,
-    subheading
+    inherit
 }

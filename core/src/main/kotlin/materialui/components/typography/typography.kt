@@ -18,13 +18,10 @@ external interface TypographyProps : StandardProps {
     var color: String?
     var display: String?
     var gutterBottom: Boolean?
-    var headlineMapping: String?
-    var inline: Boolean?
-    var internalDeprecatedVariant: Boolean?
     var noWrap: Boolean?
     var paragraph: Boolean?
-    var theme: MuiTheme?
     var variant: String?
+    var variantMapping: VariantMapping?
 }
 
 external interface VariantMapping {

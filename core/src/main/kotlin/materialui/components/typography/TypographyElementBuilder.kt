@@ -23,13 +23,10 @@ open class TypographyElementBuilder<T: Tag, Props: TypographyProps> internal con
     var Tag.color: TypographyColor? by materialProps
     var Tag.display: TypographyDisplay? by materialProps
     var Tag.gutterBottom: Boolean? by materialProps
-    var Tag.variantMapping: VariantMapping? by materialProps
-    var Tag.inline: Boolean? by materialProps
-    var Tag.internalDeprecatedVariant: Boolean? by materialProps
     var Tag.noWrap: Boolean? by materialProps
     var Tag.paragraph: Boolean? by materialProps
-    var Tag.theme: MuiTheme? by materialProps
     var Tag.variant: TypographyVariant? by materialProps
+    var Tag.variantMapping: VariantMapping? by materialProps
 
     fun Tag.variantMapping(block: VariantMapping.() -> Unit) { variantMapping = jsObject(block) }
 }
