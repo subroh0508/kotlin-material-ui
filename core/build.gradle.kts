@@ -36,6 +36,7 @@ kotlin {
                 implementation(Libraries.Kotlin.react)
                 implementation(Libraries.Kotlin.reactDom)
                 implementation(Libraries.Kotlin.css)
+                implementation(Libraries.Kotlin.extensions)
                 implementation(npm("react", Libraries.Npm.react))
                 implementation(npm("react-dom", Libraries.Npm.react))
                 implementation(npm("@material-ui/core", Libraries.Npm.MaterialUi.core))
