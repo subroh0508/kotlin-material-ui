@@ -6,9 +6,6 @@ import materialui.components.button.button
 import materialui.components.button.enums.ButtonColor
 import materialui.components.button.enums.ButtonStyle
 import materialui.components.button.enums.ButtonVariant
-import materialui.components.typography.enums.TypographyVariant
-import materialui.components.typography.typography
-import materialui.styles.StylesSet
 import materialui.styles.muitheme.spacing
 import materialui.styles.withStyles
 import react.RBuilder
@@ -19,7 +16,6 @@ import react.dom.*
 import styled.css
 import styled.styledDiv
 import styled.styledH1
-import styled.styledH2
 
 class ButtonsDemo : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
