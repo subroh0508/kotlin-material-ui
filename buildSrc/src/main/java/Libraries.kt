@@ -7,22 +7,25 @@ object Libraries {
     const val bintray = "1.8.4"
 
     object Kotlin {
-        const val version = "1.3.70"
+        const val version = "1.3.72"
         const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
         const val jsTest = "org.jetbrains.kotlin:kotlin-test-js:$version"
 
-        const val reactVersion = "${Npm.react}-pre.94-kotlin-$version"
+        const val reactVersion = "${Npm.react}-pre.97-kotlin-$version"
         const val react = "org.jetbrains:kotlin-react:$reactVersion"
         const val reactDom = "org.jetbrains:kotlin-react-dom:$reactVersion"
 
         const val htmlVersion = "0.7.1"
         const val html = "org.jetbrains.kotlinx:kotlinx-html-js:$htmlVersion"
 
-        const val cssVersion = "1.0.0-pre.94-kotlin-$version"
+        const val cssVersion = "1.0.0-pre.97-kotlin-$version"
         const val css = "org.jetbrains:kotlin-css-js:$cssVersion"
 
-        const val styledVersion = "1.0.0-pre.94-kotlin-$version"
+        const val styledVersion = "1.0.0-pre.97-kotlin-$version"
         const val styled = "org.jetbrains:kotlin-styled:$styledVersion"
+
+        const val extensionsVersion = "1.0.1-pre.97-kotlin-$version"
+        const val extensions = "org.jetbrains:kotlin-extensions:$extensionsVersion"
     }
 
     object Npm {
