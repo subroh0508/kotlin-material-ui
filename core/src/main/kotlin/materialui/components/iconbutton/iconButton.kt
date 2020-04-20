@@ -13,6 +13,7 @@ private external val iconButtonModule: dynamic
 
 external interface IconButtonProps : ButtonBaseProps {
     var color: String?
+    var edge: String?
 }
 
 @Suppress("UnsafeCastFromDynamic")

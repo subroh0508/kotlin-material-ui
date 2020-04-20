@@ -5,6 +5,7 @@ import kotlinx.html.TagConsumer
 import materialui.components.button.enums.ButtonColor
 import materialui.components.buttonbase.ButtonBaseElementBuilder
 import materialui.components.getValue
+import materialui.components.iconbutton.enums.IconButtonEdge
 import materialui.components.iconbutton.enums.IconButtonStyle
 import materialui.components.setValue
 import react.RClass
@@ -19,4 +20,5 @@ class IconButtonElementBuilder<T: Tag>(
     }
 
     var Tag.color: ButtonColor? by materialProps
+    var Tag.edge: IconButtonEdge? by materialProps
 }
