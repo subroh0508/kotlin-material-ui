@@ -1,6 +1,6 @@
 package materialui.styles.mixins
 
-import kotlinext.js.Object.keys
+import kotlinext.js.Object
 import kotlinext.js.js
 import kotlinx.css.CSSBuilder
 import kotlinx.css.px
@@ -42,7 +42,7 @@ object ReadOnlyToolbarDelegate {
 
 object ToolbarDelegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): CSSBuilder?
-        = if (keys(thisRef.asDynamic()[property.name] as Any).isEmpty())
+        = if (Object.keys(thisRef.asDynamic()[property.name] as Any).isEmpty())
               null
           else
               buildCssBuilder(CSSBuilder(), thisRef.asDynamic()[property.name])
@@ -66,7 +66,7 @@ private fun CSSBuilder.toDynamic(): dynamic = js {
 
 private fun buildCssBuilder(cssBuilder: CSSBuilder, jsObject: dynamic): CSSBuilder
     = cssBuilder.apply {
-        keys(jsObject as Any).toList().forEach { key: String ->
+        Object.keys(jsObject as Any).toList().forEach { key: String ->
             when (jsObject[key]) {
                 is String -> cssBuilder.declarations[key] = jsObject[key] as String
                 is Number -> cssBuilder.declarations[key] = (jsObject[key] as Number).px
