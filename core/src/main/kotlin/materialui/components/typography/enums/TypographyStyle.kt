@@ -30,5 +30,6 @@ enum class TypographyStyle {
     colorTextPrimary,
     colorTextSecondary,
     colorError,
-    inline
+    displayInline,
+    displayBlock,
 }
