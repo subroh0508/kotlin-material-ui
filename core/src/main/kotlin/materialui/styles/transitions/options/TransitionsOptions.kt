@@ -2,8 +2,9 @@ package materialui.styles.transitions.options
 
 import kotlinext.js.jsObject
 import kotlinx.css.properties.Timing
-import materialui.styles.transitions.TransitionsCreate
-import materialui.styles.transitions.TransitionsCreateDelegate
+import kotlinx.css.properties.Transitions
+import materialui.styles.transitions.*
+import materialui.styles.transitions.create
 
 external interface TransitionsOptions {
     var easing: EasingOptions?
@@ -13,13 +14,15 @@ external interface TransitionsOptions {
 
 internal var TransitionsOptions.create: TransitionsCreate? by TransitionsCreateDelegate
 
-fun TransitionsOptions.create(prop: String = "all", duration: Number? = null, easing: Timing? = null, delay: Number? = null): kotlinx.css.properties.Transitions?
-        = create?.invoke(listOf(prop), duration, easing, delay)
-
-fun TransitionsOptions.create(props: List<String> = listOf("all"), duration: Number? = null, easing: Timing? = null, delay: Number? = null): kotlinx.css.properties.Transitions?
-        = create?.invoke(props, duration, easing, delay)
+fun TransitionsOptions.create(func: (Array<out String>, TransitionCreateOptions) -> Transitions) {
+    create = { props, options -> func(props, toTransitionCreateOptions(options)) }
+}
 
 fun TransitionsOptions.easing(block: EasingOptions.() -> Unit) { easing = (easing ?: jsObject { }).apply(block) }
 fun TransitionsOptions.duration(block: DurationOptions.() -> Unit) { duration = (duration ?: jsObject { }).apply(block) }
 
-
+private fun toTransitionCreateOptions(obj: dynamic): TransitionCreateOptions = jsObject {
+    duration = obj["duration"] as? Int
+    easing = (obj["easing"] as? String)?.let(::Timing)
+    delay = obj["delay"] as? Int
+}
