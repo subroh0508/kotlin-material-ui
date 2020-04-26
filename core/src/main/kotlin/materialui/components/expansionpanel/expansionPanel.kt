@@ -1,6 +1,5 @@
 package materialui.components.expansionpanel
 
-import kotlinx.css.properties.Transition
 import kotlinx.html.DIV
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
