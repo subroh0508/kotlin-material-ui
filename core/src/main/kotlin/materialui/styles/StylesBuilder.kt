@@ -13,6 +13,10 @@ class StylesBuilder<P: RProps> internal constructor(
 ) {
     val css: dynamic = js {  }
 
+    fun global(block: CSSBuilder.() -> Unit) {
+        css["@global"] = CSSBuilder().apply(block).toDynamic
+    }
+
     operator fun String.invoke(block: CSSBuilder.(P) -> Unit): String {
         css[this] = { props: P -> CSSBuilder().apply { block(props) }.toDynamic }
         return this
