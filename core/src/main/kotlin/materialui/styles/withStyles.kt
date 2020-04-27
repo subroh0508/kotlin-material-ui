@@ -9,13 +9,22 @@ import kotlin.reflect.KClass
 private external val withStylesModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val withStyles: (dynamic, dynamic) -> ((Any) -> JsClass<*>) = withStylesModule.default
+private val rawWithStyles: (dynamic, dynamic) -> ((Any) -> JsClass<*>) = withStylesModule.default
+
+fun <P: RProps> withStyles(
+    functionalComponent: FunctionalComponent<P>,
+    styleSet: StylesBuilder<P>.() -> Unit,
+    withTheme: Boolean = true
+): RClass<P> = rawWithStyles(
+    { theme: MuiTheme -> console.log(StylesBuilder<P>(theme).apply(styleSet).css); StylesBuilder<P>(theme).apply(styleSet).css },
+    js { this["withTheme"] = withTheme }
+)(functionalComponent).unsafeCast<RClass<P>>()
 
 fun <P: RProps> withStyles(
     rClass: RClass<P>,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = true
-): RClass<P> = withStyles(
+): RClass<P> = rawWithStyles(
     { theme: MuiTheme -> StylesBuilder<P>(theme).apply(styleSet).css },
     js { this["withTheme"] = withTheme }
 )(rClass).unsafeCast<RClass<P>>()
