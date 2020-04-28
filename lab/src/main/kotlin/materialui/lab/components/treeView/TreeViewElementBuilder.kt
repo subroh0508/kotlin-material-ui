@@ -1,4 +1,4 @@
-package materialui.components.treeView
+package materialui.lab.components.treeView
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer

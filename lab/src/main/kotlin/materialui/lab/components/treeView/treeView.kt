@@ -1,7 +1,6 @@
-package materialui.components.treeView
+package materialui.lab.components.treeView
 
 import kotlinx.html.DIV
-import kotlinx.html.RP
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.StandardProps
@@ -9,7 +8,6 @@ import materialui.components.toolbar.enums.ToolbarStyle
 import org.w3c.dom.events.Event
 import react.RBuilder
 import react.RClass
-import react.RProps
 import react.ReactElement
 
 @JsModule("@material-ui/lab/TreeView")
@@ -22,7 +20,7 @@ external interface TreeViewProps : StandardProps {
     var defaultParentIcon: ReactElement?
     var expanded: Array<String>?
     var defaultExpanded: Array<String>?
-    var onNodeToggle: (event: Event, nodeIds: Array<String>) -> Unit
+    var onNodeToggle: (event: Event, nodeIds: Array<String>) -> Unit?
 }
 
 @Suppress("UnsafeCastFromDynamic")

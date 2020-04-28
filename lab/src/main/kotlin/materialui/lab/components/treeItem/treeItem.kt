@@ -1,12 +1,10 @@
-package materialui.components.treeItem
+package materialui.lab.components.treeItem
 
 import kotlinx.html.DIV
-import kotlinx.html.RP
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.StandardProps
 import materialui.components.toolbar.enums.ToolbarStyle
-import org.w3c.dom.events.Event
 import react.*
 
 @JsModule("@material-ui/lab/TreeItem")
@@ -17,9 +15,9 @@ external interface TreeItemProps : StandardProps {
     var endIcon: ReactElement?
     var expandIcon: ReactElement?
     var icon: ReactElement?
-    var label: ReactElement
-    var nodeId: String
-    var TransitionComponent: RComponent<RProps, RState>?
+    var label: ReactElement?
+    var nodeId: String?
+    var TransitionComponent: dynamic
 }
 
 @Suppress("UnsafeCastFromDynamic")
