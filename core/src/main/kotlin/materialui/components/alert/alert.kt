@@ -21,10 +21,10 @@ external interface AlertProps : StandardProps {
 @Suppress("UnsafeCastFromDynamic")
 private val alertComponent: RClass<AlertProps> = alertModule.default
 
-fun RBuilder.appBar(vararg classMap: Pair<AlertStyle, String>, block: AlertElementBuilder<DIV>.() -> Unit) =
+fun RBuilder.alert(vararg classMap: Pair<AlertStyle, String>, block: AlertElementBuilder<DIV>.() -> Unit) =
     child(AlertElementBuilder(alertComponent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
 
-fun <T : Tag> RBuilder.appBar(
+fun <T : Tag> RBuilder.alert(
     vararg classMap: Pair<AlertStyle, String>,
     factory: (TagConsumer<Unit>) -> T,
     block: AlertElementBuilder<T>.() -> Unit
