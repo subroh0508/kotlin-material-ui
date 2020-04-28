@@ -21,7 +21,7 @@ import org.w3c.dom.events.EventTarget
 import react.*
 import kotlin.reflect.KClass
 
-open class PopoverElementBuilder<Props : PopoverProps>(
+open class PopoverElementBuilder<Props: PopoverProps>(
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>
 ) : ModalElementBuilder<Props>(type, classMap) {
@@ -49,21 +49,13 @@ open class PopoverElementBuilder<Props : PopoverProps>(
     var Tag.TransitionProps: RProps? by materialProps
 
     fun Tag.action(actions: (PopoverActions) -> Unit) { action = actions }
-
     fun Tag.anchorEl(node: Node) { materialProps.anchorEl = node }
-
     fun Tag.anchorEl(node: EventTarget?) { materialProps.anchorEl = node }
-
     fun Tag.anchorEl(htmlElement: HTMLElement) { materialProps.anchorEl = htmlElement }
-
     fun Tag.anchorEl(block: RBuilder.() -> Unit) { materialProps.anchorEl = buildElement(block) }
-
     fun Tag.anchorEl(func: (HTMLElement) -> HTMLElement) { materialProps.anchorEl = func }
-
     fun Tag.anchorOrigin(block: PopoverOrigin.() -> Unit) { anchorOrigin = jsObject(block) }
-
     fun Tag.anchorPosition(block: PopoverPosition.() -> Unit) { anchorPosition = jsObject(block) }
-
     fun Tag.modalClasses(vararg classMap: Pair<ModalStyle, String>) {
         if (classMap.isEmpty()) {
             return
