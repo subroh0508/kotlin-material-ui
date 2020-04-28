@@ -1,4 +1,4 @@
-package materialui.components.treeItem.enums
+package materialui.lab.components.treeItem.enums
 
 @Suppress("EnumEntryName")
 enum class TreeItemStyle {

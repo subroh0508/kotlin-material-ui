@@ -11,10 +11,10 @@ import react.*
 private external val breadcrumbsModule: dynamic
 
 external interface BreadcrumbsProps : StandardProps {
-    val separator: String
-    val maxItems: Int
-    val itemsAfterCollapse: Int
-    val itemsBeforeCollapse: Int
+    val separator: String?
+    val maxItems: Int?
+    val itemsAfterCollapse: Int?
+    val itemsBeforeCollapse: Int?
 }
 
 @Suppress("UnsafeCastFromDynamic")
