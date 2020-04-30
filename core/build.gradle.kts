@@ -40,7 +40,6 @@ kotlin {
                 implementation(npm("react", Libraries.Npm.react))
                 implementation(npm("react-dom", Libraries.Npm.react))
                 implementation(npm("@material-ui/core", Libraries.Npm.MaterialUi.core))
-                implementation(npm("@material-ui/lab", Libraries.Npm.MaterialUi.lab))
             }
         }
 

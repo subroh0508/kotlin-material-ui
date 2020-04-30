@@ -1,5 +1,6 @@
 package materialui.lab.components.treeItem
 
+import kotlinext.js.Object
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.MaterialElementBuilder
@@ -24,4 +25,5 @@ class TreeItemElementBuilder<T : Tag> internal constructor(
     var Tag.label: ReactElement by materialProps
     var Tag.nodeId: String by materialProps
     var Tag.TransitionComponent: RComponent<RProps, RState>? by materialProps
+    var Tag.TransitionProp: Object? by materialProps
 }
