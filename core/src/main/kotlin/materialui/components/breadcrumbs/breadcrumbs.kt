@@ -11,7 +11,7 @@ import react.*
 private external val breadcrumbsModule: dynamic
 
 external interface BreadcrumbsProps : StandardProps {
-    val separator: String?
+    val separator: dynamic
     val maxItems: Int?
     val itemsAfterCollapse: Int?
     val itemsBeforeCollapse: Int?
