@@ -7,6 +7,7 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.toolbar.enums.ToolbarStyle
+import materialui.lab.components.treeItem.enums.TreeItemStyle
 import react.*
 
 class TreeItemElementBuilder<T : Tag> internal constructor(
@@ -14,7 +15,7 @@ class TreeItemElementBuilder<T : Tag> internal constructor(
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, TreeItemProps>(type, classMap, factory) {
-    fun Tag.classes(vararg classMap: Pair<ToolbarStyle, String>) {
+    fun Tag.classes(vararg classMap: Pair<TreeItemStyle, String>) {
         classes(classMap.toList())
     }
 
