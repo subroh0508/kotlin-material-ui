@@ -18,7 +18,6 @@ external interface GridProps : StandardProps {
     var direction: String?
     var item: Boolean?
     var justify: String?
-    var align: String?
     var lg: Any?
     var md: Any?
     var sm: Any?

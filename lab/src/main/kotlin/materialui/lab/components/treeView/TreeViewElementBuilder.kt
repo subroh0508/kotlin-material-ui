@@ -26,4 +26,8 @@ class TreeViewElementBuilder<T : Tag> internal constructor(
     var Tag.expanded: Array<String>? by materialProps
     var Tag.defaultExpanded: Array<String>? by materialProps
     var Tag.onNodeToggle: (event: Event, nodeIds: Array<String>) -> Unit by materialProps
+    var Tag.defaultSelected: String? by materialProps
+    var Tag.multiSelect: Boolean? by materialProps
+    var Tag.selected: String? by materialProps
+    var Tag.onNodeSelect:(event: Event, value: Array<String>) -> Unit? by materialProps
 }

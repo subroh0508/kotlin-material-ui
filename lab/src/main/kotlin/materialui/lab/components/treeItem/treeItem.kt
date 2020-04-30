@@ -1,10 +1,10 @@
 package materialui.lab.components.treeItem
 
-import kotlinx.html.DIV
+import kotlinx.html.LI
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.StandardProps
-import materialui.components.toolbar.enums.ToolbarStyle
+import materialui.lab.components.treeItem.enums.TreeItemStyle
 import react.*
 
 @JsModule("@material-ui/lab/TreeItem")
@@ -17,6 +17,7 @@ external interface TreeItemProps : StandardProps {
     var icon: ReactElement?
     var label: ReactElement?
     var nodeId: String?
+    var TransitionProp: dynamic
     var TransitionComponent: dynamic
 }
 
@@ -24,12 +25,12 @@ external interface TreeItemProps : StandardProps {
 private val treeItemComponent: RClass<TreeItemProps> = treeItemModule.default
 
 fun RBuilder.treeItem(
-    vararg classMap: Pair<ToolbarStyle, String>,
-    block: TreeItemElementBuilder<DIV>.() -> Unit
-) = child(TreeItemElementBuilder(treeItemComponent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+    vararg classMap: Pair<TreeItemStyle, String>,
+    block: TreeItemElementBuilder<LI>.() -> Unit
+) = child(TreeItemElementBuilder(treeItemComponent, classMap.toList()) { LI(mapOf(), it) }.apply(block).create())
 
 fun <T : Tag> RBuilder.treeItem(
-    vararg classMap: Pair<ToolbarStyle, String>,
+    vararg classMap: Pair<TreeItemStyle, String>,
     factory: (TagConsumer<Unit>) -> T,
     block: TreeItemElementBuilder<T>.() -> Unit
 ) = child(TreeItemElementBuilder(treeItemComponent, classMap.toList(), factory).apply(block).create())

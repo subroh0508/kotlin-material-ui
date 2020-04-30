@@ -18,7 +18,6 @@ class GridElementBuilder<T: Tag> internal constructor(
     }
 
     var Tag.alignContent: GridAlignContent? by materialProps
-    var Tag.align: GridAlign? by materialProps
     var Tag.alignItems: GridAlignItems? by materialProps
     var Tag.container: Boolean? by materialProps
     var Tag.direction: GridDirection? by materialProps

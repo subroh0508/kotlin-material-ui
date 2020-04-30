@@ -9,6 +9,7 @@ import materialui.components.setValue
 import materialui.components.toolbar.enums.ToolbarStyle
 import materialui.components.toolbar.enums.ToolbarVariant
 import react.RClass
+import react.ReactElement
 
 class BreadcrumbsElementBuilder<T : Tag> internal constructor(
     type: RClass<BreadcrumbsProps>,
@@ -19,8 +20,9 @@ class BreadcrumbsElementBuilder<T : Tag> internal constructor(
         classes(classMap.toList())
     }
 
-    var Tag.separator: String? by materialProps
+    var Tag.separator: ReactElement? by materialProps
     var Tag.maxItems: Int? by materialProps
     var Tag.itemsAfterCollapse: Int? by materialProps
     var Tag.itemsBeforeCollapse: Int? by materialProps
+    var Tag.expandText: String? by materialProps
 }
