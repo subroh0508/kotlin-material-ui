@@ -6,7 +6,6 @@ import kotlinx.html.TagConsumer
 import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
-import materialui.components.toolbar.enums.ToolbarStyle
 import materialui.lab.components.treeItem.enums.TreeItemStyle
 import react.*
 
