@@ -1,1 +1,1 @@
-include("core", "lab", "sample")
+include("core", "lab", "pickers", "sample")

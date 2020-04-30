@@ -39,6 +39,7 @@ object Libraries {
         object MaterialUi {
             const val core = "4.9.8"
             const val lab = "4.0.0-alpha.47"
+            const val pickers = "4.0.0-alpha.5"
         }
     }
 }
