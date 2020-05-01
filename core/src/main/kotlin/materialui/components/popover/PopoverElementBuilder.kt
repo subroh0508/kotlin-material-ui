@@ -17,6 +17,7 @@ import materialui.components.setValue
 import materialui.reacttransiton.RTransitionProps
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.Node
+import org.w3c.dom.events.EventTarget
 import react.*
 import kotlin.reflect.KClass
 
@@ -49,6 +50,7 @@ open class PopoverElementBuilder<Props: PopoverProps>(
 
     fun Tag.action(actions: (PopoverActions) -> Unit) { action = actions }
     fun Tag.anchorEl(node: Node) { materialProps.anchorEl = node }
+    fun Tag.anchorEl(node: EventTarget?) { materialProps.anchorEl = node }
     fun Tag.anchorEl(htmlElement: HTMLElement) { materialProps.anchorEl = htmlElement }
     fun Tag.anchorEl(block: RBuilder.() -> Unit) { materialProps.anchorEl = buildElement(block) }
     fun Tag.anchorEl(func: (HTMLElement) -> HTMLElement) { materialProps.anchorEl = func }

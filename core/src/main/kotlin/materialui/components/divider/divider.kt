@@ -15,13 +15,18 @@ external interface DividerProps : StandardProps {
     var absolute: Boolean?
     var light: Boolean?
     var variant: String?
+    var orientation: String?
+    var flexItem: Boolean?
 }
 
 @Suppress("UnsafeCastFromDynamic")
 private val dividerComponent: RClass<DividerProps> = dividerModule.default
 
-fun RBuilder.divider(vararg classMap: Pair<DividerStyle, String>, block: DividerElementBuilder<HR>.() -> Unit)
-    = child(DividerElementBuilder(dividerComponent, classMap.toList()) { HR(mapOf(), it) }.apply(block).create())
+fun RBuilder.divider(vararg classMap: Pair<DividerStyle, String>, block: DividerElementBuilder<HR>.() -> Unit) =
+    child(DividerElementBuilder(dividerComponent, classMap.toList()) { HR(mapOf(), it) }.apply(block).create())
 
-fun <T: Tag> RBuilder.divider(vararg classMap: Pair<DividerStyle, String>, factory: (TagConsumer<Unit>) -> T, block: DividerElementBuilder<T>.() -> Unit)
-    = child(DividerElementBuilder(dividerComponent, classMap.toList(), factory).apply(block).create())
+fun <T : Tag> RBuilder.divider(
+    vararg classMap: Pair<DividerStyle, String>,
+    factory: (TagConsumer<Unit>) -> T,
+    block: DividerElementBuilder<T>.() -> Unit
+) = child(DividerElementBuilder(dividerComponent, classMap.toList(), factory).apply(block).create())
