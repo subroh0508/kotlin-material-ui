@@ -7,8 +7,10 @@ import materialui.components.getValue
 import materialui.components.setValue
 import materialui.lab.components.treeView.enums.TreeViewStyle
 import org.w3c.dom.events.Event
+import react.RBuilder
 import react.RClass
 import react.ReactElement
+import react.buildElement
 
 class TreeViewElementBuilder<T : Tag> internal constructor(
     type: RClass<TreeViewProps>,
@@ -30,4 +32,17 @@ class TreeViewElementBuilder<T : Tag> internal constructor(
     var Tag.multiSelect: Boolean? by materialProps
     var Tag.selected: String? by materialProps
     var Tag.onNodeSelect:(event: Event, value: Array<String>) -> Unit? by materialProps
+
+    fun Tag.defaultCollapseIcon(block: RBuilder.() -> Unit) {
+        defaultCollapseIcon = buildElement(block)
+    }
+    fun Tag.defaultEndIcon(block: RBuilder.() -> Unit) {
+        defaultEndIcon = buildElement(block)
+    }
+    fun Tag.defaultExpandIcon(block: RBuilder.() -> Unit) {
+        defaultExpandIcon = buildElement(block)
+    }
+    fun Tag.defaultParentIcon(block: RBuilder.() -> Unit) {
+        defaultParentIcon = buildElement(block)
+    }
 }
