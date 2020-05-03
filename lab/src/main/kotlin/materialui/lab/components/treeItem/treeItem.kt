@@ -17,7 +17,9 @@ external interface TreeItemProps : StandardProps {
     var icon: ReactElement?
     var label: ReactElement?
     var nodeId: String?
+    @Suppress("PropertyName")
     var TransitionProp: dynamic
+    @Suppress("PropertyName")
     var TransitionComponent: dynamic
 }
 
