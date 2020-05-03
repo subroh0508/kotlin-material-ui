@@ -6,8 +6,11 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.breadcrumbs.enums.BreadcrumbsStyle
 import materialui.components.getValue
 import materialui.components.setValue
+import org.w3c.dom.Node
+import react.RBuilder
 import react.RClass
 import react.ReactElement
+import react.buildElement
 
 class BreadcrumbsElementBuilder<T : Tag> internal constructor(
     type: RClass<BreadcrumbsProps>,
@@ -18,9 +21,12 @@ class BreadcrumbsElementBuilder<T : Tag> internal constructor(
         classes(classMap.toList())
     }
 
-    var Tag.separator: ReactElement? by materialProps
+    var Tag.separator: Any? by materialProps
     var Tag.maxItems: Int? by materialProps
     var Tag.itemsAfterCollapse: Int? by materialProps
     var Tag.itemsBeforeCollapse: Int? by materialProps
     var Tag.expandText: String? by materialProps
+
+    fun Tag.separator(node: Node) { separator = node }
+    fun Tag.separator(block: RBuilder.() -> Unit) { separator = buildElement(block) }
 }
