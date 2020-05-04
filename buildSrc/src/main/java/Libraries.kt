@@ -8,7 +8,7 @@ object Libraries {
 
     object Kotlin {
         const val version = "1.3.72"
-        const val wrappersBuild = "pre.100-kotlin-$version"
+        const val wrappersBuild = "pre.104-kotlin-$version"
 
         const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
         const val jsTest = "org.jetbrains.kotlin:kotlin-test-js:$version"
@@ -31,14 +31,13 @@ object Libraries {
     }
 
     object Npm {
-        const val coreJs = "~3.1.4"
-        const val styledComponent = "^4.3.2"
-        const val inlineStyledPrefixer = "^5.1.0"
+        const val styledComponent = "^4.4.1"
+        const val inlineStyledPrefixer = "^5.1.2"
         const val react = "16.13.1"
 
         object MaterialUi {
-            const val core = "4.9.8"
-            const val lab = "4.0.0-alpha.47"
+            const val core = "4.9.12"
+            const val lab = "4.0.0-alpha.51"
         }
     }
 }
