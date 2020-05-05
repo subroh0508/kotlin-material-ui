@@ -1,3 +1,5 @@
+@file:JsModule("@date-io/core")
+
 package dateio.core
 
 external interface DateIOFormats<TLibFormatToken> {
