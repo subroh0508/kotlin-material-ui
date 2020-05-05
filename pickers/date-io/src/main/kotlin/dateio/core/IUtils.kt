@@ -5,8 +5,8 @@ package dateio.core
 
 import kotlin.js.*
 
-external interface IUtils<TDate> {
-    var formats: DateIOFormats<Any>
+external interface IUtils<TDate, TLibFormatToken> {
+    var formats: DateIOFormats<TLibFormatToken>
     var locale: Any?
         get() = definedExternally
         set(value) = definedExternally
