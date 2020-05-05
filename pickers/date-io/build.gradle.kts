@@ -10,9 +10,6 @@ plugins {
 repositories {
     mavenLocal()
     jcenter()
-    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
-    maven(url = "http://dl.bintray.com/kotlin/kotlinx.html")
-    maven(url = "http://dl.bintray.com/kotlin/kotlin-js-wrappers")
 }
 
 kotlin {
@@ -31,7 +28,7 @@ kotlin {
     sourceSets {
         val main by getting {
             dependencies {
-                api(Libraries.Kotlin.js)
+                implementation(Libraries.Kotlin.js)
                 api(npm("@date-io/core", Libraries.Npm.dateIo))
             }
         }
