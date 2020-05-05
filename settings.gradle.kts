@@ -2,6 +2,7 @@ include(
     "core",
     "lab",
     "pickers",
+    "pickers:date-io:core",
     "pickers:date-io:date-fns",
     "pickers:date-io:dayjs",
     "pickers:date-io:luxon",
