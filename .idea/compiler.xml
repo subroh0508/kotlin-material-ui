@@ -4,6 +4,7 @@
     <bytecodeTargetLevel>
       <module name="kotlin-material-ui.core.main" target="1.8" />
       <module name="kotlin-material-ui.core.test" target="1.8" />
+      <module name="kotlin-material-ui.pickers.date-io.core" target="1.8" />
       <module name="kotlin-material-ui.sample.main" target="1.8" />
       <module name="kotlin-material-ui.sample.test" target="1.8" />
       <module name="subroh0508.net.kotlin-material-ui.core.main" target="1.8" />
