@@ -32,6 +32,7 @@ kotlin {
         val main by getting {
             dependencies {
                 implementation(project(":core"))
+                api(project(":pickers:date-io"))
                 implementation(Libraries.Kotlin.js)
                 implementation(Libraries.Kotlin.html)
                 implementation(Libraries.Kotlin.react)
