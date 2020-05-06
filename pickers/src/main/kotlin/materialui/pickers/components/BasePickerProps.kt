@@ -30,20 +30,28 @@ external interface BasePickerProps : WithClassName, DateValidationProps {
     var hideTabs: Boolean?
     var dateRangeIcon: dynamic
     var timeIcon: dynamic
+
+    /* PickerWrapper */
+    @Suppress("PropertyName")
+    var DateInputProps: DateInputProps?
+    @Suppress("PropertyName")
+    var KeyboardDateInputComponent: dynamic
+    @Suppress("PropertyName")
+    var PureDateInputComponent: dynamic
 }
 
-operator fun BasePickerProps.get(key: String): Any? = asDynamic()[key]
+operator fun RProps.get(key: String): Any? = asDynamic()[key]
 
-operator fun BasePickerProps.getValue(thisRef: Any?, property: KProperty<*>): dynamic
+operator fun RProps.getValue(thisRef: Any?, property: KProperty<*>): dynamic
         = asDynamic()[property.name]
 
-operator fun BasePickerProps.setValue(thisRef: Any?, property: KProperty<*>, value: dynamic) {
+operator fun RProps.setValue(thisRef: Any?, property: KProperty<*>, value: dynamic) {
     asDynamic()[property.name] = value
 }
 
-inline operator fun <reified T: Enum<T>> BasePickerProps.getValue(thisRef: Any?, property: KProperty<*>): T?
+inline operator fun <reified T: Enum<T>> RProps.getValue(thisRef: Any?, property: KProperty<*>): T?
         = (asDynamic()[property.name] as String?)?.let { name -> enumValues<T>().find { it.toString() == name } }
 
-inline operator fun <reified T: Enum<T>> BasePickerProps.setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
+inline operator fun <reified T: Enum<T>> RProps.setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
     asDynamic()[property.name] = value?.toString()
 }
