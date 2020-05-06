@@ -38,6 +38,14 @@ abstract class BasePickerElementBuilder<T: Tag, Props: BasePickerProps> internal
 
     var Tag.strictCompareDate: Boolean? by pickerProps
 
+    var Tag.hideTabs: Boolean? by pickerProps
+
+    var Tag.dateRangeIcon: Any? by pickerProps
+    fun Tag.dateRangeIcon(block: RBuilder.() -> Unit) { dateRangeIcon = buildElement(block) }
+
+    var Tag.timeIcon: Any? by pickerProps
+    fun Tag.timeIcon(block: RBuilder.() -> Unit) { timeIcon = buildElement(block) }
+
     var Tag.value: Any? by pickerProps
     fun Tag.value(v: String?) { value = v }
     fun Tag.value(v: Number?) { value = v }
