@@ -2,8 +2,13 @@ package materialui.pickers.components.datepicker
 
 import materialui.pickers.components.internal.desktop.DesktopWrapperElementBuilder
 import materialui.pickers.components.internal.modal.ModalWrapperElementBuilder
+import materialui.pickers.components.internal.responsive.ResponsiveWrapperElement
 import materialui.pickers.components.internal.static.StaticWrapperElementBuilder
 import react.RClass
+
+class DatePickerElementBuilder internal constructor(
+    type: RClass<DatePickerProps>, className: String?
+) : ResponsiveWrapperElement<DatePickerProps>(type, className)
 
 class MobileDatePickerElementBuilder internal constructor(
     type: RClass<MobileDatePickerProps>, className: String?

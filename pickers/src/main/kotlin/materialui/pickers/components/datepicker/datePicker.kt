@@ -4,12 +4,21 @@ import materialui.pickers.components.ExportedCalendarViewProps
 import materialui.pickers.components.WithViewProps
 import materialui.pickers.components.internal.desktop.DesktopWrapperProps
 import materialui.pickers.components.internal.modal.ModalWrapperProps
+import materialui.pickers.components.internal.responsive.ResponsiveWrapperProps
 import materialui.pickers.components.internal.static.StaticWrapperProps
 import react.RBuilder
 import react.RClass
 
 @JsModule("@material-ui/pickers")
 private external val DatePickerModule: dynamic
+
+@Suppress("UnsafeCastFromDynamic")
+private val DatePickerComponent: RClass<DatePickerProps> = DatePickerModule.DatePicker
+
+external interface DatePickerProps : ExportedCalendarViewProps, WithViewProps, ResponsiveWrapperProps
+
+fun RBuilder.datePicker(className: String? = null, block: DatePickerElementBuilder.() -> Unit) =
+    child(DatePickerElementBuilder(DatePickerComponent, className).apply(block).create())
 
 @Suppress("UnsafeCastFromDynamic")
 private val MobileDatePickerComponent: RClass<MobileDatePickerProps> = DatePickerModule.MobileDatePicker
