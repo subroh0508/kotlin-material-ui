@@ -5,11 +5,11 @@ import react.FunctionalComponent
 import react.RBuilder
 import react.RProps
 
-@JsModule("@material-ui/pickers/LocalizationProvider")
+@JsModule("@material-ui/pickers")
 private external val LocalizationProviderModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val LocalizationProviderComponent: FunctionalComponent<LocalizationProviderProps> = LocalizationProviderModule.default
+private val LocalizationProviderComponent: FunctionalComponent<LocalizationProviderProps> = LocalizationProviderModule.LocalizationProvider
 
 external interface LocalizationProviderProps : RProps, DateAdapterProvider
 
