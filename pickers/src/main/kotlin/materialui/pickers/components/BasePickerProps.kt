@@ -21,6 +21,7 @@ external interface BasePickerProps : WithClassName {
     var open: Boolean?
     var showToolbar: Boolean?
     var orientation: String?
+    @Suppress("PropertyName")
     var ToolbarComponent: dynamic
     var toolbarTitle: dynamic
     var toolbarFormat: String?
@@ -57,46 +58,6 @@ external interface DayProps : RProps {
     var onFocusVisible: ((Event) -> Unit)?
     var touchRippleProps: RProps?
     var type: String?
-}
-
-external interface ExportedCalendarProps : RProps {
-    var showDaysOutsideCurrentMonth: Boolean?
-    var disableHighlightToday: Boolean?
-    //var onChange: ((dynamic, dynamic) -> Unit)?  TODO delete
-    var disablePast: Boolean?
-    var disableFuture: Boolean?
-    var renderDay: ((dynamic, dynamic, DayProps) -> dynamic)?
-    var allowKeyboardController: Boolean?
-    var loadingIndicator: dynamic
-}
-
-external interface ExportedClockViewProps : RProps {
-    var ampm: Boolean?
-    var minutesStep: Int?
-    var ampmInClock: Boolean?
-    var allowKeyboardControl: Boolean?
-    var minTime: dynamic
-    var maxTime: dynamic
-    var shouldDisableTime: ((Int, String) -> Boolean)?
-    var disableTimeValidationIgnoreDatePart: Boolean?
-}
-
-external interface ToolbarComponentProps : ExportedCalendarProps, ExportedClockViewProps {
-    var views: Array<String>?
-    var openView: String?
-    var date: dynamic
-    var setOpenView: ((String) -> Unit)
-    var onChange: ((dynamic, Boolean) -> Unit)?
-    var toolbarTitle: dynamic
-    var toolbarFormat: String?
-    var hideTabs: Boolean?
-    var dateRangeIcon: dynamic
-    var timeIcon: dynamic
-    var isLandscape: Boolean?
-    //var ampmInClock: Boolean? TODO delete
-    var isMobileKeyBoardViewOpen: Boolean?
-    var toggleMobileKeyboardView: Boolean?
-    var getMobileKeyboardInputViewButtonText: (() -> String)?
 }
 
 operator fun BasePickerProps.get(key: String): Any? = asDynamic()[key]
