@@ -32,14 +32,12 @@ kotlin {
         val main by getting {
             dependencies {
                 implementation(Libraries.Kotlin.js)
-                implementation(Libraries.Kotlin.html)
-                implementation(Libraries.Kotlin.react)
-                implementation(Libraries.Kotlin.reactDom)
-                implementation(Libraries.Kotlin.css)
+                api(Libraries.Kotlin.html)
+                api(Libraries.Kotlin.react)
+                api(Libraries.Kotlin.reactDom)
+                api(Libraries.Kotlin.css)
                 implementation(Libraries.Kotlin.extensions)
-                implementation(npm("react", Libraries.Npm.react))
-                implementation(npm("react-dom", Libraries.Npm.react))
-                implementation(npm("@material-ui/core", Libraries.Npm.MaterialUi.core))
+                api(npm("@material-ui/core", Libraries.Npm.MaterialUi.core))
             }
         }
 

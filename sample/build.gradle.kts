@@ -41,16 +41,7 @@ kotlin {
                 implementation(project(":lab"))
                 implementation(project(":pickers:date-io:date-fns"))
                 implementation(Libraries.Kotlin.js)
-                implementation(Libraries.Kotlin.html)
-                implementation(Libraries.Kotlin.react)
-                implementation(Libraries.Kotlin.reactDom)
-                implementation(Libraries.Kotlin.css)
                 implementation(Libraries.Kotlin.styled)
-                //implementation(Libraries.Kotlin.extensions)
-                implementation(npm("react", Libraries.Npm.react))
-                implementation(npm("react-dom", Libraries.Npm.react))
-                implementation(npm("styled-components", Libraries.Npm.styledComponent))
-                implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
             }
         }
 

@@ -6,5 +6,6 @@ enum class LinkStyle {
     underlineNone,
     underlineHover,
     underlineAlways,
-    button
+    button,
+    focusVisible
 }

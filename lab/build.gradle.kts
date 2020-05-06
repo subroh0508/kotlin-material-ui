@@ -31,17 +31,10 @@ kotlin {
     sourceSets {
         val main by getting {
             dependencies {
-                implementation(project(":core"))
+                api(project(":core"))
                 implementation(Libraries.Kotlin.js)
-                implementation(Libraries.Kotlin.html)
-                implementation(Libraries.Kotlin.react)
-                implementation(Libraries.Kotlin.reactDom)
-                implementation(Libraries.Kotlin.css)
                 implementation(Libraries.Kotlin.extensions)
-                implementation(npm("react", Libraries.Npm.react))
-                implementation(npm("react-dom", Libraries.Npm.react))
-                implementation(npm("@material-ui/core", Libraries.Npm.MaterialUi.core))
-                implementation(npm("@material-ui/lab", Libraries.Npm.MaterialUi.lab))
+                api(npm("@material-ui/lab", Libraries.Npm.MaterialUi.lab))
             }
         }
 
