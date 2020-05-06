@@ -1,4 +1,4 @@
-package materialui.pickers.components.enums
+package materialui.pickers.components.datepicker.enums
 
 @Suppress("EnumEntryName")
 enum class DatePickerView {

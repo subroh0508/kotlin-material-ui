@@ -26,25 +26,6 @@ abstract class BasePickerElementBuilder<T: Tag, Props: BasePickerProps> internal
         return createElement(type, props, *childList.toTypedArray())
     }
 
-    var Tag.invalidDateMessage: Any? by pickerProps
-    fun Tag.invalidDateMessage(block: RBuilder.() -> Unit) { invalidDateMessage = buildElement(block) }
-
-    var Tag.minDateMessage: Any? by pickerProps
-    fun Tag.minDateMessage(block: RBuilder.() -> Unit) { minDateMessage = buildElement(block) }
-
-    var Tag.maxDateMessage: Any? by pickerProps
-    fun Tag.maxDateMessage(block: RBuilder.() -> Unit) { maxDateMessage = buildElement(block) }
-
-    var Tag.strictCompareDate: Boolean? by pickerProps
-
-    var Tag.hideTabs: Boolean? by pickerProps
-
-    var Tag.dateRangeIcon: Any? by pickerProps
-    fun Tag.dateRangeIcon(block: RBuilder.() -> Unit) { dateRangeIcon = buildElement(block) }
-
-    var Tag.timeIcon: Any? by pickerProps
-    fun Tag.timeIcon(block: RBuilder.() -> Unit) { timeIcon = buildElement(block) }
-
     var Tag.value: Any? by pickerProps
     fun Tag.value(v: String?) { value = v }
     fun Tag.value(v: Number?) { value = v }
@@ -86,4 +67,45 @@ abstract class BasePickerElementBuilder<T: Tag, Props: BasePickerProps> internal
 
     var Tag.toolbarTitle: Any? by pickerProps
     fun Tag.toolbarTitle(block: RBuilder.() -> Unit) { toolbarTitle = buildElement(block) }
+
+    /* DateValidationProps */
+    var Tag.invalidDateMessage: Any? by pickerProps
+    fun Tag.invalidDateMessage(block: RBuilder.() -> Unit) { invalidDateMessage = buildElement(block) }
+
+    var Tag.minDateMessage: Any? by pickerProps
+    fun Tag.minDateMessage(block: RBuilder.() -> Unit) { minDateMessage = buildElement(block) }
+
+    var Tag.maxDateMessage: Any? by pickerProps
+    fun Tag.maxDateMessage(block: RBuilder.() -> Unit) { maxDateMessage = buildElement(block) }
+
+    var Tag.strictCompareDate: Boolean? by pickerProps
+
+    /* ExportedPickerProps */
+    var Tag.hideTabs: Boolean? by pickerProps
+
+    var Tag.dateRangeIcon: Any? by pickerProps
+    fun Tag.dateRangeIcon(block: RBuilder.() -> Unit) { dateRangeIcon = buildElement(block) }
+
+    var Tag.timeIcon: Any? by pickerProps
+    fun Tag.timeIcon(block: RBuilder.() -> Unit) { timeIcon = buildElement(block) }
+
+    /* PickerWrapper */
+    @Suppress("PropertyName")
+    var Tag.DateInputProps: DateInputProps? by pickerProps
+    @Suppress("FunctionName")
+    fun Tag.DateInputProps(block: DateInputProps.() -> Unit) { DateInputProps = jsObject(block) }
+
+    @Suppress("PropertyName")
+    var Tag.KeyboardDateInputComponent: Any? by pickerProps
+    @Suppress("FunctionName")
+    fun <P: DateInputProps, C: Component<P, *>> Tag.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.rClass }
+    @Suppress("FunctionName")
+    fun <P: DateInputProps> Tag.KeyboardDateInputComponent(functionalComponent: FunctionalComponent<P>) { KeyboardDateInputComponent = functionalComponent }
+
+    @Suppress("PropertyName")
+    var PureDateInputComponent: Any? by pickerProps
+    @Suppress("FunctionName")
+    fun <P: DateInputProps, C: Component<P, *>> Tag.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.rClass }
+    @Suppress("FunctionName")
+    fun <P: DateInputProps> Tag.PureDateInputComponent(functionalComponent: FunctionalComponent<P>) { PureDateInputComponent = functionalComponent }
 }
