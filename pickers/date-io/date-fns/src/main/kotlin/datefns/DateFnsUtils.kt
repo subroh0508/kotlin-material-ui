@@ -1,6 +1,9 @@
 package datefns
 
+import datefns.formats.DateFnsDateIOFormats
 import datefns.formats.defaultDateFnsFormats
+import datefns.locale.Locale
+import dateio.core.DateAdapterProvider
 import dateio.core.DateIOFormats
 import dateio.core.IUtils
 import kotlinext.js.Object
@@ -19,3 +22,9 @@ abstract class DateFnsUtils {
         }
     }
 }
+
+typealias DateFnsAdapter = (DateFnsUtilsOption) -> IUtils<Date, String>
+
+fun DateAdapterProvider.dateFnsAdapter(block: DateFnsAdapter = { options -> DateFnsUtils(options) }) { dateAdapter = block }
+fun DateAdapterProvider.locale(locale: Locale) { this.locale = locale }
+fun DateAdapterProvider.dateFormats(dateFormats: DateFnsDateIOFormats) { this.dateFormats = dateFormats }
