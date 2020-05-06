@@ -13,10 +13,9 @@ import kotlin.reflect.KClass
 abstract class BasePickerElementBuilder<T: Tag, Props: BasePickerProps> internal constructor(
     private val type: RClass<Props>,
     className: String?,
-    factory: (TagConsumer<Unit>) -> T
-) : RDOMBuilder<T>(factory) {
+    factory: (TagConsumer<Unit>) -> T,
     protected val pickerProps: Props = jsObject { }
-
+) : RDOMBuilder<T>(factory) {
     var Tag.className: String? by pickerProps
 
     init { attrs.className = className }
