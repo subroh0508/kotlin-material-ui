@@ -9,13 +9,13 @@ import kotlin.reflect.KClass
 abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constructor(
     private val type: RClass<Props>,
     className: String?,
-    private val props: Props = jsObject { }
+    props: Props = jsObject { }
 ) : RElementBuilder<Props>(props) {
     var RProps.className: String? by props
 
     init { props.className = className }
 
-    fun create() = createElement(type, props, *childList.toTypedArray())
+    fun create() = createElement(type, attrs, *childList.toTypedArray())
 
     var RProps.value: Any? by props
     fun RProps.value(v: String?) { value = v }

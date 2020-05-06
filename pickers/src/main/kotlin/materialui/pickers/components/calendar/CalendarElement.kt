@@ -1,6 +1,5 @@
 package materialui.pickers.components.calendar
 
-import kotlinx.html.Tag
 import materialui.pickers.components.*
 import react.RBuilder
 import react.RProps
@@ -11,7 +10,6 @@ import kotlin.js.Promise
 interface ExportedCalendarElement {
     var RProps.showDaysOutsideCurrentMonth: Boolean?
     var RProps.disableHighlightToday: Boolean?
-    //var onChange: ((dynamic, dynamic) -> Unit)?  TODO delete
     var RProps.disablePast: Boolean?
     var RProps.disableFuture: Boolean?
     var RProps.renderDay: ((Any, Array<Any>, DayProps) -> Any)?
@@ -24,7 +22,6 @@ interface ExportedCalendarElement {
 internal class ExportedCalendarDelegate<P: ExportedCalendarProps>(props: P) : ExportedCalendarElement {
     override var RProps.showDaysOutsideCurrentMonth: Boolean? by props
     override var RProps.disableHighlightToday: Boolean? by props
-    //var onChange: ((dynamic, dynamic) -> Unit)?  TODO delete
     override var RProps.disablePast: Boolean? by props
     override var RProps.disableFuture: Boolean? by props
 
