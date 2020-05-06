@@ -6,7 +6,7 @@ import react.RRef
 import react.dom.WithClassName
 import kotlin.reflect.KProperty
 
-external interface BasePickerProps : WithClassName {
+external interface BasePickerProps : WithClassName, DateValidationProps {
     var value: dynamic
     var onChange: ((dynamic, String?) -> Unit)?
     var autoOk: Boolean?
@@ -25,39 +25,6 @@ external interface BasePickerProps : WithClassName {
     var ToolbarComponent: dynamic
     var toolbarTitle: dynamic
     var toolbarFormat: String?
-}
-
-@Suppress("EnumEntryName")
-enum class PickerOrientation {
-    portrait, landscape
-}
-
-external interface DayProps : RProps {
-    var day: dynamic
-    var focused: Boolean?
-    var focusable: Boolean?
-    var inCurrentMonth: Boolean?
-    var isAnimating: Boolean?
-    var today: Boolean?
-    var disabled: Boolean?
-    var selected: Boolean?
-    var allowKeyboardControl: Boolean?
-    var disableMargin: Boolean?
-    var showDaysOutsideCurrentMonth: Boolean?
-    var disableHighlightToday: Boolean?
-    var onDayFocus: ((dynamic) -> Unit)?
-    var onDaySelect: ((dynamic, dynamic) -> Unit)?
-
-    /* ButtonBaseProps properties */
-    var buttonRef: RRef?
-    var centerRipple: Boolean?
-    var disableRipple: Boolean?
-    var disableTouchRipple: Boolean?
-    var focusRipple: Boolean?
-    var focusVisibleClassName: String?
-    var onFocusVisible: ((Event) -> Unit)?
-    var touchRippleProps: RProps?
-    var type: String?
 }
 
 operator fun BasePickerProps.get(key: String): Any? = asDynamic()[key]

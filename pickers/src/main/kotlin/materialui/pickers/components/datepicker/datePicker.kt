@@ -15,7 +15,7 @@ private val MobileDatePickerComponent: RClass<MobileDatePickerProps> = DatePicke
 external interface MobileDatePickerProps : ExportedCalendarViewProps, WithViewProps,
     ModalWrapperProps
 
-fun RBuilder.mobileDatePicker(className: String?, block: MobileDatePickerElementBuilder.() -> Unit) =
+fun RBuilder.mobileDatePicker(className: String? = null, block: MobileDatePickerElementBuilder.() -> Unit) =
     child(MobileDatePickerElementBuilder(MobileDatePickerComponent, className).apply(block).create())
 
 

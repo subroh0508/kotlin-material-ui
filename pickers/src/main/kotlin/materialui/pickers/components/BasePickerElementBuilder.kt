@@ -4,6 +4,7 @@ import kotlinext.js.Object
 import kotlinext.js.jsObject
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
+import materialui.pickers.components.enums.PickerOrientation
 import react.*
 import react.dom.RDOMBuilder
 import kotlin.js.Date
@@ -25,6 +26,17 @@ abstract class BasePickerElementBuilder<T: Tag, Props: BasePickerProps> internal
 
         return createElement(type, props, *childList.toTypedArray())
     }
+
+    var Tag.invalidDateMessage: Any? by pickerProps
+    fun Tag.invalidDateMessage(block: RBuilder.() -> Unit) { invalidDateMessage = buildElement(block) }
+
+    var Tag.minDateMessage: Any? by pickerProps
+    fun Tag.minDateMessage(block: RBuilder.() -> Unit) { minDateMessage = buildElement(block) }
+
+    var Tag.maxDateMessage: Any? by pickerProps
+    fun Tag.maxDateMessage(block: RBuilder.() -> Unit) { maxDateMessage = buildElement(block) }
+
+    var Tag.strictCompareDate: Boolean? by pickerProps
 
     var Tag.value: Any? by pickerProps
     fun Tag.value(v: String?) { value = v }
@@ -56,6 +68,8 @@ abstract class BasePickerElementBuilder<T: Tag, Props: BasePickerProps> internal
     var Tag.open: Boolean? by pickerProps
     var Tag.showToolbar: Boolean? by pickerProps
     var Tag.orientation: PickerOrientation? by pickerProps
+    var Tag.toolbarFormat: String? by pickerProps
+
     @Suppress("PropertyName")
     var Tag.ToolbarComponent: Any? by pickerProps
     @Suppress("FunctionName")
@@ -65,6 +79,4 @@ abstract class BasePickerElementBuilder<T: Tag, Props: BasePickerProps> internal
 
     var Tag.toolbarTitle: Any? by pickerProps
     fun Tag.toolbarTitle(block: RBuilder.() -> Unit) { toolbarTitle = buildElement(block) }
-
-    var Tag.toolbarFormat: String? by pickerProps
 }

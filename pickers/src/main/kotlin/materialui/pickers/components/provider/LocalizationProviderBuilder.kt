@@ -9,6 +9,8 @@ class LocalizationProviderBuilder internal constructor(
     private val component: FunctionalComponent<LocalizationProviderProps>,
     private val props: LocalizationProviderProps = jsObject { }
 ) : RBuilder() {
+    val attrs: LocalizationProviderProps get() = props
+
     fun attrs(handler: LocalizationProviderProps.() -> Unit) {
         props.handler()
     }
