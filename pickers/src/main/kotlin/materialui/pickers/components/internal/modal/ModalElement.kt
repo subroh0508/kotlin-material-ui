@@ -1,55 +1,55 @@
 package materialui.pickers.components.internal.modal
 
 import kotlinext.js.jsObject
-import kotlinx.html.Tag
 import materialui.components.dialog.DialogProps
 import materialui.pickers.components.getValue
 import materialui.pickers.components.setValue
 import react.RBuilder
+import react.RProps
 import react.buildElement
 
 interface ModalElement {
-    var Tag.okLabel: Any?
-    fun Tag.okLabel(block: RBuilder.() -> Unit)
+    var RProps.okLabel: Any?
+    fun RProps.okLabel(block: RBuilder.() -> Unit)
 
-    var Tag.cancelLabel: Any?
-    fun Tag.cancelLabel(block: RBuilder.() -> Unit)
+    var RProps.cancelLabel: Any?
+    fun RProps.cancelLabel(block: RBuilder.() -> Unit)
 
-    var Tag.clearLabel: Any?
-    fun Tag.clearLabel(block: RBuilder.() -> Unit)
+    var RProps.clearLabel: Any?
+    fun RProps.clearLabel(block: RBuilder.() -> Unit)
 
-    var Tag.todayLabel: Any?
-    fun Tag.todayLabel(block: RBuilder.() -> Unit)
+    var RProps.todayLabel: Any?
+    fun RProps.todayLabel(block: RBuilder.() -> Unit)
 
     @Suppress("PropertyName")
-    var Tag.DialogProps: DialogProps?
+    var RProps.DialogProps: DialogProps?
     @Suppress("FunctionName")
-    fun Tag.DialogProps(block: DialogProps.() -> Unit)
+    fun RProps.DialogProps(block: DialogProps.() -> Unit)
 
-    var Tag.showTodayButton: Boolean?
-    var Tag.clearable: Boolean?
-    var Tag.showTabs: Boolean?
-    var Tag.wider: Boolean?
+    var RProps.showTodayButton: Boolean?
+    var RProps.clearable: Boolean?
+    var RProps.showTabs: Boolean?
+    var RProps.wider: Boolean?
 }
 
 internal class ModalDelegate<P: ModalWrapperProps>(pickerProps: P) : ModalElement {
-    override var Tag.okLabel: Any? by pickerProps
-    override fun Tag.okLabel(block: RBuilder.() -> Unit) { okLabel = buildElement(block) }
+    override var RProps.okLabel: Any? by pickerProps
+    override fun RProps.okLabel(block: RBuilder.() -> Unit) { okLabel = buildElement(block) }
 
-    override var Tag.cancelLabel: Any? by pickerProps
-    override fun Tag.cancelLabel(block: RBuilder.() -> Unit) { cancelLabel = buildElement(block) }
+    override var RProps.cancelLabel: Any? by pickerProps
+    override fun RProps.cancelLabel(block: RBuilder.() -> Unit) { cancelLabel = buildElement(block) }
 
-    override var Tag.clearLabel: Any? by pickerProps
-    override fun Tag.clearLabel(block: RBuilder.() -> Unit) { clearLabel = buildElement(block) }
+    override var RProps.clearLabel: Any? by pickerProps
+    override fun RProps.clearLabel(block: RBuilder.() -> Unit) { clearLabel = buildElement(block) }
 
-    override var Tag.todayLabel: Any? by pickerProps
-    override fun Tag.todayLabel(block: RBuilder.() -> Unit) { todayLabel = buildElement(block) }
+    override var RProps.todayLabel: Any? by pickerProps
+    override fun RProps.todayLabel(block: RBuilder.() -> Unit) { todayLabel = buildElement(block) }
 
-    override var Tag.DialogProps: DialogProps? by pickerProps
-    override fun Tag.DialogProps(block: DialogProps.() -> Unit) { DialogProps = jsObject(block) }
+    override var RProps.DialogProps: DialogProps? by pickerProps
+    override fun RProps.DialogProps(block: DialogProps.() -> Unit) { DialogProps = jsObject(block) }
 
-    override var Tag.showTodayButton: Boolean? by pickerProps
-    override var Tag.clearable: Boolean? by pickerProps
-    override var Tag.showTabs: Boolean? by pickerProps
-    override var Tag.wider: Boolean? by pickerProps
+    override var RProps.showTodayButton: Boolean? by pickerProps
+    override var RProps.clearable: Boolean? by pickerProps
+    override var RProps.showTabs: Boolean? by pickerProps
+    override var RProps.wider: Boolean? by pickerProps
 }
