@@ -25,6 +25,11 @@ external interface BasePickerProps : WithClassName, DateValidationProps {
     var ToolbarComponent: dynamic
     var toolbarTitle: dynamic
     var toolbarFormat: String?
+
+    /* ExportedPickerProps */
+    var hideTabs: Boolean?
+    var dateRangeIcon: dynamic
+    var timeIcon: dynamic
 }
 
 operator fun BasePickerProps.get(key: String): Any? = asDynamic()[key]
