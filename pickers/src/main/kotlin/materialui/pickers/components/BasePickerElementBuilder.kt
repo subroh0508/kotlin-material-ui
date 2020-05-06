@@ -1,111 +1,102 @@
 package materialui.pickers.components
 
-import kotlinext.js.Object
 import kotlinext.js.jsObject
-import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
 import materialui.pickers.components.enums.PickerOrientation
 import react.*
-import react.dom.RDOMBuilder
 import kotlin.js.Date
 import kotlin.reflect.KClass
 
-abstract class BasePickerElementBuilder<T: Tag, Props: BasePickerProps> internal constructor(
+abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constructor(
     private val type: RClass<Props>,
     className: String?,
-    factory: (TagConsumer<Unit>) -> T,
-    protected val pickerProps: Props = jsObject { }
-) : RDOMBuilder<T>(factory) {
-    var Tag.className: String? by pickerProps
+    private val props: Props = jsObject { }
+) : RElementBuilder<Props>(props) {
+    var RProps.className: String? by props
 
-    init { attrs.className = className }
+    init { props.className = className }
 
-    override fun create(): ReactElement {
-        Object.keys(pickerProps).forEach { key -> setProp(key, pickerProps[key]) }
+    fun create() = createElement(type, props, *childList.toTypedArray())
 
-        return createElement(type, props, *childList.toTypedArray())
-    }
+    var RProps.value: Any? by props
+    fun RProps.value(v: String?) { value = v }
+    fun RProps.value(v: Number?) { value = v }
+    fun RProps.value(v: Date?) { value = v }
 
-    var Tag.value: Any? by pickerProps
-    fun Tag.value(v: String?) { value = v }
-    fun Tag.value(v: Number?) { value = v }
-    fun Tag.value(v: Date?) { value = v }
+    var RProps.onChange: ((dynamic, String?) -> Unit)? by props
+    fun RProps.onChange(block: (Any, String?) -> Unit) { onChange = block }
 
-    var Tag.onChange: ((dynamic, String?) -> Unit)? by pickerProps
-    fun Tag.onChange(block: (Any, String?) -> Unit) { onChange = block }
+    var RProps.autoOk: Boolean? by props
+    var RProps.inputFormat: String? by props
+    var RProps.disabled: Boolean? by props
+    var RProps.readOnly: Boolean? by props
 
-    var Tag.autoOk: Boolean? by pickerProps
-    var Tag.inputFormat: String? by pickerProps
-    var Tag.disabled: Boolean? by pickerProps
-    var Tag.readOnly: Boolean? by pickerProps
+    var RProps.defaultHighlight: Any? by props
 
-    var Tag.defaultHighlight: Any? by pickerProps
+    var RProps.onAccept: ((dynamic) -> Unit)? by props
+    fun RProps.onAccept(block: (Any) -> Unit) { onAccept = block }
 
-    var Tag.onAccept: ((dynamic) -> Unit)? by pickerProps
-    fun Tag.onAccept(block: (Any) -> Unit) { onAccept = block }
+    var RProps.onError: ((dynamic, dynamic) -> Unit)? by props
+    fun RProps.onError(block: (Any, Any) -> Unit) { onError = block }
 
-    var Tag.onError: ((dynamic, dynamic) -> Unit)? by pickerProps
-    fun Tag.onError(block: (Any, Any) -> Unit) { onError = block }
+    var RProps.onOpen: (() -> Unit)? by props
+    fun RProps.onOpen(block: () -> Unit) { onOpen = block }
 
-    var Tag.onOpen: (() -> Unit)? by pickerProps
-    fun Tag.onOpen(block: () -> Unit) { onOpen = block }
+    var RProps.onClose: (() -> Unit)? by props
+    fun RProps.onClose(block: () -> Unit) { onClose = block }
 
-    var Tag.onClose: (() -> Unit)? by pickerProps
-    fun Tag.onClose(block: () -> Unit) { onClose = block }
-
-    var Tag.open: Boolean? by pickerProps
-    var Tag.showToolbar: Boolean? by pickerProps
-    var Tag.orientation: PickerOrientation? by pickerProps
-    var Tag.toolbarFormat: String? by pickerProps
+    var RProps.open: Boolean? by props
+    var RProps.showToolbar: Boolean? by props
+    var RProps.orientation: PickerOrientation? by props
+    var RProps.toolbarFormat: String? by props
 
     @Suppress("PropertyName")
-    var Tag.ToolbarComponent: Any? by pickerProps
+    var RProps.ToolbarComponent: Any? by props
     @Suppress("FunctionName")
-    fun <P: ToolbarComponentProps, C: Component<P, *>> Tag.ToolbarComponent(kClass: KClass<C>) { ToolbarComponent = kClass.rClass }
+    fun <P: ToolbarComponentProps, C: Component<P, *>> RProps.ToolbarComponent(kClass: KClass<C>) { ToolbarComponent = kClass.rClass }
     @Suppress("FunctionName")
-    fun <P: ToolbarComponentProps> Tag.ToolbarComponent(functionalComponent: FunctionalComponent<P>) { ToolbarComponent = functionalComponent }
+    fun <P: ToolbarComponentProps> RProps.ToolbarComponent(functionalComponent: FunctionalComponent<P>) { ToolbarComponent = functionalComponent }
 
-    var Tag.toolbarTitle: Any? by pickerProps
-    fun Tag.toolbarTitle(block: RBuilder.() -> Unit) { toolbarTitle = buildElement(block) }
+    var RProps.toolbarTitle: Any? by props
+    fun RProps.toolbarTitle(block: RBuilder.() -> Unit) { toolbarTitle = buildElement(block) }
 
     /* DateValidationProps */
-    var Tag.invalidDateMessage: Any? by pickerProps
-    fun Tag.invalidDateMessage(block: RBuilder.() -> Unit) { invalidDateMessage = buildElement(block) }
+    var RProps.invalidDateMessage: Any? by props
+    fun RProps.invalidDateMessage(block: RBuilder.() -> Unit) { invalidDateMessage = buildElement(block) }
 
-    var Tag.minDateMessage: Any? by pickerProps
-    fun Tag.minDateMessage(block: RBuilder.() -> Unit) { minDateMessage = buildElement(block) }
+    var RProps.minDateMessage: Any? by props
+    fun RProps.minDateMessage(block: RBuilder.() -> Unit) { minDateMessage = buildElement(block) }
 
-    var Tag.maxDateMessage: Any? by pickerProps
-    fun Tag.maxDateMessage(block: RBuilder.() -> Unit) { maxDateMessage = buildElement(block) }
+    var RProps.maxDateMessage: Any? by props
+    fun RProps.maxDateMessage(block: RBuilder.() -> Unit) { maxDateMessage = buildElement(block) }
 
-    var Tag.strictCompareDate: Boolean? by pickerProps
+    var RProps.strictCompareDate: Boolean? by props
 
     /* ExportedPickerProps */
-    var Tag.hideTabs: Boolean? by pickerProps
+    var RProps.hideTabs: Boolean? by props
 
-    var Tag.dateRangeIcon: Any? by pickerProps
-    fun Tag.dateRangeIcon(block: RBuilder.() -> Unit) { dateRangeIcon = buildElement(block) }
+    var RProps.dateRangeIcon: Any? by props
+    fun RProps.dateRangeIcon(block: RBuilder.() -> Unit) { dateRangeIcon = buildElement(block) }
 
-    var Tag.timeIcon: Any? by pickerProps
-    fun Tag.timeIcon(block: RBuilder.() -> Unit) { timeIcon = buildElement(block) }
+    var RProps.timeIcon: Any? by props
+    fun RProps.timeIcon(block: RBuilder.() -> Unit) { timeIcon = buildElement(block) }
 
     /* PickerWrapper */
     @Suppress("PropertyName")
-    var Tag.DateInputProps: DateInputProps? by pickerProps
+    var RProps.DateInputProps: DateInputProps? by props
     @Suppress("FunctionName")
-    fun Tag.DateInputProps(block: DateInputProps.() -> Unit) { DateInputProps = jsObject(block) }
+    fun RProps.DateInputProps(block: DateInputProps.() -> Unit) { DateInputProps = jsObject(block) }
 
     @Suppress("PropertyName")
-    var Tag.KeyboardDateInputComponent: Any? by pickerProps
+    var RProps.KeyboardDateInputComponent: Any? by props
     @Suppress("FunctionName")
-    fun <P: DateInputProps, C: Component<P, *>> Tag.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.rClass }
+    fun <P: DateInputProps, C: Component<P, *>> RProps.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.rClass }
     @Suppress("FunctionName")
-    fun <P: DateInputProps> Tag.KeyboardDateInputComponent(functionalComponent: FunctionalComponent<P>) { KeyboardDateInputComponent = functionalComponent }
+    fun <P: DateInputProps> RProps.KeyboardDateInputComponent(functionalComponent: FunctionalComponent<P>) { KeyboardDateInputComponent = functionalComponent }
 
     @Suppress("PropertyName")
-    var PureDateInputComponent: Any? by pickerProps
+    var RProps.PureDateInputComponent: Any? by props
     @Suppress("FunctionName")
-    fun <P: DateInputProps, C: Component<P, *>> Tag.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.rClass }
+    fun <P: DateInputProps, C: Component<P, *>> RProps.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.rClass }
     @Suppress("FunctionName")
-    fun <P: DateInputProps> Tag.PureDateInputComponent(functionalComponent: FunctionalComponent<P>) { PureDateInputComponent = functionalComponent }
+    fun <P: DateInputProps> RProps.PureDateInputComponent(functionalComponent: FunctionalComponent<P>) { PureDateInputComponent = functionalComponent }
 }
