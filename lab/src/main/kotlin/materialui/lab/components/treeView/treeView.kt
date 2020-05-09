@@ -32,11 +32,23 @@ private val treeViewComponent: RClass<TreeViewProps> = treeViewModule.default
 
 fun RBuilder.treeView(
     vararg classMap: Pair<TreeViewStyle, String>,
+    multiSelect: Boolean = false,
     block: TreeViewElementBuilder<UL>.() -> Unit
-) = child(TreeViewElementBuilder(treeViewComponent, classMap.toList()) { UL(mapOf(), it) }.apply(block).create())
+) = child(
+    when (multiSelect) {
+        true -> MultiSelectTreeViewElementBuilder(treeViewComponent, classMap.toList()) { UL(mapOf(), it) }
+        false -> SingleSelectTreeViewElementBuilder(treeViewComponent, classMap.toList()) { UL(mapOf(), it) }
+    }.apply(block).create()
+)
 
 fun <T : Tag> RBuilder.treeView(
     vararg classMap: Pair<TreeViewStyle, String>,
+    multiSelect: Boolean = false,
     factory: (TagConsumer<Unit>) -> T,
     block: TreeViewElementBuilder<T>.() -> Unit
-) = child(TreeViewElementBuilder(treeViewComponent, classMap.toList(), factory).apply(block).create())
+) = child(
+    when (multiSelect) {
+        true -> MultiSelectTreeViewElementBuilder(treeViewComponent, classMap.toList(), factory)
+        false -> SingleSelectTreeViewElementBuilder(treeViewComponent, classMap.toList(), factory)
+    }.apply(block).create()
+)
