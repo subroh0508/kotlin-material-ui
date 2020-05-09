@@ -24,7 +24,7 @@ external interface TreeViewProps : StandardProps {
     var defaultSelected: dynamic
     var multiSelect: Boolean?
     var selected: dynamic
-    var onNodeSelect:(event: Event, value: Array<String>) -> Unit?
+    var onNodeSelect:(event: Event, value: dynamic) -> Unit?
 }
 
 @Suppress("UnsafeCastFromDynamic")

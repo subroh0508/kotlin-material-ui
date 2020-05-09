@@ -31,7 +31,8 @@ class TreeViewElementBuilder<T : Tag> internal constructor(
     var Tag.defaultSelected: String? by materialProps
     var Tag.multiSelect: Boolean? by materialProps
     var Tag.selected: String? by materialProps
-    var Tag.onNodeSelect:(event: Event, value: Array<String>) -> Unit? by materialProps
+
+    var Tag.onNodeSelect:(event: Event, value: dynamic) -> Unit? by materialProps
 
     fun Tag.defaultCollapseIcon(block: RBuilder.() -> Unit) {
         defaultCollapseIcon = buildElement(block)
