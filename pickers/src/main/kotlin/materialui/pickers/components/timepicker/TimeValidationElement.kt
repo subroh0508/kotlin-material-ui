@@ -1,24 +1,24 @@
 package materialui.pickers.components.timepicker
 
-import kotlinx.html.Tag
 import materialui.pickers.components.TimeValidationProps
 import materialui.pickers.components.getValue
 import materialui.pickers.components.setValue
+import react.RProps
 
 interface TimeValidationElement {
-    var Tag.minTime: Any?
-    var Tag.maxTime: Any?
-    var Tag.shouldDisableTime: ((Number, String) -> Boolean)?
-    fun Tag.shouldDisableTime(block: (Number, String) -> Boolean)
-    var Tag.disableTimeValidationIgnoreDatePart: Boolean?
+    var RProps.minTime: Any?
+    var RProps.maxTime: Any?
+    var RProps.shouldDisableTime: ((Number, String) -> Boolean)?
+    fun RProps.shouldDisableTime(block: (Number, String) -> Boolean)
+    var RProps.disableTimeValidationIgnoreDatePart: Boolean?
 }
 
 internal class TimeValidationDelegate<P: TimeValidationProps>(props: P) : TimeValidationElement {
-    override var Tag.minTime: Any? by props
-    override var Tag.maxTime: Any? by props
+    override var RProps.minTime: Any? by props
+    override var RProps.maxTime: Any? by props
 
-    override var Tag.shouldDisableTime: ((Number, String) -> Boolean)? by props
-    override fun Tag.shouldDisableTime(block: (Number, String) -> Boolean) { shouldDisableTime = block }
+    override var RProps.shouldDisableTime: ((Number, String) -> Boolean)? by props
+    override fun RProps.shouldDisableTime(block: (Number, String) -> Boolean) { shouldDisableTime = block }
 
-    override var Tag.disableTimeValidationIgnoreDatePart: Boolean? by props
+    override var RProps.disableTimeValidationIgnoreDatePart: Boolean? by props
 }
