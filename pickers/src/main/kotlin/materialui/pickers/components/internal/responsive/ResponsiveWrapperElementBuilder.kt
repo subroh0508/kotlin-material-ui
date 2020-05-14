@@ -13,7 +13,7 @@ import materialui.pickers.components.setValue
 import react.RClass
 import react.RProps
 
-abstract class ResponsiveWrapperElement<P: ResponsiveWrapperProps> internal constructor(
+abstract class ResponsiveWrapperElementBuilder<P: ResponsiveWrapperProps> internal constructor(
     type: RClass<P>, className: String?, props: P = jsObject { }
 ) : BasePickerElementBuilder<P>(type, className, props),
         DesktopElement by DesktopDelegate(props),

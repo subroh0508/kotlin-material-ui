@@ -6,13 +6,13 @@ import materialui.pickers.components.calendar.ArrowSwitcherDelegate
 import materialui.pickers.components.calendar.ExportedCalendarDelegate
 import materialui.pickers.components.internal.desktop.DesktopWrapperElementBuilder
 import materialui.pickers.components.internal.modal.ModalWrapperElementBuilder
-import materialui.pickers.components.internal.responsive.ResponsiveWrapperElement
+import materialui.pickers.components.internal.responsive.ResponsiveWrapperElementBuilder
 import materialui.pickers.components.internal.static.StaticWrapperElementBuilder
 import react.RClass
 
 class DatePickerElementBuilder internal constructor(
     type: RClass<DatePickerProps>, className: String?, props: DatePickerProps = jsObject { }
-) : ResponsiveWrapperElement<DatePickerProps>(type, className, props),
+) : ResponsiveWrapperElementBuilder<DatePickerProps>(type, className, props),
         DatePickerElement by DatePickerDelegate(props),
         ArrowSwitcherElement by ArrowSwitcherDelegate(props),
         ExportedCalendarElement by ExportedCalendarDelegate(props),
