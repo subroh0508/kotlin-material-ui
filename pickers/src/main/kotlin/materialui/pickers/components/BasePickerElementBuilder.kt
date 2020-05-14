@@ -81,10 +81,20 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     fun RProps.timeIcon(block: RBuilder.() -> Unit) { timeIcon = buildElement(block) }
 
     /* PickerWrapper */
+    var RProps.isMobileKeyboardViewOpen: Boolean? by props
+
+    var RProps.toggleMobileKeyboardView: (() -> Unit)? by props
+    fun RProps.toggleMobileKeyboardView(block: () -> Unit) { toggleMobileKeyboardView = block }
+
+    var RProps.date: Any? by props
+
     @Suppress("PropertyName")
     var RProps.DateInputProps: DateInputProps? by props
     @Suppress("FunctionName")
     fun RProps.DateInputProps(block: DateInputProps.() -> Unit) { DateInputProps = jsObject(block) }
+
+    var RProps.onDateChange: ((dynamic, String, dynamic) -> Unit)? by props
+    fun RProps.onDateChange(block: (Any, String, Boolean) -> Unit) { onDateChange = block }
 
     @Suppress("PropertyName")
     var RProps.KeyboardDateInputComponent: Any? by props

@@ -32,8 +32,12 @@ external interface BasePickerProps : WithClassName, DateValidationProps {
     var timeIcon: dynamic
 
     /* PickerWrapper */
+    var isMobileKeyboardViewOpen: Boolean?
+    var toggleMobileKeyboardView: (() -> Unit)?
+    var date: dynamic
     @Suppress("PropertyName")
     var DateInputProps: DateInputProps?
+    var onDateChange: ((dynamic, String, dynamic) -> Unit)?
     @Suppress("PropertyName")
     var KeyboardDateInputComponent: dynamic
     @Suppress("PropertyName")
