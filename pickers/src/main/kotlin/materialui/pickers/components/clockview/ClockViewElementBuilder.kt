@@ -32,7 +32,7 @@ class ClockViewElementBuilder internal constructor(
     fun Tag.onDateChange(block: (Any, String) -> Unit) { onDateChange = block }
 
     var Tag.onChange: ((dynamic, dynamic) -> Unit)? by props
-    fun Tag.onChange(block: (Any, String) -> Unit) { onChange = block }
+    fun Tag.onChange(block: (Any, Boolean) -> Unit) { onChange = block }
 
     var Tag.getHoursClockNumberText: ((String) -> String)? by props
     fun Tag.getHoursClockNumberText(block: (String) -> String) { getHoursClockNumberText = block }
