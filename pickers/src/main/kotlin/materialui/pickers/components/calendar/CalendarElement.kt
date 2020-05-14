@@ -54,7 +54,7 @@ interface ExportedCalendarViewElement {
     fun RProps.onYearChange(block: (Any) -> Unit)
 }
 
-internal class ExportedCalendarViewDelegate<P: ExportedCalendarViewProps>(props: P)  : ExportedCalendarViewElement {
+internal class ExportedCalendarViewDelegate<P: ExportedCalendarViewProps>(props: P) : ExportedCalendarViewElement {
     override var RProps.getViewSwitchingButtonText: ((String) -> String)? by props
     override fun RProps.getViewSwitchingButtonText(block: (String) -> String) { getViewSwitchingButtonText = block }
 

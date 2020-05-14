@@ -38,13 +38,9 @@ external interface ExportedCalendarViewProps : ExportedCalendarProps, ExportedAr
     var onYearChange: ((dynamic) -> Unit)?
 }
 
-external interface ExportedClockViewProps : RProps {
+external interface ExportedClockViewProps : TimeValidationProps, ExportedArrowSwitcherProps {
     var ampm: Boolean?
     var minutesStep: Int?
     var ampmInClock: Boolean?
     var allowKeyboardControl: Boolean?
-    var minTime: dynamic
-    var maxTime: dynamic
-    var shouldDisableTime: ((Int, String) -> Boolean)?
-    var disableTimeValidationIgnoreDatePart: Boolean?
 }
