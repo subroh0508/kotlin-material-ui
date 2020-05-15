@@ -109,4 +109,47 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     fun <P: DateInputProps, C: Component<P, *>> RProps.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.rClass }
     @Suppress("FunctionName")
     fun <P: DateInputProps> RProps.PureDateInputComponent(functionalComponent: FunctionalComponent<P>) { PureDateInputComponent = functionalComponent }
+
+    /* TextFieldProps */
+    var RProps.autoComplete: String? by props
+    var RProps.autoFocus: Boolean? by props
+
+    var RProps.defaultValue: Any? by props
+    fun RProps.defaultValue(v: String?) { defaultValue = v }
+    fun RProps.defaultValue(v: Number?) { defaultValue = v }
+    fun RProps.defaultValue(v: Date?) { defaultValue = v }
+
+    @Suppress("PropertyName")
+    var RProps.FormHelperTextProps: RProps? by props
+    var RProps.helperText: ReactElement? by props
+    var RProps.id: String? by props
+
+    @Suppress("PropertyName")
+    var RProps.InputLabelProps: RProps? by props
+
+    @Suppress("PropertyName")
+    var RProps.InputProps: RProps? by props
+    var RProps.inputProps: Any? by props
+    var RProps.inputRef: RRef? by props
+
+    var RProps.label: ReactElement? by props
+    fun RProps.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
+
+    var RProps.multiline: Boolean? by props
+    var RProps.name: String? by props
+    var RProps.placeholder: String? by props
+
+    var RProps.rows: Any? by props
+    fun RProps.rows(v: String) { rows = v }
+    fun RProps.rows(v: Number) { rows = v }
+
+    var RProps.rowsMax: Any? by props
+    fun RProps.rowsMax(v: String) { rowsMax = v }
+    fun RProps.rowsMax(v: Number) { rowsMax = v }
+
+    var RProps.select: Boolean? by props
+
+    @Suppress("PropertyName")
+    var RProps.SelectProps: RProps? by props
+    var RProps.type: String? by props
 }
