@@ -14,40 +14,21 @@ import react.createElement
 class ClockViewElementBuilder internal constructor(
     private val type: RClass<ClockViewProps>, className: String?, props: ClockViewProps = jsObject { }
 ) : RElementBuilder<ClockViewProps>(props),
-    ArrowSwitcherElement by ArrowSwitcherDelegate(props),
-    ExportedClockViewElement by ExportedClockViewDelegate(props)
+    ArrowSwitcherElement<ClockViewProps> by ArrowSwitcherDelegate()
 {
-    var RProps.className: String? by props
-
     init { props.className = className }
 
     fun create() = createElement(type, attrs, *childList.toTypedArray())
 
-    var RProps.date: Any? by props
-    var RProps.type: TimePickerView? by props
+    fun ClockViewProps.type(v: TimePickerView) { type = v.name }
 
-    var RProps.onDateChange: ((dynamic, dynamic) -> Unit)? by props
-    fun RProps.onDateChange(block: (Any, String) -> Unit) { onDateChange = block }
+    fun ClockViewProps.onDateChangeFunc(block: (Any, String) -> Unit) { onDateChange = block }
+    fun ClockViewProps.onChangeFunc(block: (Any, Boolean) -> Unit) { onChange = block }
 
-    var RProps.onChange: ((dynamic, dynamic) -> Unit)? by props
-    fun RProps.onChange(block: (Any, Boolean) -> Unit) { onChange = block }
+    fun ClockViewProps.getHoursClockNumberTextFunc(block: (String) -> String) { getHoursClockNumberText = block }
+    fun ClockViewProps.getMinutesClockNumberTextFunc(block: (String) -> String) { getMinutesClockNumberText = block }
+    fun ClockViewProps.getSecondsClockNumberTextFunc(block: (String) -> String) { getSecondsClockNumberText = block }
 
-    var RProps.getHoursClockNumberText: ((String) -> String)? by props
-    fun RProps.getHoursClockNumberText(block: (String) -> String) { getHoursClockNumberText = block }
-
-    var RProps.getMinutesClockNumberText: ((String) -> String)? by props
-    fun RProps.getMinutesClockNumberText(block: (String) -> String) { getMinutesClockNumberText = block }
-
-    var RProps.getSecondsClockNumberText: ((String) -> String)? by props
-    fun RProps.getSecondsClockNumberText(block: (String) -> String) { getSecondsClockNumberText = block }
-
-    var RProps.openNextView: (() -> Unit)? by props
-    fun RProps.openNextView(block: () -> Unit) { openNextView = block }
-
-    var RProps.openPreviousView: (() -> Unit)? by props
-    fun RProps.openPreviousView(block: () -> Unit) { openPreviousView = block }
-
-    var RProps.nextViewAvailable: Boolean? by props
-    var RProps.previousViewAvailable: Boolean? by props
-    var RProps.showViewSwitcher: Boolean? by props
+    fun ClockViewProps.openNextViewFunc(block: () -> Unit) { openNextView = block }
+    fun ClockViewProps.openPreviousViewFunc(block: () -> Unit) { openPreviousView = block }
 }

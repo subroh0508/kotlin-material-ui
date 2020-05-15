@@ -9,40 +9,24 @@ import react.*
 class CalendarElementBuilder internal constructor(
     private val type: RClass<CalendarProps>, className: String?, props: CalendarProps = jsObject { }
 ) : RElementBuilder<CalendarProps>(props),
-        ArrowSwitcherElement by ArrowSwitcherDelegate(props),
-        ExportedCalendarElement by ExportedCalendarDelegate(props)
+        ArrowSwitcherElement<CalendarProps> by ArrowSwitcherDelegate(),
+        ExportedCalendarElement<CalendarProps> by ExportedCalendarDelegate()
 {
-    var RProps.className: String? by props
-
     init { props.className = className }
 
     fun create() = createElement(type, attrs, *childList.toTypedArray())
 
-    var RProps.date: Any? by props
-    var RProps.minDate: Any? by props
-    var RProps.maxDate: Any? by props
+    fun CalendarProps.isDateDisabledFunc(block: (Any) -> Boolean) { isDateDisabled = block }
 
-    var RProps.isDateDisabled: ((Any) -> Boolean)? by props
-    fun RProps.isDateDisabled(block: (Any) -> Boolean) { isDateDisabled = block }
+    fun CalendarProps.slideDirection(v: SlideDirection?) { slideDirection = v?.name }
 
-    var RProps.slideDirection: SlideDirection? by props
-    var RProps.currentMonth: Any? by props
-    var RProps.reduceAnimation: Boolean? by props
-    var RProps.focusedDay: Any? by props
+    fun CalendarProps.changeFocusedDayFunc(block: (Any) -> Unit) { changeFocusedDay = block }
 
-    var RProps.changeFocusedDay: ((Any) -> Unit)? by props
-    fun RProps.changeFocusedDay(block: (Any) -> Unit) { changeFocusedDay = block }
+    fun CalendarProps.onMonthSwitchingAnimationEndFunc(block: () -> Unit) { onMonthSwitchingAnimationEnd = block }
 
-    var RProps.isMonthSwitchingAnimating: Boolean? by props
-
-    var RProps.onMonthSwitchingAnimationEnd: (() -> Unit)? by props
-    fun RProps.onMonthSwitchingAnimationEnd(block: () -> Unit) { onMonthSwitchingAnimationEnd = block }
-
-    @Suppress("PropertyName")
-    var RProps.TransitionProps: SlideTransitionProps? by props
     @Suppress("FunctionName")
-    fun RProps.TransitionProps(block: SlideTransitionProps.() -> Unit) { TransitionProps = jsObject(block) }
+    fun CalendarProps.TransitionProps(block: SlideTransitionProps.() -> Unit) { TransitionProps = jsObject(block) }
 
     var RProps.onChange: ((Any, Any) -> Unit)? by props
-    fun RProps.onChange(block: (Any, Any) -> Unit) { onChange = block }
+    fun CalendarProps.onChangeFunc(block: (Any, Any) -> Unit) { onChange = block }
 }

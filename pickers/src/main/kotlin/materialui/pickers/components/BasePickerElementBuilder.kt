@@ -11,118 +11,63 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     className: String?,
     props: Props = jsObject { }
 ) : RElementBuilder<Props>(props) {
-    var RProps.className: String? by props
-
     init { props.className = className }
 
     fun create() = createElement(type, attrs, *childList.toTypedArray())
 
-    var RProps.value: Any? by props
-    fun RProps.value(v: String?) { value = v }
-    fun RProps.value(v: Number?) { value = v }
-    fun RProps.value(v: Date?) { value = v }
+    fun Props.value(v: String?) { value = v }
+    fun Props.value(v: Number?) { value = v }
+    fun Props.value(v: Date?) { value = v }
 
-    var RProps.onChange: ((dynamic, String?) -> Unit)? by props
-    fun RProps.onChange(block: (Any, String?) -> Unit) { onChange = block }
+    fun Props.onChangeFunc(block: (Any, String?) -> Unit) { onChange = block }
+    fun Props.onAcceptFunc(block: (Any) -> Unit) { onAccept = block }
+    fun Props.onErrorFunc(block: (Any, Any) -> Unit) { onError = block }
+    fun Props.onOpenFunc(block: () -> Unit) { onOpen = block }
+    fun Props.onCloseFunc(block: () -> Unit) { onClose = block }
 
-    var RProps.autoOk: Boolean? by props
-    var RProps.inputFormat: String? by props
-    var RProps.disabled: Boolean? by props
-    var RProps.readOnly: Boolean? by props
+    fun Props.orientation(v: PickerOrientation?) { orientation = v?.name }
 
-    var RProps.defaultHighlight: Any? by props
-
-    var RProps.onAccept: ((dynamic) -> Unit)? by props
-    fun RProps.onAccept(block: (Any) -> Unit) { onAccept = block }
-
-    var RProps.onError: ((dynamic, dynamic) -> Unit)? by props
-    fun RProps.onError(block: (Any, Any) -> Unit) { onError = block }
-
-    var RProps.onOpen: (() -> Unit)? by props
-    fun RProps.onOpen(block: () -> Unit) { onOpen = block }
-
-    var RProps.onClose: (() -> Unit)? by props
-    fun RProps.onClose(block: () -> Unit) { onClose = block }
-
-    var RProps.open: Boolean? by props
-    var RProps.showToolbar: Boolean? by props
-    var RProps.orientation: PickerOrientation? by props
-    var RProps.toolbarFormat: String? by props
-
-    @Suppress("PropertyName")
-    var RProps.ToolbarComponent: Any? by props
     @Suppress("FunctionName")
-    fun <P: ToolbarComponentProps, C: Component<P, *>> RProps.ToolbarComponent(kClass: KClass<C>) { ToolbarComponent = kClass.rClass }
+    fun <P: ToolbarComponentProps, C: Component<P, *>> Props.ToolbarComponent(kClass: KClass<C>) { ToolbarComponent = kClass.rClass }
     @Suppress("FunctionName")
-    fun <P: ToolbarComponentProps> RProps.ToolbarComponent(functionalComponent: FunctionalComponent<P>) { ToolbarComponent = functionalComponent }
+    fun <P: ToolbarComponentProps> Props.ToolbarComponent(functionalComponent: FunctionalComponent<P>) { ToolbarComponent = functionalComponent }
 
-    var RProps.toolbarTitle: Any? by props
-    fun RProps.toolbarTitle(block: RBuilder.() -> Unit) { toolbarTitle = buildElement(block) }
+    fun Props.toolbarTitle(block: RBuilder.() -> Unit) { toolbarTitle = buildElement(block) }
 
     /* DateValidationProps */
-    var RProps.invalidDateMessage: Any? by props
-    fun RProps.invalidDateMessage(block: RBuilder.() -> Unit) { invalidDateMessage = buildElement(block) }
-
-    var RProps.minDateMessage: Any? by props
-    fun RProps.minDateMessage(block: RBuilder.() -> Unit) { minDateMessage = buildElement(block) }
-
-    var RProps.maxDateMessage: Any? by props
-    fun RProps.maxDateMessage(block: RBuilder.() -> Unit) { maxDateMessage = buildElement(block) }
-
-    var RProps.strictCompareDate: Boolean? by props
+    fun Props.invalidDateMessage(block: RBuilder.() -> Unit) { invalidDateMessage = buildElement(block) }
+    fun Props.minDateMessage(block: RBuilder.() -> Unit) { minDateMessage = buildElement(block) }
+    fun Props.maxDateMessage(block: RBuilder.() -> Unit) { maxDateMessage = buildElement(block) }
 
     /* ExportedPickerProps */
-    var RProps.hideTabs: Boolean? by props
-
-    var RProps.dateRangeIcon: Any? by props
-    fun RProps.dateRangeIcon(block: RBuilder.() -> Unit) { dateRangeIcon = buildElement(block) }
-
-    var RProps.timeIcon: Any? by props
-    fun RProps.timeIcon(block: RBuilder.() -> Unit) { timeIcon = buildElement(block) }
+    fun Props.dateRangeIcon(block: RBuilder.() -> Unit) { dateRangeIcon = buildElement(block) }
+    fun Props.timeIcon(block: RBuilder.() -> Unit) { timeIcon = buildElement(block) }
 
     /* PickerWrapper */
-    var RProps.isMobileKeyboardViewOpen: Boolean? by props
+    fun Props.toggleMobileKeyboardView(block: () -> Unit) { toggleMobileKeyboardView = block }
 
-    var RProps.toggleMobileKeyboardView: (() -> Unit)? by props
-    fun RProps.toggleMobileKeyboardView(block: () -> Unit) { toggleMobileKeyboardView = block }
-
-    var RProps.date: Any? by props
-
-    @Suppress("PropertyName")
-    var RProps.DateInputProps: DateInputProps? by props
     @Suppress("FunctionName")
-    fun RProps.DateInputProps(block: DateInputProps.() -> Unit) { DateInputProps = jsObject(block) }
+    fun Props.DateInputProps(block: DateInputProps.() -> Unit) { DateInputProps = jsObject(block) }
+    fun Props.onDateChange(block: (Any, String, Boolean) -> Unit) { onDateChange = block }
 
-    var RProps.onDateChange: ((dynamic, String, dynamic) -> Unit)? by props
-    fun RProps.onDateChange(block: (Any, String, Boolean) -> Unit) { onDateChange = block }
+    @Suppress("FunctionName")
+    fun <P: DateInputProps, C: Component<P, *>> Props.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.rClass }
+    @Suppress("FunctionName")
+    fun <P: DateInputProps> Props.KeyboardDateInputComponent(functionalComponent: FunctionalComponent<P>) { KeyboardDateInputComponent = functionalComponent }
 
-    @Suppress("PropertyName")
-    var RProps.KeyboardDateInputComponent: Any? by props
     @Suppress("FunctionName")
-    fun <P: DateInputProps, C: Component<P, *>> RProps.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.rClass }
+    fun <P: DateInputProps, C: Component<P, *>> Props.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.rClass }
     @Suppress("FunctionName")
-    fun <P: DateInputProps> RProps.KeyboardDateInputComponent(functionalComponent: FunctionalComponent<P>) { KeyboardDateInputComponent = functionalComponent }
-
-    @Suppress("PropertyName")
-    var RProps.PureDateInputComponent: Any? by props
-    @Suppress("FunctionName")
-    fun <P: DateInputProps, C: Component<P, *>> RProps.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.rClass }
-    @Suppress("FunctionName")
-    fun <P: DateInputProps> RProps.PureDateInputComponent(functionalComponent: FunctionalComponent<P>) { PureDateInputComponent = functionalComponent }
+    fun <P: DateInputProps> Props.PureDateInputComponent(functionalComponent: FunctionalComponent<P>) { PureDateInputComponent = functionalComponent }
 
     /* TextFieldProps */
-    var RProps.autoComplete: String? by props
-    var RProps.autoFocus: Boolean? by props
-
-    var RProps.defaultValue: Any? by props
-    fun RProps.defaultValue(v: String?) { defaultValue = v }
-    fun RProps.defaultValue(v: Number?) { defaultValue = v }
-    fun RProps.defaultValue(v: Date?) { defaultValue = v }
+    fun Props.defaultValue(v: String?) { defaultValue = v }
+    fun Props.defaultValue(v: Number?) { defaultValue = v }
+    fun Props.defaultValue(v: Date?) { defaultValue = v }
 
     @Suppress("PropertyName")
     var RProps.FormHelperTextProps: RProps? by props
-    var RProps.helperText: ReactElement? by props
-    var RProps.id: String? by props
+    fun Props.helperText(block: RBuilder.() -> Unit) { helperText = buildElement(block) }
 
     @Suppress("PropertyName")
     var RProps.InputLabelProps: RProps? by props
@@ -130,26 +75,15 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     @Suppress("PropertyName")
     var RProps.InputProps: RProps? by props
     var RProps.inputProps: Any? by props
-    var RProps.inputRef: RRef? by props
 
-    var RProps.label: ReactElement? by props
-    fun RProps.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
+    fun Props.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
 
-    var RProps.multiline: Boolean? by props
-    var RProps.name: String? by props
-    var RProps.placeholder: String? by props
+    fun Props.rows(v: String) { rows = v }
+    fun Props.rows(v: Number) { rows = v }
 
-    var RProps.rows: Any? by props
-    fun RProps.rows(v: String) { rows = v }
-    fun RProps.rows(v: Number) { rows = v }
-
-    var RProps.rowsMax: Any? by props
-    fun RProps.rowsMax(v: String) { rowsMax = v }
-    fun RProps.rowsMax(v: Number) { rowsMax = v }
-
-    var RProps.select: Boolean? by props
+    fun Props.rowsMax(v: String) { rowsMax = v }
+    fun Props.rowsMax(v: Number) { rowsMax = v }
 
     @Suppress("PropertyName")
     var RProps.SelectProps: RProps? by props
-    var RProps.type: String? by props
 }
