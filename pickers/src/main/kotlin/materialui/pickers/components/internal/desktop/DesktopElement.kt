@@ -6,14 +6,11 @@ import materialui.pickers.components.getValue
 import materialui.pickers.components.setValue
 import react.RProps
 
-interface DesktopElement {
-    @Suppress("PropertyName")
-    var RProps.PopoverProps: PopoverProps?
+interface DesktopElement<P: DesktopWrapperProps> {
     @Suppress("FunctionName")
-    fun RProps.PopoverProps(block: PopoverProps.() -> Unit)
+    fun P.PopoverProps(block: PopoverProps.() -> Unit)
 }
 
-internal class DesktopDelegate<P: DesktopWrapperProps>(pickerProps: P) : DesktopElement {
-    override var RProps.PopoverProps: PopoverProps? by pickerProps
-    override fun RProps.PopoverProps(block: PopoverProps.() -> Unit) { PopoverProps = jsObject(block) }
+internal class DesktopDelegate<P: DesktopWrapperProps> : DesktopElement<P> {
+    override fun P.PopoverProps(block: PopoverProps.() -> Unit) { PopoverProps = jsObject(block) }
 }

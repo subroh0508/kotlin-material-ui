@@ -12,4 +12,4 @@ import react.RProps
 abstract class StaticWrapperElementBuilder<P: StaticWrapperProps> internal constructor(
     type: RClass<P>, className: String?, props: P = jsObject { }
 ) : BasePickerElementBuilder<P>(type, className, props),
-        StaticElement by StaticDelegate(props)
+        StaticElement<P> by StaticDelegate()

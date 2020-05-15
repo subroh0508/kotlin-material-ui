@@ -4,10 +4,10 @@ import materialui.pickers.components.getValue
 import materialui.pickers.components.setValue
 import react.RProps
 
-interface StaticElement {
-    var RProps.displayStaticWrapperAs: DisplayStaticWrapperAs?
+interface StaticElement<P: StaticWrapperProps> {
+    fun P.displayStaticWrapperAs(v: DisplayStaticWrapperAs)
 }
 
-internal class StaticDelegate<P: StaticWrapperProps>(props: P) : StaticElement {
-    override var RProps.displayStaticWrapperAs: DisplayStaticWrapperAs? by props
+internal class StaticDelegate<P: StaticWrapperProps> : StaticElement<P> {
+    override fun P.displayStaticWrapperAs(v: DisplayStaticWrapperAs) { displayStaticWrapperAs = v.name }
 }

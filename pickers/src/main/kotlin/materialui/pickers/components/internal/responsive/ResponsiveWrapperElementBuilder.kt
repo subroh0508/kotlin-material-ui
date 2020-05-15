@@ -16,9 +16,6 @@ import react.RProps
 abstract class ResponsiveWrapperElementBuilder<P: ResponsiveWrapperProps> internal constructor(
     type: RClass<P>, className: String?, props: P = jsObject { }
 ) : BasePickerElementBuilder<P>(type, className, props),
-        DesktopElement by DesktopDelegate(props),
-        DesktopPopperElement by DesktopPopperDelegate(props),
-        ModalElement by ModalDelegate(props)
-{
-    var RProps.desktopModeMediaQuery: String? by props
-}
+        DesktopElement<P> by DesktopDelegate(),
+        DesktopPopperElement<P> by DesktopPopperDelegate(),
+        ModalElement<P> by ModalDelegate()

@@ -6,16 +6,14 @@ import materialui.pickers.components.getValue
 import materialui.pickers.components.setValue
 import react.RProps
 
-interface DatePickerElement {
-    var RProps.views: Array<out DatePickerView>?
-    fun RProps.views(vararg view: DatePickerView)
+interface DatePickerElement<P: WithViewProps> {
+    fun P.views(vararg view: DatePickerView)
 
-    var RProps.openTo: DatePickerView?
+    fun P.openTo(v: DatePickerView)
 }
 
-internal class DatePickerDelegate<P: WithViewProps>(props: P) : DatePickerElement {
-    override var RProps.views: Array<out DatePickerView>? by props
-    override fun RProps.views(vararg view: DatePickerView) { views = view }
+internal class DatePickerDelegate<P: WithViewProps> : DatePickerElement<P> {
+    override fun P.views(vararg view: DatePickerView) { views = view.map(DatePickerView::name).toTypedArray() }
 
-    override var RProps.openTo: DatePickerView? by props
+    override fun P.openTo(v: DatePickerView) { openTo = v.name }
 }

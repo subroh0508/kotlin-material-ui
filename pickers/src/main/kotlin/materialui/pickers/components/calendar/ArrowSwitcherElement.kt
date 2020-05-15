@@ -9,36 +9,18 @@ import react.RBuilder
 import react.RProps
 import react.buildElement
 
-interface ArrowSwitcherElement {
-    var RProps.leftArrowIcon: Any?
-    fun RProps.leftArrowIcon(block: RBuilder.() -> Unit)
+interface ArrowSwitcherElement<P: ExportedArrowSwitcherProps> {
+    fun P.leftArrowIcon(block: RBuilder.() -> Unit)
+    fun P.rightArrowIcon(block: RBuilder.() -> Unit)
 
-    var RProps.rightArrowIcon: Any?
-    fun RProps.rightArrowIcon(block: RBuilder.() -> Unit)
-
-    var RProps.leftArrowButtonText: String?
-    var RProps.rightArrowButtonText: String?
-
-    var RProps.leftArrowButtonProps: IconButtonProps?
-    fun RProps.leftArrowButtonProps(block: IconButtonProps.() -> Unit)
-
-    var RProps.rightArrowButtonProps: IconButtonProps?
-    fun RProps.rightArrowButtonProps(block: IconButtonProps.() -> Unit)
+    fun P.leftArrowButtonProps(block: IconButtonProps.() -> Unit)
+    fun P.rightArrowButtonProps(block: IconButtonProps.() -> Unit)
 }
 
-internal class ArrowSwitcherDelegate<P: ExportedArrowSwitcherProps>(props: P) : ArrowSwitcherElement {
-    override var RProps.leftArrowIcon: Any? by props
-    override fun RProps.leftArrowIcon(block: RBuilder.() -> Unit) { leftArrowIcon = buildElement(block) }
+internal class ArrowSwitcherDelegate<P: ExportedArrowSwitcherProps> : ArrowSwitcherElement<P> {
+    override fun P.leftArrowIcon(block: RBuilder.() -> Unit) { leftArrowIcon = buildElement(block) }
+    override fun P.rightArrowIcon(block: RBuilder.() -> Unit) { rightArrowIcon = buildElement(block) }
 
-    override var RProps.rightArrowIcon: Any? by props
-    override fun RProps.rightArrowIcon(block: RBuilder.() -> Unit) { rightArrowIcon = buildElement(block) }
-
-    override var RProps.leftArrowButtonText: String? by props
-    override var RProps.rightArrowButtonText: String? by props
-
-    override var RProps.leftArrowButtonProps: IconButtonProps? by props
-    override fun RProps.leftArrowButtonProps(block: IconButtonProps.() -> Unit) { leftArrowButtonProps = jsObject(block) }
-
-    override var RProps.rightArrowButtonProps: IconButtonProps? by props
-    override fun RProps.rightArrowButtonProps(block: IconButtonProps.() -> Unit) { rightArrowButtonProps = jsObject(block) }
+    override fun P.leftArrowButtonProps(block: IconButtonProps.() -> Unit) { leftArrowButtonProps = jsObject(block) }
+    override fun P.rightArrowButtonProps(block: IconButtonProps.() -> Unit) { rightArrowButtonProps = jsObject(block) }
 }
