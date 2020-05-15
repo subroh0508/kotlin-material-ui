@@ -1,17 +1,17 @@
 package materialui.pickers.components
 
+import materialui.components.textfield.TextFieldProps
 import org.w3c.dom.events.Event
 import react.RProps
 import react.RRef
+import react.ReactElement
 import react.dom.WithClassName
 import kotlin.reflect.KProperty
 
-external interface BasePickerProps : WithClassName, DateValidationProps {
-    var value: dynamic
+external interface BasePickerProps : DateValidationProps, TextFieldProps, WithClassName {
     var onChange: ((dynamic, String?) -> Unit)?
     var autoOk: Boolean?
     var inputFormat: String?
-    var disabled: Boolean?
     var readOnly: Boolean?
     var defaultHighlight: dynamic
     var onAccept: ((dynamic) -> Unit)?
