@@ -29,9 +29,18 @@ bintray {
     publications = ['ToMavenPublication']
 
     publish = false
+
+    def repoName = "Kotlin-Material-UI"
+    if (project.name == "lab") {
+        repoName += "-Lab"
+    } else if (project.name == "pickers") {
+        repoName += "-Pickers"
+    } else if (project.name == "date-fns") {
+        repoName += "-DateIO-date-fns"
+    }
     pkg {
         repo = 'maven'
-        name = "Kotlin-Material-UI${project.name == "core" ? "" : "-Lab"}"
+        name = repoName
         licenses = ['MIT']
         websiteUrl = siteUrl
         vcsUrl = githubUrl + '.git'
