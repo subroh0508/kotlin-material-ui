@@ -4,6 +4,7 @@ import materialui.components.textfield.TextFieldProps
 import materialui.pickers.components.ExportedDateRangePickerViewProps
 import react.RBuilder
 import react.buildElement
+import react.buildElements
 import kotlin.js.Promise
 
 interface SharedDateRangePickerElement<P: SharedDateRangePickerProps> {
@@ -33,6 +34,6 @@ internal class ExportedDateRangePickerViewDelegate<P: ExportedDateRangePickerVie
     override fun P.shouldDisableDateFunc(block: (Any) -> Boolean) { shouldDisableDate = block }
 
     override fun P.renderInput(block: RBuilder.(TextFieldProps, TextFieldProps) -> Unit) {
-        renderInput = { startProps, endProps -> buildElement { block(startProps, endProps) } }
+        renderInput = { startProps, endProps -> buildElements { block(startProps, endProps) } as Any }
     }
 }
