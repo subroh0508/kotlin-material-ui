@@ -16,6 +16,8 @@ abstract class MaterialElementBuilder<T: Tag, Props: StandardProps>(
 ) : RDOMBuilder<T>(factory) {
     protected val materialProps: Props = jsObject { }
 
+    fun props(p: Props) { Object.assign(materialProps, p) }
+
     fun Tag.classes(rootStyle: String) {
         classes(listOf(MaterialStyle.root to rootStyle))
     }
