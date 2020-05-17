@@ -24,7 +24,7 @@ internal class ExportedCalendarDelegate<P: ExportedCalendarProps> : ExportedCale
 }
 
 interface ExportedCalendarViewElement<P: ExportedCalendarViewProps> {
-    fun P.getViewSwitchingButtonText(block: (String) -> String)
+    fun P.getViewSwitchingButtonTextFunc(block: (String) -> String)
     fun P.onMonthChangeFunc(block: (Any) -> Unit)
     fun P.onMonthChangeFunc(block: (Any) -> Promise<Unit>)
     fun P.shouldDisableDateFunc(block: (Any) -> Boolean)
@@ -32,7 +32,7 @@ interface ExportedCalendarViewElement<P: ExportedCalendarViewProps> {
 }
 
 internal class ExportedCalendarViewDelegate<P: ExportedCalendarViewProps> : ExportedCalendarViewElement<P> {
-    override fun P.getViewSwitchingButtonText(block: (String) -> String) { getViewSwitchingButtonText = block }
+    override fun P.getViewSwitchingButtonTextFunc(block: (String) -> String) { getViewSwitchingButtonText = block }
 
     override fun P.onMonthChangeFunc(block: (Any) -> Unit) { onMonthChange = block }
     override fun P.onMonthChangeFunc(block: (Any) -> Promise<Unit>) { onMonthChange = block }
