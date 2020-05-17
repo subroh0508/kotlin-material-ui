@@ -2,8 +2,6 @@ package materialui.pickers.components.internal.desktoppopper
 
 import kotlinext.js.jsObject
 import materialui.components.popper.PopperProps
-import materialui.pickers.components.getValue
-import materialui.pickers.components.setValue
 import react.Component
 import react.FunctionalComponent
 import react.RProps

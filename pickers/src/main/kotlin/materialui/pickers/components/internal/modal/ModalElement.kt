@@ -2,10 +2,7 @@ package materialui.pickers.components.internal.modal
 
 import kotlinext.js.jsObject
 import materialui.components.dialog.DialogProps
-import materialui.pickers.components.getValue
-import materialui.pickers.components.setValue
 import react.RBuilder
-import react.RProps
 import react.buildElement
 
 interface ModalElement<P: ModalWrapperProps> {

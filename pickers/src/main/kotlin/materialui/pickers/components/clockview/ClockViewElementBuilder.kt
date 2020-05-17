@@ -3,12 +3,9 @@ package materialui.pickers.components.clockview
 import kotlinext.js.jsObject
 import materialui.pickers.components.calendar.*
 import materialui.pickers.components.calendar.ArrowSwitcherDelegate
-import materialui.pickers.components.getValue
-import materialui.pickers.components.setValue
 import materialui.pickers.components.timepicker.enum.TimePickerView
 import react.RClass
 import react.RElementBuilder
-import react.RProps
 import react.createElement
 
 class ClockViewElementBuilder internal constructor(

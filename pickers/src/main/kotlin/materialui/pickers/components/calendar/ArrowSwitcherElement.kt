@@ -3,8 +3,6 @@ package materialui.pickers.components.calendar
 import kotlinext.js.jsObject
 import materialui.components.iconbutton.IconButtonProps
 import materialui.pickers.components.ExportedArrowSwitcherProps
-import materialui.pickers.components.getValue
-import materialui.pickers.components.setValue
 import react.RBuilder
 import react.RProps
 import react.buildElement

@@ -1,10 +1,7 @@
 package materialui.pickers.components.timepicker
 
 import materialui.pickers.components.WithViewProps
-import materialui.pickers.components.getValue
-import materialui.pickers.components.setValue
 import materialui.pickers.components.timepicker.enum.TimePickerView
-import react.RProps
 
 interface TimePickerElement<P: WithViewProps> {
     fun P.views(vararg view: TimePickerView)

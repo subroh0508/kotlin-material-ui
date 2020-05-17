@@ -1,8 +1,14 @@
 package materialui.pickers.components
 
 import kotlinext.js.jsObject
+import kotlinx.html.INPUT
+import materialui.components.formhelpertext.FormHelperTextProps
+import materialui.components.input.InputProps
+import materialui.components.inputlabel.InputLabelProps
+import materialui.components.select.SelectProps
 import materialui.pickers.components.enums.PickerOrientation
 import react.*
+import react.dom.input
 import kotlin.js.Date
 import kotlin.reflect.KClass
 
@@ -65,16 +71,16 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     fun Props.defaultValue(v: Number?) { defaultValue = v }
     fun Props.defaultValue(v: Date?) { defaultValue = v }
 
-    @Suppress("PropertyName")
-    var RProps.FormHelperTextProps: RProps? by props
+    @Suppress("FunctionName")
+    fun Props.FormHelperTextProps(block: FormHelperTextProps.() -> Unit) { FormHelperTextProps = jsObject(block) }
     fun Props.helperText(block: RBuilder.() -> Unit) { helperText = buildElement(block) }
 
-    @Suppress("PropertyName")
-    var RProps.InputLabelProps: RProps? by props
+    @Suppress("FunctionName")
+    fun Props.InputLabelProps(block: InputLabelProps.() -> Unit) { InputLabelProps = jsObject(block) }
 
-    @Suppress("PropertyName")
-    var RProps.InputProps: RProps? by props
-    var RProps.inputProps: Any? by props
+    @Suppress("FunctionName")
+    fun Props.InputProps(block: InputProps.() -> Unit) { InputProps = jsObject(block) }
+    fun Props.inputProps(block: INPUT.() -> Unit) { inputProps = RBuilder().input { attrs(block) }.props }
 
     fun Props.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
 
@@ -84,6 +90,6 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     fun Props.rowsMax(v: String) { rowsMax = v }
     fun Props.rowsMax(v: Number) { rowsMax = v }
 
-    @Suppress("PropertyName")
-    var RProps.SelectProps: RProps? by props
+    @Suppress("FunctionName")
+    fun Props.SelectProps(block: SelectProps.() -> Unit) { SelectProps = jsObject(block) }
 }
