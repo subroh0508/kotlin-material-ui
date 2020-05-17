@@ -10,7 +10,7 @@ import materialui.components.typography.enums.*
 import materialui.styles.muitheme.MuiTheme
 import react.RClass
 
-open class TypographyElementBuilder<T: Tag, Props: TypographyProps> internal constructor(
+open class TypographyElementBuilder<T: Tag, Props: TypographyProps> constructor(
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
