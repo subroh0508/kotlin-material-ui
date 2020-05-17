@@ -21,7 +21,7 @@ private val DateRangePickerComponent: RClass<DateRangePickerProps> = DateRangePi
 
 external interface DateRangePickerProps : SharedDateRangePickerProps, ExportedDateRangePickerViewProps, ResponsiveWrapperProps
 
-fun RBuilder.datePicker(className: String? = null, block: DateRangePickerElementBuilder.() -> Unit) =
+fun RBuilder.dateRangePicker(className: String? = null, block: DateRangePickerElementBuilder.() -> Unit) =
     child(DateRangePickerElementBuilder(DateRangePickerComponent, className).apply(block).create())
 
 @Suppress("UnsafeCastFromDynamic")
@@ -29,7 +29,7 @@ private val MobileDateRangePickerComponent: RClass<MobileDateRangePickerProps> =
 
 external interface MobileDateRangePickerProps : SharedDateRangePickerProps, ExportedDateRangePickerViewProps, ModalWrapperProps
 
-fun RBuilder.mobileDatePicker(className: String? = null, block: MobileDateRangePickerElementBuilder.() -> Unit) =
+fun RBuilder.mobileDateRangePicker(className: String? = null, block: MobileDateRangePickerElementBuilder.() -> Unit) =
     child(MobileDateRangePickerElementBuilder(MobileDateRangePickerComponent, className).apply(block).create())
 
 @Suppress("UnsafeCastFromDynamic")
@@ -37,7 +37,7 @@ private val DesktopDateRangePickerComponent: RClass<DesktopDateRangePickerProps>
 
 external interface DesktopDateRangePickerProps : SharedDateRangePickerProps, ExportedDateRangePickerViewProps, DesktopWrapperProps
 
-fun RBuilder.desktopDatePicker(className: String? = null, block: DesktopDateRangePickerElementBuilder.() -> Unit) =
+fun RBuilder.desktopDateRangePicker(className: String? = null, block: DesktopDateRangePickerElementBuilder.() -> Unit) =
     child(DesktopDateRangePickerElementBuilder(DesktopDateRangePickerComponent, className).apply(block).create())
 
 @Suppress("UnsafeCastFromDynamic")
@@ -45,5 +45,5 @@ private val StaticDateRangePickerComponent: RClass<StaticDateRangePickerProps> =
 
 external interface StaticDateRangePickerProps : SharedDateRangePickerProps, ExportedDateRangePickerViewProps, StaticWrapperProps
 
-fun RBuilder.staticDatePicker(className: String? = null, block: StaticDateRangePickerElementBuilder.() -> Unit) =
+fun RBuilder.staticDateRangePicker(className: String? = null, block: StaticDateRangePickerElementBuilder.() -> Unit) =
     child(StaticDateRangePickerElementBuilder(StaticDateRangePickerComponent, className).apply(block).create())
