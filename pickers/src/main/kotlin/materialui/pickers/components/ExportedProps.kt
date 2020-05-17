@@ -2,6 +2,7 @@ package materialui.pickers.components
 
 import materialui.components.iconbutton.IconButtonProps
 import materialui.components.textfield.TextFieldProps
+import materialui.pickers.components.day.DayProps
 import react.RProps
 
 external interface WithViewProps : RProps {

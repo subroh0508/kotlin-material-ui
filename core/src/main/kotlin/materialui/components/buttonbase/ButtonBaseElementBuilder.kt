@@ -13,7 +13,7 @@ import react.RClass
 import react.RProps
 import react.RRef
 
-open class ButtonBaseElementBuilder<T: Tag, Props: ButtonBaseProps> internal constructor(
+open class ButtonBaseElementBuilder<T: Tag, Props: ButtonBaseProps>(
     type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
