@@ -2,9 +2,6 @@ package materialui.pickers.components.datepicker
 
 import materialui.pickers.components.WithViewProps
 import materialui.pickers.components.datepicker.enums.DatePickerView
-import materialui.pickers.components.getValue
-import materialui.pickers.components.setValue
-import react.RProps
 
 interface DatePickerElement<P: WithViewProps> {
     fun P.views(vararg view: DatePickerView)

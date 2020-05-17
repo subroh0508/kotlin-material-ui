@@ -2,9 +2,6 @@ package materialui.pickers.components.internal.desktop
 
 import kotlinext.js.jsObject
 import materialui.components.popover.PopoverProps
-import materialui.pickers.components.getValue
-import materialui.pickers.components.setValue
-import react.RProps
 
 interface DesktopElement<P: DesktopWrapperProps> {
     @Suppress("FunctionName")

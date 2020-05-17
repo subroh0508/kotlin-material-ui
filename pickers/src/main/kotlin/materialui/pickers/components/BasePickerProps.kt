@@ -43,19 +43,3 @@ external interface BasePickerProps : DateValidationProps, TextFieldProps, WithCl
     @Suppress("PropertyName")
     var PureDateInputComponent: dynamic
 }
-
-operator fun RProps.get(key: String): Any? = asDynamic()[key]
-
-operator fun RProps.getValue(thisRef: Any?, property: KProperty<*>): dynamic
-        = asDynamic()[property.name]
-
-operator fun RProps.setValue(thisRef: Any?, property: KProperty<*>, value: dynamic) {
-    asDynamic()[property.name] = value
-}
-
-inline operator fun <reified T: Enum<T>> RProps.getValue(thisRef: Any?, property: KProperty<*>): T?
-        = (asDynamic()[property.name] as String?)?.let { name -> enumValues<T>().find { it.toString() == name } }
-
-inline operator fun <reified T: Enum<T>> RProps.setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
-    asDynamic()[property.name] = value?.toString()
-}

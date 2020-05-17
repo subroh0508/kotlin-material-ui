@@ -8,10 +8,7 @@ import materialui.pickers.components.internal.desktoppopper.DesktopPopperDelegat
 import materialui.pickers.components.internal.desktoppopper.DesktopPopperElement
 import materialui.pickers.components.internal.modal.ModalDelegate
 import materialui.pickers.components.internal.modal.ModalElement
-import materialui.pickers.components.getValue
-import materialui.pickers.components.setValue
 import react.RClass
-import react.RProps
 
 abstract class ResponsiveWrapperElementBuilder<P: ResponsiveWrapperProps> internal constructor(
     type: RClass<P>, className: String?, props: P = jsObject { }

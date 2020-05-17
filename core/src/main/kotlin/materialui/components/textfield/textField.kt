@@ -4,6 +4,10 @@ import kotlinx.html.DIV
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.formcontrol.FormControlProps
+import materialui.components.formhelpertext.FormHelperTextProps
+import materialui.components.input.InputProps
+import materialui.components.inputlabel.InputLabelProps
+import materialui.components.select.SelectProps
 import react.*
 
 @JsModule("@material-ui/core/TextField")
@@ -13,11 +17,11 @@ external interface TextFieldProps : FormControlProps {
     var autoComplete: String?
     var autoFocus: Boolean?
     var defaultValue: Any?
-    var FormHelperTextProps: RProps?
+    var FormHelperTextProps: FormHelperTextProps?
     var helperText: ReactElement?
     var id: String?
-    var InputLabelProps: RProps?
-    var InputProps: RProps?
+    var InputLabelProps: InputLabelProps?
+    var InputProps: InputProps?
     var inputProps: Any?
     var inputRef: RRef?
     var label: ReactElement?
@@ -27,7 +31,7 @@ external interface TextFieldProps : FormControlProps {
     var rows: Any?
     var rowsMax: Any?
     var select: Boolean?
-    var SelectProps: RProps?
+    var SelectProps: SelectProps?
     var type: String?
     var value: Any?
 }

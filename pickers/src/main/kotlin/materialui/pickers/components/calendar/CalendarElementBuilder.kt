@@ -2,8 +2,6 @@ package materialui.pickers.components.calendar
 
 import kotlinext.js.jsObject
 import materialui.components.slide.enums.SlideDirection
-import materialui.pickers.components.getValue
-import materialui.pickers.components.setValue
 import react.*
 
 class CalendarElementBuilder internal constructor(
@@ -27,6 +25,5 @@ class CalendarElementBuilder internal constructor(
     @Suppress("FunctionName")
     fun CalendarProps.TransitionProps(block: SlideTransitionProps.() -> Unit) { TransitionProps = jsObject(block) }
 
-    var RProps.onChange: ((Any, Any) -> Unit)? by props
-    fun CalendarProps.onChangeFunc(block: (Any, Any) -> Unit) { onChange = block }
+    fun CalendarProps.onChangeFunc(block: (Any, Any) -> Unit) { this.asDynamic()["onChange"] = block }
 }
