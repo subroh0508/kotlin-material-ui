@@ -1,8 +1,8 @@
 package materialui.pickers.components.calendar
 
 import materialui.pickers.components.*
+import materialui.pickers.components.day.DayProps
 import react.RBuilder
-import react.RProps
 import react.ReactElement
 import react.buildElement
 import kotlin.js.Promise
