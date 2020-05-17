@@ -1,6 +1,7 @@
 package materialui.pickers.components
 
 import materialui.components.iconbutton.IconButtonProps
+import materialui.components.textfield.TextFieldProps
 import react.RProps
 
 external interface WithViewProps : RProps {
@@ -43,4 +44,18 @@ external interface ExportedClockViewProps : TimeValidationProps, ExportedArrowSw
     var minutesStep: Int?
     var ampmInClock: Boolean?
     var allowKeyboardControl: Boolean?
+}
+
+external interface ExportedDateRangePickerViewProps : ExportedCalendarProps, ExportedArrowSwitcherProps {
+    var getViewSwitchingButtonText: ((String) -> String)?
+    var reduceAnimations: Boolean?
+    var onMonthChange: ((dynamic) -> dynamic)?
+    var minDate: dynamic
+    var maxDate: dynamic
+    var shouldDisableDate: ((dynamic) -> Boolean)?
+    var disableAutoMonthSwitching: Boolean?
+    var calendars: Int?
+
+    /* ExportedDateRangePickerInputProps */
+    var renderInput: ((TextFieldProps, TextFieldProps) -> Any)?
 }
