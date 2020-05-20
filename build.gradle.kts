@@ -5,6 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven("https://dl.bintray.com/kotlin/kotlin-eap")
     }
 
     dependencies {
@@ -17,5 +18,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        maven("https://dl.bintray.com/kotlin/kotlin-eap")
+        maven("https://dl.bintray.com/kotlin/kotlin-dev")
     }
 }
