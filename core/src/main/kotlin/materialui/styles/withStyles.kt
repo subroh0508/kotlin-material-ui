@@ -33,7 +33,7 @@ fun <C : Component<P, *>, P : RProps> withStyles(
     klazz: KClass<C>,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false
-): RClass<P> = withStyles(klazz.rClass, styleSet, withTheme = withTheme)
+): RClass<P> = withStyles(klazz.js.unsafeCast<RClass<P>>(), styleSet, withTheme = withTheme)
 
 fun <P: RProps> withStyles(
     displayName: String,

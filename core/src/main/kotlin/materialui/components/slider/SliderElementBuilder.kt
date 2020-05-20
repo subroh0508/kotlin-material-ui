@@ -70,7 +70,7 @@ class SliderElementBuilder<T: Tag> internal constructor(
     @Suppress("FunctionName")
     fun Tag.ThumbComponent(tagName: String) { ThumbComponent = tagName }
     @Suppress("FunctionName")
-    fun <P: RProps, C: Component<P, *>> Tag.ThumbComponent(kClass: KClass<C>) { ThumbComponent = kClass.rClass }
+    fun <P: RProps, C: Component<P, *>> Tag.ThumbComponent(kClass: KClass<C>) { ThumbComponent = kClass.js.unsafeCast<RClass<P>>() }
     @Suppress("FunctionName")
     fun <P: RProps> Tag.ThumbComponent(functionalComponent: FunctionalComponent<P>) { ThumbComponent = functionalComponent }
 
@@ -83,7 +83,7 @@ class SliderElementBuilder<T: Tag> internal constructor(
     @Suppress("FunctionName")
     fun Tag.ValueLabelComponent(tagName: String) { ValueLabelComponent = tagName }
     @Suppress("FunctionName")
-    fun <P: RProps, C: Component<P, *>> Tag.ValueLabelComponent(kClass: KClass<C>) { ValueLabelComponent = kClass.rClass }
+    fun <P: RProps, C: Component<P, *>> Tag.ValueLabelComponent(kClass: KClass<C>) { ValueLabelComponent = kClass.js.unsafeCast<RClass<P>>() }
     @Suppress("FunctionName")
     fun <P: RProps> Tag.ValueLabelComponent(functionalComponent: FunctionalComponent<P>) { ValueLabelComponent = functionalComponent }
 

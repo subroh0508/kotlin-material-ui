@@ -34,7 +34,7 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     fun Props.orientation(v: PickerOrientation?) { orientation = v?.name }
 
     @Suppress("FunctionName")
-    fun <P: ToolbarComponentProps, C: Component<P, *>> Props.ToolbarComponent(kClass: KClass<C>) { ToolbarComponent = kClass.rClass }
+    fun <P: ToolbarComponentProps, C: Component<P, *>> Props.ToolbarComponent(kClass: KClass<C>) { ToolbarComponent = kClass.js.unsafeCast<RClass<P>>() }
     @Suppress("FunctionName")
     fun <P: ToolbarComponentProps> Props.ToolbarComponent(functionalComponent: FunctionalComponent<P>) { ToolbarComponent = functionalComponent }
 
@@ -57,12 +57,12 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     fun Props.onDateChange(block: (Any, String, Boolean) -> Unit) { onDateChange = block }
 
     @Suppress("FunctionName")
-    fun <P: DateInputProps, C: Component<P, *>> Props.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.rClass }
+    fun <P: DateInputProps, C: Component<P, *>> Props.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.js.unsafeCast<RClass<P>>() }
     @Suppress("FunctionName")
     fun <P: DateInputProps> Props.KeyboardDateInputComponent(functionalComponent: FunctionalComponent<P>) { KeyboardDateInputComponent = functionalComponent }
 
     @Suppress("FunctionName")
-    fun <P: DateInputProps, C: Component<P, *>> Props.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.rClass }
+    fun <P: DateInputProps, C: Component<P, *>> Props.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.js.unsafeCast<RClass<P>>() }
     @Suppress("FunctionName")
     fun <P: DateInputProps> Props.PureDateInputComponent(functionalComponent: FunctionalComponent<P>) { PureDateInputComponent = functionalComponent }
 
