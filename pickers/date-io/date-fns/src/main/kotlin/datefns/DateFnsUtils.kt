@@ -16,9 +16,9 @@ external val DateFnsUtilsModule: dynamic
 abstract class DateFnsUtils {
     companion object {
         @Suppress("UNCHECKED_CAST", "UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        operator fun invoke(option: DateFnsUtilsOption = jsObject()) = (Object.create(DateFnsUtilsModule.default.prototype) as IUtils<Date, String>).apply {
+        operator fun invoke(option: DateFnsUtilsOption = jsObject {}) = (Object.create(DateFnsUtilsModule.default.prototype) as IUtils<Date, String>).apply {
             locale = option.locale
-            formats = Object.assign(jsObject(), defaultDateFnsFormats, option.formats ?: jsObject())
+            formats = Object.assign(jsObject {}, defaultDateFnsFormats, option.formats ?: jsObject {})
         }
     }
 }
