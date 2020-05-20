@@ -19,6 +19,7 @@ repositories {
 kotlin {
     target {
         useCommonJs()
+        produceExecutable()
         browser {
             runTask {
                 sourceMaps = true
@@ -39,10 +40,11 @@ kotlin {
             dependencies {
                 implementation(project(":core"))
                 implementation(project(":lab"))
-                implementation(project(":pickers"))
-                implementation(project(":pickers:date-io:date-fns"))
+                //implementation(project(":pickers"))
+                //implementation(project(":pickers:date-io:date-fns"))
                 implementation(Libraries.Kotlin.js)
                 implementation(Libraries.Kotlin.styled)
+                implementation(npm("styled-components", Libraries.Npm.styledComponent))
             }
         }
 
