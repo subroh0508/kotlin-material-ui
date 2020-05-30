@@ -3,12 +3,14 @@
 package materialui.styles
 
 import kotlinext.js.js
+import kotlinext.js.jsObject
+import materialui.rawCreatePalette
 import materialui.styles.palette.Palette
 import materialui.styles.palette.options.PaletteOptions
 
 @JsModule("@material-ui/core/styles/createPalette")
 private external val createPaletteModule: dynamic
 
-fun createPalette(options: PaletteOptions): Palette = createPaletteModule.default(options) as Palette
+fun createPalette(handler: PaletteOptions.() -> Unit) = rawCreatePalette(jsObject(handler))
 
-fun defaultPalette(): Palette = createPaletteModule.default(js { }) as Palette
+fun defaultPalette() = createPalette {  }

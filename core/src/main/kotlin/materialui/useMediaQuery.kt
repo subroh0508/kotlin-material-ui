@@ -4,14 +4,6 @@ import kotlinext.js.js
 import kotlinext.js.jsObject
 import materialui.styles.muitheme.MuiTheme
 
-@JsModule("@material-ui/core/useMediaQuery")
-private external val useMediaQueryModule: dynamic
-
-private fun rawUseMediaQuery(
-    query: dynamic,
-    options: dynamic
-): Boolean = useMediaQueryModule.default(query, options) as Boolean
-
 external interface SsrMatchMediaResult {
     var matches: Boolean
 }
