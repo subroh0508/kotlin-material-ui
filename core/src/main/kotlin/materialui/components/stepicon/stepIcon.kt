@@ -1,13 +1,10 @@
 package materialui.components.stepicon
 
+import materialui.StepIcon
 import materialui.components.StandardProps
 import materialui.components.stepicon.enums.StepIconStyle
 import react.RBuilder
-import react.RClass
 import react.ReactElement
-
-@JsModule("@material-ui/core/StepIcon")
-private external val stepIconModule: dynamic
 
 external interface StepIconProps : StandardProps {
     var active: Boolean?
@@ -16,8 +13,5 @@ external interface StepIconProps : StandardProps {
     var icon: ReactElement?
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val stepIconComponent: RClass<StepIconProps> = stepIconModule.default
-
 fun RBuilder.stepIcon(vararg classMap: Pair<StepIconStyle, String>, block: StepIconElementBuilder.() -> Unit)
-    = child(StepIconElementBuilder(stepIconComponent, classMap.toList()).apply(block).create())
+    = child(StepIconElementBuilder(StepIcon, classMap.toList()).apply(block).create())

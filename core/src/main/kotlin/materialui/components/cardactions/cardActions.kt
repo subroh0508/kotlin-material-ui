@@ -1,18 +1,13 @@
 package materialui.components.cardactions
 
+import materialui.CardActions
 import materialui.components.StandardProps
 import materialui.components.cardactions.enums.CardActionsStyle
 import react.*
-
-@JsModule("@material-ui/core/CardActions")
-private external val cardActionsModule: dynamic
 
 external interface CardActionsProps : StandardProps {
     var disableSpacing: Boolean?
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val cardActionsComponent: RClass<CardActionsProps> = cardActionsModule.default
-
 fun RBuilder.cardActions(vararg classMap: Pair<CardActionsStyle, String>, block: CardActionsElementBuilder.() -> Unit)
-    = child(CardActionsElementBuilder(cardActionsComponent, classMap.toList()).apply(block).create())
+    = child(CardActionsElementBuilder(CardActions, classMap.toList()).apply(block).create())

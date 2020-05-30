@@ -9,10 +9,10 @@ import materialui.components.setValue
 import react.RClass
 
 class GridListTileElementBuilder<T: Tag> internal constructor(
-    type: RClass<GridListTitleProps>,
+    type: RClass<GridListTileProps>,
     classMap: List<Pair<GridListTitleStyle, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MaterialElementBuilder<T, GridListTitleProps>(type, classMap, factory) {
+) : MaterialElementBuilder<T, GridListTileProps>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<GridListTitleStyle, String>) {
         classes(classMap.toList())
     }

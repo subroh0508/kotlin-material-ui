@@ -1,15 +1,11 @@
 package materialui.components.typography
 
 import kotlinx.html.*
+import materialui.Typography
 import materialui.components.StandardProps
 import materialui.components.typography.enums.TypographyStyle
 import materialui.components.typography.enums.TypographyVariant
-import materialui.styles.muitheme.MuiTheme
 import react.RBuilder
-import react.RClass
-
-@JsModule("@material-ui/core/Typography")
-private external val typographyModule: dynamic
 
 external interface TypographyProps : StandardProps {
     var align: String?
@@ -35,20 +31,17 @@ external interface VariantMapping {
     var body2: String?
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val typographyComponent: RClass<TypographyProps> = typographyModule.default
-
 fun RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit)
-    = child(TypographyElementBuilder(typographyComponent, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())
+    = child(TypographyElementBuilder(Typography, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())
 
 fun RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit)
-    = child(TypographyElementBuilder(typographyComponent, classMap.toList()) { P(mapOf(), it) }.apply {
+    = child(TypographyElementBuilder(Typography, classMap.toList()) { P(mapOf(), it) }.apply {
         attrs.paragraph = p
         block()
     }.create())
 
 fun <T: Tag> RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit)
-     = child(TypographyElementBuilder(typographyComponent, classMap.toList(), factory).apply(block).create())
+     = child(TypographyElementBuilder(Typography, classMap.toList(), factory).apply(block).create())
 
 inline fun RBuilder.typographyH1(vararg classMap: Pair<TypographyStyle, String>, crossinline block: TypographyElementBuilder<H1, TypographyProps>.() -> Unit)
     = typography(*classMap, factory = { H1(mapOf(), it) }) {

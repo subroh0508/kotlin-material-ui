@@ -1,5 +1,6 @@
 package materialui.components.snackbar
 
+import materialui.Snackbar
 import materialui.components.StandardProps
 import materialui.components.snackbar.enums.SnackbarOriginHorizontal
 import materialui.components.snackbar.enums.SnackbarOriginVertical
@@ -7,12 +8,8 @@ import materialui.components.snackbar.enums.SnackbarStyle
 import materialui.reacttransiton.RTransitionHandlerProps
 import materialui.reacttransiton.RTransitionProps
 import react.RBuilder
-import react.RClass
 import react.RProps
 import react.ReactElement
-
-@JsModule("@material-ui/core/Snackbar")
-private external val snackbarModule: dynamic
 
 external interface SnackbarProps : RTransitionHandlerProps, StandardProps {
     var action: ReactElement?
@@ -39,8 +36,5 @@ var SnackbarOrigin.vertical: SnackbarOriginVertical?
     get() = (asDynamic()["vertical"] as String?)?.let { SnackbarOriginVertical.valueOf(it) }
     set(value) { asDynamic()["vertical"] = value?.toString() }
 
-@Suppress("UnsafeCastFromDynamic")
-private val snackbarComponent: RClass<SnackbarProps> = snackbarModule.default
-
 fun RBuilder.snackbar(vararg classMap: Pair<SnackbarStyle, String>, block: SnackbarElementBuilder.() -> Unit)
-    = child(SnackbarElementBuilder(snackbarComponent, classMap.toList()).apply(block).create())
+    = child(SnackbarElementBuilder(Snackbar, classMap.toList()).apply(block).create())

@@ -1,7 +1,7 @@
 package materialui.components.gridlisttilebar.enums
 
 @Suppress("EnumEntryName")
-enum class GridListTitleBarStyle {
+enum class GridListTileBarStyle {
     root,
     titlePositionBottom,
     titlePositionTop,

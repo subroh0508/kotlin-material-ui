@@ -1,15 +1,12 @@
 package materialui.components.select
 
+import materialui.Select
 import materialui.components.input.InputProps
 import materialui.components.select.enums.SelectStyle
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RClass
 import react.RProps
 import react.ReactElement
-
-@JsModule("@material-ui/core/Select")
-private external val selectModule: dynamic
 
 external interface SelectProps : InputProps {
     var autoWidth: Boolean?
@@ -27,8 +24,5 @@ external interface SelectProps : InputProps {
     var variant: String?
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val selectComponent: RClass<SelectProps> = selectModule.default
-
 fun RBuilder.select(vararg classMap: Pair<SelectStyle, String>, block: SelectElementBuilder.() -> Unit)
-    = child(SelectElementBuilder(selectComponent, classMap.toList()).apply(block).create())
+    = child(SelectElementBuilder(Select, classMap.toList()).apply(block).create())

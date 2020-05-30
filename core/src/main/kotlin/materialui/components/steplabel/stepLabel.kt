@@ -1,14 +1,11 @@
 package materialui.components.steplabel
 
+import materialui.StepLabel
 import materialui.components.StandardProps
 import materialui.components.stepicon.StepIconProps
 import materialui.components.steplabel.enums.StepLabelStyle
 import react.RBuilder
-import react.RClass
 import react.ReactElement
-
-@JsModule("@material-ui/core/StepLabel")
-private external val stepLabelModule: dynamic
 
 external interface StepLabelProps : StandardProps {
     var active: Boolean?
@@ -24,8 +21,5 @@ external interface StepLabelProps : StandardProps {
     var StepIconProps: StepIconProps?
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val stepLabelComponent: RClass<StepLabelProps> = stepLabelModule.default
-
 fun RBuilder.stepLabel(vararg classMap: Pair<StepLabelStyle, String>, block: StepLabelElementBuilder.() -> Unit)
-    = child(StepLabelElementBuilder(stepLabelComponent, classMap.toList()).apply(block).create())
+    = child(StepLabelElementBuilder(StepLabel, classMap.toList()).apply(block).create())

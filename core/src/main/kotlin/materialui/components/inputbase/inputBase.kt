@@ -1,12 +1,10 @@
 package materialui.components.inputbase
 
+import materialui.InputBase
 import materialui.components.StandardProps
 import materialui.components.inputbase.enums.InputBaseStyle
 import org.w3c.dom.events.Event
 import react.*
-
-@JsModule("@material-ui/core/InputBase")
-private external val inputBaseModule: dynamic
 
 external interface InputBaseProps : StandardProps {
     var autoComplete: String?
@@ -36,8 +34,5 @@ external interface InputBaseProps : StandardProps {
     var value: Any?
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val inputBaseComponent: RClass<InputBaseProps> = inputBaseModule.default
-
 fun RBuilder.inputBase(vararg classMap: Pair<InputBaseStyle, String>, block: InputBaseElementBuilder<InputBaseProps>.() -> Unit)
-    = child(InputBaseElementBuilder(inputBaseComponent, classMap.toList()).apply(block).create())
+    = child(InputBaseElementBuilder(InputBase, classMap.toList()).apply(block).create())

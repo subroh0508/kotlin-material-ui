@@ -1,11 +1,8 @@
 package materialui.components.radiogroup
 
+import materialui.RadioGroup
 import materialui.components.formgroup.FormGroupProps
 import react.RBuilder
-import react.RClass
-
-@JsModule("@material-ui/core/RadioGroup")
-private external val radioGroupModule: dynamic
 
 external interface RadioGroupProps : FormGroupProps {
     var defaultValue: Any?
@@ -13,8 +10,5 @@ external interface RadioGroupProps : FormGroupProps {
     var value: Any?
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val radioGroupComponent: RClass<RadioGroupProps> = radioGroupModule.default
-
 fun RBuilder.radioGroup(block: RadioGroupElementBuilder.() -> Unit)
-    = child(RadioGroupElementBuilder(radioGroupComponent, listOf()).apply(block).create())
+    = child(RadioGroupElementBuilder(RadioGroup, listOf()).apply(block).create())
