@@ -1,15 +1,10 @@
 package materialui.styles
 
 import kotlinext.js.js
+import materialui.rawWithStyles
 import materialui.styles.muitheme.MuiTheme
 import react.*
 import kotlin.reflect.KClass
-
-@JsModule("@material-ui/core/styles/withStyles")
-private external val withStylesModule: dynamic
-
-@Suppress("UnsafeCastFromDynamic")
-private val rawWithStyles: (dynamic, dynamic) -> ((Any) -> JsClass<*>) = withStylesModule.default
 
 fun <P: RProps> withStyles(
     functionalComponent: FunctionalComponent<P>,

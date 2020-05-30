@@ -3,18 +3,9 @@
 package materialui.styles
 
 import kotlinext.js.jsObject
-import materialui.styles.muitheme.MuiTheme
+import materialui.rawCreateMuiTheme
 import materialui.styles.muitheme.options.MuiThemeOptions
 
-@JsModule("@material-ui/core/styles/createMuiTheme")
-private external val createMuiThemeModule: dynamic
+fun createMuiTheme(handler: MuiThemeOptions.() -> Unit) = rawCreateMuiTheme(jsObject<MuiThemeOptions> { }.apply(handler))
 
-@Suppress("UnsafeCastFromDynamic")
-private val createMuiTheme: (MuiThemeOptions) -> (MuiTheme) = createMuiThemeModule.default
-
-
-val defaultMuiTheme: MuiTheme
-    get() = createMuiTheme(jsObject { })
-
-fun createMuiTheme(handler: MuiThemeOptions.() -> Unit): MuiTheme
-    = createMuiTheme(jsObject<MuiThemeOptions> { }.apply(handler))
+val defaultMuiTheme get() = createMuiTheme { }

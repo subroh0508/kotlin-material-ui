@@ -234,8 +234,6 @@ internal external val Zoom: RClass<ZoomProps>
 
 @JsName("createBreakpoints")
 internal external fun rawCreateBreakpoints(breakpoints: BreakpointsOptions): Breakpoints
-@JsName("createMixins")
-internal external fun rawCreateMixins(breakpoints: Breakpoints, spacing: dynamic, mixins: MixinsOptions): Mixins
 @JsName("createMuiTheme")
 internal external fun rawCreateMuiTheme(options: MuiThemeOptions): MuiTheme
 @JsName("createPalette")
@@ -247,4 +245,8 @@ internal external fun rawMakeStyles(styles: dynamic, option: dynamic): MakeStyle
 @JsName("withStyles")
 internal external fun rawWithStyles(styles: dynamic, option: dynamic): WithStyles
 
+external fun createMixins(breakpoints: Breakpoints, spacing: dynamic, mixins: MixinsOptions): Mixins
 external fun useTheme(): MuiTheme
+
+@JsName("useMediaQuery")
+internal external fun rawUseMediaQuery(query: dynamic, options: dynamic): Boolean
