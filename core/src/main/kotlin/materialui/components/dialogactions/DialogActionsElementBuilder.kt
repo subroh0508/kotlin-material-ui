@@ -9,9 +9,9 @@ import materialui.components.setValue
 import react.RClass
 
 class DialogActionsElementBuilder internal constructor(
-    type: RClass<DialogActionProps>,
+    type: RClass<DialogActionsProps>,
     classMap: List<Pair<Enum<*>, String>>
-) : MaterialElementBuilder<DIV, DialogActionProps>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, DialogActionsProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<DialogActionsStyle, String>) {
         classes(classMap.toList())
     }

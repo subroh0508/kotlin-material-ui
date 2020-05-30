@@ -6,15 +6,14 @@ import kotlinx.html.TagConsumer
 import materialui.components.MaterialStyle
 import materialui.components.StandardProps
 import react.*
-import kotlin.reflect.KClass
 
 @JsModule("@material-ui/core/TableHead")
 private external val tableHeadModule: dynamic
 
-external interface TableHeaderProps : StandardProps
+external interface TableHeadProps : StandardProps
 
 @Suppress("UnsafeCastFromDynamic")
-private val tableHeadComponent: RClass<TableHeaderProps> = tableHeadModule.default
+private val tableHeadComponent: RClass<TableHeadProps> = tableHeadModule.default
 
 fun RBuilder.tableHead(rootStyle: String? = null, block: TableHeadElementBuilder<THEAD>.() -> Unit)
     = child(TableHeadElementBuilder(tableHeadComponent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { THEAD(mapOf(), it) }.apply(block).create())

@@ -6,7 +6,7 @@ import materialui.components.typography.TypographyElementBuilder
 import react.RClass
 
 class DialogContentTextElementBuilder<T: Tag> internal constructor(
-    type: RClass<DialogContextTextProps>,
+    type: RClass<DialogContentTextProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : TypographyElementBuilder<T, DialogContextTextProps>(type, classMap, factory)
+) : TypographyElementBuilder<T, DialogContentTextProps>(type, classMap, factory)
