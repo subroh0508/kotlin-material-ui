@@ -110,6 +110,15 @@ import materialui.components.toolbar.ToolbarProps
 import materialui.components.tooltip.TooltipProps
 import materialui.components.typography.TypographyProps
 import materialui.components.zoom.ZoomProps
+import materialui.styles.breakpoint.Breakpoints
+import materialui.styles.breakpoint.options.BreakpointsOptions
+import materialui.styles.mixins.Mixins
+import materialui.styles.mixins.options.MixinsOptions
+import materialui.styles.muitheme.MuiTheme
+import materialui.styles.muitheme.options.MuiThemeOptions
+import materialui.styles.palette.Palette
+import materialui.styles.palette.options.PaletteOptions
+import materialui.styles.typography.Typography
 import react.RClass
 
 internal external val AppBar: RClass<AppBarProps>
@@ -221,4 +230,19 @@ internal external val Tooltip: RClass<TooltipProps>
 internal external val Typography: RClass<TypographyProps>
 internal external val Zoom: RClass<ZoomProps>
 
+@JsName("createBreakpoints")
+internal external fun rawCreateBreakpoints(breakpoints: BreakpointsOptions): Breakpoints
+@JsName("createMixins")
+internal external fun rawCreateMixins(breakpoints: Breakpoints, spacing: dynamic, mixins: MixinsOptions): Mixins
+@JsName("createMuiTheme")
+internal external fun rawCreateMuiTheme(options: MuiThemeOptions): MuiTheme
+@JsName("createPalette")
+internal external fun rawCreatePalette(palette: PaletteOptions): Palette
+@JsName("createTypography")
+internal external fun rawCreateTypography(palette: Palette, typography: dynamic): Typography
+@JsName("makeStyles")
+internal external fun rawMakeStyles(styles: dynamic, option: dynamic): MakeStyles
+@JsName("withStyles")
+internal external fun rawWithStyles(styles: dynamic, option: dynamic): WithStyles
 
+external fun useTheme(): MuiTheme
