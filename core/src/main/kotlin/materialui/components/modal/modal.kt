@@ -1,14 +1,11 @@
 package materialui.components.modal
 
+import materialui.Modal
 import materialui.components.StandardProps
 import materialui.components.modal.enums.ModalStyle
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RClass
 import react.RProps
-
-@JsModule("@material-ui/core/Modal")
-private external val modalModule: dynamic
 
 external interface ModalProps : StandardProps {
     var BackdropComponent: dynamic
@@ -28,8 +25,5 @@ external interface ModalProps : StandardProps {
     var open: Boolean?
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val modalComponent: RClass<ModalProps> = modalModule.default
-
 fun RBuilder.modal(vararg classMap: Pair<ModalStyle, String>, block: ModalElementBuilder<ModalProps>.() -> Unit)
-    = child(ModalElementBuilder(modalComponent, classMap.toList()).apply(block).create())
+    = child(ModalElementBuilder(Modal, classMap.toList()).apply(block).create())

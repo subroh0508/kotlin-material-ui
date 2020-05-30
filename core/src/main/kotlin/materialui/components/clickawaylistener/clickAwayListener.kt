@@ -1,12 +1,9 @@
 package materialui.components.clickawaylistener
 
+import materialui.ClickAwayListener
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RClass
 import react.RProps
-
-@JsModule("@material-ui/core/ClickAwayListener")
-private external val clickAwayListenerModule: dynamic
 
 external interface ClickAwayListenerProps : RProps {
     var mouseEvent: dynamic
@@ -14,8 +11,5 @@ external interface ClickAwayListenerProps : RProps {
     var touchEvent: dynamic
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val clickAwayListenerComponent: RClass<ClickAwayListenerProps> = clickAwayListenerModule.default
-
 fun RBuilder.clickAwayListener(block: ClickAwayListenerBuilder.() -> Unit)
-    = child(ClickAwayListenerBuilder(clickAwayListenerComponent).apply(block).create())
+    = child(ClickAwayListenerBuilder(ClickAwayListener).apply(block).create())

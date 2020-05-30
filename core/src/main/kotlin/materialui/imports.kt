@@ -11,6 +11,7 @@ import materialui.components.bottomnavigationaction.BottomNavigationActionProps
 import materialui.components.breadcrumbs.BreadcrumbsProps
 import materialui.components.button.ButtonProps
 import materialui.components.buttonbase.ButtonBaseProps
+import materialui.components.buttonbase.TouchRippleProps
 import materialui.components.buttongroup.ButtonGroupProps
 import materialui.components.card.CardProps
 import materialui.components.cardactionarea.CardActionAreaProps
@@ -46,8 +47,8 @@ import materialui.components.formhelpertext.FormHelperTextProps
 import materialui.components.formlabel.FormLabelProps
 import materialui.components.grid.GridProps
 import materialui.components.gridlist.GridListProps
-import materialui.components.gridlisttile.GridListTitleProps
-import materialui.components.gridlisttilebar.GridListTitleBarProps
+import materialui.components.gridlisttile.GridListTileProps
+import materialui.components.gridlisttilebar.GridListTileBarProps
 import materialui.components.grow.GrowProps
 import materialui.components.hidden.HiddenProps
 import materialui.components.icon.IconProps
@@ -165,8 +166,8 @@ internal external val FormHelperText: RClass<FormHelperTextProps>
 internal external val FormLabel: RClass<FormLabelProps>
 internal external val Grid: RClass<GridProps>
 internal external val GridList: RClass<GridListProps>
-internal external val GridListTitle: RClass<GridListTitleProps>
-internal external val GridListTitleBar: RClass<GridListTitleBarProps>
+internal external val GridListTile: RClass<GridListTileProps>
+internal external val GridListTileBar: RClass<GridListTileBarProps>
 internal external val Grow: RClass<GrowProps>
 internal external val Hidden: RClass<HiddenProps>
 internal external val Icon: RClass<IconProps>
@@ -227,6 +228,7 @@ internal external val Tabs: RClass<TabsProps>
 internal external val TextField: RClass<TextFieldProps>
 internal external val Toolbar: RClass<ToolbarProps>
 internal external val Tooltip: RClass<TooltipProps>
+internal external val TouchRipple: RClass<TouchRippleProps>
 internal external val Typography: RClass<TypographyProps>
 internal external val Zoom: RClass<ZoomProps>
 

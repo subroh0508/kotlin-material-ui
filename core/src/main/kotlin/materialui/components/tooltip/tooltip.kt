@@ -1,17 +1,14 @@
 package materialui.components.tooltip
 
+import materialui.Tooltip
 import materialui.components.StandardProps
 import materialui.components.tooltip.enums.TooltipPlacement
 import materialui.components.tooltip.enums.TooltipStyle
 import materialui.reacttransiton.RTransitionProps
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RClass
 import react.RProps
 import react.ReactElement
-
-@JsModule("@material-ui/core/Tooltip")
-private external val tooltipModule: dynamic
 
 external interface TooltipProps : StandardProps {
     var disableFocusListener: Boolean?
@@ -37,8 +34,5 @@ var TooltipProps.placement: TooltipPlacement?
     get() = (asDynamic()["placement"] as String?)?.let { TooltipPlacement.valueOf(it) }
     set(value) { asDynamic()["placement"] = value?.toString() }
 
-@Suppress("UnsafeCastFromDynamic")
-private val tooltipComponent: RClass<TooltipProps> = tooltipModule.default
-
 fun RBuilder.tooltip(vararg classMap: Pair<TooltipStyle, String>, block: TooltipElementBuilder.() -> Unit)
-    = child(TooltipElementBuilder(tooltipComponent, classMap.toList()).apply(block).create())
+    = child(TooltipElementBuilder(Tooltip, classMap.toList()).apply(block).create())

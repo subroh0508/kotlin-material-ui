@@ -3,13 +3,10 @@ package materialui.components.link
 import kotlinx.html.A
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
+import materialui.Link
 import materialui.components.link.enums.LinkStyle
 import materialui.components.typography.TypographyProps
 import react.RBuilder
-import react.RClass
-
-@JsModule("@material-ui/core/Link")
-private external val linkModule: dynamic
 
 external interface LinkProps : TypographyProps {
     var block: Boolean?
@@ -17,11 +14,8 @@ external interface LinkProps : TypographyProps {
     var underline: String?
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val linkComponent: RClass<LinkProps> = linkModule.default
-
 fun RBuilder.link(vararg classMap: Pair<LinkStyle, String>, block: LinkElementBuilder<A>.() -> Unit)
-    = child(LinkElementBuilder(linkComponent, classMap.toList()) { A(mapOf(), it) }.apply(block).create())
+    = child(LinkElementBuilder(Link, classMap.toList()) { A(mapOf(), it) }.apply(block).create())
 
 fun <T: Tag> RBuilder.link(vararg classMap: Pair<LinkStyle, String>, factory: (TagConsumer<Unit>) -> T, block: LinkElementBuilder<T>.() -> Unit)
-    = child(LinkElementBuilder(linkComponent, classMap.toList(), factory).apply(block).create())
+    = child(LinkElementBuilder(Link, classMap.toList(), factory).apply(block).create())

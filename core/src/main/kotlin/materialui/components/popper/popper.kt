@@ -1,10 +1,8 @@
 package materialui.components.popper
 
+import materialui.Popper
 import materialui.components.StandardProps
 import react.*
-
-@JsModule("@material-ui/core/Popper")
-private external val popperModule: dynamic
 
 external interface PopperProps : StandardProps {
     var anchorEl: dynamic
@@ -20,8 +18,5 @@ external interface PopperProps : StandardProps {
     var transition: Boolean
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val popperComponent: RClass<PopperProps> = popperModule.default
-
 fun RBuilder.popper(block: PopperElementBuilder.() -> Unit)
-    = child(PopperElementBuilder(popperComponent).apply(block).create())
+    = child(PopperElementBuilder(Popper).apply(block).create())

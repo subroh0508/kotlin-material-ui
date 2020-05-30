@@ -1,11 +1,8 @@
 package materialui.components.hidden
 
+import materialui.Hidden
 import materialui.components.StandardProps
 import react.RBuilder
-import react.RClass
-
-@JsModule("@material-ui/core/Hidden")
-private external val hiddenModule: dynamic
 
 external interface HiddenProps : StandardProps {
     var implementation: String?
@@ -23,8 +20,5 @@ external interface HiddenProps : StandardProps {
     var xsUp: Boolean?
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val hiddenComponent: RClass<HiddenProps> = hiddenModule.default
-
 fun RBuilder.hidden(block: HiddenElementBuilder.() -> Unit)
-    = child(HiddenElementBuilder(hiddenComponent).apply(block).create())
+    = child(HiddenElementBuilder(Hidden).apply(block).create())

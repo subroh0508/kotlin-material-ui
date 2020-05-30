@@ -9,7 +9,6 @@ import materialui.styles.mixins.options.MixinsOptions
 import materialui.styles.palette.options.PaletteOptions
 import materialui.styles.shadow.ShadowsDelegate
 import materialui.styles.shape.options.ShapeOptions
-import materialui.styles.spacing.Spacing
 import materialui.styles.transitions.options.TransitionsOptions
 import materialui.styles.typography.options.TypographyOptions
 import materialui.styles.zindex.options.ZIndexOptions
@@ -20,7 +19,7 @@ external interface MuiThemeOptions {
     var palette: PaletteOptions?
     var typography: TypographyOptions?
     var shape: ShapeOptions?
-    var spacing: Spacing?
+    var spacing: dynamic?
     var transitions: TransitionsOptions?
     var zIndex: ZIndexOptions?
 }

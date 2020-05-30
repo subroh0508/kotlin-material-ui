@@ -1,5 +1,6 @@
 package materialui.components.popover
 
+import materialui.Popover
 import materialui.components.modal.ModalProps
 import materialui.components.popover.enums.PopoverOriginHorizontal
 import materialui.components.popover.enums.PopoverOriginVertical
@@ -8,11 +9,7 @@ import materialui.components.popover.enums.PopoverStyle
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.Node
 import react.RBuilder
-import react.RClass
 import react.RProps
-
-@JsModule("@material-ui/core/Popover")
-private external val popoverModule: dynamic
 
 external interface PopoverProps : ModalProps {
     var action: ((PopoverActions) -> Unit)?
@@ -57,8 +54,5 @@ external interface PopoverPosition {
     var left: Number?
 }
 
-@Suppress("UnsafeCastFromDynamic")
-private val popoverComponent: RClass<PopoverProps> = popoverModule.default
-
 fun RBuilder.popover(vararg classMap: Pair<PopoverStyle, String>, block: PopoverElementBuilder<PopoverProps>.() -> Unit)
-    = child(PopoverElementBuilder(popoverComponent, classMap.toList()).apply(block).create())
+    = child(PopoverElementBuilder(Popover, classMap.toList()).apply(block).create())
