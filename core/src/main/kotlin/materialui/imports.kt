@@ -121,6 +121,9 @@ import materialui.styles.palette.Palette
 import materialui.styles.palette.options.PaletteOptions
 import materialui.styles.typography.Typography
 import react.RClass
+import react.RComponent
+import react.RProps
+import react.RState
 
 internal external val AppBar: RClass<AppBarProps>
 internal external val Avatar: RClass<AvatarProps>
@@ -231,6 +234,8 @@ internal external val Tooltip: RClass<TooltipProps>
 internal external val TouchRipple: RClass<TouchRippleProps>
 internal external val Typography: RClass<TypographyProps>
 internal external val Zoom: RClass<ZoomProps>
+
+internal external val ThemeProvider: RComponent<RProps, RState>
 
 @JsName("createBreakpoints")
 internal external fun rawCreateBreakpoints(breakpoints: BreakpointsOptions): Breakpoints
