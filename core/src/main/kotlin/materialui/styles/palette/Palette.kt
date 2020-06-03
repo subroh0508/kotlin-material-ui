@@ -12,6 +12,9 @@ external interface Palette {
     val primary: PaletteColor
     val secondary: PaletteColor
     val error: PaletteColor
+    val warning: PaletteColor
+    val info: PaletteColor
+    val success: PaletteColor
     val grey: GreyColors
     val text: TypeText
     val action: TypeAction

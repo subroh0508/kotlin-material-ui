@@ -13,6 +13,9 @@ external interface PaletteOptions {
     var primary: PaletteColorOptions?
     var secondary: PaletteColorOptions?
     var error: PaletteColorOptions?
+    var warning: PaletteColorOptions?
+    var info: PaletteColorOptions?
+    var success: PaletteColorOptions?
     var grey: GreyColorsOptions?
     var text: TypeTextOptions?
     var action: TypeActionOptions?
