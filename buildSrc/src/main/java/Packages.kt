@@ -1,4 +1,4 @@
 object Packages {
     const val group = "subroh0508.net.kotlinmaterialui"
-    const val version = "0.4.4"
+    const val version = "0.4.5"
 }
