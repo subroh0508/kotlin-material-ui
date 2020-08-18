@@ -72,6 +72,6 @@ publishing {
     }
 }
 
-tasks.JsJar {
+tasks.jsJar {
     from "${rootDir.path}/build/js/packages/kotlin-material-ui-${project.name}/package.json"
 }
