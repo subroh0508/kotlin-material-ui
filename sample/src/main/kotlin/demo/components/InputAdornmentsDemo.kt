@@ -157,7 +157,7 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
     }
 }
 
-interface InputAdornmentsState : RState {
+external interface InputAdornmentsState : RState {
     var amount: String
     var password: String
     var weight: String
