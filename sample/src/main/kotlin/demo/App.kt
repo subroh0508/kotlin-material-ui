@@ -21,7 +21,7 @@ class App : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
         themeProvider(theme) {
             header {
-                //Header.render(this)
+                Header.render(this)
             }
             div {
                 h2 {
@@ -43,7 +43,7 @@ class App : RComponent<RProps, RState>() {
                 ButtonsDemo.render(this)
             }
             div {
-                //InputAdornmentsDemo.render(this)
+                InputAdornmentsDemo.render(this)
             }
         }
     }
