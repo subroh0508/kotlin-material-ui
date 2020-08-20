@@ -9,6 +9,7 @@ import react.RClass
 
 
 @JsModule("@material-ui/pickers")
+@JsNonModule
 private external val DateRangeDelimiterModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")

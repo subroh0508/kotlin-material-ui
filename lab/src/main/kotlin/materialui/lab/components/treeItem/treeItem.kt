@@ -8,6 +8,7 @@ import materialui.lab.components.treeItem.enums.TreeItemStyle
 import react.*
 
 @JsModule("@material-ui/lab/TreeItem")
+@JsNonModule
 private external val treeItemModule: dynamic
 
 external interface TreeItemProps : StandardProps {

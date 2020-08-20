@@ -6,6 +6,7 @@ import materialui.components.listitemavatar.enums.ListItemAvaterStyle
 import react.RBuilder
 
 @JsModule("@material-ui/core/ListItemAvatar")
+@JsNonModule
 private external val listItemAvatarModule: dynamic
 
 external interface ListItemAvatarProps : StandardProps

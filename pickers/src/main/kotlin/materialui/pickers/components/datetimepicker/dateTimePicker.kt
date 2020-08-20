@@ -16,6 +16,7 @@ external interface SharedDateTimePickerProps : ExportedCalendarViewProps, Export
 }
 
 @JsModule("@material-ui/pickers")
+@JsNonModule
 private external val DateTimePickerModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")

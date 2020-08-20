@@ -7,6 +7,7 @@ import react.RBuilder
 import react.RClass
 
 @JsModule("@material-ui/lab/ToggleButtonGroup")
+@JsNonModule
 private external val toggleButtonGroupModule: dynamic
 
 external interface ToggleButtonGroupProps : StandardProps {
