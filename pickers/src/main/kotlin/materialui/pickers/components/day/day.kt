@@ -24,6 +24,7 @@ external interface DayProps : ButtonBaseProps {
 }
 
 @JsModule("@material-ui/pickers")
+@JsNonModule
 private external val DayModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")

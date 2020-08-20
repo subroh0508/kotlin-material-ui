@@ -9,6 +9,7 @@ import materialui.components.StandardProps
 import react.RBuilder
 
 @JsModule("@material-ui/core/Table")
+@JsNonModule
 private external val tableModule: dynamic
 
 external interface TableProps : StandardProps {

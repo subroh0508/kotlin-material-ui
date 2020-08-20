@@ -11,6 +11,7 @@ import react.RBuilder
 import react.RClass
 
 @JsModule("@material-ui/lab/Alert")
+@JsNonModule
 private external val alertModule: dynamic
 
 external interface AlertProps : PaperProps {

@@ -10,6 +10,7 @@ import react.RBuilder
 import react.RClass
 
 @JsModule("@material-ui/pickers")
+@JsNonModule
 private external val TimePickerModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")

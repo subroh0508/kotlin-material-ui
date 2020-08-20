@@ -7,6 +7,7 @@ import react.RProps
 import react.createElement
 
 @JsModule("@material-ui/lab/AlertTitle")
+@JsNonModule
 private external val alertTitleModule: dynamic
 
 external interface AlertTitleProps : RProps

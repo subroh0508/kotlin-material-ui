@@ -7,6 +7,7 @@ import react.RClass
 import react.dom.WithClassName
 
 @JsModule("@material-ui/pickers")
+@JsNonModule
 private external val CalendarModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
