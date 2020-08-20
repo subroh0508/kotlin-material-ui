@@ -11,6 +11,7 @@ import kotlinext.js.jsObject
 import kotlin.js.Date
 
 @JsModule("@date-io/date-fns")
+@JsNonModule
 external val DateFnsUtilsModule: dynamic
 
 abstract class DateFnsUtils {

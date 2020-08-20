@@ -9,6 +9,7 @@ import react.RBuilder
 import react.RClass
 
 @JsModule("@material-ui/lab/Skeleton")
+@JsNonModule
 private external val skeletonModule: dynamic
 
 external interface SkeletonProps : ButtonBaseProps {

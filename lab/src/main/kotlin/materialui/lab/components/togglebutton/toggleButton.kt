@@ -9,6 +9,7 @@ import react.RBuilder
 import react.RClass
 
 @JsModule("@material-ui/lab/ToggleButton")
+@JsNonModule
 private external val toggleButtonModule: dynamic
 
 external interface ToggleButtonProps : ButtonBaseProps {
