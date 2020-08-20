@@ -14,7 +14,7 @@ repositories {
 }
 
 kotlin {
-    target {
+    js(BOTH) {
         compilations.all {
             compileKotlinTask.kotlinOptions {
                 moduleKind = "commonjs"

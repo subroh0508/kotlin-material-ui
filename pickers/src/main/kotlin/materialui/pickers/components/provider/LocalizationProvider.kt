@@ -6,6 +6,7 @@ import react.RBuilder
 import react.RProps
 
 @JsModule("@material-ui/pickers")
+@JsNonModule
 private external val LocalizationProviderModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")

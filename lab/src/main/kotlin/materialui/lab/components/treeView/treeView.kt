@@ -11,6 +11,7 @@ import react.RClass
 import react.ReactElement
 
 @JsModule("@material-ui/lab/TreeView")
+@JsNonModule
 private external val treeViewModule: dynamic
 
 external interface TreeViewProps : StandardProps {

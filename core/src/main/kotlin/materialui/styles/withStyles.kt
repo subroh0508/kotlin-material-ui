@@ -11,7 +11,7 @@ fun <P: RProps> withStyles(
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = true
 ): RClass<P> = rawWithStyles(
-    { theme: MuiTheme -> console.log(StylesBuilder<P>(theme).apply(styleSet).css); StylesBuilder<P>(theme).apply(styleSet).css },
+    { theme: MuiTheme ->  StylesBuilder<P>(theme).apply(styleSet).css },
     js { this["withTheme"] = withTheme }
 )(functionalComponent).unsafeCast<RClass<P>>()
 

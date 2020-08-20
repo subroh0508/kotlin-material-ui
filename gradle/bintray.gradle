@@ -57,7 +57,7 @@ publishing {
     publications {
         ToMavenPublication(MavenPublication) {
             from components.kotlin
-            artifact kotlinSourcesJar
+            artifact tasks.jsLegacySourcesJar
             groupId project.group
             artifactId project.name
             version project.version
@@ -72,6 +72,8 @@ publishing {
     }
 }
 
-tasks.JsJar {
+/*
+tasks.jsJar {
     from "${rootDir.path}/build/js/packages/kotlin-material-ui-${project.name}/package.json"
 }
+*/

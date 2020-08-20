@@ -14,6 +14,7 @@ external interface SharedDateRangePickerProps : ExportedDateRangePickerViewProps
 }
 
 @JsModule("@material-ui/pickers")
+@JsNonModule
 private external val DateRangePickerModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")

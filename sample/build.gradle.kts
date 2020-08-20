@@ -17,8 +17,10 @@ repositories {
 
 
 kotlin {
-    target {
+    js(IR) {
         useCommonJs()
+        binaries.executable()
+
         browser {
             runTask {
                 sourceMaps = true
@@ -38,9 +40,9 @@ kotlin {
         val main by getting {
             dependencies {
                 implementation(project(":core"))
-                implementation(project(":lab"))
-                implementation(project(":pickers"))
-                implementation(project(":pickers:date-io:date-fns"))
+                // implementation(project(":lab"))
+                // implementation(project(":pickers"))
+                // implementation(project(":pickers:date-io:date-fns"))
                 implementation(Libraries.Kotlin.js)
                 implementation(Libraries.Kotlin.styled)
             }

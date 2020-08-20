@@ -7,8 +7,8 @@ object Libraries {
     const val bintray = "1.8.4"
 
     object Kotlin {
-        const val version = "1.3.72"
-        const val wrappersBuild = "pre.110-kotlin-$version"
+        const val version = "1.4.0"
+        const val wrappersBuild = "pre.111-kotlin-$version"
 
         const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
         const val jsTest = "org.jetbrains.kotlin:kotlin-test-js:$version"
