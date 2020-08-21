@@ -1,5 +1,6 @@
 include(
     "core",
+    "icons",
     "lab",
     "pickers",
     "pickers:date-io",
