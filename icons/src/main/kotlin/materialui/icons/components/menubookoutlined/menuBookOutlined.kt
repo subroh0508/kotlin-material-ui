@@ -1,6 +1,5 @@
 package materialui.icons.components.menubookoutlined
 
-
 import kotlinx.html.SVG
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer

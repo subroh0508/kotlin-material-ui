@@ -11,8 +11,7 @@ import react.RBuilder
 fun RBuilder.menuBookTwoTone(
     vararg classMap: Pair<SvgIconStyle, String>,
     block: SvgIconElementBuilder<SVG>.() -> Unit
-) =
-    child(SvgIconElementBuilder(MenuBookTwoTone, classMap.toList()) { SVG(mapOf(), it) }.apply(block).create())
+) = child(SvgIconElementBuilder(MenuBookTwoTone, classMap.toList()) { SVG(mapOf(), it) }.apply(block).create())
 
 fun <T : Tag> RBuilder.menuBookTwoTone(
     vararg classMap: Pair<SvgIconStyle, String>,

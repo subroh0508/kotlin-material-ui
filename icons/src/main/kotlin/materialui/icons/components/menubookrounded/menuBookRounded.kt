@@ -11,8 +11,7 @@ import react.RBuilder
 fun RBuilder.menuBookRounded(
     vararg classMap: Pair<SvgIconStyle, String>,
     block: SvgIconElementBuilder<SVG>.() -> Unit
-) =
-    child(SvgIconElementBuilder(MenuBookRounded, classMap.toList()) { SVG(mapOf(), it) }.apply(block).create())
+) = child(SvgIconElementBuilder(MenuBookRounded, classMap.toList()) { SVG(mapOf(), it) }.apply(block).create())
 
 fun <T : Tag> RBuilder.menuBookRounded(
     vararg classMap: Pair<SvgIconStyle, String>,
