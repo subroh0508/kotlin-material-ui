@@ -3,8 +3,7 @@ version = Packages.version
 
 plugins {
     kotlin("js")
-    `maven-publish`
-    id("com.jfrog.bintray")
+    // id("com.jfrog.bintray")
 }
 
 repositories {
@@ -14,6 +13,7 @@ repositories {
 }
 
 kotlin {
+/*
     js(BOTH) {
         compilations.all {
             compileKotlinTask.kotlinOptions {
@@ -25,6 +25,7 @@ kotlin {
         }
         browser()
     }
+*/
 
     sourceSets {
         val main by getting {
