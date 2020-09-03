@@ -4,7 +4,7 @@ object Libraries {
         const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.version}"
     }
 
-    const val bintray = "1.8.4"
+    const val bintray = "1.8.5"
 
     object Kotlin {
         const val version = "1.4.0"
