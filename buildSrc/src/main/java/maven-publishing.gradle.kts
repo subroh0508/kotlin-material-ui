@@ -7,10 +7,13 @@ plugins {
     `maven-publish`
 }
 
+val group = "subroh0508.net.kotlinmaterialui"
+val libVersion = "0.5.0-beta2"
+
 val siteUrl = "https://github.com/subroh0508/kotlin-material-ui"
 val githubUrl = "https://github.com/subroh0508/kotlin-material-ui"
 
-val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX")
+val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZ")
 
 bintray {
     user = project.property("bintray_user")?.toString()
@@ -33,19 +36,18 @@ bintray {
         vcsUrl = "$githubUrl.git"
         issueTrackerUrl = "$githubUrl/issues"
         publicDownloadNumbers = true
-        version.name = project.version.toString()
+        version.name = libVersion
         version.released = dateFormat.format(Date())
     }
 }
 
 publishing.publications {
     create<MavenPublication>("ToMavenPublication") {
-        println(components.names)
         from(components["kotlin"])
         artifact(tasks.getByName<Zip>("jsLegacySourcesJar"))
-        groupId = project.group.toString()
+        groupId = group
         artifactId = project.name
-        version = project.version.toString()
+        version = libVersion
         pom.withXml {
             asNode().also { root ->
                 root.appendNode("description", "Kotlin Wrapper Library of Material-UI")
@@ -59,22 +61,20 @@ publishing.publications {
 
 fun Node.appendPomConfig() {
     Node(this, "licenses").also { licenses ->
-        licenses.appendNode(
-            "license", mapOf(
-                "name" to "The MIT Licenses",
-                "url" to "https://opensource.org/licenses/MIT",
-                "distribution" to "repo"
-            )
-        )
+        Node(licenses, "license").also { license ->
+            license.appendNode("name", "The MIT Licenses")
+            license.appendNode("url", "https://opensource.org/licenses/MIT")
+            license.appendNode("distribution", "repo")
+        }
     }
     Node(this, "developers").also { developers ->
-        developers.appendNode(
-            "developer", mapOf(
-                "id" to "subroh0508",
-                "name" to "Subroh Nishikori",
-                "email" to "subroh.0508@gmail.com"
-            )
-        )
+        Node(developers, "developer").also { developer ->
+            developer.appendNode("id", "subroh0508")
+            developer.appendNode("name", "Subroh Nishikori")
+            developer.appendNode("email", "in-the-n@me-of.love")
+        }
     }
-    Node(this, "scm", mapOf("url" to githubUrl))
+    Node(this, "scm").also { scm ->
+        scm.appendNode("url", githubUrl)
+    }
 }
