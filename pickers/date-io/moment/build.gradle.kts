@@ -7,6 +7,7 @@ plugins {
     //id("com.jfrog.bintray")
 }
 
+/*
 repositories {
     mavenLocal()
     jcenter()
@@ -14,8 +15,10 @@ repositories {
     maven(url = "http://dl.bintray.com/kotlin/kotlinx.html")
     maven(url = "http://dl.bintray.com/kotlin/kotlin-js-wrappers")
 }
+*/
 
 kotlin {
+/*
     js(BOTH) {
         compilations.all {
             compileKotlinTask.kotlinOptions {
@@ -27,6 +30,7 @@ kotlin {
         }
         browser()
     }
+*/
 
     sourceSets {
         val main by getting {

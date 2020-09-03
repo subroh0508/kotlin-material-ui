@@ -13,6 +13,7 @@ repositories {
 }
 
 kotlin {
+/*
     js(BOTH) {
         compilations.all {
             compileKotlinTask.kotlinOptions {
@@ -24,6 +25,7 @@ kotlin {
         }
         browser()
     }
+*/
 
     sourceSets {
         val main by getting {
