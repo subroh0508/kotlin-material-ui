@@ -41,4 +41,4 @@ kotlin {
     }
 }
 
-apply(from = file("${rootDir.path}/gradle/bintray.gradle"))
+// apply(from = file("${rootDir.path}/gradle/bintray.gradle"))

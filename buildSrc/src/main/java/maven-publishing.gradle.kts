@@ -41,7 +41,7 @@ bintray {
 publishing.publications {
     create<MavenPublication>("ToMavenPublication") {
         println(components.names)
-        //from(components["kotlin"])
+        from(components["kotlin"])
         artifact(tasks.getByName<Zip>("jsLegacySourcesJar"))
         groupId = project.group.toString()
         artifactId = project.name

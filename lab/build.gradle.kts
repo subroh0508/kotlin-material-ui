@@ -3,8 +3,7 @@ version = Packages.version
 
 plugins {
     kotlin("js")
-    `maven-publish`
-    id("com.jfrog.bintray") version Libraries.bintray
+    id("maven-publishing")
 }
 
 repositories {
@@ -46,4 +45,4 @@ kotlin {
     }
 }
 
-apply(from = file("${rootDir.path}/gradle/bintray.gradle"))
+// apply(from = file("${rootDir.path}/gradle/bintray.gradle"))
