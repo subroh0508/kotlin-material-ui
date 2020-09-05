@@ -13,20 +13,6 @@ repositories {
 }
 
 kotlin {
-/*
-    js(BOTH) {
-        compilations.all {
-            compileKotlinTask.kotlinOptions {
-                moduleKind = "commonjs"
-                sourceMap = true
-                metaInfo = true
-                sourceMapEmbedSources = null
-            }
-        }
-        browser()
-    }
-*/
-
     sourceSets {
         val main by getting {
             dependencies {
@@ -41,5 +27,3 @@ kotlin {
         }
     }
 }
-
-// apply(from = file("${rootDir.path}/gradle/bintray.gradle"))
