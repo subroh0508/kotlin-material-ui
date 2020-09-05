@@ -5,6 +5,7 @@ import java.util.*
 plugins {
     id("com.jfrog.bintray")
     `maven-publish`
+    id("bintray-metadata")
 }
 
 val group = "subroh0508.net.kotlinmaterialui"
