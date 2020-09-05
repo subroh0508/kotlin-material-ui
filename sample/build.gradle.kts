@@ -7,17 +7,6 @@ plugins {
     kotlin("js")
 }
 
-/*
-repositories {
-    mavenLocal()
-    jcenter()
-    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
-    maven(url = "http://dl.bintray.com/kotlin/kotlinx.html")
-    maven(url = "http://dl.bintray.com/kotlin/kotlin-js-wrappers")
-}
-*/
-
-
 kotlin {
     js(IR) {
         useCommonJs()
