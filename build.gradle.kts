@@ -1,3 +1,4 @@
+import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
 import org.jetbrains.kotlin.gradle.plugin.KotlinJsPluginWrapper
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
@@ -40,6 +41,12 @@ subprojects {
         maven(url = "http://dl.bintray.com/kotlin/kotlin-js-wrappers")
     }
 
+    if (project.name != "sample") {
+        jsPlugin()
+    }
+}
+
+fun Project.jsPlugin() {
     plugins.withType<KotlinJsPluginWrapper> {
         extensions.configure<KotlinJsProjectExtension> {
             js {

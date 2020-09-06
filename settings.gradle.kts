@@ -6,6 +6,6 @@ include(
     "pickers:date-io:date-fns",
     "pickers:date-io:dayjs",
     "pickers:date-io:luxon",
-    "pickers:date-io:moment"
-    //"sample"
+    "pickers:date-io:moment",
+    "sample"
 )
