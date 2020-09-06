@@ -8,5 +8,5 @@ plugins {
 }
 
 dependencies {
-    api(npm("luxon", Libraries.Npm.dayjs))
+    api(npm("luxon", Libraries.Npm.luxon))
 }
