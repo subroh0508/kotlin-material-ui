@@ -14,8 +14,8 @@ repositories {
 }
 
 dependencies {
-    implementation "subroh0508.net.kotlinmaterialui:core:${version}"
-    implementation "subroh0508.net.kotlinmaterialui:lab:${version}"
+    implementation "net.subroh0508.kotlinmaterialui:core:${version}"
+    implementation "net.subroh0508.kotlinmaterialui:lab:${version}"
 }
 ```
 
