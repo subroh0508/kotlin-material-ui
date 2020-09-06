@@ -7,12 +7,6 @@ plugins {
     //id("com.jfrog.bintray")
 }
 
-kotlin {
-    sourceSets {
-        val main by getting {
-            dependencies {
-                implementation(npm("luxon", Libraries.Npm.luxon))
-            }
-        }
-    }
+dependencies {
+    api(npm("luxon", Libraries.Npm.dayjs))
 }
