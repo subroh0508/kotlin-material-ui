@@ -30,7 +30,7 @@ kotlin {
     sourceSets {
         val main by getting {
             dependencies {
-                implementation("subroh0508.net.kotlinmaterialui:core:0.5.0-beta3")
+                implementation(project(":core"))
                 // implementation(project(":lab"))
                 // implementation(project(":pickers"))
                 // implementation(project(":pickers:date-io:date-fns"))
