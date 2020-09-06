@@ -8,7 +8,7 @@ plugins {
     id("bintray-metadata")
 }
 
-val group = "subroh0508.net.kotlinmaterialui"
+val group = "net.subroh0508.kotlinmaterialui"
 val libVersion = "0.5.0-beta3"
 
 val siteUrl = "https://github.com/subroh0508/kotlin-material-ui"
