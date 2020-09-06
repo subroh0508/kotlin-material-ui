@@ -12,13 +12,6 @@ repositories {
     jcenter()
 }
 
-kotlin {
-    sourceSets {
-        val main by getting {
-            dependencies {
-                implementation(Libraries.Kotlin.js)
-                api(npm("@date-io/core", Libraries.Npm.dateIo))
-            }
-        }
-    }
+dependencies {
+    api(npm("@date-io/core", Libraries.Npm.dateIo))
 }

@@ -6,29 +6,18 @@ plugins {
     id("maven-publishing")
 }
 
-kotlin {
-    sourceSets {
-        val main by getting {
-            dependencies {
-                implementation(project(":core"))
-                api(project(":pickers:date-io"))
-                implementation(Libraries.Kotlin.js)
-                implementation(Libraries.Kotlin.html)
-                implementation(Libraries.Kotlin.react)
-                implementation(Libraries.Kotlin.reactDom)
-                implementation(Libraries.Kotlin.css)
-                implementation(Libraries.Kotlin.extensions)
-                implementation(npm("react", Libraries.Npm.react))
-                implementation(npm("react-dom", Libraries.Npm.react))
-                implementation(npm("@material-ui/core", Libraries.Npm.MaterialUi.core))
-                implementation(npm("@material-ui/pickers", Libraries.Npm.MaterialUi.pickers))
-            }
-        }
+dependencies {
+    api(project(":core"))
+    api(project(":pickers:date-io"))
+    api(Libraries.Kotlin.html)
+    api(Libraries.Kotlin.react)
+    api(Libraries.Kotlin.reactDom)
+    api(Libraries.Kotlin.css)
+    api(Libraries.Kotlin.extensions)
+    api(npm("react", Libraries.Npm.react))
+    api(npm("react-dom", Libraries.Npm.react))
+    api(npm("@material-ui/core", Libraries.Npm.MaterialUi.core))
+    api(npm("@material-ui/pickers", Libraries.Npm.MaterialUi.pickers))
 
-        val test by getting {
-            dependencies {
-                implementation(Libraries.Kotlin.jsTest)
-            }
-        }
-    }
+    testImplementation(Libraries.Kotlin.jsTest)
 }

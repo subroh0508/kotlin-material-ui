@@ -7,12 +7,6 @@ plugins {
     //id("com.jfrog.bintray")
 }
 
-kotlin {
-    sourceSets {
-        val main by getting {
-            dependencies {
-                implementation(npm("dayjs", Libraries.Npm.dayjs))
-            }
-        }
-    }
+dependencies {
+    api(npm("dayjs", Libraries.Npm.dayjs))
 }

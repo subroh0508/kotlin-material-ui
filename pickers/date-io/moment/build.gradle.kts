@@ -7,12 +7,6 @@ plugins {
     //id("com.jfrog.bintray")
 }
 
-kotlin {
-    sourceSets {
-        val main by getting {
-            dependencies {
-                implementation(npm("moment", Libraries.Npm.moment))
-            }
-        }
-    }
+dependencies {
+    api(npm("moment", Libraries.Npm.moment))
 }
