@@ -9,7 +9,7 @@ plugins {
 }
 
 val group = "net.subroh0508.kotlinmaterialui"
-val libVersion = "0.5.0"
+val libVersion = "0.5.1"
 
 val siteUrl = "https://github.com/subroh0508/kotlin-material-ui"
 val githubUrl = "https://github.com/subroh0508/kotlin-material-ui"
