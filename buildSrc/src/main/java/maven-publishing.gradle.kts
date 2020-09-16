@@ -26,6 +26,7 @@ bintray {
     val repoNameSuffix = when (project.name) {
         "lab" -> "-Lab"
         "pickers" -> "-Pickers"
+        "date-io" -> "-DateIO"
         "date-fns" -> "-DateIO-date-fns"
         else -> ""
     }
