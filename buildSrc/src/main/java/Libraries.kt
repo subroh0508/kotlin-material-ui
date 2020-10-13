@@ -7,8 +7,8 @@ object Libraries {
     const val bintray = "1.8.5"
 
     object Kotlin {
-        const val version = "1.4.0"
-        const val wrappersBuild = "pre.111-kotlin-$version"
+        const val version = "1.4.10"
+        const val wrappersBuild = "pre.121-kotlin-$version"
 
         const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
         const val jsTest = "org.jetbrains.kotlin:kotlin-test-js:$version"
@@ -23,7 +23,7 @@ object Libraries {
         const val cssVersion = "1.0.0-$wrappersBuild"
         const val css = "org.jetbrains:kotlin-css-js:$cssVersion"
 
-        const val styledVersion = "1.0.0-$wrappersBuild"
+        const val styledVersion = "${Npm.styledComponent}-$wrappersBuild"
         const val styled = "org.jetbrains:kotlin-styled:$styledVersion"
 
         const val extensionsVersion = "1.0.1-$wrappersBuild"
@@ -31,7 +31,7 @@ object Libraries {
     }
 
     object Npm {
-        const val styledComponent = "^4.4.1"
+        const val styledComponent = "5.2.0"
         const val inlineStyledPrefixer = "^5.1.2"
         const val react = "16.13.1"
 
