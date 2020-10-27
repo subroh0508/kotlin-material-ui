@@ -1,0 +1,18 @@
+package materialui.icons.components.adunitssharp
+
+import kotlinx.html.SVG
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import materialui.components.svgicon.enums.SvgIconStyle
+import materialui.icons.AdUnitsSharp
+import materialui.icons.components.svgicon.SvgIconElementBuilder
+import react.RBuilder
+
+fun RBuilder.adUnitsSharp(vararg classMap: Pair<SvgIconStyle, String>, block: SvgIconElementBuilder<SVG>.() -> Unit) =
+    child(SvgIconElementBuilder(AdUnitsSharp, classMap.toList()) { SVG(mapOf(), it) }.apply(block).create())
+
+fun <T : Tag> RBuilder.adUnitsSharp(
+    vararg classMap: Pair<SvgIconStyle, String>,
+    factory: (TagConsumer<Unit>) -> T,
+    block: SvgIconElementBuilder<T>.() -> Unit
+) = child(SvgIconElementBuilder(AdUnitsSharp, classMap.toList(), factory).apply(block).create())
