@@ -17,7 +17,7 @@ object Libraries {
         const val react = "org.jetbrains:kotlin-react:$reactVersion"
         const val reactDom = "org.jetbrains:kotlin-react-dom:$reactVersion"
 
-        const val htmlVersion = "0.7.1"
+        const val htmlVersion = "0.7.2"
         const val html = "org.jetbrains.kotlinx:kotlinx-html-js:$htmlVersion"
 
         const val cssVersion = "1.0.0-$wrappersBuild"

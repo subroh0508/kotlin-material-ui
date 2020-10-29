@@ -1,7 +1,7 @@
 pluginManagement {
     resolutionStrategy {
         plugins {
-            kotlin("js") version "1.4.0"
+            kotlin("js") version "1.4.10"
         }
     }
 }
