@@ -5,6 +5,7 @@ import kotlinx.css.Color
 import kotlinx.html.*
 import kotlinx.html.stream.createHTML
 import materialui.components.formcontrol.FormControlElementBuilder
+import materialui.components.get
 import materialui.components.getValue
 import materialui.components.input.InputElementBuilder
 import materialui.components.input.InputProps
@@ -13,7 +14,9 @@ import materialui.components.inputlabel.InputLabelElementBuilder
 import materialui.components.inputlabel.inputLabel
 import materialui.components.select.SelectElementBuilder
 import materialui.components.select.select
+import materialui.components.set
 import materialui.components.setValue
+import materialui.components.textfield.enums.TextFieldSize
 import react.*
 import kotlin.js.Date
 
@@ -45,6 +48,9 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
     var Tag.rowsMax: Any? by materialProps
     var Tag.select: Boolean? by materialProps
     var Tag.SelectProps: RProps? by materialProps
+    var Tag.size: TextFieldSize? // issue: Enum? problem with <reified T: Enum<T>> StandardProps.getValue()
+        get() = materialProps.get<TextFieldSize>("size")
+        set(value) { materialProps.set("size",value) }
     var Tag.type: InputType? by materialProps
     var Tag.value: Any? by materialProps
 
