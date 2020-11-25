@@ -30,6 +30,7 @@ external interface TextFieldProps : FormControlProps {
     var rowsMax: Any?
     var select: Boolean?
     var SelectProps: SelectProps?
+    var size: String?
     var type: String?
     var value: Any?
 }

@@ -15,10 +15,7 @@ import materialui.components.paper.PaperProps
 import materialui.components.paper.paper
 import materialui.components.setValue
 import materialui.reacttransiton.RTransitionProps
-import react.Component
-import react.RBuilder
-import react.RClass
-import react.RProps
+import react.*
 import kotlin.reflect.KClass
 
 class DialogElementBuilder internal constructor(
@@ -37,10 +34,13 @@ class DialogElementBuilder internal constructor(
     var Tag.TransitionProps: RProps? by materialProps
 
     fun <P: RProps, C: Component<P, *>> Tag.paperComponent(kClass: KClass<C>) {
-        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        @Suppress("UNCHECKED_CAST")
-        materialProps.PaperComponent = kClass.js as RClass<P>
+        materialProps.PaperComponent = kClass.rClass
     }
+
+    fun <P: PaperProps> Tag.paperComponent(component: FunctionalComponent<P>) {
+        materialProps.PaperComponent = component
+    }
+
     fun Tag.paperComponent(tagName: String) { materialProps.PaperComponent = tagName }
     fun Tag.paperProps(block: PaperElementBuilder<DIV, PaperProps>.() -> Unit) {
         PaperProps = RBuilder().paper(block = block).props
