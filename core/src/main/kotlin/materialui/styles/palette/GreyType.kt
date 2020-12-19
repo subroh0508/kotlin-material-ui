@@ -6,6 +6,7 @@ enum class GreyType(internal val keyName: dynamic) {
     _200(200),
     _300(300),
     _400(400),
+    _50(50),
     _500(500),
     _600(600),
     _700(700),
