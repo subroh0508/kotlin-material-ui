@@ -49,9 +49,9 @@ internal val CSSBuilder.toDynamic: Any
         }
 
         declarations.forEach { (key, value) ->
-            this[key.hyphenize()] = when (value) {
-                (key == "flip") -> value //keep boolean value parse in jss
-                is CSSBuilder -> value.toDynamic
+            this[key.hyphenize()] = when {
+                key == "flip" -> value //keep boolean value parse in jss
+                value is CSSBuilder -> value.toDynamic
                 else -> value.toString()
             }
         }
