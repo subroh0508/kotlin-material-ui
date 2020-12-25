@@ -31,6 +31,7 @@ kotlin {
         val main by getting {
             dependencies {
                 implementation(project(":core"))
+                implementation(project(":lab"))
                 // implementation(project(":lab"))
                 // implementation(project(":pickers"))
                 // implementation(project(":pickers:date-io:date-fns"))

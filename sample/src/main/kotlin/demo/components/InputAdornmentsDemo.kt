@@ -1,15 +1,21 @@
 package demo.components
 
+import kotlinext.js.jsObject
 import kotlinx.css.*
 import kotlinx.html.DIV
 import kotlinx.html.js.onChangeFunction
+import materialui.components.formcontrol.enums.FormControlVariant
 import materialui.components.formcontrol.formControl
+import materialui.components.icon.icon
 import materialui.components.input.input
 import materialui.components.inputadornment.InputAdornmentElementBuilder
 import materialui.components.inputadornment.enums.InputAdornmentPosition
+import materialui.components.inputadornment.inputAdornment
 import materialui.components.inputlabel.inputLabel
 import materialui.components.menuitem.menuItem
 import materialui.components.textfield.textField
+import materialui.lab.components.autocomplete.autoComplete
+import materialui.lab.components.autocomplete.getTextFieldProps
 import materialui.styles.withStyles
 import org.w3c.dom.events.Event
 import react.*
@@ -24,6 +30,15 @@ val ranges: List<Pair<String, String>>
         "21-50" to "21 to 50",
         "51-100" to "51 to 100"
     )
+
+external interface Person{
+    var name: String
+    var age: Int
+}
+val DATA: Array<Person> = arrayOf(
+    jsObject { name = "Mizuki Makabe"; age = 17 },
+    jsObject { name = "Madoka Higuchi"; age = 17 },
+)
 
 class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
     override fun InputAdornmentsState.init() {
@@ -121,6 +136,25 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
                             value(state.amount)
                             onChangeFunction = handleOnChange("amount")
                             startAdornment(startAdornment("$"))
+                        }
+                    }
+                }
+
+                autoComplete<Person> {
+                    attrs.options = DATA
+                    attrs.getOptionLabel = { it.name }
+                    attrs.fullWidth = true
+                    attrs.renderInput = {
+                        it.InputProps.startAdornment = buildElement {
+                                inputAdornment {
+                                    icon { +"person" }
+                                }
+                            }
+                        textField {
+                            props(it.getTextFieldProps())
+                            attrs.classes("$marginStyle $textFieldStyle")
+                            attrs.label { +"Autocomplete Person" }
+                            attrs.variant = FormControlVariant.outlined
                         }
                     }
                 }
