@@ -3,7 +3,7 @@ version = Packages.version
 
 plugins {
     kotlin("js")
-    id("maven-publishing")
+//    id("maven-publishing")
 }
 
 dependencies {
