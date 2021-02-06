@@ -35,16 +35,16 @@ object Libraries {
         const val inlineStyledPrefixer = "^5.1.2"
         const val react = "17.0.1"
 
-        const val dateIo = "^2.6.0"
-        const val dateFns = "^2.12.0"
-        const val dayjs = "^1.8.16"
-        const val luxon = "^1.24.1"
-        const val moment = "^2.25.3"
+        const val dateIo = "^2.10.8"
+        const val dateFns = "^2.17.0"
+        const val dayjs = "^1.10.4"
+        const val luxon = "^1.25.0"
+        const val moment = "^2.29.1"
 
         object MaterialUi {
-            const val core = "4.11.2"
+            const val core = "4.11.3"
             const val lab = "4.0.0-alpha.57"
-            const val pickers = "4.0.0-alpha.8"
+            const val pickers = "4.0.0-alpha.12"
         }
     }
 }
