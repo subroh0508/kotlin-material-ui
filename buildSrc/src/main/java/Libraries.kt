@@ -35,7 +35,7 @@ object Libraries {
         const val inlineStyledPrefixer = "^5.1.2"
         const val react = "17.0.1"
 
-        const val dateIo = "^2.10.8"
+        const val dateIo = "^2.10.7"
         const val dateFns = "^2.17.0"
         const val dayjs = "^1.10.4"
         const val luxon = "^1.25.0"
