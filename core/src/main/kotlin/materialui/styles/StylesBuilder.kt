@@ -17,14 +17,28 @@ class StylesBuilder<P: RProps> internal constructor(
         css["@global"] = CSSBuilder().apply(block).toDynamic
     }
 
-    operator fun String.invoke(block: CSSBuilder.(P) -> Unit): String {
-        css[this] = { props: P -> CSSBuilder().apply { block(props) }.toDynamic }
+    operator fun String.invoke(block: CSSBuilder.() ->Unit): String {
+        css[this] = CSSBuilder().apply(block).toDynamic
         return this
     }
 
     operator fun String.invoke(builder: CSSBuilder): String {
         css[this] = builder.toDynamic
         return this
+    }
+
+    fun String.staticStyle(block: CSSBuilder.() ->Unit): String {
+        css[this] = CSSBuilder().apply(block).toDynamic
+        return this
+    }
+
+    fun String.dynamicStyle(block: CSSBuilder.(P) ->Unit): String {
+        css[this] = { props: P -> CSSBuilder().apply { block(props) }.toDynamic }
+        return this
+    }
+
+    fun CSSBuilder.flip(enable: Boolean) {
+        declarations["flip"] = enable
     }
 }
 
@@ -35,8 +49,9 @@ internal val CSSBuilder.toDynamic: Any
         }
 
         declarations.forEach { (key, value) ->
-            this[key.hyphenize()] = when (value) {
-                is CSSBuilder -> value.toDynamic
+            this[key.hyphenize()] = when {
+                key == "flip" -> value //keep boolean value parse in jss
+                value is CSSBuilder -> value.toDynamic
                 else -> value.toString()
             }
         }

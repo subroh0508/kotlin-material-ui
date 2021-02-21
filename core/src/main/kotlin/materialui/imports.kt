@@ -112,6 +112,8 @@ import materialui.components.toolbar.ToolbarProps
 import materialui.components.tooltip.TooltipProps
 import materialui.components.typography.TypographyProps
 import materialui.components.zoom.ZoomProps
+import materialui.styles.GenerateClassNameOptions
+import materialui.styles.JssOptions
 import materialui.styles.breakpoint.Breakpoints
 import materialui.styles.breakpoint.options.BreakpointsOptions
 import materialui.styles.mixins.Mixins
@@ -120,6 +122,8 @@ import materialui.styles.muitheme.MuiTheme
 import materialui.styles.muitheme.options.MuiThemeOptions
 import materialui.styles.palette.Palette
 import materialui.styles.palette.options.PaletteOptions
+import materialui.styles.stylesprovider.GenerateId
+import materialui.styles.stylesprovider.StylesProviderProps
 import materialui.styles.typography.Typography
 import react.RClass
 import react.RComponent
@@ -237,6 +241,8 @@ internal external val Typography: RClass<TypographyProps>
 internal external val Zoom: RClass<ZoomProps>
 
 internal external val ThemeProvider: RComponent<RProps, RState>
+internal external val StylesProvider: RComponent<StylesProviderProps, RState>
+
 
 @JsName("createBreakpoints")
 internal external fun rawCreateBreakpoints(breakpoints: BreakpointsOptions): Breakpoints
@@ -250,6 +256,9 @@ internal external fun rawCreateTypography(palette: Palette, typography: dynamic)
 internal external fun rawMakeStyles(styles: dynamic, option: dynamic): MakeStyles
 @JsName("withStyles")
 internal external fun rawWithStyles(styles: dynamic, option: dynamic): WithStyles
+
+external fun jssPreset(): JssOptions
+external fun createGenerateClassName(option: GenerateClassNameOptions): GenerateId
 
 external fun createMixins(breakpoints: Breakpoints, spacing: dynamic, mixins: MixinsOptions): Mixins
 external fun useTheme(): MuiTheme
