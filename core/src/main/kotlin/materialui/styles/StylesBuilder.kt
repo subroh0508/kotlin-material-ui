@@ -22,18 +22,13 @@ class StylesBuilder<P: RProps> internal constructor(
         return this
     }
 
+    operator fun String.invoke(block: CSSBuilder.(P) ->Unit): String {
+        css[this] = { props: P -> CSSBuilder().apply { block(props) }.toDynamic }
+        return this
+    }
+
     operator fun String.invoke(builder: CSSBuilder): String {
         css[this] = builder.toDynamic
-        return this
-    }
-
-    fun String.staticStyle(block: CSSBuilder.() ->Unit): String {
-        css[this] = CSSBuilder().apply(block).toDynamic
-        return this
-    }
-
-    fun String.dynamicStyle(block: CSSBuilder.(P) ->Unit): String {
-        css[this] = { props: P -> CSSBuilder().apply { block(props) }.toDynamic }
         return this
     }
 
