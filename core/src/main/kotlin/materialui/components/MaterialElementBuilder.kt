@@ -48,7 +48,7 @@ abstract class MaterialElementBuilder<T: Tag, Props: StandardProps>(
 
     var Tag.classes: Any? by materialProps
     var Tag.className: String? by materialProps
-    var Tag.component: String? by materialProps
+    var Tag.component: Any? by materialProps
 
     init {
         attrs.classes(classMap)
