@@ -3,7 +3,7 @@ version = Packages.version
 
 plugins {
     kotlin("js")
-    //`maven-publish`
+    id("maven-publishing")
     //id("com.jfrog.bintray")
 }
 
