@@ -1,5 +1,6 @@
 package materialui.styles.muitheme.options
 
+import kotlinext.js.Object
 import kotlinext.js.jsObject
 import kotlinx.css.Direction
 import kotlinx.css.properties.BoxShadows
@@ -19,9 +20,10 @@ external interface MuiThemeOptions {
     var palette: PaletteOptions?
     var typography: TypographyOptions?
     var shape: ShapeOptions?
-    var spacing: dynamic?
+    var spacing: dynamic
     var transitions: TransitionsOptions?
     var zIndex: ZIndexOptions?
+    var overrides: Object?
 }
 
 var MuiThemeOptions.direction: Direction? by DirectionDelegate
@@ -42,3 +44,4 @@ fun MuiThemeOptions.typography(block: TypographyOptions.() -> Unit) { typography
 fun MuiThemeOptions.shape(block: ShapeOptions.() -> Unit) { shape = (shape ?: jsObject { }).apply(block) }
 fun MuiThemeOptions.transitions(block: TransitionsOptions.() -> Unit) { transitions = (transitions ?: jsObject { }).apply(block) }
 fun MuiThemeOptions.zIndex(block: ZIndexOptions.() -> Unit) { zIndex = (zIndex ?: jsObject { }).apply(block) }
+fun MuiThemeOptions.overrides(block: dynamic.() -> Unit) { overrides = (overrides ?: jsObject {  }).apply(block) }

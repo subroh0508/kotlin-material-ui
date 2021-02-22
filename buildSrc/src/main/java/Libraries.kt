@@ -8,7 +8,7 @@ object Libraries {
 
     object Kotlin {
         const val version = "1.4.30"
-        const val wrappersBuild = "pre.144-kotlin-$version"
+        const val wrappersBuild = "pre.148-kotlin-$version"
 
         const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
         const val jsTest = "org.jetbrains.kotlin:kotlin-test-js:$version"
@@ -31,20 +31,20 @@ object Libraries {
     }
 
     object Npm {
-        const val styledComponent = "5.2.0"
+        const val styledComponent = "5.2.1"
         const val inlineStyledPrefixer = "^5.1.2"
         const val react = "17.0.1"
 
-        const val dateIo = "^2.10.7"
-        const val dateFns = "^2.17.0"
-        const val dayjs = "^1.10.4"
-        const val luxon = "^1.25.0"
-        const val moment = "^2.29.1"
+        const val dateIo = "^2.6.0"
+        const val dateFns = "^2.12.0"
+        const val dayjs = "^1.8.16"
+        const val luxon = "^1.24.1"
+        const val moment = "^2.25.3"
 
         object MaterialUi {
             const val core = "4.11.3"
             const val lab = "4.0.0-alpha.57"
-            const val pickers = "4.0.0-alpha.12"
+            const val pickers = "4.0.0-alpha.7"
         }
     }
 }
