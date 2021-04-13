@@ -25,9 +25,8 @@ subprojects {
         google()
         jcenter()
         mavenCentral()
-        maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
-        maven(url = "http://dl.bintray.com/kotlin/kotlinx.html")
-        maven(url = "http://dl.bintray.com/kotlin/kotlin-js-wrappers")
+        maven(url = "https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
+        maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers")
     }
 
     if (project.name != "sample") {
