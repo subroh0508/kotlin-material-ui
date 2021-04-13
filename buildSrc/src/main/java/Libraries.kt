@@ -7,8 +7,8 @@ object Libraries {
     const val bintray = "1.8.5"
 
     object Kotlin {
-        const val version = "1.4.30"
-        const val wrappersBuild = "pre.148-kotlin-$version"
+        const val version = "1.4.32"
+        const val wrappersBuild = "pre.153-kotlin-$version"
 
         const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
         const val jsTest = "org.jetbrains.kotlin:kotlin-test-js:$version"
@@ -17,7 +17,7 @@ object Libraries {
         const val react = "org.jetbrains:kotlin-react:$reactVersion"
         const val reactDom = "org.jetbrains:kotlin-react-dom:$reactVersion"
 
-        const val htmlVersion = "0.7.1"
+        const val htmlVersion = "0.7.3"
         const val html = "org.jetbrains.kotlinx:kotlinx-html-js:$htmlVersion"
 
         const val cssVersion = "1.0.0-$wrappersBuild"
@@ -31,9 +31,9 @@ object Libraries {
     }
 
     object Npm {
-        const val styledComponent = "5.2.1"
+        const val styledComponent = "5.2.3"
         const val inlineStyledPrefixer = "^5.1.2"
-        const val react = "17.0.1"
+        const val react = "17.0.2"
 
         const val dateIo = "^2.6.0"
         const val dateFns = "^2.12.0"
