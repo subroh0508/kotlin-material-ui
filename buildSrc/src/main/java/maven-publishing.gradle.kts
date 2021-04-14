@@ -1,11 +1,9 @@
 import groovy.util.Node
 import java.text.SimpleDateFormat
-import java.util.*
 
 plugins {
-    id("com.jfrog.bintray")
     `maven-publish`
-    id("bintray-metadata")
+    signing
 }
 
 val group = "net.subroh0508.kotlinmaterialui"
@@ -15,33 +13,6 @@ val siteUrl = "https://github.com/subroh0508/kotlin-material-ui"
 val githubUrl = "https://github.com/subroh0508/kotlin-material-ui"
 
 val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZ")
-
-bintray {
-    user = project.property("bintray_user")?.toString()
-    key = project.property("bintray_key")?.toString()
-    setPublications("ToMavenPublication")
-
-    publish = false
-
-    val repoNameSuffix = when (project.name) {
-        "lab" -> "-Lab"
-        "pickers" -> "-Pickers"
-        "date-io" -> "-DateIO"
-        "date-fns" -> "-DateIO-date-fns"
-        else -> ""
-    }
-    pkg.run {
-        repo = "maven"
-        name = "Kotlin-Material-UI$repoNameSuffix"
-        setLicenses("Apache-2.0")
-        websiteUrl = siteUrl
-        vcsUrl = "$githubUrl.git"
-        issueTrackerUrl = "$githubUrl/issues"
-        publicDownloadNumbers = true
-        version.name = libVersion
-        version.released = dateFormat.format(Date())
-    }
-}
 
 publishing.publications {
     create<MavenPublication>("ToMavenPublication") {
