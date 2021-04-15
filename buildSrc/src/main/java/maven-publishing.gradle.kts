@@ -17,8 +17,8 @@ val githubUrl = "https://github.com/subroh0508/kotlin-material-ui"
 val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZ")
 
 bintray {
-    user = project.property("bintray_user")?.toString()
-    key = project.property("bintray_key")?.toString()
+    user = project.findProperty("bintray_user")?.toString()
+    key = project.findProperty("bintray_key")?.toString()
     setPublications("ToMavenPublication")
 
     publish = false

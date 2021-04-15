@@ -37,7 +37,7 @@ subprojects {
 fun Project.jsPlugin() {
     plugins.withType<KotlinJsPluginWrapper> {
         extensions.configure<KotlinJsProjectExtension> {
-            js {
+            js(BOTH) {
                 browser()
             }
 
