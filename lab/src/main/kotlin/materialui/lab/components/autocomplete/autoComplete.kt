@@ -11,7 +11,7 @@ import materialui.lab.components.autocomplete.enums.AutocompleteStyle
 import materialui.lab.components.useautocomplete.UseAutocompleteProps
 import react.*
 
-@JsModule("@material-ui/lab/AutoComplete")
+@JsModule("@material-ui/lab/Autocomplete")
 @JsNonModule
 private external val autocompleteModule: dynamic
 
