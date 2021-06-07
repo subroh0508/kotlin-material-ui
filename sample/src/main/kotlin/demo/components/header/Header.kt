@@ -17,6 +17,7 @@ import materialui.styles.withStyles
 import react.RBuilder
 import react.RComponent
 import react.RState
+import react.dom.attrs
 import react.dom.div
 
 class Header : RComponent<HeaderProps, RState>() {
