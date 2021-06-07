@@ -7,13 +7,13 @@ import kotlinx.html.TagConsumer
 import react.RClass
 import react.ReactElement
 import react.createElement
-import react.dom.RDOMBuilder
+import react.dom.RDOMBuilderImpl
 
 abstract class MaterialElementBuilder<T: Tag, Props: StandardProps>(
     val type: RClass<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : RDOMBuilder<T>(factory) {
+) : RDOMBuilderImpl<T>(factory) {
     protected val materialProps: Props = jsObject { }
 
     fun props(p: Props) { Object.assign(materialProps, p) }
@@ -58,6 +58,6 @@ abstract class MaterialElementBuilder<T: Tag, Props: StandardProps>(
     override fun create(): ReactElement {
         Object.keys(materialProps).forEach { key -> setProp(key, materialProps[key]) }
 
-        return createElement(type, props, *childList.toTypedArray())
+        return createElement(type, domProps, *childList.toTypedArray())
     }
 }

@@ -12,7 +12,7 @@ class TooltipElementBuilder internal constructor(
     private val type: RClass<TooltipProps>,
     classMap: List<Pair<Enum<*>, String>>,
     private val props: TooltipProps = jsObject { }
-) : RBuilder() {
+) : RBuilderImpl() {
     init {
         props.classes(classMap)
     }

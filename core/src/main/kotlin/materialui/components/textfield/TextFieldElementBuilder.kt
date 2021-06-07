@@ -30,10 +30,10 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
     var Tag.autoFocus: Boolean? by materialProps
     var Tag.defaultValue: Any? by materialProps
     var Tag.FormHelperTextProps: RProps
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["FormHelperTextProps"]
+        get() = @Suppress("UnsafeCastFromDynamic") domProps.asDynamic()["FormHelperTextProps"]
         set(value) { setProp("FormHelperTextProps", value) }
     var Tag.helperText: ReactElement
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["helperText"]
+        get() = @Suppress("UnsafeCastFromDynamic") domProps.asDynamic()["helperText"]
         set(value) { setProp("helperText", value) }
     var Tag.id: String? by materialProps
     var Tag.InputLabelProps: RProps? by materialProps

@@ -7,7 +7,7 @@ import react.*
 class StyleProviderBuilder internal constructor(
     val type: RComponent<StylesProviderProps, RState>,
     private val props: StylesProviderProps = jsObject { }
-) : RBuilder() {
+) : RBuilderImpl() {
     fun attrs(handler: StylesProviderProps.() -> Unit) {
         props.handler()
     }

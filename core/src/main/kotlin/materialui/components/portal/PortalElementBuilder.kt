@@ -3,15 +3,12 @@ package materialui.components.portal
 import kotlinext.js.jsObject
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.Node
-import react.RBuilder
-import react.RClass
-import react.buildElement
-import react.createElement
+import react.*
 
 class PortalElementBuilder internal constructor(
     val type: RClass<PortalProps>,
     private val props: PortalProps = jsObject { }
-) : RBuilder() {
+) : RBuilderImpl() {
     fun attrs(handler: PortalProps.() -> Unit) {
         props.handler()
     }
