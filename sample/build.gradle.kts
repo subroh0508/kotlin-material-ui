@@ -9,7 +9,7 @@ plugins {
 
 kotlin {
     js(IR) {
-        //useCommonJs()
+        useCommonJs()
         binaries.executable()
 
         browser {
@@ -17,7 +17,7 @@ kotlin {
                 sourceMaps = true
                 devServer = KotlinWebpackConfig.DevServer(
                     port = 8080,
-                    contentBase = listOf("${projectDir.path}/src/main/resources")
+                    contentBase = mutableListOf("${projectDir.path}/src/main/resources")
                 )
                 outputFileName = "kotlin-material-ui-sample.js"
             }
