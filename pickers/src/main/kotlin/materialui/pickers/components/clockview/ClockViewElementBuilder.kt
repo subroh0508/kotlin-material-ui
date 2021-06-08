@@ -6,11 +6,12 @@ import materialui.pickers.components.calendar.ArrowSwitcherDelegate
 import materialui.pickers.components.timepicker.enum.TimePickerView
 import react.RClass
 import react.RElementBuilder
+import react.RElementBuilderImpl
 import react.createElement
 
 class ClockViewElementBuilder internal constructor(
     private val type: RClass<ClockViewProps>, className: String?, props: ClockViewProps = jsObject { }
-) : RElementBuilder<ClockViewProps>(props),
+) : RElementBuilderImpl<ClockViewProps>(props),
     ArrowSwitcherElement<ClockViewProps> by ArrowSwitcherDelegate()
 {
     init { props.className = className }

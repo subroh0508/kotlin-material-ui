@@ -6,7 +6,7 @@ import react.*
 
 class CalendarElementBuilder internal constructor(
     private val type: RClass<CalendarProps>, className: String?, props: CalendarProps = jsObject { }
-) : RElementBuilder<CalendarProps>(props),
+) : RElementBuilderImpl<CalendarProps>(props),
         ArrowSwitcherElement<CalendarProps> by ArrowSwitcherDelegate(),
         ExportedCalendarElement<CalendarProps> by ExportedCalendarDelegate()
 {
