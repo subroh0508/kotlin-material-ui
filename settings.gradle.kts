@@ -1,12 +1,3 @@
-pluginManagement {
-    resolutionStrategy {
-        plugins {
-            kotlin("js") version "1.5.10"
-        }
-    }
-}
-
-
 include(
     "core",
     "lab",
