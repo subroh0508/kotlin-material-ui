@@ -7,7 +7,7 @@ class StepIconElementBuilder internal constructor(
     private val type: RClass<StepIconProps>,
     classMap: List<Pair<Enum<*>, String>>,
     private val props: StepIconProps = jsObject {  }
-) : RBuilder() {
+) : RBuilderImpl() {
     init {
         props.classes(classMap)
     }

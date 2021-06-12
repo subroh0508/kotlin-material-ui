@@ -17,7 +17,7 @@ kotlin {
                 sourceMaps = true
                 devServer = KotlinWebpackConfig.DevServer(
                     port = 8080,
-                    contentBase = listOf("${projectDir.path}/src/main/resources")
+                    contentBase = mutableListOf("${projectDir.path}/src/main/resources")
                 )
                 outputFileName = "kotlin-material-ui-sample.js"
             }
@@ -32,7 +32,6 @@ kotlin {
             dependencies {
                 implementation(project(":core"))
                 implementation(project(":lab"))
-                // implementation(project(":lab"))
                 // implementation(project(":pickers"))
                 // implementation(project(":pickers:date-io:date-fns"))
                 implementation(Libraries.Kotlin.js)

@@ -18,7 +18,7 @@ class NativeSelectElementBuilder internal constructor(
     }
 
     var Tag.iconComponent: RComponent<RProps, RState>
-        get() = @Suppress("UnsafeCastFromDynamic") props.asDynamic()["IconComponent"]
+        get() = @Suppress("UnsafeCastFromDynamic") domProps.asDynamic()["IconComponent"]
         set(value) { setProp("IconComponent", value) }
     var Tag.input: ReactElement? by materialProps
     var Tag.variant: NativeSelectVariant? by materialProps

@@ -10,7 +10,7 @@ import react.RClass
 class DayElementBuilder<T: Tag> internal constructor(
     type: RClass<DayProps>, className: String?, factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, DayProps>(type, emptyList(), factory) {
-    init { props.className = className }
+    init { domProps.className = className }
 
     var Tag.day: Any? by materialProps
     var Tag.focused: Boolean? by materialProps
