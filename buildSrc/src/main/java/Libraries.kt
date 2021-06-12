@@ -40,7 +40,7 @@ object Libraries {
         const val moment = "^2.25.3"
 
         object MaterialUi {
-            const val core = "4.11.4"
+            const val core = "4.11.3"
             const val lab = "4.0.0-alpha.57"
             const val pickers = "4.0.0-alpha.7"
         }
