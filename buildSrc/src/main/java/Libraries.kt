@@ -5,27 +5,27 @@ object Libraries {
     }
 
     object Kotlin {
-        const val version = "1.5.0"
-        const val wrappersBuild = "pre.156-kotlin-$version"
+        const val version = "1.5.10"
+        const val wrappersBuild = "pre.207-kotlin-$version"
 
         const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
         const val jsTest = "org.jetbrains.kotlin:kotlin-test-js:$version"
 
         const val reactVersion = "${Npm.react}-$wrappersBuild"
-        const val react = "org.jetbrains:kotlin-react:$reactVersion"
-        const val reactDom = "org.jetbrains:kotlin-react-dom:$reactVersion"
+        const val react = "org.jetbrains.kotlin-wrappers:kotlin-react:$reactVersion"
+        const val reactDom = "org.jetbrains.kotlin-wrappers:kotlin-react-dom:$reactVersion"
 
         const val htmlVersion = "0.7.3"
         const val html = "org.jetbrains.kotlinx:kotlinx-html-js:$htmlVersion"
 
         const val cssVersion = "1.0.0-$wrappersBuild"
-        const val css = "org.jetbrains:kotlin-css-js:$cssVersion"
+        const val css = "org.jetbrains.kotlin-wrappers:kotlin-css-js:$cssVersion"
 
         const val styledVersion = "${Npm.styledComponent}-$wrappersBuild"
-        const val styled = "org.jetbrains:kotlin-styled:$styledVersion"
+        const val styled = "org.jetbrains.kotlin-wrappers:kotlin-styled:$styledVersion"
 
         const val extensionsVersion = "1.0.1-$wrappersBuild"
-        const val extensions = "org.jetbrains:kotlin-extensions:$extensionsVersion"
+        const val extensions = "org.jetbrains.kotlin-wrappers:kotlin-extensions:$extensionsVersion"
     }
 
     object Npm {
@@ -40,7 +40,7 @@ object Libraries {
         const val moment = "^2.25.3"
 
         object MaterialUi {
-            const val core = "4.11.4"
+            const val core = "4.11.3"
             const val lab = "4.0.0-alpha.57"
             const val pickers = "4.0.0-alpha.7"
         }

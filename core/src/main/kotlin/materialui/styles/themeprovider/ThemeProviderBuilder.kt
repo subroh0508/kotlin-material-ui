@@ -8,7 +8,7 @@ class ThemeProviderBuilder internal constructor(
     val type: RComponent<RProps, RState>,
     val theme: MuiTheme,
     private val props: RProps = jsObject { }
-) : RBuilder() {
+) : RBuilderImpl() {
     init {
         props.asDynamic()["theme"] = theme
     }

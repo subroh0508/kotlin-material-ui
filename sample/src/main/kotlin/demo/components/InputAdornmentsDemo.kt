@@ -19,6 +19,7 @@ import materialui.lab.components.autocomplete.getTextFieldProps
 import materialui.styles.withStyles
 import org.w3c.dom.events.Event
 import react.*
+import react.dom.attrs
 import react.dom.div
 import styled.css
 import styled.styledDiv

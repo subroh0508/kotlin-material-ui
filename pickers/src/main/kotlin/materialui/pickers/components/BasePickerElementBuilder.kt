@@ -1,6 +1,7 @@
 package materialui.pickers.components
 
 import kotlinext.js.jsObject
+import kotlinx.html.DIV
 import kotlinx.html.INPUT
 import materialui.components.formhelpertext.FormHelperTextProps
 import materialui.components.input.InputProps
@@ -8,6 +9,8 @@ import materialui.components.inputlabel.InputLabelProps
 import materialui.components.select.SelectProps
 import materialui.pickers.components.enums.PickerOrientation
 import react.*
+import react.dom.RDOMBuilderImpl
+import react.dom.attrs
 import react.dom.input
 import kotlin.js.Date
 import kotlin.reflect.KClass
@@ -16,7 +19,7 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     private val type: RClass<Props>,
     className: String?,
     props: Props = jsObject { }
-) : RElementBuilder<Props>(props) {
+) : RElementBuilderImpl<Props>(props) {
     init { props.className = className }
 
     fun create() = createElement(type, attrs, *childList.toTypedArray())
@@ -80,7 +83,7 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
 
     @Suppress("FunctionName")
     fun Props.InputProps(block: InputProps.() -> Unit) { InputProps = jsObject(block) }
-    fun Props.inputProps(block: INPUT.() -> Unit) { inputProps = RBuilder().input { attrs(block) }.props }
+    fun Props.inputProps(block: INPUT.() -> Unit) { inputProps = RDOMBuilderImpl { INPUT(mapOf(), it) }.input { attrs(block) }.props }
 
     fun Props.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
 

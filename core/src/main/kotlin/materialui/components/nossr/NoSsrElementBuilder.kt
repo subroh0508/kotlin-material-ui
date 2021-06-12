@@ -1,15 +1,12 @@
 package materialui.components.nossr
 
 import kotlinext.js.jsObject
-import react.RBuilder
-import react.RClass
-import react.buildElement
-import react.createElement
+import react.*
 
 class NoSsrElementBuilder internal constructor(
     val type: RClass<NoSsrProps>,
     private val props: NoSsrProps = jsObject { }
-) : RBuilder() {
+) : RBuilderImpl() {
     fun attrs(handler: NoSsrProps.() -> Unit) {
         props.handler()
     }

@@ -35,7 +35,7 @@ fun <P: RProps> withStyles(
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false,
     render: RBuilder.(P) -> Unit
-): RClass<P> = withStyles(rFunction(displayName, render), styleSet, withTheme = withTheme)
+): RClass<P> = withStyles(functionalComponent(displayName, render), styleSet, withTheme = withTheme)
 
 @Deprecated(
     "Use withStyles to create a reusable RClass instead, and call that to render the styled component."
@@ -60,4 +60,4 @@ fun <P: RProps> RBuilder.childWithStyles(
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false,
     render: RBuilder.(P) -> Unit
-): RClass<P> = withStyles(rFunction(displayName, render), styleSet, withTheme = withTheme)
+): RClass<P> = withStyles(functionalComponent(displayName, render), styleSet, withTheme = withTheme)
