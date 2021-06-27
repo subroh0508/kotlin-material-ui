@@ -15,6 +15,8 @@ private external val toggleButtonModule: dynamic
 external interface ToggleButtonProps : ButtonBaseProps {
     var disableFocusRipple: Boolean?
     var selected: Boolean?
+    var orientation: String?
+    var size: String?
     var value: Any?
 }
 
