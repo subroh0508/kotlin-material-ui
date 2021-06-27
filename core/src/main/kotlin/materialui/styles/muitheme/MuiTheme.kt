@@ -29,6 +29,33 @@ external interface MuiTheme {
 
 val MuiTheme.direction: Direction by ReadOnlyDirectionDelegate
 val MuiTheme.shadows: List<BoxShadows> by ReadOnlyShadowsDelegate
-fun MuiTheme.spacing(unit: Int = 0) = (spacing as (Int) -> Int)(unit).px
-fun MuiTheme.spacing(top: Int = 0, right: Int = 0, bottom: Int = 0, left: Int = 0) =
-    (spacing as (Int, Int, Int, Int) -> String)(top, right, bottom, left)
+
+fun MuiTheme.spacing() =
+    LinearDimension((spacing as () -> String)())
+
+fun MuiTheme.spacing(unit: Number) =
+    LinearDimension((spacing as (Number) -> String)(unit))
+
+fun MuiTheme.spacing(vertical: LinearDimension, horizontal: LinearDimension) =
+    (spacing as (dynamic, dynamic) -> String)(vertical.toDynamic(), horizontal.toDynamic())
+
+fun MuiTheme.spacing(top: LinearDimension, rightLeft: LinearDimension, bottom: LinearDimension) =
+    (spacing as (dynamic, dynamic, dynamic) -> String)(top.toDynamic(), rightLeft.toDynamic(), bottom.toDynamic())
+
+
+fun MuiTheme.spacing(top: LinearDimension, right: LinearDimension, bottom: LinearDimension, left: LinearDimension) =
+    (spacing as (dynamic, dynamic, dynamic, dynamic) -> String)(
+        top.toDynamic(),
+        right.toDynamic(),
+        bottom.toDynamic(),
+        left.toDynamic()
+    )
+
+private fun LinearDimension.toDynamic(): dynamic {
+    return when {
+        value.endsWith("unit") ->
+            value.removeSuffix("unit").toFloat()
+        else -> value
+    }
+}
+
