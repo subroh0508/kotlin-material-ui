@@ -14,4 +14,5 @@ var FontStyleOptions.fontSize: LinearDimension? by LinearDimensionDelegate
 var FontStyleOptions.fontWeightLight: FontWeight? by FontWeightDelegate
 var FontStyleOptions.fontWeightRegular: FontWeight? by FontWeightDelegate
 var FontStyleOptions.fontWeightMedium: FontWeight? by FontWeightDelegate
+var FontStyleOptions.fontWeightBold: FontWeight? by FontWeightDelegate
 
