@@ -1,6 +1,9 @@
 package materialui.styles.typography.options
 
+import kotlinext.js.Object
 import kotlinext.js.jsObject
+import kotlinx.css.CSSBuilder
+import materialui.styles.toDynamic
 
 external interface TypographyOptions : FontStyleOptions {
     var h1: TypographyStyleOptions?
@@ -19,16 +22,17 @@ external interface TypographyOptions : FontStyleOptions {
     var pxToRem: ((Number) -> String)?
 }
 
-fun TypographyOptions.h1(block: TypographyStyleOptions.() -> Unit) { h1 = (h1 ?: jsObject { }).apply(block) }
-fun TypographyOptions.h2(block: TypographyStyleOptions.() -> Unit) { h2 = (h2 ?: jsObject { }).apply(block) }
-fun TypographyOptions.h3(block: TypographyStyleOptions.() -> Unit) { h3 = (h3 ?: jsObject { }).apply(block) }
-fun TypographyOptions.h4(block: TypographyStyleOptions.() -> Unit) { h4 = (h4 ?: jsObject { }).apply(block) }
-fun TypographyOptions.h5(block: TypographyStyleOptions.() -> Unit) { h5 = (h5 ?: jsObject { }).apply(block) }
-fun TypographyOptions.h6(block: TypographyStyleOptions.() -> Unit) { h6 = (h6 ?: jsObject { }).apply(block) }
-fun TypographyOptions.subtitle1(block: TypographyStyleOptions.() -> Unit) { subtitle1 = (subtitle1 ?: jsObject { }).apply(block) }
-fun TypographyOptions.subtitle2(block: TypographyStyleOptions.() -> Unit) { subtitle2 = (subtitle2 ?: jsObject { }).apply(block) }
-fun TypographyOptions.body1(block: TypographyStyleOptions.() -> Unit) { body1 = (body1 ?: jsObject { }).apply(block) }
-fun TypographyOptions.body2(block: TypographyStyleOptions.() -> Unit) { body2 = (body2 ?: jsObject { }).apply(block) }
-fun TypographyOptions.caption(block: TypographyStyleOptions.() -> Unit) { caption = (caption ?: jsObject { }).apply(block) }
-fun TypographyOptions.button(block: TypographyStyleOptions.() -> Unit) { button = (button ?: jsObject { }).apply(block) }
-fun TypographyOptions.overline(block: TypographyStyleOptions.() -> Unit) { overline = (overline ?: jsObject { }).apply(block) }
+fun TypographyOptions.h1(block: CSSBuilder.() -> Unit) { h1 = Object.assign(h1 ?: jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.h2(block: CSSBuilder.() -> Unit) { h2 = Object.assign(h2 ?:jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.h3(block: CSSBuilder.() -> Unit) { h3 = Object.assign(h3 ?: jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.h4(block: CSSBuilder.() -> Unit) { h4 = Object.assign(h4 ?: jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.h5(block: CSSBuilder.() -> Unit) { h5 = Object.assign(h5 ?: jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.h6(block: CSSBuilder.() -> Unit) { h6 = Object.assign(h6 ?: jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.subtitle1(block: CSSBuilder.() -> Unit) { subtitle1 = Object.assign(subtitle1 ?: jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.subtitle2(block: CSSBuilder.() -> Unit) { subtitle2 = Object.assign(subtitle2 ?: jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.body1(block: CSSBuilder.() -> Unit) { body1 = Object.assign(body1 ?: jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.body2(block: CSSBuilder.() -> Unit) { body2 = Object.assign(body2 ?: jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.caption(block: CSSBuilder.() -> Unit) { caption = Object.assign(caption ?: jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.button(block: CSSBuilder.() -> Unit) { button = Object.assign(button ?: jsObject(), CSSBuilder().apply(block).toDynamic) }
+fun TypographyOptions.overline(block: CSSBuilder.() -> Unit) { overline = Object.assign(overline ?: jsObject (), CSSBuilder().apply(block).toDynamic) }
+

@@ -1,11 +1,9 @@
 package materialui.styles
 
 import kotlinext.js.js
-import kotlinx.css.CSSBuilder
-import kotlinx.css.Overflow
-import kotlinx.css.RuleSet
-import kotlinx.css.hyphenize
+import kotlinx.css.*
 import materialui.styles.muitheme.MuiTheme
+import materialui.styles.muitheme.spacing
 import react.RProps
 
 class StylesBuilder<P: RProps> internal constructor(
@@ -35,6 +33,9 @@ class StylesBuilder<P: RProps> internal constructor(
     fun CSSBuilder.flip(enable: Boolean) {
         declarations["flip"] = enable
     }
+
+    val Number.spacing: LinearDimension get() = theme.spacing(this)
+    val Number.unit: LinearDimension get() = LinearDimension("${this}unit")
 }
 
 internal val CSSBuilder.toDynamic: Any
