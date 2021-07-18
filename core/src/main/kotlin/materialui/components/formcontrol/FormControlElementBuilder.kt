@@ -8,10 +8,10 @@ import materialui.components.formcontrol.enums.FormControlStyle
 import materialui.components.formcontrol.enums.FormControlVariant
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 open class FormControlElementBuilder<T: Tag, Props: FormControlProps> internal constructor(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, Props>(type, classMap, factory) {

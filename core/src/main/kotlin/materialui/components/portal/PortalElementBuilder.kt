@@ -6,7 +6,7 @@ import org.w3c.dom.Node
 import react.*
 
 class PortalElementBuilder internal constructor(
-    val type: RClass<PortalProps>,
+    val type: ComponentType<PortalProps>,
     private val props: PortalProps = jsObject { }
 ) : RBuilderImpl() {
     fun attrs(handler: PortalProps.() -> Unit) {

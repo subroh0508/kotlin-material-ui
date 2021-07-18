@@ -6,13 +6,13 @@ import materialui.components.buttonbase.ButtonBaseElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.step.enums.StepOrientation
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 import react.buildElement
 
 class StepButtonElementBuilder<T: Tag> internal constructor(
-    type: RClass<StepButtonProps>,
+    type: ComponentType<StepButtonProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, StepButtonProps>(type, classMap, factory) {

@@ -4,7 +4,7 @@ import kotlinext.js.jsObject
 import react.*
 
 class StepIconElementBuilder internal constructor(
-    private val type: RClass<StepIconProps>,
+    private val type: ComponentType<StepIconProps>,
     classMap: List<Pair<Enum<*>, String>>,
     private val props: StepIconProps = jsObject {  }
 ) : RBuilderImpl() {

@@ -6,11 +6,11 @@ import materialui.components.checkbox.enums.CheckboxStyle
 import materialui.components.getValue
 import materialui.components.internal.SwitchBaseElementBuilder
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 import react.ReactElement
 
 class CheckboxElementBuilder internal constructor(
-    type: RClass<CheckboxProps>,
+    type: ComponentType<CheckboxProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : SwitchBaseElementBuilder<CheckboxProps>(type, classMap) {
     fun Tag.classes(vararg classMap: Pair<CheckboxStyle, String>) {

@@ -1,8 +1,8 @@
 package materialui.lab.components.alerttitle
 
 import kotlinext.js.jsObject
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.RProps
 import react.createElement
 
@@ -13,7 +13,7 @@ private external val alertTitleModule: dynamic
 external interface AlertTitleProps : RProps
 
 @Suppress("UnsafeCastFromDynamic")
-private val alertTitleComponent: RClass<AlertTitleProps> = alertTitleModule.default
+private val alertTitleComponent: ComponentType<AlertTitleProps> = alertTitleModule.default
 
 fun RBuilder.alertTitle(block: RBuilder.() -> Unit)
-        = child(createElement(alertTitleComponent, jsObject<AlertTitleProps> { }, *RBuilder().apply(block).childList.toTypedArray()))
+        = child(createElement(alertTitleComponent, jsObject { }, *RBuilder().apply(block).childList.toTypedArray()))

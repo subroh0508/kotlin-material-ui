@@ -11,7 +11,7 @@ import org.w3c.dom.events.Event
 import react.*
 
 class FormControlLabelElementBuilder internal constructor(
-    type: RClass<FormControlLabelProps>,
+    type: ComponentType<FormControlLabelProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<LABEL, FormControlLabelProps>(type, classMap, { LABEL(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<FormControlLabelStyle, String>) {

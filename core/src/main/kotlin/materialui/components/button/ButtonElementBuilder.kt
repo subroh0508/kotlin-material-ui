@@ -9,13 +9,13 @@ import materialui.components.button.enums.ButtonVariant
 import materialui.components.buttonbase.ButtonBaseElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 import react.buildElement
 
 class ButtonElementBuilder<T: Tag> internal constructor(
-    type: RClass<ButtonProps>,
+    type: ComponentType<ButtonProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, ButtonProps>(type, classMap, factory) {

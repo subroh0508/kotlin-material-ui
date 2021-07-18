@@ -11,13 +11,14 @@ import materialui.components.listitem.enums.ListItemAlignItem
 import materialui.components.listitem.enums.ListItemStyle
 import materialui.components.setValue
 import react.Component
+import react.ComponentType
 import react.RClass
 import react.RProps
 import react.dom.RDOMBuilder
 import kotlin.reflect.KClass
 
 class ButtonListItemElementBuilder internal constructor(
-    type: RClass<ButtonListItemProps>,
+    type: ComponentType<ButtonListItemProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : ButtonBaseElementBuilder<BUTTON, ButtonListItemProps>(type, classMap, { BUTTON(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<ListItemStyle, String>) {

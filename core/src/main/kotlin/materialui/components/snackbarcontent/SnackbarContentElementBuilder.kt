@@ -5,13 +5,10 @@ import kotlinx.html.TagConsumer
 import materialui.components.getValue
 import materialui.components.paper.PaperElementBuilder
 import materialui.components.setValue
-import react.RBuilder
-import react.RClass
-import react.ReactElement
-import react.buildElement
+import react.*
 
 class SnackbarContentElementBuilder<T: Tag> internal constructor(
-    type: RClass<SnackbarContentProps>,
+    type: ComponentType<SnackbarContentProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : PaperElementBuilder<T, SnackbarContentProps>(type, classMap, factory) {

@@ -22,7 +22,7 @@ import react.*
 import kotlin.reflect.KClass
 
 open class PopoverElementBuilder<Props: PopoverProps>(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>
 ) : ModalElementBuilder<Props>(type, classMap) {
     fun Tag.classes(vararg classMap: Pair<PopoverStyle, String>) {

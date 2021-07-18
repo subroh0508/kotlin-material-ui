@@ -8,10 +8,10 @@ import materialui.components.circularprogress.enums.CircularProgressStyle
 import materialui.components.circularprogress.enums.CircularProgressVariant
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class CircularProgressElementBuilder internal constructor(
-    type: RClass<CircularProgressProps>,
+    type: ComponentType<CircularProgressProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV, CircularProgressProps>(type, classMap.toList(), { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<CircularProgressStyle, String>) {

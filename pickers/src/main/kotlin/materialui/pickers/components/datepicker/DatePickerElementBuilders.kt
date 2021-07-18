@@ -8,10 +8,10 @@ import materialui.pickers.components.internal.desktop.DesktopWrapperElementBuild
 import materialui.pickers.components.internal.modal.ModalWrapperElementBuilder
 import materialui.pickers.components.internal.responsive.ResponsiveWrapperElementBuilder
 import materialui.pickers.components.internal.static.StaticWrapperElementBuilder
-import react.RClass
+import react.ComponentType
 
 class DatePickerElementBuilder internal constructor(
-    type: RClass<DatePickerProps>, className: String?, props: DatePickerProps = jsObject { }
+    type: ComponentType<DatePickerProps>, className: String?, props: DatePickerProps = jsObject { }
 ) : ResponsiveWrapperElementBuilder<DatePickerProps>(type, className, props),
         DatePickerElement<DatePickerProps> by DatePickerDelegate(),
         ArrowSwitcherElement<DatePickerProps> by ArrowSwitcherDelegate(),
@@ -19,7 +19,7 @@ class DatePickerElementBuilder internal constructor(
         ExportedCalendarViewElement<DatePickerProps> by ExportedCalendarViewDelegate()
 
 class MobileDatePickerElementBuilder internal constructor(
-    type: RClass<MobileDatePickerProps>, className: String?, props: MobileDatePickerProps = jsObject { }
+    type: ComponentType<MobileDatePickerProps>, className: String?, props: MobileDatePickerProps = jsObject { }
 ) : ModalWrapperElementBuilder<MobileDatePickerProps>(type, className, props),
         DatePickerElement<DatePickerProps> by DatePickerDelegate(),
         ArrowSwitcherElement<DatePickerProps> by ArrowSwitcherDelegate(),
@@ -27,7 +27,7 @@ class MobileDatePickerElementBuilder internal constructor(
         ExportedCalendarViewElement<DatePickerProps> by ExportedCalendarViewDelegate()
 
 class DesktopDatePickerElementBuilder internal constructor(
-    type: RClass<DesktopDatePickerProps>, className: String?, props: DesktopDatePickerProps = jsObject { }
+    type: ComponentType<DesktopDatePickerProps>, className: String?, props: DesktopDatePickerProps = jsObject { }
 ) : DesktopWrapperElementBuilder<DesktopDatePickerProps>(type, className, props),
         DatePickerElement<DatePickerProps> by DatePickerDelegate(),
         ArrowSwitcherElement<DatePickerProps> by ArrowSwitcherDelegate(),
@@ -35,7 +35,7 @@ class DesktopDatePickerElementBuilder internal constructor(
         ExportedCalendarViewElement<DatePickerProps> by ExportedCalendarViewDelegate()
 
 class StaticDatePickerElementBuilder internal constructor(
-    type: RClass<StaticDatePickerProps>, className: String?, props: StaticDatePickerProps = jsObject { }
+    type: ComponentType<StaticDatePickerProps>, className: String?, props: StaticDatePickerProps = jsObject { }
 ) : StaticWrapperElementBuilder<StaticDatePickerProps>(type, className, props),
         DatePickerElement<DatePickerProps> by DatePickerDelegate(),
         ArrowSwitcherElement<DatePickerProps> by ArrowSwitcherDelegate(),

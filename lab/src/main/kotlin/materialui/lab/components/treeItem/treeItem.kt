@@ -25,7 +25,7 @@ external interface TreeItemProps : StandardProps {
 }
 
 @Suppress("UnsafeCastFromDynamic")
-private val treeItemComponent: RClass<TreeItemProps> = treeItemModule.default
+private val treeItemComponent: ComponentType<TreeItemProps> = treeItemModule.default
 
 fun RBuilder.treeItem(
     vararg classMap: Pair<TreeItemStyle, String>,

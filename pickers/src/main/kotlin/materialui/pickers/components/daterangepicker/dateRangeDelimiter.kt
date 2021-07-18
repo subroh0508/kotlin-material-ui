@@ -4,8 +4,8 @@ import kotlinx.html.*
 import materialui.components.typography.TypographyElementBuilder
 import materialui.components.typography.TypographyProps
 import materialui.components.typography.enums.TypographyStyle
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 
 
 @JsModule("@material-ui/pickers")
@@ -13,7 +13,7 @@ import react.RClass
 private external val DateRangeDelimiterModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val DateRangeDelimiterComponent: RClass<TypographyProps> = DateRangeDelimiterModule.DateRangeDelimiter
+private val DateRangeDelimiterComponent: ComponentType<TypographyProps> = DateRangeDelimiterModule.DateRangeDelimiter
 
 fun RBuilder.dateRangeDelimiter(vararg classMap: Pair<TypographyStyle, String>, block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) =
     child(TypographyElementBuilder(DateRangeDelimiterComponent, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())

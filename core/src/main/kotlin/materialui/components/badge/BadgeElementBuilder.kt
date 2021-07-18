@@ -8,13 +8,13 @@ import materialui.components.badge.enums.BadgeStyle
 import materialui.components.badge.enums.BadgeVariant
 import materialui.components.getValue
 import materialui.components.setValue
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 import react.buildElement
 
 class BadgeElementBuilder<T: Tag> internal constructor(
-    type: RClass<BadgeProps>,
+    type: ComponentType<BadgeProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, BadgeProps>(type, classMap, factory) {

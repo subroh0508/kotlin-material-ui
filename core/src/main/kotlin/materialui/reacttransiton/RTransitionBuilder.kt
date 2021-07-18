@@ -4,7 +4,7 @@ import kotlinext.js.jsObject
 import react.*
 
 abstract class RTransitionBuilder<P: RProps>(
-    protected val type: RClass<P>,
+    protected val type: ComponentType<P>,
     protected val props: P = jsObject { }
 ) : RBuilderImpl() {
     fun attrs(handler: P.() -> Unit) {

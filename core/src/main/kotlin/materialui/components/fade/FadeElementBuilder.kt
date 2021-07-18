@@ -3,10 +3,10 @@ package materialui.components.fade
 import kotlinext.js.js
 import kotlinext.js.jsObject
 import materialui.reacttransiton.RTransitionBuilder
-import react.RClass
+import react.ComponentType
 
 class FadeElementBuilder internal constructor(
-    type: RClass<FadeProps>,
+    type: ComponentType<FadeProps>,
     props: FadeProps = jsObject { }
 ) : RTransitionBuilder<FadeProps>(type, props) {
 

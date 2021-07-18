@@ -8,10 +8,10 @@ import materialui.components.divider.enums.DividerStyle
 import materialui.components.divider.enums.DividerVariant
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class DividerElementBuilder<T: Tag> internal constructor(
-    type: RClass<DividerProps>,
+    type: ComponentType<DividerProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, DividerProps>(type, classMap, factory) {

@@ -7,13 +7,12 @@ import materialui.components.breadcrumbs.enums.BreadcrumbsStyle
 import materialui.components.getValue
 import materialui.components.setValue
 import org.w3c.dom.Node
+import react.ComponentType
 import react.RBuilder
-import react.RClass
-import react.ReactElement
 import react.buildElement
 
 class BreadcrumbsElementBuilder<T : Tag> internal constructor(
-    type: RClass<BreadcrumbsProps>,
+    type: ComponentType<BreadcrumbsProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, BreadcrumbsProps>(type, classMap, factory) {

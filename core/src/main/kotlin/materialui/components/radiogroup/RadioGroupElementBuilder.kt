@@ -4,10 +4,10 @@ import kotlinx.html.Tag
 import materialui.components.formgroup.FormGroupElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class RadioGroupElementBuilder internal constructor(
-    type: RClass<RadioGroupProps>,
+    type: ComponentType<RadioGroupProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : FormGroupElementBuilder<RadioGroupProps>(type, classMap.toList()) {
 

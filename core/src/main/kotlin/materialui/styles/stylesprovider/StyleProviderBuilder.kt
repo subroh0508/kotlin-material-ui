@@ -5,7 +5,7 @@ import materialui.styles.muitheme.MuiTheme
 import react.*
 
 class StyleProviderBuilder internal constructor(
-    val type: RComponent<StylesProviderProps, RState>,
+    val type: ComponentType<StylesProviderProps>,
     private val props: StylesProviderProps = jsObject { }
 ) : RBuilderImpl() {
     fun attrs(handler: StylesProviderProps.() -> Unit) {

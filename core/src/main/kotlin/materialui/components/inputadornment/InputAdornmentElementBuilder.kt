@@ -8,10 +8,10 @@ import materialui.components.inputadornment.enums.InputAdornmentPosition
 import materialui.components.inputadornment.enums.InputAdornmentStyle
 import materialui.components.inputadornment.enums.InputAdornmentVariant
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class InputAdornmentElementBuilder<T: Tag> internal constructor(
-    type: RClass<InputAdornmentProps>,
+    type: ComponentType<InputAdornmentProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, InputAdornmentProps>(type, classMap, factory){

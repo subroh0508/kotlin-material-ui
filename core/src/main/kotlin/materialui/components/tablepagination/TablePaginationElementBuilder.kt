@@ -16,7 +16,7 @@ import react.*
 import kotlin.reflect.KClass
 
 class TablePaginationElementBuilder<T: Tag> internal constructor(
-    type: RClass<TablePaginationProps>,
+    type: ComponentType<TablePaginationProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : TableCellElementBuilder<T, TablePaginationProps>(type, classMap, factory) {

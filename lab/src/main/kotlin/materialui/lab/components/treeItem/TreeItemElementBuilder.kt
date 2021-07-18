@@ -13,7 +13,7 @@ import react.dom.tag
 import kotlin.reflect.KClass
 
 class TreeItemElementBuilder<T : Tag> internal constructor(
-    type: RClass<TreeItemProps>,
+    type: ComponentType<TreeItemProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, TreeItemProps>(type, classMap, factory) {

@@ -6,13 +6,13 @@ import materialui.components.getValue
 import materialui.components.paper.PaperElementBuilder
 import materialui.components.setValue
 import materialui.components.step.enums.StepOrientation
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 import react.buildElement
 
 class StepperElementBuilder<T: Tag> internal constructor(
-    type: RClass<StepperProps>,
+    type: ComponentType<StepperProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : PaperElementBuilder<T, StepperProps>(type, classMap, factory) {

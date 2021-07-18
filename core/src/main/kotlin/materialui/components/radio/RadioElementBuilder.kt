@@ -6,10 +6,10 @@ import materialui.components.internal.SwitchBaseElementBuilder
 import materialui.components.radio.enums.RadioColor
 import materialui.components.radio.enums.RadioStyle
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class RadioElementBuilder internal constructor(
-    type: RClass<RadioProps>,
+    type: ComponentType<RadioProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : SwitchBaseElementBuilder<RadioProps>(type, classMap) {
     fun Tag.classes(vararg classMap: Pair<RadioStyle, String>) {

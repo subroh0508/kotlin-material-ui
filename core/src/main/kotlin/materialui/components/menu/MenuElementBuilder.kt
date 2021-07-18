@@ -11,12 +11,12 @@ import materialui.components.popover.PopoverElementBuilder
 import materialui.components.popover.enums.PopoverStyle
 import materialui.components.setValue
 import materialui.styles.muitheme.MuiTheme
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.RProps
 
 class MenuElementBuilder internal constructor(
-    type: RClass<MenuProps>,
+    type: ComponentType<MenuProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : PopoverElementBuilder<MenuProps>(type, classMap) {
     fun Tag.classes(vararg classMap: Pair<MenuStyle, String>) {

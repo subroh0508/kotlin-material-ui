@@ -5,8 +5,8 @@ import kotlinx.html.TagConsumer
 import kotlinx.html.UL
 import materialui.components.StandardProps
 import materialui.lab.components.timeline.enums.TimelineStyle
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 
 @JsModule("@material-ui/lab/Timeline")
 @JsNonModule
@@ -17,7 +17,7 @@ external interface TimelineProps : StandardProps {
 }
 
 @Suppress("UnsafeCastFromDynamic")
-private val timelineComponent: RClass<TimelineProps> = timelineModule.default
+private val timelineComponent: ComponentType<TimelineProps> = timelineModule.default
 
 fun RBuilder.timeline(vararg classMap: Pair<TimelineStyle, String>, block: TimelineElementBuilder<UL>.() -> Unit)
         = child(TimelineElementBuilder(timelineComponent, classMap.toList()) { UL(mapOf(), it) }.apply(block).create())

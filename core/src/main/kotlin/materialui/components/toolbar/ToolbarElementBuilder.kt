@@ -7,10 +7,10 @@ import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.toolbar.enums.ToolbarStyle
 import materialui.components.toolbar.enums.ToolbarVariant
-import react.RClass
+import react.ComponentType
 
 class ToolbarElementBuilder<T: Tag> internal constructor(
-    type: RClass<ToolbarProps>,
+    type: ComponentType<ToolbarProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, ToolbarProps>(type, classMap, factory) {

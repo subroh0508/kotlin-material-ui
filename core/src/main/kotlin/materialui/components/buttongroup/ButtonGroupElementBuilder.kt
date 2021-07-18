@@ -10,10 +10,10 @@ import materialui.components.buttongroup.enums.ButtonGroupOrientation
 import materialui.components.buttongroup.enums.ButtonGroupStyle
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class ButtonGroupElementBuilder<T: Tag> internal constructor(
-    type: RClass<ButtonGroupProps>,
+    type: ComponentType<ButtonGroupProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, ButtonGroupProps>(type, classMap, factory) {

@@ -6,10 +6,10 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.tablerow.enums.TableRowStyle
-import react.RClass
+import react.ComponentType
 
 class TableRowElementBuilder<T: Tag> internal constructor(
-    type: RClass<TableRowProps>,
+    type: ComponentType<TableRowProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, TableRowProps>(type, classMap, factory) {

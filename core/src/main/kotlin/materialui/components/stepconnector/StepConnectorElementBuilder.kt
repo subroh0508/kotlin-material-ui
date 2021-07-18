@@ -7,10 +7,10 @@ import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.step.enums.StepOrientation
 import materialui.components.stepconnector.enums.StepConnectorStyle
-import react.RClass
+import react.ComponentType
 
 class StepConnectorElementBuilder internal constructor(
-    type: RClass<StepConnectorProps>,
+    type: ComponentType<StepConnectorProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV, StepConnectorProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<StepConnectorStyle, String>) {

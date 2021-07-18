@@ -10,11 +10,11 @@ import materialui.components.getValue
 import materialui.components.setValue
 import materialui.styles.muitheme.MuiTheme
 import org.w3c.dom.events.Event
-import react.RClass
+import react.ComponentType
 import react.ReactElement
 
 class CollapseElementBuilder<T: Tag> internal constructor(
-    type: RClass<CollapseProps>,
+    type: ComponentType<CollapseProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, CollapseProps>(type, classMap, factory) {
