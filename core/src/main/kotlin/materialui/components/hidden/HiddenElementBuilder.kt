@@ -2,13 +2,10 @@ package materialui.components.hidden
 
 import kotlinext.js.jsObject
 import materialui.components.hidden.enums.HiddenWidth
-import react.RBuilder
-import react.RBuilderImpl
-import react.RClass
-import react.createElement
+import react.*
 
 class HiddenElementBuilder internal constructor(
-    val type: RClass<HiddenProps>,
+    val type: ComponentType<HiddenProps>,
     private val props: HiddenProps = jsObject { }
 ) : RBuilderImpl() {
     fun attrs(handler: HiddenProps.() -> Unit) {

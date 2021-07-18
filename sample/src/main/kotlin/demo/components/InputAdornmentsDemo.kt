@@ -21,6 +21,7 @@ import org.w3c.dom.events.Event
 import react.*
 import react.dom.attrs
 import react.dom.div
+import react.dom.setProp
 import styled.css
 import styled.styledDiv
 import styled.styledH1

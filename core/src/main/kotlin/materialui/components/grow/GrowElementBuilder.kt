@@ -3,10 +3,10 @@ package materialui.components.grow
 import kotlinext.js.js
 import kotlinext.js.jsObject
 import materialui.reacttransiton.RTransitionBuilder
-import react.RClass
+import react.ComponentType
 
 class GrowElementBuilder internal constructor(
-    type: RClass<GrowProps>
+    type: ComponentType<GrowProps>
 ) : RTransitionBuilder<GrowProps>(type, jsObject { }) {
 
     fun GrowProps.timeout(msec: Long) { timeout = msec }

@@ -9,10 +9,10 @@ import materialui.components.link.enums.LinkUnderline
 import materialui.components.setValue
 import materialui.components.typography.TypographyElementBuilder
 import materialui.components.typography.enums.TypographyStyle
-import react.RClass
+import react.ComponentType
 
 class LinkElementBuilder<T: Tag> internal constructor(
-    type: RClass<LinkProps>,
+    type: ComponentType<LinkProps>,
     classMap: List<Pair<LinkStyle, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : TypographyElementBuilder<T, LinkProps>(type, classMap, factory) {

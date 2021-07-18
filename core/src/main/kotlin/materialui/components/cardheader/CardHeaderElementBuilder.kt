@@ -14,7 +14,7 @@ import materialui.components.typography.typography
 import react.*
 
 class CardHeaderElementBuilder<T: Tag> internal constructor(
-    type: RClass<CardHeaderProps>,
+    type: ComponentType<CardHeaderProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, CardHeaderProps>(type, classMap, factory) {

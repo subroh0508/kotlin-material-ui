@@ -5,8 +5,8 @@ import materialui.pickers.components.internal.desktop.DesktopWrapperProps
 import materialui.pickers.components.internal.modal.ModalWrapperProps
 import materialui.pickers.components.internal.responsive.ResponsiveWrapperProps
 import materialui.pickers.components.internal.static.StaticWrapperProps
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 
 external interface SharedDateRangePickerProps : ExportedDateRangePickerViewProps {
     var startText: dynamic
@@ -18,7 +18,7 @@ external interface SharedDateRangePickerProps : ExportedDateRangePickerViewProps
 private external val DateRangePickerModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val DateRangePickerComponent: RClass<DateRangePickerProps> = DateRangePickerModule.DateRangePicker
+private val DateRangePickerComponent: ComponentType<DateRangePickerProps> = DateRangePickerModule.DateRangePicker
 
 external interface DateRangePickerProps : SharedDateRangePickerProps, ExportedDateRangePickerViewProps, ResponsiveWrapperProps
 
@@ -26,7 +26,7 @@ fun RBuilder.dateRangePicker(className: String? = null, block: DateRangePickerEl
     child(DateRangePickerElementBuilder(DateRangePickerComponent, className).apply(block).create())
 
 @Suppress("UnsafeCastFromDynamic")
-private val MobileDateRangePickerComponent: RClass<MobileDateRangePickerProps> = DateRangePickerModule.MobileDateRangePicker
+private val MobileDateRangePickerComponent: ComponentType<MobileDateRangePickerProps> = DateRangePickerModule.MobileDateRangePicker
 
 external interface MobileDateRangePickerProps : SharedDateRangePickerProps, ExportedDateRangePickerViewProps, ModalWrapperProps
 
@@ -34,7 +34,7 @@ fun RBuilder.mobileDateRangePicker(className: String? = null, block: MobileDateR
     child(MobileDateRangePickerElementBuilder(MobileDateRangePickerComponent, className).apply(block).create())
 
 @Suppress("UnsafeCastFromDynamic")
-private val DesktopDateRangePickerComponent: RClass<DesktopDateRangePickerProps> = DateRangePickerModule.DesktopDateRangePicker
+private val DesktopDateRangePickerComponent: ComponentType<DesktopDateRangePickerProps> = DateRangePickerModule.DesktopDateRangePicker
 
 external interface DesktopDateRangePickerProps : SharedDateRangePickerProps, ExportedDateRangePickerViewProps, DesktopWrapperProps
 
@@ -42,7 +42,7 @@ fun RBuilder.desktopDateRangePicker(className: String? = null, block: DesktopDat
     child(DesktopDateRangePickerElementBuilder(DesktopDateRangePickerComponent, className).apply(block).create())
 
 @Suppress("UnsafeCastFromDynamic")
-private val StaticDateRangePickerComponent: RClass<StaticDateRangePickerProps> = DateRangePickerModule.StaticDateRangePicker
+private val StaticDateRangePickerComponent: ComponentType<StaticDateRangePickerProps> = DateRangePickerModule.StaticDateRangePicker
 
 external interface StaticDateRangePickerProps : SharedDateRangePickerProps, ExportedDateRangePickerViewProps, StaticWrapperProps
 

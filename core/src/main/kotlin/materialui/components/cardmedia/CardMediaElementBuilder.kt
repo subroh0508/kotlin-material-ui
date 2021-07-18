@@ -6,10 +6,10 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.cardmedia.enums.CardMediaStyle
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class CardMediaElementBuilder<T: Tag> internal constructor(
-    type: RClass<CardMediaProps>,
+    type: ComponentType<CardMediaProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, CardMediaProps>(type, classMap, factory) {

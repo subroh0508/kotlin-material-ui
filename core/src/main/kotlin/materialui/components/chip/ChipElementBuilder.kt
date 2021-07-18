@@ -9,13 +9,13 @@ import materialui.components.chip.enums.ChipVariant
 import materialui.components.getValue
 import materialui.components.setValue
 import org.w3c.dom.events.Event
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 import react.buildElement
 
 class ChipElementBuilder<T: Tag> internal constructor(
-    type: RClass<ChipProps>,
+    type: ComponentType<ChipProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, ChipProps>(type, classMap, factory) {

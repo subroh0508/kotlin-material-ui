@@ -11,13 +11,14 @@ import materialui.components.listitem.enums.ListItemAlignItem
 import materialui.components.listitem.enums.ListItemStyle
 import materialui.components.setValue
 import react.Component
+import react.ComponentType
 import react.RClass
 import react.RProps
 import react.dom.RDOMBuilder
 import kotlin.reflect.KClass
 
 open class ListItemElementBuilder<T: Tag, Props: ListItemProps> internal constructor(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, Props>(type, classMap, factory) {

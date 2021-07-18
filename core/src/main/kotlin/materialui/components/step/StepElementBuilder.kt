@@ -7,13 +7,13 @@ import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.step.enums.StepOrientation
 import materialui.components.step.enums.StepStyle
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 import react.buildElement
 
 class StepElementBuilder internal constructor(
-    type: RClass<StepProps>,
+    type: ComponentType<StepProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV, StepProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<StepStyle, String>) {

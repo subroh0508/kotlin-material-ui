@@ -7,10 +7,11 @@ import materialui.components.nativeselect.enums.NativeSelectStyle
 import materialui.components.nativeselect.enums.NativeSelectVariant
 import materialui.components.setValue
 import react.*
+import react.dom.setProp
 import kotlin.reflect.KClass
 
 class NativeSelectElementBuilder internal constructor(
-    type: RClass<NativeSelectProps>,
+    type: ComponentType<NativeSelectProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : InputElementBuilder<NativeSelectProps>(type, classMap) {
     fun Tag.classes(vararg classMap: Pair<NativeSelectStyle, String>) {

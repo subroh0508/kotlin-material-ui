@@ -16,7 +16,7 @@ import react.*
 import kotlin.reflect.KClass
 
 open class ModalElementBuilder<Props: ModalProps>(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV, Props>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<ModalStyle, String>) {

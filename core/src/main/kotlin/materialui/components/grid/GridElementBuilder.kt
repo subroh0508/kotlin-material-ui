@@ -6,10 +6,10 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.grid.enums.*
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class GridElementBuilder<T: Tag> internal constructor(
-    type: RClass<GridProps>,
+    type: ComponentType<GridProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, GridProps>(type, classMap, factory) {

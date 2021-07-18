@@ -13,7 +13,7 @@ import react.*
 import kotlin.reflect.KClass
 
 class StepLabelElementBuilder internal constructor(
-    type: RClass<StepLabelProps>,
+    type: ComponentType<StepLabelProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<SPAN, StepLabelProps>(type, classMap, { SPAN(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<StepLabelStyle, String>) {

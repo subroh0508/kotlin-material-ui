@@ -4,13 +4,15 @@ import kotlinext.js.Object
 import kotlinext.js.jsObject
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import react.RClass
+import react.ComponentType
 import react.ReactElement
 import react.createElement
+import react.dom.DOMProps
 import react.dom.RDOMBuilderImpl
+import react.dom.setProp
 
 abstract class MaterialElementBuilder<T: Tag, Props: StandardProps>(
-    val type: RClass<Props>,
+    val type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : RDOMBuilderImpl<T>(factory) {
@@ -58,6 +60,7 @@ abstract class MaterialElementBuilder<T: Tag, Props: StandardProps>(
     override fun create(): ReactElement {
         Object.keys(materialProps).forEach { key -> setProp(key, materialProps[key]) }
 
-        return createElement(type, domProps, *childList.toTypedArray())
+        @Suppress("UNCHECKED_CAST", "UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+        return createElement(type as ComponentType<DOMProps>, domProps, *childList.toTypedArray())
     }
 }

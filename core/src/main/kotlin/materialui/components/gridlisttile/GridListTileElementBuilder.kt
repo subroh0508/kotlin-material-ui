@@ -6,10 +6,10 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.gridlisttile.enums.GridListTitleStyle
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class GridListTileElementBuilder<T: Tag> internal constructor(
-    type: RClass<GridListTileProps>,
+    type: ComponentType<GridListTileProps>,
     classMap: List<Pair<GridListTitleStyle, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, GridListTileProps>(type, classMap, factory) {

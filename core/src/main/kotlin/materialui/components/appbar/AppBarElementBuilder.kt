@@ -8,10 +8,10 @@ import materialui.components.appbar.enums.AppBarStyle
 import materialui.components.getValue
 import materialui.components.paper.PaperElementBuilder
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class AppBarElementBuilder<T: Tag> internal constructor(
-    type: RClass<AppBarProps>,
+    type: ComponentType<AppBarProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : PaperElementBuilder<T, AppBarProps>(type, classMap, factory) {

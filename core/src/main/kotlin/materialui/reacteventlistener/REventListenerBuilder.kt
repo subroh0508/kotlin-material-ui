@@ -4,7 +4,7 @@ import kotlinext.js.jsObject
 import react.*
 
 abstract class REventListenerBuilder<Props: RProps> internal constructor(
-    val type: RClass<Props>,
+    val type: ComponentType<Props>,
     protected val props: Props = jsObject { }
 ) : RBuilderImpl() {
     fun attrs(handler: Props.() -> Unit) {

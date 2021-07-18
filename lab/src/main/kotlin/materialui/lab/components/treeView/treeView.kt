@@ -6,8 +6,8 @@ import kotlinx.html.UL
 import materialui.components.StandardProps
 import materialui.lab.components.treeView.enums.TreeViewStyle
 import org.w3c.dom.events.Event
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 
 @JsModule("@material-ui/lab/TreeView")
@@ -29,7 +29,7 @@ external interface TreeViewProps : StandardProps {
 }
 
 @Suppress("UnsafeCastFromDynamic")
-private val treeViewComponent: RClass<TreeViewProps> = treeViewModule.default
+private val treeViewComponent: ComponentType<TreeViewProps> = treeViewModule.default
 
 fun RBuilder.treeView(
     vararg classMap: Pair<TreeViewStyle, String>,

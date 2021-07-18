@@ -7,12 +7,13 @@ import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.tablesortlabel.enums.TableSortLabelDirection
 import react.Component
+import react.ComponentType
 import react.RClass
 import react.RProps
 import kotlin.reflect.KClass
 
 class TableSortLabelElementBuilder<T: Tag> internal constructor(
-    type: RClass<TableSortLabelProps>,
+    type: ComponentType<TableSortLabelProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, TableSortLabelProps>(type, classMap, factory) {

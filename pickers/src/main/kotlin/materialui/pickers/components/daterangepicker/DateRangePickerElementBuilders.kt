@@ -8,10 +8,10 @@ import materialui.pickers.components.internal.desktop.DesktopWrapperElementBuild
 import materialui.pickers.components.internal.modal.ModalWrapperElementBuilder
 import materialui.pickers.components.internal.responsive.ResponsiveWrapperElementBuilder
 import materialui.pickers.components.internal.static.StaticWrapperElementBuilder
-import react.RClass
+import react.ComponentType
 
 class DateRangePickerElementBuilder internal constructor(
-    type: RClass<DateRangePickerProps>, className: String?, props: DateRangePickerProps = jsObject { }
+    type: ComponentType<DateRangePickerProps>, className: String?, props: DateRangePickerProps = jsObject { }
 ) : ResponsiveWrapperElementBuilder<DateRangePickerProps>(type, className, props),
     SharedDateRangePickerElement<DateRangePickerProps> by DateRangePickerDelegate(),
     ArrowSwitcherElement<DateRangePickerProps> by ArrowSwitcherDelegate(),
@@ -19,7 +19,7 @@ class DateRangePickerElementBuilder internal constructor(
     ExportedCalendarElement<DateRangePickerProps> by ExportedCalendarDelegate()
 
 class MobileDateRangePickerElementBuilder internal constructor(
-    type: RClass<MobileDateRangePickerProps>, className: String?, props: MobileDateRangePickerProps = jsObject { }
+    type: ComponentType<MobileDateRangePickerProps>, className: String?, props: MobileDateRangePickerProps = jsObject { }
 ) : ModalWrapperElementBuilder<MobileDateRangePickerProps>(type, className, props),
     SharedDateRangePickerElement<MobileDateRangePickerProps> by DateRangePickerDelegate(),
     ArrowSwitcherElement<MobileDateRangePickerProps> by ArrowSwitcherDelegate(),
@@ -27,7 +27,7 @@ class MobileDateRangePickerElementBuilder internal constructor(
     ExportedCalendarElement<MobileDateRangePickerProps> by ExportedCalendarDelegate()
 
 class DesktopDateRangePickerElementBuilder internal constructor(
-    type: RClass<DesktopDateRangePickerProps>, className: String?, props: DesktopDateRangePickerProps = jsObject { }
+    type: ComponentType<DesktopDateRangePickerProps>, className: String?, props: DesktopDateRangePickerProps = jsObject { }
 ) : DesktopWrapperElementBuilder<DesktopDateRangePickerProps>(type, className, props),
     SharedDateRangePickerElement<DesktopDateRangePickerProps> by DateRangePickerDelegate(),
     ArrowSwitcherElement<DesktopDateRangePickerProps> by ArrowSwitcherDelegate(),
@@ -36,7 +36,7 @@ class DesktopDateRangePickerElementBuilder internal constructor(
 
 
 class StaticDateRangePickerElementBuilder internal constructor(
-    type: RClass<StaticDateRangePickerProps>, className: String?, props: StaticDateRangePickerProps = jsObject { }
+    type: ComponentType<StaticDateRangePickerProps>, className: String?, props: StaticDateRangePickerProps = jsObject { }
 ) : StaticWrapperElementBuilder<StaticDateRangePickerProps>(type, className, props),
     SharedDateRangePickerElement<StaticDateRangePickerProps> by DateRangePickerDelegate(),
     ArrowSwitcherElement<StaticDateRangePickerProps> by ArrowSwitcherDelegate(),

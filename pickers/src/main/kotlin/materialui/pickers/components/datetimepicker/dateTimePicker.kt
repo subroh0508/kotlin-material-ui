@@ -7,8 +7,8 @@ import materialui.pickers.components.internal.desktop.DesktopWrapperProps
 import materialui.pickers.components.internal.modal.ModalWrapperProps
 import materialui.pickers.components.internal.responsive.ResponsiveWrapperProps
 import materialui.pickers.components.internal.static.StaticWrapperProps
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 
 external interface SharedDateTimePickerProps : ExportedCalendarViewProps, ExportedClockViewProps, WithViewProps {
     var minDateTime: dynamic
@@ -20,7 +20,7 @@ external interface SharedDateTimePickerProps : ExportedCalendarViewProps, Export
 private external val DateTimePickerModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val DateTimePickerComponent: RClass<DateTimePickerProps> = DateTimePickerModule.DateTimePicker
+private val DateTimePickerComponent: ComponentType<DateTimePickerProps> = DateTimePickerModule.DateTimePicker
 
 external interface DateTimePickerProps : SharedDateTimePickerProps, ExportedCalendarViewProps, ExportedClockViewProps, WithViewProps, ResponsiveWrapperProps
 
@@ -28,7 +28,7 @@ fun RBuilder.dateTimePicker(className: String? = null, block: DateTimePickerElem
         child(DateTimePickerElementBuilder(DateTimePickerComponent, className).apply(block).create())
 
 @Suppress("UnsafeCastFromDynamic")
-private val MobileDateTimePickerComponent: RClass<MobileDateTimePickerProps> = DateTimePickerModule.MobileDateTimePicker
+private val MobileDateTimePickerComponent: ComponentType<MobileDateTimePickerProps> = DateTimePickerModule.MobileDateTimePicker
 
 external interface MobileDateTimePickerProps : SharedDateTimePickerProps, ExportedCalendarViewProps, ExportedClockViewProps, WithViewProps, ModalWrapperProps
 
@@ -36,7 +36,7 @@ fun RBuilder.mobileDateTimePicker(className: String? = null, block: MobileDateTi
         child(MobileDateTimePickerElementBuilder(MobileDateTimePickerComponent, className).apply(block).create())
 
 @Suppress("UnsafeCastFromDynamic")
-private val DesktopDateTimePickerComponent: RClass<DesktopDateTimePickerProps> = DateTimePickerModule.DesktopDateTimePicker
+private val DesktopDateTimePickerComponent: ComponentType<DesktopDateTimePickerProps> = DateTimePickerModule.DesktopDateTimePicker
 
 external interface DesktopDateTimePickerProps : SharedDateTimePickerProps, ExportedCalendarViewProps, ExportedClockViewProps, WithViewProps, DesktopWrapperProps
 
@@ -44,7 +44,7 @@ fun RBuilder.desktopDateTimePicker(className: String? = null, block: DesktopDate
         child(DesktopDateTimePickerElementBuilder(DesktopDateTimePickerComponent, className).apply(block).create())
 
 @Suppress("UnsafeCastFromDynamic")
-private val StaticDateTimePickerComponent: RClass<StaticDateTimePickerProps> = DateTimePickerModule.StaticDateTimePicker
+private val StaticDateTimePickerComponent: ComponentType<StaticDateTimePickerProps> = DateTimePickerModule.StaticDateTimePicker
 
 external interface StaticDateTimePickerProps : SharedDateTimePickerProps, ExportedCalendarViewProps, ExportedClockViewProps, WithViewProps, StaticWrapperProps
 

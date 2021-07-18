@@ -5,8 +5,8 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.lab.components.skeleton.enums.SkeletonStyle
 import materialui.components.buttonbase.ButtonBaseProps
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 
 @JsModule("@material-ui/lab/Skeleton")
 @JsNonModule
@@ -20,7 +20,7 @@ external interface SkeletonProps : ButtonBaseProps {
 }
 
 @Suppress("UnsafeCastFromDynamic")
-private val skeletonComponent: RClass<SkeletonProps> = skeletonModule.default
+private val skeletonComponent: ComponentType<SkeletonProps> = skeletonModule.default
 
 fun RBuilder.skeleton(vararg classMap: Pair<SkeletonStyle, String>, block: SkeletonElementBuilder<SPAN>.() -> Unit)
     = child(SkeletonElementBuilder(skeletonComponent, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())

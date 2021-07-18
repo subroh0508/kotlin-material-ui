@@ -5,10 +5,10 @@ import kotlinx.html.TagConsumer
 import materialui.components.getValue
 import materialui.components.paper.PaperElementBuilder
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class CardElementBuilder<T: Tag> internal constructor(
-    type: RClass<CardProps>,
+    type: ComponentType<CardProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : PaperElementBuilder<T, CardProps>(type, classMap, factory) {

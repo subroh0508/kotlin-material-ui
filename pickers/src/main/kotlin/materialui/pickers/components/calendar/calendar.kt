@@ -2,8 +2,8 @@ package materialui.pickers.components.calendar
 
 import materialui.pickers.components.ExportedArrowSwitcherProps
 import materialui.pickers.components.ExportedCalendarProps
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.dom.WithClassName
 
 @JsModule("@material-ui/pickers")
@@ -11,7 +11,7 @@ import react.dom.WithClassName
 private external val CalendarModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val CalendarComponent: RClass<CalendarProps> = CalendarModule.Calendar
+private val CalendarComponent: ComponentType<CalendarProps> = CalendarModule.Calendar
 
 external interface CalendarProps : ExportedCalendarProps, ExportedArrowSwitcherProps, WithClassName {
     var date: dynamic

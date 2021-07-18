@@ -9,7 +9,7 @@ import react.*
 import kotlin.reflect.KClass
 
 class TooltipElementBuilder internal constructor(
-    private val type: RClass<TooltipProps>,
+    private val type: ComponentType<TooltipProps>,
     classMap: List<Pair<Enum<*>, String>>,
     private val props: TooltipProps = jsObject { }
 ) : RBuilderImpl() {

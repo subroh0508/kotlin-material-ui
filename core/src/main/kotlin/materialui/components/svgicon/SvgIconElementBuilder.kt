@@ -9,10 +9,10 @@ import materialui.components.setValue
 import materialui.components.svgicon.enums.SvgIconColor
 import materialui.components.svgicon.enums.SvgIconFontSize
 import materialui.components.svgicon.enums.SvgIconStyle
-import react.RClass
+import react.ComponentType
 
 class SvgIconElementBuilder<T: Tag> internal constructor(
-    type: RClass<SvgIconProps>,
+    type: ComponentType<SvgIconProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, SvgIconProps>(type, classMap, factory) {

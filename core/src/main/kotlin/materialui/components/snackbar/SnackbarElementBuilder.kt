@@ -19,7 +19,7 @@ import react.*
 import kotlin.reflect.KClass
 
 class SnackbarElementBuilder internal constructor(
-    type: RClass<SnackbarProps>,
+    type: ComponentType<SnackbarProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV, SnackbarProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<SnackbarStyle, String>) {

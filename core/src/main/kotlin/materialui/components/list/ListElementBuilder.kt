@@ -6,13 +6,13 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.list.enums.ListStyle
 import materialui.components.setValue
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 import react.buildElement
 
 open class ListElementBuilder<T: Tag, Props: ListProps> internal constructor(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, Props>(type, classMap, factory) {

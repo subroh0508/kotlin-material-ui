@@ -2,9 +2,8 @@ package materialui.pickers.components.clockview
 
 import materialui.pickers.components.ExportedArrowSwitcherProps
 import materialui.pickers.components.ExportedClockViewProps
-import materialui.pickers.components.calendar.CalendarElementBuilder
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.dom.WithClassName
 
 @JsModule("@material-ui/pickers")
@@ -12,7 +11,7 @@ import react.dom.WithClassName
 private external val ClockViewModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val ClockViewComponent: RClass<ClockViewProps> = ClockViewModule.ClockView
+private val ClockViewComponent: ComponentType<ClockViewProps> = ClockViewModule.ClockView
 
 external interface ClockViewProps : ExportedClockViewProps, ExportedArrowSwitcherProps, WithClassName {
     var date: Any?
