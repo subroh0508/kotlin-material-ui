@@ -1,31 +1,23 @@
 @Suppress("unused")
 object Libraries {
-    object Plugin {
-        const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.version}"
-    }
+    class JsWrappers(kotlinVersion: String) {
+        private val wrappersBuild = "pre.218-kotlin-$kotlinVersion"
 
-    object Kotlin {
-        const val version = "1.5.21"
-        const val wrappersBuild = "pre.218-kotlin-$version"
+        private val reactVersion = "${Npm.react}-$wrappersBuild"
+        val react = "org.jetbrains.kotlin-wrappers:kotlin-react:$reactVersion"
+        val reactDom = "org.jetbrains.kotlin-wrappers:kotlin-react-dom:$reactVersion"
 
-        const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
-        const val jsTest = "org.jetbrains.kotlin:kotlin-test-js:$version"
+        private val htmlVersion = "0.7.3"
+        val html = "org.jetbrains.kotlinx:kotlinx-html-js:$htmlVersion"
 
-        const val reactVersion = "${Npm.react}-$wrappersBuild"
-        const val react = "org.jetbrains.kotlin-wrappers:kotlin-react:$reactVersion"
-        const val reactDom = "org.jetbrains.kotlin-wrappers:kotlin-react-dom:$reactVersion"
+        private val cssVersion = "1.0.0-$wrappersBuild"
+        val css = "org.jetbrains.kotlin-wrappers:kotlin-css-js:$cssVersion"
 
-        const val htmlVersion = "0.7.3"
-        const val html = "org.jetbrains.kotlinx:kotlinx-html-js:$htmlVersion"
+        private val styledVersion = "${Npm.styledComponent}-$wrappersBuild"
+        val styled = "org.jetbrains.kotlin-wrappers:kotlin-styled:$styledVersion"
 
-        const val cssVersion = "1.0.0-$wrappersBuild"
-        const val css = "org.jetbrains.kotlin-wrappers:kotlin-css-js:$cssVersion"
-
-        const val styledVersion = "${Npm.styledComponent}-$wrappersBuild"
-        const val styled = "org.jetbrains.kotlin-wrappers:kotlin-styled:$styledVersion"
-
-        const val extensionsVersion = "1.0.1-$wrappersBuild"
-        const val extensions = "org.jetbrains.kotlin-wrappers:kotlin-extensions:$extensionsVersion"
+        private val extensionsVersion = "1.0.1-$wrappersBuild"
+        val extensions = "org.jetbrains.kotlin-wrappers:kotlin-extensions:$extensionsVersion"
     }
 
     object Npm {

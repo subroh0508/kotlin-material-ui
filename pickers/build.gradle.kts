@@ -9,15 +9,18 @@ plugins {
 dependencies {
     api(project(":core"))
     api(project(":pickers:date-io"))
-    api(Libraries.Kotlin.html)
-    api(Libraries.Kotlin.react)
-    api(Libraries.Kotlin.reactDom)
-    api(Libraries.Kotlin.css)
-    api(Libraries.Kotlin.extensions)
+
+    val wrappers = Libraries.JsWrappers(kotlinVersion)
+    api(wrappers.html)
+    api(wrappers.react)
+    api(wrappers.reactDom)
+    api(wrappers.css)
+    api(wrappers.extensions)
+
     api(npm("react", Libraries.Npm.react))
     api(npm("react-dom", Libraries.Npm.react))
     api(npm("@material-ui/core", Libraries.Npm.MaterialUi.core))
     api(npm("@material-ui/pickers", Libraries.Npm.MaterialUi.pickers))
 
-    testImplementation(Libraries.Kotlin.jsTest)
+    testImplementation(kotlinTestJs)
 }
