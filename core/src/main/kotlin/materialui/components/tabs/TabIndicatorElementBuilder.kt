@@ -7,6 +7,7 @@ import kotlinx.html.Tag
 import materialui.components.tabs.enums.TabsIndicatorColor
 import materialui.styles.toDynamic
 import react.dom.RDOMBuilderImpl
+import react.dom.setProp
 
 class TabIndicatorElementBuilder internal constructor() : RDOMBuilderImpl<SPAN>({ SPAN(mapOf(), it) }) {
     var Tag.color: TabsIndicatorColor?

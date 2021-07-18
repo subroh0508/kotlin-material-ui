@@ -11,11 +11,11 @@ import materialui.components.getValue
 import materialui.components.setValue
 import materialui.styles.muitheme.MuiTheme
 import org.w3c.dom.events.Event
-import react.RClass
+import react.ComponentType
 import react.RProps
 
 open class DrawerElementBuilder<Props: DrawerProps> internal constructor(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV,Props>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<DrawerStyle, String>) {

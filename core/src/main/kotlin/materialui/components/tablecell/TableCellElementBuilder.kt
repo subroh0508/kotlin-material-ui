@@ -6,10 +6,10 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.tablecell.enums.*
-import react.RClass
+import react.ComponentType
 
 open class TableCellElementBuilder<T: Tag, Props: TableCellProps> internal constructor(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, Props>(type, classMap, factory) {

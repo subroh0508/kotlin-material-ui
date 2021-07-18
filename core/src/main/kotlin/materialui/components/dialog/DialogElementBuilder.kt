@@ -19,7 +19,7 @@ import react.*
 import kotlin.reflect.KClass
 
 class DialogElementBuilder internal constructor(
-    type: RClass<DialogProps>,
+    type: ComponentType<DialogProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : ModalElementBuilder<DialogProps>(type, classMap) {
     fun Tag.classes(vararg classMap: Pair<DialogStyle, String>) {

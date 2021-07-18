@@ -5,8 +5,8 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.StandardProps
 import materialui.lab.components.timelinedot.enums.TimelineDotStyle
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 
 
 @JsModule("@material-ui/lab/TimelineDot")
@@ -19,7 +19,7 @@ external interface TimelineDotProps : StandardProps {
 }
 
 @Suppress("UnsafeCastFromDynamic")
-private val timelineDotComponent: RClass<TimelineDotProps> = timelineDotModule.default
+private val timelineDotComponent: ComponentType<TimelineDotProps> = timelineDotModule.default
 
 fun RBuilder.timelineDot(vararg classMap: Pair<TimelineDotStyle, String>, block: TimelineDotElementBuilder<SPAN>.() -> Unit)
         = child(TimelineDotElementBuilder(timelineDotComponent, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())

@@ -8,13 +8,10 @@ import materialui.components.gridlisttilebar.enums.GridListTileBarActionPosition
 import materialui.components.gridlisttilebar.enums.GridListTileBarTitlePosition
 import materialui.components.gridlisttilebar.enums.GridListTileBarStyle
 import materialui.components.setValue
-import react.RBuilder
-import react.RClass
-import react.ReactElement
-import react.buildElement
+import react.*
 
 class GridListTileBarElementBuilder internal constructor(
-    type: RClass<GridListTileBarProps>,
+    type: ComponentType<GridListTileBarProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV, GridListTileBarProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<GridListTileBarStyle, String>) {

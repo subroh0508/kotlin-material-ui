@@ -8,10 +8,10 @@ import materialui.lab.components.skeleton.enums.SkeletonStyle
 import materialui.lab.components.skeleton.enums.SkeletonVariant
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class SkeletonElementBuilder<T: Tag> internal constructor(
-    type: RClass<SkeletonProps>,
+    type: ComponentType<SkeletonProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, SkeletonProps>(type, classMap, factory) {

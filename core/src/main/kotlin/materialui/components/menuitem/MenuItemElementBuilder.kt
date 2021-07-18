@@ -4,10 +4,10 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.listitem.ListItemElementBuilder
 import materialui.components.menuitem.enums.MenuItemStyle
-import react.RClass
+import react.ComponentType
 
 class MenuItemElementBuilder<T: Tag> internal constructor(
-    type: RClass<MenuItemProps>,
+    type: ComponentType<MenuItemProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : ListItemElementBuilder<T, MenuItemProps>(type, classMap, factory) {

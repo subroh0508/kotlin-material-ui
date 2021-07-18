@@ -6,10 +6,10 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.paper.enums.PaperStyle
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 open class PaperElementBuilder<T: Tag, Props: PaperProps>(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, Props>(type, classMap, factory) {

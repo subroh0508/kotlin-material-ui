@@ -16,7 +16,7 @@ import kotlin.js.Date
 import kotlin.reflect.KClass
 
 abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constructor(
-    private val type: RClass<Props>,
+    private val type: ComponentType<Props>,
     className: String?,
     props: Props = jsObject { }
 ) : RElementBuilderImpl<Props>(props) {

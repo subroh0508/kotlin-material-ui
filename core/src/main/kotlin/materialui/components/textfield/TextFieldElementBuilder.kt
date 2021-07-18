@@ -18,10 +18,11 @@ import materialui.components.set
 import materialui.components.setValue
 import materialui.components.textfield.enums.TextFieldSize
 import react.*
+import react.dom.setProp
 import kotlin.js.Date
 
 class TextFieldElementBuilder<T: Tag> internal constructor(
-    type: RClass<TextFieldProps>,
+    type: ComponentType<TextFieldProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : FormControlElementBuilder<T, TextFieldProps>(type, classMap, factory) {

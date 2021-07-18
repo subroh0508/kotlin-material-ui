@@ -9,11 +9,11 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.avatar.enum.AvatarStyle
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 import react.RProps
 
 class AvatarElementBuilder<T: Tag> internal constructor(
-    type: RClass<AvatarProps>,
+    type: ComponentType<AvatarProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, AvatarProps>(type, classMap, factory) {

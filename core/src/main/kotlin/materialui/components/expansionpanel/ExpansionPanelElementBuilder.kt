@@ -8,11 +8,11 @@ import materialui.components.getValue
 import materialui.components.paper.PaperElementBuilder
 import materialui.components.setValue
 import org.w3c.dom.events.Event
-import react.RClass
+import react.ComponentType
 import react.RProps
 
 class ExpansionPanelElementBuilder<T: Tag> internal constructor(
-    type: RClass<ExpansionPanelProps>,
+    type: ComponentType<ExpansionPanelProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : PaperElementBuilder<T, ExpansionPanelProps>(type, classMap, factory) {

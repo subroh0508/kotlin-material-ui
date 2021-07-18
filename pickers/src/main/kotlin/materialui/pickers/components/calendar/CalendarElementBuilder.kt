@@ -5,7 +5,7 @@ import materialui.components.slide.enums.SlideDirection
 import react.*
 
 class CalendarElementBuilder internal constructor(
-    private val type: RClass<CalendarProps>, className: String?, props: CalendarProps = jsObject { }
+    private val type: ComponentType<CalendarProps>, className: String?, props: CalendarProps = jsObject { }
 ) : RElementBuilderImpl<CalendarProps>(props),
         ArrowSwitcherElement<CalendarProps> by ArrowSwitcherDelegate(),
         ExportedCalendarElement<CalendarProps> by ExportedCalendarDelegate()

@@ -20,7 +20,7 @@ import kotlin.js.Date
 import kotlin.reflect.KClass
 
 open class InputBaseElementBuilder<Props: InputBaseProps> internal constructor(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV, Props>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<InputBaseStyle, String>) {

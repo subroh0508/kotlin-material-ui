@@ -7,10 +7,10 @@ import materialui.components.container.enums.ContainerMaxWidth
 import materialui.components.container.enums.ContainerStyle
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class ContainerElementBuilder<T: Tag> internal constructor(
-    type: RClass<ContainerProps>,
+    type: ComponentType<ContainerProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, ContainerProps>(type, classMap, factory) {

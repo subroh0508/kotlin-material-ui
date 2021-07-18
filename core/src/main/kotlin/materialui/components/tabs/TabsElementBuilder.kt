@@ -8,14 +8,11 @@ import materialui.components.setValue
 import materialui.components.tabs.enums.*
 import materialui.styles.muitheme.MuiTheme
 import org.w3c.dom.events.Event
-import react.Component
-import react.RBuilder
-import react.RClass
-import react.RProps
+import react.*
 import kotlin.reflect.KClass
 
 class TabsElementBuilder<T: Tag> internal constructor(
-    type: RClass<TabsProps>,
+    type: ComponentType<TabsProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, TabsProps>(type, classMap, factory) {

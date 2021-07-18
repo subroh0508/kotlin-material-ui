@@ -4,8 +4,8 @@ import kotlinx.html.BUTTON
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.buttonbase.ButtonBaseProps
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 
 external interface DayProps : ButtonBaseProps {
     var day: dynamic
@@ -28,7 +28,7 @@ external interface DayProps : ButtonBaseProps {
 private external val DayModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val DayComponent: RClass<DayProps> = DayModule.Day
+private val DayComponent: ComponentType<DayProps> = DayModule.Day
 
 fun RBuilder.day(className: String? = null, block: DayElementBuilder<BUTTON>.() -> Unit) =
     child(DayElementBuilder(DayComponent, className) { BUTTON(mapOf(), it) }.apply(block).create())

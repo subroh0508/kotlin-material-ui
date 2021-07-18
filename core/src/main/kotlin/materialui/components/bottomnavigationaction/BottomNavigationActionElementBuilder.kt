@@ -6,13 +6,13 @@ import materialui.components.buttonbase.ButtonBaseElementBuilder
 import materialui.components.buttonbase.enums.ButtonBaseStyle
 import materialui.components.getValue
 import materialui.components.setValue
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 import react.buildElement
 
 class BottomNavigationActionElementBuilder<T: Tag> internal constructor(
-    type: RClass<BottomNavigationActionProps>,
+    type: ComponentType<BottomNavigationActionProps>,
     classMap: List<Pair<ButtonBaseStyle, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, BottomNavigationActionProps>(type, classMap, factory) {

@@ -12,7 +12,7 @@ import materialui.components.setValue
 import react.*
 
 class ExpansionPanelSummaryElementBuilder<T: Tag> internal constructor(
-    type: RClass<ExpansionPanelSummaryProps>,
+    type: ComponentType<ExpansionPanelSummaryProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, ExpansionPanelSummaryProps>(type, classMap, factory) {

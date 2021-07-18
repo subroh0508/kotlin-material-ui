@@ -11,10 +11,10 @@ import materialui.pickers.components.internal.responsive.ResponsiveWrapperElemen
 import materialui.pickers.components.internal.static.StaticWrapperElementBuilder
 import materialui.pickers.components.timepicker.TimeValidationDelegate
 import materialui.pickers.components.timepicker.TimeValidationElement
-import react.RClass
+import react.ComponentType
 
 class DateTimePickerElementBuilder internal constructor(
-    type: RClass<DateTimePickerProps>, className: String?, props: DateTimePickerProps = jsObject { }
+    type: ComponentType<DateTimePickerProps>, className: String?, props: DateTimePickerProps = jsObject { }
 ) : ResponsiveWrapperElementBuilder<DateTimePickerProps>(type, className, props),
     DateTimePickerElement<DateTimePickerProps> by DateTimePickerDelegate(),
     ArrowSwitcherElement<DateTimePickerProps> by ArrowSwitcherDelegate(),
@@ -23,7 +23,7 @@ class DateTimePickerElementBuilder internal constructor(
     TimeValidationElement<DateTimePickerProps> by TimeValidationDelegate()
 
 class MobileDateTimePickerElementBuilder internal constructor(
-    type: RClass<MobileDateTimePickerProps>, className: String?, props: MobileDateTimePickerProps = jsObject { }
+    type: ComponentType<MobileDateTimePickerProps>, className: String?, props: MobileDateTimePickerProps = jsObject { }
 ) : ModalWrapperElementBuilder<MobileDateTimePickerProps>(type, className, props),
     DateTimePickerElement<DateTimePickerProps> by DateTimePickerDelegate(),
     ArrowSwitcherElement<DateTimePickerProps> by ArrowSwitcherDelegate(),
@@ -32,7 +32,7 @@ class MobileDateTimePickerElementBuilder internal constructor(
     TimeValidationElement<DateTimePickerProps> by TimeValidationDelegate()
 
 class DesktopDateTimePickerElementBuilder internal constructor(
-    type: RClass<DesktopDateTimePickerProps>, className: String?, props: DesktopDateTimePickerProps = jsObject { }
+    type: ComponentType<DesktopDateTimePickerProps>, className: String?, props: DesktopDateTimePickerProps = jsObject { }
 ) : DesktopWrapperElementBuilder<DesktopDateTimePickerProps>(type, className, props),
     DateTimePickerElement<DateTimePickerProps> by DateTimePickerDelegate(),
     ArrowSwitcherElement<DateTimePickerProps> by ArrowSwitcherDelegate(),
@@ -41,7 +41,7 @@ class DesktopDateTimePickerElementBuilder internal constructor(
     TimeValidationElement<DateTimePickerProps> by TimeValidationDelegate()
 
 class StaticDateTimePickerElementBuilder internal constructor(
-    type: RClass<StaticDateTimePickerProps>, className: String?, props: StaticDateTimePickerProps = jsObject { }
+    type: ComponentType<StaticDateTimePickerProps>, className: String?, props: StaticDateTimePickerProps = jsObject { }
 ) : StaticWrapperElementBuilder<StaticDateTimePickerProps>(type, className, props),
     DateTimePickerElement<DateTimePickerProps> by DateTimePickerDelegate(),
     ArrowSwitcherElement<DateTimePickerProps> by ArrowSwitcherDelegate(),

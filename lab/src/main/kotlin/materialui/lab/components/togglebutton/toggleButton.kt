@@ -5,8 +5,8 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.buttonbase.ButtonBaseProps
 import materialui.lab.components.togglebutton.enums.ToggleButtonStyle
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 
 @JsModule("@material-ui/lab/ToggleButton")
 @JsNonModule
@@ -21,7 +21,7 @@ external interface ToggleButtonProps : ButtonBaseProps {
 }
 
 @Suppress("UnsafeCastFromDynamic")
-private val toggleButtonComponent: RClass<ToggleButtonProps> = toggleButtonModule.default
+private val toggleButtonComponent: ComponentType<ToggleButtonProps> = toggleButtonModule.default
 
 fun RBuilder.toggleButton(vararg classMap: Pair<ToggleButtonStyle, String>, block: ToggleButtonElementBuilder<BUTTON>.() -> Unit)
     = child(ToggleButtonElementBuilder(toggleButtonComponent, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())

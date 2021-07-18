@@ -8,10 +8,10 @@ import materialui.components.linearprogress.enums.LinearProgressColor
 import materialui.components.linearprogress.enums.LinearProgressStyle
 import materialui.components.linearprogress.enums.LinearProgressVariant
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class LinearProgressElementBuilder internal constructor(
-    type: RClass<LinearProgressProps>,
+    type: ComponentType<LinearProgressProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV, LinearProgressProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<LinearProgressStyle, String>) {

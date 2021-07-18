@@ -7,13 +7,13 @@ import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.tab.enums.TabStyle
 import materialui.components.tab.enums.TabTextColor
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 import react.buildElement
 
 class TabElementBuilder<T: Tag> internal constructor(
-    type: RClass<TabProps>,
+    type: ComponentType<TabProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, TabProps>(type, classMap, factory) {

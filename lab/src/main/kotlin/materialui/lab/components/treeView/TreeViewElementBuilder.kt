@@ -7,13 +7,13 @@ import materialui.components.getValue
 import materialui.components.setValue
 import materialui.lab.components.treeView.enums.TreeViewStyle
 import org.w3c.dom.events.Event
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 import react.buildElement
 
 abstract class TreeViewElementBuilder<T : Tag> internal constructor(
-    type: RClass<TreeViewProps>,
+    type: ComponentType<TreeViewProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T,
     multiSelect: Boolean
@@ -51,7 +51,7 @@ abstract class TreeViewElementBuilder<T : Tag> internal constructor(
 }
 
 class SingleSelectTreeViewElementBuilder<T : Tag> internal constructor(
-    type: RClass<TreeViewProps>,
+    type: ComponentType<TreeViewProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : TreeViewElementBuilder<T>(type, classMap, factory, false) {
@@ -61,7 +61,7 @@ class SingleSelectTreeViewElementBuilder<T : Tag> internal constructor(
 }
 
 class MultiSelectTreeViewElementBuilder<T : Tag> internal constructor(
-    type: RClass<TreeViewProps>,
+    type: ComponentType<TreeViewProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : TreeViewElementBuilder<T>(type, classMap, factory, true) {

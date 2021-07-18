@@ -8,10 +8,10 @@ import materialui.components.formhelpertext.enums.FormHelperTextStyle
 import materialui.components.formhelpertext.enums.FormHelperTextVariant
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class FormHelperTextElementBuilder<T: Tag> internal constructor(
-    type: RClass<FormHelperTextProps>,
+    type: ComponentType<FormHelperTextProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, FormHelperTextProps>(type, classMap, factory) {

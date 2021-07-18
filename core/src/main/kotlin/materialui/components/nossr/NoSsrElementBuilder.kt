@@ -4,7 +4,7 @@ import kotlinext.js.jsObject
 import react.*
 
 class NoSsrElementBuilder internal constructor(
-    val type: RClass<NoSsrProps>,
+    val type: ComponentType<NoSsrProps>,
     private val props: NoSsrProps = jsObject { }
 ) : RBuilderImpl() {
     fun attrs(handler: NoSsrProps.() -> Unit) {

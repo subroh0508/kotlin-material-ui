@@ -4,13 +4,12 @@ import kotlinext.js.jsObject
 import materialui.pickers.components.calendar.*
 import materialui.pickers.components.calendar.ArrowSwitcherDelegate
 import materialui.pickers.components.timepicker.enum.TimePickerView
-import react.RClass
-import react.RElementBuilder
+import react.ComponentType
 import react.RElementBuilderImpl
 import react.createElement
 
 class ClockViewElementBuilder internal constructor(
-    private val type: RClass<ClockViewProps>, className: String?, props: ClockViewProps = jsObject { }
+    private val type: ComponentType<ClockViewProps>, className: String?, props: ClockViewProps = jsObject { }
 ) : RElementBuilderImpl<ClockViewProps>(props),
     ArrowSwitcherElement<ClockViewProps> by ArrowSwitcherDelegate()
 {

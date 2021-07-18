@@ -9,13 +9,13 @@ import materialui.components.typography.TypographyElementBuilder
 import materialui.components.typography.TypographyProps
 import materialui.components.typography.typography
 import materialui.styles.muitheme.MuiTheme
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.RProps
 import react.ReactElement
 
 class ListItemTextElementBuilder internal constructor(
-    type: RClass<ListItemTextProps>,
+    type: ComponentType<ListItemTextProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV, ListItemTextProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<ListItemTextStyle, String>) {
