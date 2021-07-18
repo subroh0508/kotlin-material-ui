@@ -1,5 +1,5 @@
-group = Packages.group
-version = Packages.version
+group = groupId
+version = libraryVersion
 
 plugins {
     kotlin("js")

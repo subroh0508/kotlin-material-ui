@@ -5,9 +5,6 @@ plugins {
     `maven-publish`
 }
 
-val group = "net.subroh0508.kotlinmaterialui"
-val libVersion = "0.6.0"
-
 val siteUrl = "https://github.com/subroh0508/kotlin-material-ui"
 val githubUrl = "https://github.com/subroh0508/kotlin-material-ui"
 
@@ -18,9 +15,9 @@ publishing {
         create<MavenPublication>("kotlin") {
             from(components["kotlin"])
             artifact(tasks.getByName<Zip>("jsLegacySourcesJar"))
-            groupId = group
+            groupId = groupId
             artifactId = project.name
-            version = libVersion
+            version = libraryVersion
 
             metadata()
         }

@@ -1,4 +1,6 @@
-object Packages {
-    const val group = "subroh0508.net.kotlinmaterialui"
-    const val version = "0.6.0"
-}
+@file:Suppress("HardcodedStringLiteral")
+
+import org.gradle.api.Project
+
+val Project.groupId get() = packages("group")
+val Project.libraryVersion get() = packages("version")
