@@ -7,8 +7,8 @@ import materialui.lab.components.alert.enums.AlertStyle
 import materialui.components.paper.PaperProps
 import org.w3c.dom.Node
 import org.w3c.dom.events.Event
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 
 @JsModule("@material-ui/lab/Alert")
 @JsNonModule
@@ -34,7 +34,7 @@ external interface AlertIconMapping {
 }
 
 @Suppress("UnsafeCastFromDynamic")
-private val alertComponent: RClass<AlertProps> = alertModule.default
+private val alertComponent: ComponentType<AlertProps> = alertModule.default
 
 fun RBuilder.alert(vararg classMap: Pair<AlertStyle, String>, block: AlertElementBuilder<DIV>.() -> Unit)
         = child(AlertElementBuilder(alertComponent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())

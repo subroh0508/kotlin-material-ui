@@ -2,9 +2,9 @@ package materialui.components.dialogcontent
 
 import kotlinx.html.DIV
 import materialui.components.MaterialElementBuilder
-import react.RClass
+import react.ComponentType
 
 class DialogContentElementBuilder internal constructor(
-    type: RClass<DialogContentProps>,
+    type: ComponentType<DialogContentProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV, DialogContentProps>(type, classMap, { DIV(mapOf(), it) })

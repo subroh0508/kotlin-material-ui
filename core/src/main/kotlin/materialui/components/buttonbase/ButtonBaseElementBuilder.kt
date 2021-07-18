@@ -9,12 +9,12 @@ import materialui.components.buttonbase.enums.ButtonStyle
 import materialui.components.getValue
 import materialui.components.setValue
 import org.w3c.dom.events.Event
-import react.RClass
+import react.ComponentType
 import react.RProps
 import react.RRef
 
 open class ButtonBaseElementBuilder<T: Tag, Props: ButtonBaseProps>(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, Props>(type, classMap, factory) {

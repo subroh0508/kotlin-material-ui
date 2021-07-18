@@ -4,10 +4,10 @@ import kotlinext.js.jsObject
 import materialui.components.clickawaylistener.enums.ClickAwayMouseEvent
 import materialui.components.clickawaylistener.enums.ClickAwayTouchEvent
 import materialui.reacteventlistener.REventListenerBuilder
-import react.RClass
+import react.ComponentType
 
 class ClickAwayListenerBuilder internal constructor(
-    type: RClass<ClickAwayListenerProps>
+    type: ComponentType<ClickAwayListenerProps>
 ) : REventListenerBuilder<ClickAwayListenerProps>(type, jsObject { }) {
 
     fun ClickAwayListenerProps.mouseEvent(event: ClickAwayMouseEvent, enable: Boolean = true) {

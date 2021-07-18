@@ -8,10 +8,10 @@ import materialui.components.buttonbase.ButtonBaseElementBuilder
 import materialui.components.fab.enums.FabVariant
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class FabElementBuilder<T: Tag> internal constructor(
-    type: RClass<FabProps>,
+    type: ComponentType<FabProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, FabProps>(type, classMap, factory){

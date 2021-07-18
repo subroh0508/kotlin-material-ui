@@ -3,10 +3,10 @@ package materialui.components.zoom
 import kotlinext.js.js
 import kotlinext.js.jsObject
 import materialui.reacttransiton.RTransitionBuilder
-import react.RClass
+import react.ComponentType
 
 class ZoomElementBuilder internal constructor(
-    type: RClass<ZoomProps>
+    type: ComponentType<ZoomProps>
 ) : RTransitionBuilder<ZoomProps>(type, jsObject { }) {
 
     fun ZoomProps.timeout(msec: Long) { timeout = msec }

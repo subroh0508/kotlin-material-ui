@@ -8,10 +8,10 @@ import materialui.components.getValue
 import materialui.components.iconbutton.enums.IconButtonEdge
 import materialui.components.iconbutton.enums.IconButtonStyle
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class IconButtonElementBuilder<T: Tag>(
-    type: RClass<IconButtonProps>,
+    type: ComponentType<IconButtonProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, IconButtonProps>(type, classMap, factory) {

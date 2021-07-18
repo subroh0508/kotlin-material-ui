@@ -5,10 +5,10 @@ import materialui.components.getValue
 import materialui.components.input.enums.InputStyle
 import materialui.components.inputbase.InputBaseElementBuilder
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 open class InputElementBuilder<Props: InputProps> internal constructor(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>
 ) : InputBaseElementBuilder<Props>(type, classMap) {
     fun Tag.classes(vararg classMap: Pair<InputStyle, String>) {

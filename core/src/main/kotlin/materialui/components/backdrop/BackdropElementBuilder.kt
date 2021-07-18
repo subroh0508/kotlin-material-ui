@@ -4,10 +4,10 @@ import kotlinext.js.js
 import kotlinext.js.jsObject
 import materialui.components.backdrop.enum.BackdropStyle
 import materialui.reacttransiton.RTransitionBuilder
-import react.RClass
+import react.ComponentType
 
 class BackdropElementBuilder internal constructor(
-    type: RClass<BackdropProps>,
+    type: ComponentType<BackdropProps>,
     classMap: List<Pair<BackdropStyle, String>>
 ) : RTransitionBuilder<BackdropProps>(type, jsObject { }){
     init {

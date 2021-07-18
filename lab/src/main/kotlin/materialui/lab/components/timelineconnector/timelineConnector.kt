@@ -5,8 +5,8 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.StandardProps
 import materialui.lab.components.timelineconnector.enums.TimelineConnectorStyle
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 
 @JsModule("@material-ui/lab/TimelineConnector")
 @JsNonModule
@@ -15,7 +15,7 @@ private external val timelineConnectorModule: dynamic
 external interface TimelineConnectorProps: StandardProps
 
 @Suppress("UnsafeCastFromDynamic")
-private val timelineConnectorComponent: RClass<TimelineConnectorProps> = timelineConnectorModule.default
+private val timelineConnectorComponent: ComponentType<TimelineConnectorProps> = timelineConnectorModule.default
 
 fun RBuilder.timelineConnector(vararg classMap: Pair<TimelineConnectorStyle, String>, block: TimelineConnectorElementBuilder<SPAN>.() -> Unit)
         = child(TimelineConnectorElementBuilder(timelineConnectorComponent, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())

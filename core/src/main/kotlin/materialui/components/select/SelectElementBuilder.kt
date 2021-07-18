@@ -18,7 +18,7 @@ import react.*
 import kotlin.reflect.KClass
 
 class SelectElementBuilder internal constructor(
-    type: RClass<SelectProps>,
+    type: ComponentType<SelectProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : InputElementBuilder<SelectProps>(type, classMap) {
     fun Tag.classes(vararg classMap: Pair<SelectStyle, String>) {

@@ -12,11 +12,12 @@ import materialui.components.slider.enums.SliderTrack
 import materialui.components.slider.enums.SliderValueLabelDisplay
 import materialui.components.snackbar.SnackbarProps
 import react.*
+import react.dom.setProp
 import react.dom.tag
 import kotlin.reflect.KClass
 
 class SliderElementBuilder<T: Tag> internal constructor(
-    type: RClass<SliderProps>,
+    type: ComponentType<SliderProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, SliderProps>(type, classMap, factory) {

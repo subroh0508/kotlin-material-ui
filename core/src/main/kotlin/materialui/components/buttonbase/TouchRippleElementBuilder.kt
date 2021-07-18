@@ -6,10 +6,10 @@ import materialui.components.buttonbase.enums.TouchRippleStyle
 import materialui.reacttransiton.RTransitionGroupBuilder
 import materialui.reacttransiton.getValue
 import materialui.reacttransiton.setValue
-import react.RClass
+import react.ComponentType
 
 class TouchRippleElementBuilder internal constructor(
-    type: RClass<TouchRippleProps>,
+    type: ComponentType<TouchRippleProps>,
     classMap: List<Pair<TouchRippleStyle, String>>
 ) : RTransitionGroupBuilder<SPAN, TouchRippleProps>(type, classMap, { SPAN(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<TouchRippleStyle, String>) {

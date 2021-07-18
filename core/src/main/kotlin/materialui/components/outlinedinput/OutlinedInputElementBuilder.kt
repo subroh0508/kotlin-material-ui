@@ -5,10 +5,10 @@ import materialui.components.getValue
 import materialui.components.inputbase.InputBaseElementBuilder
 import materialui.components.outlinedinput.enums.OutlinedInputStyle
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class OutlinedInputElementBuilder internal constructor(
-    type: RClass<OutlinedInputProps>,
+    type: ComponentType<OutlinedInputProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : InputBaseElementBuilder<OutlinedInputProps>(type, classMap) {
     fun Tag.classes(vararg classMap: Pair<OutlinedInputStyle, String>) {

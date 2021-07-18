@@ -7,10 +7,10 @@ import materialui.components.getValue
 import materialui.components.listsubheader.enums.ListSubheaderColor
 import materialui.components.listsubheader.enums.ListSubheaderStyle
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class ListSubheaderElementBuilder<T: Tag> internal constructor(
-    type: RClass<ListSubheaderProps>,
+    type: ComponentType<ListSubheaderProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, ListSubheaderProps>(type, classMap, factory) {

@@ -11,7 +11,7 @@ import materialui.components.setValue
 import react.*
 
 class MobileStepperElementBuilder<T: Tag> internal constructor(
-    type: RClass<MobileStepperProps>,
+    type: ComponentType<MobileStepperProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : PaperElementBuilder<T, MobileStepperProps>(type, classMap, factory) {

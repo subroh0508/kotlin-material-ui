@@ -6,10 +6,10 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.formlabel.enums.FormLabelStyle
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 open class FormLabelElementBuilder<T: Tag, Props: FormLabelProps> internal constructor(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, Props>(type, classMap, factory) {

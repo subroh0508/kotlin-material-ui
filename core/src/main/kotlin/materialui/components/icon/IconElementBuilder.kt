@@ -8,10 +8,10 @@ import materialui.components.icon.enums.IconColor
 import materialui.components.icon.enums.IconFontSize
 import materialui.components.icon.enums.IconStyle
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class IconElementBuilder<T: Tag> internal constructor(
-    type: RClass<IconProps>,
+    type: ComponentType<IconProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, IconProps>(type, classMap, factory) {

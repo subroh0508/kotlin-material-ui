@@ -11,12 +11,13 @@ import materialui.components.step.enums.StepOrientation
 import materialui.components.stepcontent.enums.StepContentStyle
 import materialui.reacttransiton.RTransitionProps
 import react.Component
+import react.ComponentType
 import react.RClass
 import react.RProps
 import kotlin.reflect.KClass
 
 class StepContentElementBuilder internal constructor(
-    type: RClass<StepContentProps>,
+    type: ComponentType<StepContentProps>,
     classMap: List<Pair<StepContentStyle, String>>
 ) : MaterialElementBuilder<DIV, StepContentProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<StepContentStyle, String>) {

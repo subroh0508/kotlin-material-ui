@@ -9,10 +9,10 @@ import materialui.lab.components.togglebuttongroup.enums.ToggleButtonGroupOrient
 import materialui.lab.components.togglebuttongroup.enums.ToggleButtonGroupSize
 import materialui.lab.components.togglebuttongroup.enums.ToggleButtonGroupStyle
 import org.w3c.dom.events.Event
-import react.RClass
+import react.ComponentType
 
 class ToggleButtonGroupElementBuilder internal constructor(
-    type: RClass<ToggleButtonGroupProps>,
+    type: ComponentType<ToggleButtonGroupProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<DIV, ToggleButtonGroupProps>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<ToggleButtonGroupStyle, String>) {

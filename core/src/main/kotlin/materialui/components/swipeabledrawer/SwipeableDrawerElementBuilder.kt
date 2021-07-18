@@ -8,11 +8,11 @@ import materialui.components.drawer.DrawerElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import org.w3c.dom.events.Event
-import react.RClass
+import react.ComponentType
 import react.RProps
 
 class SwipeableDrawerElementBuilder internal constructor(
-    type: RClass<SwipeableDrawerProps>,
+    type: ComponentType<SwipeableDrawerProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : DrawerElementBuilder<SwipeableDrawerProps>(type, classMap) {
 

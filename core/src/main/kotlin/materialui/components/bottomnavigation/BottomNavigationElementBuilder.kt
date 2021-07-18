@@ -5,10 +5,10 @@ import kotlinx.html.TagConsumer
 import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class BottomNavigationElementBuilder<T: Tag> internal constructor(
-    type: RClass<BottomNavigationProps>,
+    type: ComponentType<BottomNavigationProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, BottomNavigationProps>(type, classMap, factory) {

@@ -8,12 +8,12 @@ import materialui.components.popper.enums.PopperPlacement
 import materialui.components.setValue
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.Node
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.buildElement
 
 class PopperElementBuilder internal constructor(
-    type: RClass<PopperProps>
+    type: ComponentType<PopperProps>
 ) : MaterialElementBuilder<DIV, PopperProps>(type, listOf(), { DIV(mapOf(), it) }) {
 
     var Tag.disablePortal: Boolean? by materialProps

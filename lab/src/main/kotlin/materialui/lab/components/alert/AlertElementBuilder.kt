@@ -10,13 +10,13 @@ import materialui.components.getValue
 import materialui.components.paper.PaperElementBuilder
 import materialui.components.setValue
 import org.w3c.dom.events.Event
+import react.ComponentType
 import react.RBuilder
-import react.RClass
 import react.ReactElement
 import react.buildElement
 
 class AlertElementBuilder<T: Tag> internal constructor(
-    type: RClass<AlertProps>,
+    type: ComponentType<AlertProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : PaperElementBuilder<T, AlertProps>(type, classMap, factory) {

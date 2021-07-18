@@ -6,10 +6,10 @@ import materialui.components.slide.enums.SlideDirection
 import materialui.reacttransiton.RTransitionBuilder
 import materialui.reacttransiton.getValue
 import materialui.reacttransiton.setValue
-import react.RClass
+import react.ComponentType
 
 class SlideElementBuilder internal constructor(
-    type: RClass<SlideProps>
+    type: ComponentType<SlideProps>
 ) : RTransitionBuilder<SlideProps>(type, jsObject { }) {
     var SlideProps.direction: SlideDirection by props
 

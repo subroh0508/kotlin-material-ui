@@ -12,7 +12,7 @@ import materialui.components.setValue
 import react.*
 
 abstract class SwitchBaseElementBuilder<Props: SwitchBaseProps> internal constructor(
-    type: RClass<Props>,
+    type: ComponentType<Props>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<SPAN, Props>(type, classMap, { SPAN(mapOf(), it) }) {
 
