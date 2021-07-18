@@ -1,13 +1,12 @@
 package materialui.pickers.components.provider
 
 import kotlinext.js.jsObject
-import react.FunctionalComponent
-import react.RBuilder
+import react.FunctionComponent
 import react.RBuilderImpl
 import react.createElement
 
 class LocalizationProviderBuilder internal constructor(
-    private val component: FunctionalComponent<LocalizationProviderProps>,
+    private val component: FunctionComponent<LocalizationProviderProps>,
     private val props: LocalizationProviderProps = jsObject { }
 ) : RBuilderImpl() {
     val attrs: LocalizationProviderProps get() = props

@@ -1,7 +1,6 @@
 package materialui.pickers.components
 
 import kotlinext.js.jsObject
-import kotlinx.html.DIV
 import kotlinx.html.INPUT
 import materialui.components.formhelpertext.FormHelperTextProps
 import materialui.components.input.InputProps
@@ -39,7 +38,7 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     @Suppress("FunctionName")
     fun <P: ToolbarComponentProps, C: Component<P, *>> Props.ToolbarComponent(kClass: KClass<C>) { ToolbarComponent = kClass.rClass }
     @Suppress("FunctionName")
-    fun <P: ToolbarComponentProps> Props.ToolbarComponent(functionalComponent: FunctionalComponent<P>) { ToolbarComponent = functionalComponent }
+    fun <P: ToolbarComponentProps> Props.ToolbarComponent(functionalComponent: FunctionComponent<P>) { ToolbarComponent = functionalComponent }
 
     fun Props.toolbarTitle(block: RBuilder.() -> Unit) { toolbarTitle = buildElement(block) }
 
@@ -62,12 +61,12 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     @Suppress("FunctionName")
     fun <P: DateInputProps, C: Component<P, *>> Props.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.rClass }
     @Suppress("FunctionName")
-    fun <P: DateInputProps> Props.KeyboardDateInputComponent(functionalComponent: FunctionalComponent<P>) { KeyboardDateInputComponent = functionalComponent }
+    fun <P: DateInputProps> Props.KeyboardDateInputComponent(functionalComponent: FunctionComponent<P>) { KeyboardDateInputComponent = functionalComponent }
 
     @Suppress("FunctionName")
     fun <P: DateInputProps, C: Component<P, *>> Props.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.rClass }
     @Suppress("FunctionName")
-    fun <P: DateInputProps> Props.PureDateInputComponent(functionalComponent: FunctionalComponent<P>) { PureDateInputComponent = functionalComponent }
+    fun <P: DateInputProps> Props.PureDateInputComponent(functionalComponent: FunctionComponent<P>) { PureDateInputComponent = functionalComponent }
 
     /* TextFieldProps */
     fun Props.defaultValue(v: String?) { defaultValue = v }

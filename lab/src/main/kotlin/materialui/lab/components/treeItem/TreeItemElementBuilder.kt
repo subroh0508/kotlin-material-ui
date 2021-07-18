@@ -43,7 +43,7 @@ class TreeItemElementBuilder<T : Tag> internal constructor(
     @Suppress("FunctionName")
     fun <P: RProps, C: Component<P, *>> Tag.TransitionComponent(kClass: KClass<C>) { TransitionComponent = kClass.rClass }
     @Suppress("FunctionName")
-    fun <P: RProps> Tag.TransitionComponent(functionalComponent: FunctionalComponent<P>) { TransitionComponent = functionalComponent }
+    fun <P: RProps> Tag.TransitionComponent(functionalComponent: FunctionComponent<P>) { TransitionComponent = functionalComponent }
 
     @Suppress("FunctionName")
     fun <P: RProps> Tag.TransitionProps(block: P.() -> Unit) { TransitionProps = jsObject(block) }

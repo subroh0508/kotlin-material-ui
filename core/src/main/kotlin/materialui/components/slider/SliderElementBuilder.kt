@@ -73,7 +73,7 @@ class SliderElementBuilder<T: Tag> internal constructor(
     @Suppress("FunctionName")
     fun <P: RProps, C: Component<P, *>> Tag.ThumbComponent(kClass: KClass<C>) { ThumbComponent = kClass.rClass }
     @Suppress("FunctionName")
-    fun <P: RProps> Tag.ThumbComponent(functionalComponent: FunctionalComponent<P>) { ThumbComponent = functionalComponent }
+    fun <P: RProps> Tag.ThumbComponent(functionalComponent: FunctionComponent<P>) { ThumbComponent = functionalComponent }
 
     var Tag.track: SliderTrack? by materialProps
     var Tag.value: Any? by materialProps
@@ -86,7 +86,7 @@ class SliderElementBuilder<T: Tag> internal constructor(
     @Suppress("FunctionName")
     fun <P: RProps, C: Component<P, *>> Tag.ValueLabelComponent(kClass: KClass<C>) { ValueLabelComponent = kClass.rClass }
     @Suppress("FunctionName")
-    fun <P: RProps> Tag.ValueLabelComponent(functionalComponent: FunctionalComponent<P>) { ValueLabelComponent = functionalComponent }
+    fun <P: RProps> Tag.ValueLabelComponent(functionalComponent: FunctionComponent<P>) { ValueLabelComponent = functionalComponent }
 
     var Tag.valueLabelDisplay: SliderValueLabelDisplay? by materialProps
     var Tag.valueLabelFormat: Any? by materialProps

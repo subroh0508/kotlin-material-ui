@@ -112,7 +112,7 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
         materialProps.ListboxComponent = kClass.rClass
     }
 
-    fun <P: RProps> Tag.listBoxComponent(fc: FunctionalComponent<P>) {
+    fun <P: RProps> Tag.listBoxComponent(fc: FunctionComponent<P>) {
         materialProps.ListboxComponent = fc
     }
     fun Tag.listBoxComponent(tagName: String) {
@@ -129,7 +129,7 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
         materialProps.PaperComponent = kClass.rClass
     }
 
-    fun <P: RProps> Tag.paperComponent(fc: FunctionalComponent<P>) {
+    fun <P: RProps> Tag.paperComponent(fc: FunctionComponent<P>) {
         materialProps.PaperComponent = fc
     }
 
@@ -140,7 +140,7 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
         materialProps.PopperComponent = kClass.rClass
     }
 
-    fun <P: PopperProps> Tag.popperComponent(fc: FunctionalComponent<P>) {
+    fun <P: PopperProps> Tag.popperComponent(fc: FunctionComponent<P>) {
         materialProps.PopperComponent = fc
     }
 
