@@ -18,6 +18,6 @@ class ToggleButtonElementBuilder<T: Tag> internal constructor(
     }
 
     var Tag.disableFocusRipple: Boolean? by materialProps
-    var selected: Boolean? by materialProps
-    var value: Any? by materialProps
+    var Tag.selected: Boolean? by materialProps
+    var Tag.value: Any? by materialProps
 }
