@@ -34,14 +34,13 @@ kotlin {
                 implementation(project(":lab"))
                 // implementation(project(":pickers"))
                 // implementation(project(":pickers:date-io:date-fns"))
-                implementation(Libraries.Kotlin.js)
-                implementation(Libraries.Kotlin.styled)
+                implementation(Libraries.JsWrappers(kotlinVersion).styled)
             }
         }
 
         val test by getting {
             dependencies {
-                implementation(Libraries.Kotlin.jsTest)
+                implementation(kotlinTestJs)
             }
         }
     }
