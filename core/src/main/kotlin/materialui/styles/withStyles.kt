@@ -7,7 +7,7 @@ import react.*
 import kotlin.reflect.KClass
 
 fun <P: RProps> withStyles(
-    functionalComponent: FunctionalComponent<P>,
+    functionalComponent: FunctionComponent<P>,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = true
 ): RClass<P> = rawWithStyles(

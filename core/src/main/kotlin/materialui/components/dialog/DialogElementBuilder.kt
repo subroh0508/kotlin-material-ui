@@ -37,7 +37,7 @@ class DialogElementBuilder internal constructor(
         materialProps.PaperComponent = kClass.rClass
     }
 
-    fun <P: PaperProps> Tag.paperComponent(component: FunctionalComponent<P>) {
+    fun <P: PaperProps> Tag.paperComponent(component: FunctionComponent<P>) {
         materialProps.PaperComponent = component
     }
 

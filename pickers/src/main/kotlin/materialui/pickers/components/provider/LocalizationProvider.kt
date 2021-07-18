@@ -1,7 +1,7 @@
 package materialui.pickers.components.provider
 
 import dateio.core.DateAdapterProvider
-import react.FunctionalComponent
+import react.FunctionComponent
 import react.RBuilder
 import react.RProps
 
@@ -10,7 +10,7 @@ import react.RProps
 private external val LocalizationProviderModule: dynamic
 
 @Suppress("UnsafeCastFromDynamic")
-private val LocalizationProviderComponent: FunctionalComponent<LocalizationProviderProps> = LocalizationProviderModule.LocalizationProvider
+private val LocalizationProviderComponent: FunctionComponent<LocalizationProviderProps> = LocalizationProviderModule.LocalizationProvider
 
 external interface LocalizationProviderProps : RProps, DateAdapterProvider
 
