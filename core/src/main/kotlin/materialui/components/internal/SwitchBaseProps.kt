@@ -1,7 +1,7 @@
 package materialui.components.internal
 
 import materialui.components.StandardProps
-import react.RProps
+import react.PropsWithChildren
 import react.Ref
 import react.ReactElement
 

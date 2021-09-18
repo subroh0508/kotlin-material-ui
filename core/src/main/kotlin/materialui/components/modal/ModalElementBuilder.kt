@@ -6,6 +6,7 @@ import kotlinx.html.Tag
 import materialui.components.MaterialElementBuilder
 import materialui.components.backdrop.BackdropElementBuilder
 import materialui.components.backdrop.backdrop
+import materialui.components.backdrop.backdropElement
 import materialui.components.getValue
 import materialui.components.modal.enums.ModalStyle
 import materialui.components.setValue
@@ -44,8 +45,9 @@ open class ModalElementBuilder<Props: ModalProps>(
         materialProps.BackdropComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.backdropComponent(tagName: String) { materialProps.BackdropComponent = tagName }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.backdropProps(block: BackdropElementBuilder.() -> Unit) {
-        BackdropProps = RBuilder().backdrop(block = block).props
+        BackdropProps = backdropElement(block = block).props as PropsWithChildren
     }
     fun <P: PropsWithChildren> Tag.backdropProps(block: P.() -> Unit) { BackdropProps = jsObject(block) }
     fun Tag.container(node: Node) { materialProps.container = node }

@@ -32,13 +32,10 @@ external interface VariantMapping {
 }
 
 fun RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit)
-    = child(TypographyElementBuilder(Typography, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())
+    = child(typographyElement(classMap.toList(), block))
 
 fun RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit)
-    = child(TypographyElementBuilder(Typography, classMap.toList()) { P(mapOf(), it) }.apply {
-        attrs.paragraph = p
-        block()
-    }.create())
+    = child(typographyElement(classMap.toList(), p, block))
 
 fun <T: Tag> RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit)
      = child(TypographyElementBuilder(Typography, classMap.toList(), factory).apply(block).create())
@@ -73,3 +70,25 @@ inline fun RBuilder.typographyH6(vararg classMap: Pair<TypographyStyle, String>,
         attrs.variant = TypographyVariant.h6
         block()
     }
+
+internal fun typographyElement(
+    classMap: List<Pair<TypographyStyle, String>> = listOf(),
+    block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit
+) = TypographyElementBuilder(Typography, classMap) { SPAN(mapOf(), it) }.apply {
+    block()
+}.create()
+
+internal fun typographyElement(
+    classMap: List<Pair<TypographyStyle, String>> = listOf(),
+    p: Boolean,
+    block: TypographyElementBuilder<P, TypographyProps>.() -> Unit
+) = TypographyElementBuilder(Typography, classMap) { P(mapOf(), it) }.apply {
+    attrs.paragraph = p
+    block()
+}.create()
+
+internal fun <T: Tag> typographyElement(
+    classMap: List<Pair<TypographyStyle, String>> = listOf(),
+    factory: (TagConsumer<Unit>) -> T,
+    block: TypographyElementBuilder<T, TypographyProps>.() -> Unit
+) = TypographyElementBuilder(Typography, classMap, factory).apply(block).create()

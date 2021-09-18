@@ -13,4 +13,9 @@ external interface BackdropProps : FadeProps {
 }
 
 fun RBuilder.backdrop(vararg classMap: Pair<BackdropStyle, String>, block: BackdropElementBuilder.() -> Unit)
-    = child(BackdropElementBuilder(Backdrop, classMap.toList()).apply(block).create())
+    = child(backdropElement(classMap.toList(), block))
+
+internal fun backdropElement(
+    classMap: List<Pair<BackdropStyle, String>> = listOf(),
+    block: BackdropElementBuilder.() -> Unit,
+) = BackdropElementBuilder(Backdrop, classMap.toList()).apply(block).create()
