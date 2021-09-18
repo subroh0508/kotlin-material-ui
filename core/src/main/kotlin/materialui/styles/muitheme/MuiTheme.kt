@@ -36,11 +36,18 @@ fun MuiTheme.spacing() =
 fun MuiTheme.spacing(unit: Number) =
     LinearDimension((spacing as (Number) -> String)(unit))
 
-fun MuiTheme.spacing(vertical: LinearDimension, horizontal: LinearDimension) =
-    (spacing as (dynamic, dynamic) -> String)(vertical.toDynamic(), horizontal.toDynamic())
+fun MuiTheme.spacing(all: LinearDimension) = spacing(all, all, all, all)
 
-fun MuiTheme.spacing(top: LinearDimension, rightLeft: LinearDimension, bottom: LinearDimension) =
-    (spacing as (dynamic, dynamic, dynamic) -> String)(top.toDynamic(), rightLeft.toDynamic(), bottom.toDynamic())
+fun MuiTheme.spacing(
+    vertical: LinearDimension,
+    horizontal: LinearDimension
+) = spacing(vertical, horizontal, vertical, horizontal)
+
+fun MuiTheme.spacing(
+    top: LinearDimension,
+    rightLeft: LinearDimension,
+    bottom: LinearDimension
+) = spacing(top, rightLeft, bottom, rightLeft)
 
 
 fun MuiTheme.spacing(top: LinearDimension, right: LinearDimension, bottom: LinearDimension, left: LinearDimension) =
@@ -51,10 +58,12 @@ fun MuiTheme.spacing(top: LinearDimension, right: LinearDimension, bottom: Linea
         left.toDynamic()
     )
 
+internal const val MUI_UNIT = "mui-unit"
+
 private fun LinearDimension.toDynamic(): dynamic {
     return when {
-        value.endsWith("unit") ->
-            value.removeSuffix("unit").toFloat()
+        value.endsWith(MUI_UNIT) ->
+            value.removeSuffix(MUI_UNIT).toFloat()
         else -> value
     }
 }

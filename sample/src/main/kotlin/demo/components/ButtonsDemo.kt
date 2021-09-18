@@ -120,7 +120,7 @@ class ButtonsDemo : RComponent<PropsWithChildren, State>() {
 
         private val styledComponent = withStyles(ButtonsDemo::class, {
             "button" {
-                margin(theme.spacing(1))
+                margin = theme.spacing(u(1))
             }
             "input" {
                 display = Display.none

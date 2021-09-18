@@ -2,8 +2,8 @@ package materialui.styles
 
 import kotlinext.js.js
 import kotlinx.css.*
+import materialui.styles.muitheme.MUI_UNIT
 import materialui.styles.muitheme.MuiTheme
-import materialui.styles.muitheme.spacing
 import react.PropsWithChildren
 
 class StylesBuilder<P: PropsWithChildren> internal constructor(
@@ -34,8 +34,7 @@ class StylesBuilder<P: PropsWithChildren> internal constructor(
         declarations["flip"] = enable
     }
 
-    val Number.spacing: LinearDimension get() = theme.spacing(this)
-    val Number.unit: LinearDimension get() = LinearDimension("${this}unit")
+    fun u(n: Number): LinearDimension = LinearDimension(n.toString() + MUI_UNIT)
 }
 
 internal val CssBuilder.toDynamic: Any

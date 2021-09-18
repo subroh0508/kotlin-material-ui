@@ -22,7 +22,7 @@ object Libraries {
     }
 
     object Npm {
-        const val styledComponent = "5.3.0"
+        const val styledComponent = "5.3.1"
         const val inlineStyledPrefixer = "^5.1.2"
         const val react = "17.0.2"
 
