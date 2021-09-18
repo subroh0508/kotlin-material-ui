@@ -2,7 +2,7 @@ package materialui.components.internal
 
 import materialui.components.StandardProps
 import react.RProps
-import react.RRef
+import react.Ref
 import react.ReactElement
 
 external interface SwitchBaseProps : StandardProps {
@@ -15,7 +15,7 @@ external interface SwitchBaseProps : StandardProps {
     var icon: ReactElement?
     var id: String?
     var inputProps: PropsWithChildren?
-    var inputRef: RRef?
+    var inputRef: Ref?
     var name: String?
     var readOnly: Boolean?
     var required: Boolean?

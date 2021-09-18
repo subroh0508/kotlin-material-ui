@@ -7,7 +7,7 @@ import materialui.Avatar
 import materialui.components.StandardProps
 import materialui.components.avatar.enum.AvatarStyle
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
 external interface AvatarProps : StandardProps {
     var imgProps: PropsWithChildren?

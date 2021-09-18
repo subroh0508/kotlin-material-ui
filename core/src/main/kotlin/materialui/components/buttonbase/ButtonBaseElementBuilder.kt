@@ -11,7 +11,7 @@ import materialui.components.setValue
 import org.w3c.dom.events.Event
 import react.ComponentType
 import react.PropsWithChildren
-import react.RRef
+import react.Ref
 
 open class ButtonBaseElementBuilder<T: Tag, Props: ButtonBaseProps>(
     type: ComponentType<Props>,
@@ -22,7 +22,7 @@ open class ButtonBaseElementBuilder<T: Tag, Props: ButtonBaseProps>(
         classes(classMap.map { it.first to it.second })
     }
 
-    var Tag.buttonRef: RRef? by materialProps
+    var Tag.buttonRef: Ref? by materialProps
     var Tag.centerRipple: Boolean? by materialProps
     var Tag.disabled: Boolean? by materialProps
     var Tag.disableRipple: Boolean? by materialProps

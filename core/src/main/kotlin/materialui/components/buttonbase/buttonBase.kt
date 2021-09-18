@@ -9,10 +9,10 @@ import materialui.components.buttonbase.enums.ButtonBaseStyle
 import org.w3c.dom.events.Event
 import react.RBuilder
 import react.PropsWithChildren
-import react.RRef
+import react.Ref
 
 external interface ButtonBaseProps : StandardProps {
-    var buttonRef: RRef?
+    var buttonRef: Ref?
     var centerRipple: Boolean?
     var disabled: Boolean?
     var disableRipple: Boolean?

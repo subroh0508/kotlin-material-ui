@@ -21,7 +21,7 @@ class FormControlLabelElementBuilder internal constructor(
     var Tag.checked: Any? by materialProps
     var Tag.control: ReactElement? by materialProps
     var Tag.disabled: Boolean? by materialProps
-    var Tag.inputRef: RRef? by materialProps
+    var Tag.inputRef: Ref? by materialProps
     var Tag.label: ReactElement? by materialProps
     var Tag.labelPlacement: FormControlLabelPlacement? by materialProps
     var Tag.name: String? by materialProps
