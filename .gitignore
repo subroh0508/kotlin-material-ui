@@ -49,3 +49,5 @@ build
 *.iml
 
 node_modules
+
+local.properties
