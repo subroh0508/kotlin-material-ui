@@ -8,7 +8,6 @@ plugins {
 
 dependencies {
     val wrappers = Libraries.JsWrappers(kotlinVersion)
-    api(enforcedPlatform(wrappers.bom))
     api(wrappers.extensions)
 
     api(npm("@date-io/core", Libraries.Npm.dateIo))

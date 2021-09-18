@@ -1,19 +1,24 @@
 @Suppress("unused")
 object Libraries {
     class JsWrappers(kotlinVersion: String) {
-        private val prefix = "org.jetbrains.kotlin-wrappers:kotlin-"
+        private val wrappersBuild = "pre.246-kotlin-$kotlinVersion"
+        private val prefix = "org.jetbrains.kotlin-wrappers:kotlin"
 
-        private val bomVersion = "0.0.1-pre.246-kotlin-$kotlinVersion"
-        val bom = "${prefix}wrappers-bom:$bomVersion"
-
-        val react = "${prefix}react"
-        val reactDom = "${prefix}react-dom"
-        val css = "${prefix}css"
-        val styled = "${prefix}styled"
-        val extensions = "${prefix}extensions"
+        private val reactVersion = "${Npm.react}-$wrappersBuild"
+        val react = "$prefix-react:$reactVersion"
+        val reactDom = "$prefix-react-dom:$reactVersion"
 
         private val htmlVersion = "0.7.3"
         val html = "org.jetbrains.kotlinx:kotlinx-html-js:$htmlVersion"
+
+        private val cssVersion = "1.0.0-$wrappersBuild"
+        val css = "$prefix-css-js:$cssVersion"
+
+        private val styledVersion = "${Npm.styledComponent}-$wrappersBuild"
+        val styled = "$prefix-styled:$styledVersion"
+
+        private val extensionsVersion = "1.0.1-$wrappersBuild"
+        val extensions = "$prefix-extensions:$extensionsVersion"
     }
 
     object Npm {
