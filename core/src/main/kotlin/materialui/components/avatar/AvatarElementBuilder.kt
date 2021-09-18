@@ -21,7 +21,7 @@ class AvatarElementBuilder<T: Tag> internal constructor(
         classes(classMap.map { it.first to it.second })
     }
 
-    var Tag.imgProps: RProps? by materialProps
+    var Tag.imgProps: PropsWithChildren? by materialProps
     var Tag.alt: String? by materialProps
     var Tag.childrenClassName: String? by materialProps
     var Tag.sizes: String? by materialProps

@@ -10,13 +10,13 @@ import react.PropsWithChildren
 
 external interface DrawerProps : StandardProps {
     var anchor: String?
-    var BackdropProps: RProps?
+    var BackdropProps: PropsWithChildren?
     var elevation: Number?
-    var ModalProps: RProps?
+    var ModalProps: PropsWithChildren?
     var onClose: ((Event) -> Unit)?
     var open: Boolean?
-    var PaperProps: RProps?
-    var SlideProps: RProps?
+    var PaperProps: PropsWithChildren?
+    var SlideProps: PropsWithChildren?
     var theme: MuiTheme?
     var transitionDuration: dynamic
     var variant: String?

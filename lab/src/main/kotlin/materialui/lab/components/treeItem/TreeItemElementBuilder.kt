@@ -28,7 +28,7 @@ class TreeItemElementBuilder<T : Tag> internal constructor(
     var Tag.label: ReactElement? by materialProps
     var Tag.nodeId: String? by materialProps
     @Suppress("PropertyName")
-    var Tag.TransitionProps: RProps? by materialProps
+    var Tag.TransitionProps: PropsWithChildren? by materialProps
     @Suppress("PropertyName")
     var Tag.TransitionComponent: Any? by materialProps
 

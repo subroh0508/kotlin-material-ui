@@ -55,7 +55,7 @@ external interface AutocompleteRenderInputParams {
     var disabled: Boolean
     var fullWidth: Boolean
     var size: String?
-    var InputLabelProps: RProps?
+    var InputLabelProps: PropsWithChildren?
     var InputProps: AutocompleteInputProps
     var inputProps: RProps
 }

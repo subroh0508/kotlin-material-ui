@@ -24,7 +24,7 @@ abstract class SwitchBaseElementBuilder<Props: SwitchBaseProps> internal constru
     var Tag.disableRipple: Boolean? by materialProps
     var Tag.icon: ReactElement? by materialProps
     var Tag.id: String? by materialProps
-    var Tag.inputProps: RProps? by materialProps
+    var Tag.inputProps: PropsWithChildren? by materialProps
     var Tag.inputRef: RRef? by materialProps
     var Tag.name: String? by materialProps
     var Tag.readOnly: Boolean? by materialProps

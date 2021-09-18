@@ -10,7 +10,7 @@ import react.RBuilder
 import react.RProps
 
 external interface AvatarProps : StandardProps {
-    var imgProps: RProps?
+    var imgProps: PropsWithChildren?
     var alt: String?
     var childrenClassName: String?
     var sizes: String?

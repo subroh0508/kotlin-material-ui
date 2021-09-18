@@ -14,7 +14,7 @@ external interface SwitchBaseProps : StandardProps {
     var disableRipple: Boolean?
     var icon: ReactElement?
     var id: String?
-    var inputProps: RProps?
+    var inputProps: PropsWithChildren?
     var inputRef: RRef?
     var name: String?
     var readOnly: Boolean?

@@ -27,7 +27,7 @@ class ButtonListItemElementBuilder internal constructor(
 
     var Tag.alignItems: ListItemAlignItem? by materialProps
     var Tag.button: Boolean? by materialProps
-    var Tag.ContainerProps: RProps? by materialProps
+    var Tag.ContainerProps: PropsWithChildren? by materialProps
     var Tag.dense: Boolean? by materialProps
     var Tag.disableGutters: Boolean? by materialProps
     var Tag.divider: Boolean? by materialProps

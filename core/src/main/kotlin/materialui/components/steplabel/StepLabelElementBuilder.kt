@@ -29,7 +29,7 @@ class StepLabelElementBuilder internal constructor(
     var Tag.last: Boolean? by materialProps
     var Tag.optional: ReactElement? by materialProps
     var Tag.orientation: StepOrientation? by materialProps
-    var Tag.StepIconProps: RProps? by materialProps
+    var Tag.StepIconProps: PropsWithChildren? by materialProps
 
     fun Tag.icon(block: RBuilder.() -> Unit) { icon = buildElement(block) }
     fun <P: RProps, C: Component<P, *>> Tag.stepIconComponent(kClass: KClass<C>) {

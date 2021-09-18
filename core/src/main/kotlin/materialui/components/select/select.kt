@@ -13,14 +13,14 @@ external interface SelectProps : InputProps {
     var displayEmpty: Boolean?
     var IconComponent: dynamic
     var input: ReactElement?
-    var MenuProps: RProps?
+    var MenuProps: PropsWithChildren?
     var multiple: Boolean?
     var native: Boolean?
     var onClose: ((Event) -> Unit)?
     var onOpen: ((Event) -> Unit)?
     var open: Boolean?
     var renderValue: ((dynamic) -> ReactElement)?
-    var SelectDisplayProps: RProps?
+    var SelectDisplayProps: PropsWithChildren?
     var variant: String?
 }
 

@@ -63,7 +63,7 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
     var Tag.defaultValue: Any? by materialProps
     var Tag.onChange: ((event: Event, value: dynamic, reason: AutocompleteChangeReason, details: AutocompleteChangeDetails<O>) -> Unit)? by materialProps
     
-    var Tag.ChipProps: RProps? by materialProps
+    var Tag.ChipProps: PropsWithChildren? by materialProps
     var Tag.closeIcon: ReactElement by materialProps
     var Tag.clearText: String? by materialProps
     var Tag.closeText: String? by materialProps

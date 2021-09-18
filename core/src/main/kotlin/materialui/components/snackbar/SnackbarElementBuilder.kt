@@ -29,8 +29,8 @@ class SnackbarElementBuilder internal constructor(
     var Tag.action: ReactElement? by materialProps
     var Tag.anchorOrigin: SnackbarOrigin? by materialProps
     var Tag.autoHideDuration: Number? by materialProps
-    var Tag.ClickAwayListenerProps: RProps? by materialProps
-    var Tag.ContentProps: RProps? by materialProps
+    var Tag.ClickAwayListenerProps: PropsWithChildren? by materialProps
+    var Tag.ContentProps: PropsWithChildren? by materialProps
     var Tag.disableWindowBlurListener: Boolean? by materialProps
     var Tag.key: Any? by materialProps
     var Tag.message: ReactElement? by materialProps

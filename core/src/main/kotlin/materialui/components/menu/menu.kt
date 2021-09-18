@@ -9,7 +9,7 @@ import react.RProps
 
 external interface MenuProps : PopoverProps {
     var disableAutoFocusItem: Boolean?
-    var MenuListProps: RProps?
+    var MenuListProps: PropsWithChildren?
     var theme: MuiTheme?
     var PopoveComponentClasses: Any?
 }

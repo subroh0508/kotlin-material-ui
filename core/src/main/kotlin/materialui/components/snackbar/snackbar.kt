@@ -15,8 +15,8 @@ external interface SnackbarProps : RTransitionHandlerProps, StandardProps {
     var action: ReactElement?
     var anchorOrigin: SnackbarOrigin?
     var autoHideDuration: Number?
-    var ClickAwayListenerProps: RProps?
-    var ContentProps: RProps?
+    var ClickAwayListenerProps: PropsWithChildren?
+    var ContentProps: PropsWithChildren?
     var disableWindowBlurListener: Boolean?
     var key: Any?
     var message: ReactElement?

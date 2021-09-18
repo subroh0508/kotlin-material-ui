@@ -27,12 +27,12 @@ external interface PopoverProps : ModalProps {
     var onExit: ((Node) -> Unit)?
     var onExited: ((Node) -> Unit)?
     var onExiting: ((Node) -> Unit)?
-    var PaperProps: RProps?
+    var PaperProps: PropsWithChildren?
     var role: String?
     var transformOrigin: PopoverOrigin?
     var TransitionComponent: dynamic
     var transitionDuration: dynamic
-    var TransitionProps: RProps?
+    var TransitionProps: PropsWithChildren?
 }
 
 external interface PopoverActions {

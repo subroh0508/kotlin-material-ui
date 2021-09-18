@@ -24,7 +24,7 @@ class MenuElementBuilder internal constructor(
     }
 
     var Tag.disableAutoFocusItem: Boolean? by materialProps
-    var Tag.MenuListProps: RProps? by materialProps
+    var Tag.MenuListProps: PropsWithChildren? by materialProps
     var Tag.theme: MuiTheme? by materialProps
     var Tag.PopoveComponentClasses: Any? by materialProps
 

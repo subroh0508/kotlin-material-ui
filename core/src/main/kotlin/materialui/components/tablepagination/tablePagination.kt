@@ -17,13 +17,13 @@ external interface TablePaginationProps : TableCellProps {
     var count: Int?
     var labelDisplayedRows: ((LabelDisplayedRows) -> ReactElement)?
     var labelRowsPerPage: ReactElement?
-    var nextIconButtonProps: RProps?
+    var nextIconButtonProps: PropsWithChildren?
     var onChangePage: ((Event, Int) -> Unit)?
     var onChangeRowsPerPage: ((Event) -> Unit)?
     var page: Int?
     var rowsPerPage: Int?
     var rowsPerPageOptions: Array<Int>?
-    var SelectProps: RProps?
+    var SelectProps: PropsWithChildren?
 }
 
 external interface LabelDisplayedRows {

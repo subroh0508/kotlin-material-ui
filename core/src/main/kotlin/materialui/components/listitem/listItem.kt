@@ -14,7 +14,7 @@ external interface ListItemProps : StandardProps {
     var alignItems: String?
     var button: Boolean?
     var ContainerComponent: dynamic
-    var ContainerProps: RProps?
+    var ContainerProps: PropsWithChildren?
     var dense: Boolean?
     var disabled: Boolean?
     var disableGutters: Boolean?

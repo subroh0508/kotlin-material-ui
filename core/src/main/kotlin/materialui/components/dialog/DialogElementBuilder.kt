@@ -13,6 +13,7 @@ import materialui.components.modal.ModalElementBuilder
 import materialui.components.paper.PaperElementBuilder
 import materialui.components.paper.PaperProps
 import materialui.components.paper.paper
+import materialui.components.paper.paperElement
 import materialui.components.setValue
 import materialui.reacttransiton.RTransitionProps
 import react.*
@@ -29,9 +30,9 @@ class DialogElementBuilder internal constructor(
     var Tag.fullScreen: Boolean? by materialProps
     var Tag.fullWidth: Boolean? by materialProps
     var Tag.maxWidth: DialogMaxWidth? by materialProps
-    var Tag.PaperProps: RProps? by materialProps
+    var Tag.PaperProps: PropsWithChildren? by materialProps
     var Tag.scroll: DialogScroll? by materialProps
-    var Tag.TransitionProps: RProps? by materialProps
+    var Tag.TransitionProps: PropsWithChildren? by materialProps
 
     fun <P: RProps, C: Component<P, *>> Tag.paperComponent(kClass: KClass<C>) {
         materialProps.PaperComponent = kClass.react
@@ -43,7 +44,7 @@ class DialogElementBuilder internal constructor(
 
     fun Tag.paperComponent(tagName: String) { materialProps.PaperComponent = tagName }
     fun Tag.paperProps(block: PaperElementBuilder<DIV, PaperProps>.() -> Unit) {
-        PaperProps = RBuilder().paper(block = block).props
+        PaperProps = paperElement(block = block).props
     }
     fun <T: Tag, P: PaperProps> Tag.paperProps(factory: (TagConsumer<Unit>) -> T, block: PaperElementBuilder<T, P>.() -> Unit) {
         PaperProps = RBuilder().paper(factory = factory, block = block).props

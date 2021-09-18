@@ -43,10 +43,10 @@ open class PopoverElementBuilder<Props: PopoverProps>(
     var Tag.onExit: ((Node) -> Unit)? by materialProps
     var Tag.onExited: ((Node) -> Unit)? by materialProps
     var Tag.onExiting: ((Node) -> Unit)? by materialProps
-    var Tag.PaperProps: RProps? by materialProps
+    var Tag.PaperProps: PropsWithChildren? by materialProps
     var Tag.transformOrigin: PopoverOrigin? by materialProps
     val Tag.transitionDuration: Any? by materialProps
-    var Tag.TransitionProps: RProps? by materialProps
+    var Tag.TransitionProps: PropsWithChildren? by materialProps
 
     fun Tag.action(actions: (PopoverActions) -> Unit) { action = actions }
     fun Tag.anchorEl(node: Node) { materialProps.anchorEl = node }

@@ -16,7 +16,7 @@ external interface InputBaseProps : StandardProps {
     var fullWidth: Boolean?
     var id: String?
     var inputComponent: dynamic
-    var inputProps: RProps?
+    var inputProps: PropsWithChildren?
     var inputRef: RRef?
     var margin: String?
     var muiFormControl: Any?

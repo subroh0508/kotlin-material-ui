@@ -23,7 +23,7 @@ external interface TooltipProps : StandardProps {
     var onClose: ((Event) -> Unit)?
     var onOpen: ((Event) -> Unit)?
     var open: Boolean?
-    var PopperProps: RProps?
+    var PopperProps: PropsWithChildren?
     var theme: Any?
     var title: ReactElement?
     var TransitionComponent: dynamic

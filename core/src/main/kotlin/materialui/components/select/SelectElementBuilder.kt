@@ -28,13 +28,13 @@ class SelectElementBuilder internal constructor(
     var Tag.autoWidth: Boolean? by materialProps
     var Tag.displayEmpty: Boolean? by materialProps
     var Tag.input: ReactElement? by materialProps
-    var Tag.MenuProps: RProps? by materialProps
+    var Tag.MenuProps: PropsWithChildren? by materialProps
     var Tag.multiple: Boolean? by materialProps
     var Tag.native: Boolean? by materialProps
     var Tag.onClose: ((Event) -> Unit)? by materialProps
     var Tag.onOpen: ((Event) -> Unit)? by materialProps
     var Tag.open: Boolean? by materialProps
-    var Tag.SelectDisplayProps: RProps? by materialProps
+    var Tag.SelectDisplayProps: PropsWithChildren? by materialProps
     var Tag.variant: SelectVariant? by materialProps
 
     fun <P : RProps, C : Component<P, *>> Tag.iconComponent(kClass: KClass<C>) {

@@ -11,7 +11,7 @@ import react.RBuilder
 import react.RProps
 
 external interface ExpansionPanelProps : PaperProps {
-    var TransitionProps: RProps?
+    var TransitionProps: PropsWithChildren?
     var defaultExpand: Boolean?
     var disabled: Boolean?
     var expanded: Boolean?

@@ -37,9 +37,9 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
         get() = @Suppress("UnsafeCastFromDynamic") domProps.asDynamic()["helperText"]
         set(value) { setProp("helperText", value) }
     var Tag.id: String? by materialProps
-    var Tag.InputLabelProps: RProps? by materialProps
-    var Tag.InputProps: RProps? by materialProps
-    var Tag.inputProps: RProps? by materialProps
+    var Tag.InputLabelProps: PropsWithChildren? by materialProps
+    var Tag.InputProps: PropsWithChildren? by materialProps
+    var Tag.inputProps: PropsWithChildren? by materialProps
     var Tag.inputRef: RRef? by materialProps
     var Tag.label: ReactElement? by materialProps
     var Tag.multiline: Boolean? by materialProps
@@ -48,7 +48,7 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
     var Tag.rows: Any? by materialProps
     var Tag.rowsMax: Any? by materialProps
     var Tag.select: Boolean? by materialProps
-    var Tag.SelectProps: RProps? by materialProps
+    var Tag.SelectProps: PropsWithChildren? by materialProps
     var Tag.size: TextFieldSize? // issue: Enum? problem with <reified T: Enum<T>> StandardProps.getValue()
         get() = materialProps.get<TextFieldSize>("size")
         set(value) { materialProps.set("size",value) }
