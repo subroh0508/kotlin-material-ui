@@ -13,12 +13,12 @@ external interface PaperProps : StandardProps {
     var square: Boolean?
 }
 
-fun RBuilder.paper(vararg classMap: Pair<PaperStyle, String>, block: PaperElementBuilder<DIV, PaperProps>.() -> Unit)
-    = child(paperElement(classMap.toList(), block))
-
-fun <T: Tag, P: PaperProps> RBuilder.paper(vararg classMap: Pair<PaperStyle, String>, factory: (TagConsumer<Unit>) -> T, block: PaperElementBuilder<T, P>.() -> Unit)
-    = child(paperElement(classMap.toList(), factory, block))
-
+fun RBuilder.paper(vararg classMap: Pair<PaperStyle, String>, block: PaperElementBuilder<DIV, PaperProps>.() -> Unit) {
+    child(paperElement(classMap.toList(), block))
+}
+fun <T: Tag, P: PaperProps> RBuilder.paper(vararg classMap: Pair<PaperStyle, String>, factory: (TagConsumer<Unit>) -> T, block: PaperElementBuilder<T, P>.() -> Unit) {
+    child(paperElement(classMap.toList(), factory, block))
+}
 internal fun paperElement(
     classMap: List<Pair<PaperStyle, String>> = listOf(),
     block: PaperElementBuilder<DIV, PaperProps>.() -> Unit

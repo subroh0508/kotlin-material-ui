@@ -34,5 +34,6 @@ external interface InputBaseProps : StandardProps {
     var value: Any?
 }
 
-fun RBuilder.inputBase(vararg classMap: Pair<InputBaseStyle, String>, block: InputBaseElementBuilder<InputBaseProps>.() -> Unit)
-    = child(InputBaseElementBuilder(InputBase, classMap.toList()).apply(block).create())
+fun RBuilder.inputBase(vararg classMap: Pair<InputBaseStyle, String>, block: InputBaseElementBuilder<InputBaseProps>.() -> Unit) {
+    child(InputBaseElementBuilder(InputBase, classMap.toList()).apply(block).create())
+}

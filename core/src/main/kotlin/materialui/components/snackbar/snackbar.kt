@@ -36,5 +36,6 @@ var SnackbarOrigin.vertical: SnackbarOriginVertical?
     get() = (asDynamic()["vertical"] as String?)?.let { SnackbarOriginVertical.valueOf(it) }
     set(value) { asDynamic()["vertical"] = value?.toString() }
 
-fun RBuilder.snackbar(vararg classMap: Pair<SnackbarStyle, String>, block: SnackbarElementBuilder.() -> Unit)
-    = child(SnackbarElementBuilder(Snackbar, classMap.toList()).apply(block).create())
+fun RBuilder.snackbar(vararg classMap: Pair<SnackbarStyle, String>, block: SnackbarElementBuilder.() -> Unit) {
+    child(SnackbarElementBuilder(Snackbar, classMap.toList()).apply(block).create())
+}

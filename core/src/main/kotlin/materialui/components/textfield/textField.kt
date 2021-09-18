@@ -35,8 +35,9 @@ external interface TextFieldProps : FormControlProps {
     var value: Any?
 }
 
-fun RBuilder.textField(block: TextFieldElementBuilder<DIV>.() -> Unit)
-    = child(TextFieldElementBuilder(TextField, listOf()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.textField(factory: (TagConsumer<Unit>) -> T, block: TextFieldElementBuilder<T>.() -> Unit)
-    = child(TextFieldElementBuilder(TextField, listOf(), factory).apply(block).create())
+fun RBuilder.textField(block: TextFieldElementBuilder<DIV>.() -> Unit) {
+    child(TextFieldElementBuilder(TextField, listOf()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.textField(factory: (TagConsumer<Unit>) -> T, block: TextFieldElementBuilder<T>.() -> Unit) {
+    child(TextFieldElementBuilder(TextField, listOf(), factory).apply(block).create())
+}

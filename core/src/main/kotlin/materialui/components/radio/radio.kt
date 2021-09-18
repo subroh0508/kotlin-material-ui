@@ -9,5 +9,6 @@ external interface RadioProps : SwitchBaseProps {
     var color: String?
 }
 
-fun RBuilder.radio(vararg classMap: Pair<RadioStyle, String>, block: RadioElementBuilder.() -> Unit)
-    = child(RadioElementBuilder(Radio, classMap.toList()).apply(block).create())
+fun RBuilder.radio(vararg classMap: Pair<RadioStyle, String>, block: RadioElementBuilder.() -> Unit) {
+    child(RadioElementBuilder(Radio, classMap.toList()).apply(block).create())
+}

@@ -9,5 +9,6 @@ external interface FilledInputProps : InputBaseProps {
     var disableUnderline: Boolean?
 }
 
-fun RBuilder.filledInput(vararg classMap: Pair<FilledInputStyle, String>, block: FilledInputElementBuilder.() -> Unit)
-    = child(FilledInputElementBuilder(FilledInput, classMap.toList()).apply(block).create())
+fun RBuilder.filledInput(vararg classMap: Pair<FilledInputStyle, String>, block: FilledInputElementBuilder.() -> Unit) {
+    child(FilledInputElementBuilder(FilledInput, classMap.toList()).apply(block).create())
+}

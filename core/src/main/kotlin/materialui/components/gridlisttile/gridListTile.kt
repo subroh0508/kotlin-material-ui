@@ -13,8 +13,9 @@ external interface GridListTileProps : StandardProps {
     var rows: Number?
 }
 
-fun RBuilder.gridListTile(vararg classMap: Pair<GridListTitleStyle, String>, block: GridListTileElementBuilder<LI>.() -> Unit)
-    = child(GridListTileElementBuilder(GridListTile, classMap.toList()) { LI(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.gridListTile(vararg classMap: Pair<GridListTitleStyle, String>, factory: (TagConsumer<Unit>) -> T, block: GridListTileElementBuilder<T>.() -> Unit)
-    = child(GridListTileElementBuilder(GridListTile, classMap.toList(), factory).apply(block).create())
+fun RBuilder.gridListTile(vararg classMap: Pair<GridListTitleStyle, String>, block: GridListTileElementBuilder<LI>.() -> Unit) {
+    child(GridListTileElementBuilder(GridListTile, classMap.toList()) { LI(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.gridListTile(vararg classMap: Pair<GridListTitleStyle, String>, factory: (TagConsumer<Unit>) -> T, block: GridListTileElementBuilder<T>.() -> Unit) {
+    child(GridListTileElementBuilder(GridListTile, classMap.toList(), factory).apply(block).create())
+}

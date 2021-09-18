@@ -10,8 +10,9 @@ import react.RBuilder
 
 external interface CardContentProps : StandardProps
 
-fun RBuilder.cardContent(rootStyle: String? = null, block: CardContentElementBuilder<DIV>.() -> Unit)
-    = child(CardContentElementBuilder(CardContent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.cardContent(rootStyle: String? = null, factory: (TagConsumer<Unit>) -> T, block: CardContentElementBuilder<T>.() -> Unit)
-    = child(CardContentElementBuilder(CardContent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it }), factory).apply(block).create())
+fun RBuilder.cardContent(rootStyle: String? = null, block: CardContentElementBuilder<DIV>.() -> Unit) {
+    child(CardContentElementBuilder(CardContent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.cardContent(rootStyle: String? = null, factory: (TagConsumer<Unit>) -> T, block: CardContentElementBuilder<T>.() -> Unit) {
+    child(CardContentElementBuilder(CardContent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it }), factory).apply(block).create())
+}

@@ -10,5 +10,6 @@ external interface NoSsrProps : PropsWithChildren {
     var fallback: ReactElement?
 }
 
-fun RBuilder.noSsr(block: NoSsrElementBuilder.() -> Unit)
-    = child(NoSsrElementBuilder(NoSsr).apply(block).create())
+fun RBuilder.noSsr(block: NoSsrElementBuilder.() -> Unit) {
+    child(NoSsrElementBuilder(NoSsr).apply(block).create())
+}

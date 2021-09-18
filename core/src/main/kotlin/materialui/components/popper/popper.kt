@@ -18,9 +18,9 @@ external interface PopperProps : StandardProps {
     var transition: Boolean
 }
 
-fun RBuilder.popper(block: PopperElementBuilder.() -> Unit)
-    = child(popperElement(block))
-
+fun RBuilder.popper(block: PopperElementBuilder.() -> Unit) {
+    child(popperElement(block))
+}
 internal fun popperElement(
     block: PopperElementBuilder.() -> Unit
 ) = PopperElementBuilder(Popper).apply(block).create()

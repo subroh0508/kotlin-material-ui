@@ -15,12 +15,12 @@ external interface InputAdornmentProps : StandardProps {
     var variant: String?
 }
 
-fun RBuilder.inputAdornment(vararg classMap: Pair<InputAdornmentStyle, String>, block: InputAdornmentElementBuilder<DIV>.() -> Unit)
-    = child(inputAdornmentElement(classMap.toList(), block))
-
-fun <T: Tag> RBuilder.inputAdornment(vararg classMap: Pair<InputAdornmentStyle, String>, factory: (TagConsumer<Unit>) -> T, block: InputAdornmentElementBuilder<T>.() -> Unit)
-    = child(inputAdornmentElement(classMap.toList(), factory, block))
-
+fun RBuilder.inputAdornment(vararg classMap: Pair<InputAdornmentStyle, String>, block: InputAdornmentElementBuilder<DIV>.() -> Unit) {
+    child(inputAdornmentElement(classMap.toList(), block))
+}
+fun <T: Tag> RBuilder.inputAdornment(vararg classMap: Pair<InputAdornmentStyle, String>, factory: (TagConsumer<Unit>) -> T, block: InputAdornmentElementBuilder<T>.() -> Unit) {
+    child(inputAdornmentElement(classMap.toList(), factory, block))
+}
 fun inputAdornmentElement(
     classMap: List<Pair<InputAdornmentStyle, String>> = listOf(),
     block: InputAdornmentElementBuilder<DIV>.() -> Unit

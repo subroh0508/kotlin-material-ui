@@ -31,14 +31,15 @@ external interface VariantMapping {
     var body2: String?
 }
 
-fun RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit)
-    = child(typographyElement(classMap.toList(), block))
-
-fun RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit)
-    = child(typographyElement(classMap.toList(), p, block))
-
-fun <T: Tag> RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit)
-     = child(TypographyElementBuilder(Typography, classMap.toList(), factory).apply(block).create())
+fun RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
+    child(typographyElement(classMap.toList(), block))
+}
+fun RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) {
+    child(typographyElement(classMap.toList(), p, block))
+}
+fun <T: Tag> RBuilder.typography(vararg classMap: Pair<TypographyStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit) {
+    child(typographyElement(classMap.toList(), factory, block))
+}
 
 inline fun RBuilder.typographyH1(vararg classMap: Pair<TypographyStyle, String>, crossinline block: TypographyElementBuilder<H1, TypographyProps>.() -> Unit)
     = typography(*classMap, factory = { H1(mapOf(), it) }) {

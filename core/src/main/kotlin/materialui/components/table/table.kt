@@ -16,8 +16,9 @@ external interface TableProps : StandardProps {
     var padding: String?
 }
 
-fun RBuilder.table(rootStyle: String? = null, block: TableElementBuilder<TABLE>.() -> Unit)
-    = child(TableElementBuilder(Table, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { TABLE(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.table(rootStyle: String? = null, factory: (TagConsumer<Unit>) -> T, block: TableElementBuilder<T>.() -> Unit)
-    = child(TableElementBuilder(Table, listOfNotNull(rootStyle?.let { MaterialStyle.root to it }), factory).apply(block).create())
+fun RBuilder.table(rootStyle: String? = null, block: TableElementBuilder<TABLE>.() -> Unit) {
+    child(TableElementBuilder(Table, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { TABLE(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.table(rootStyle: String? = null, factory: (TagConsumer<Unit>) -> T, block: TableElementBuilder<T>.() -> Unit) {
+    child(TableElementBuilder(Table, listOfNotNull(rootStyle?.let { MaterialStyle.root to it }), factory).apply(block).create())
+}

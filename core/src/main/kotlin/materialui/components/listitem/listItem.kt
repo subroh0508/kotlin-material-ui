@@ -24,14 +24,16 @@ external interface ListItemProps : StandardProps {
 
 external interface ButtonListItemProps : ButtonBaseProps, ListItemProps
 
-fun RBuilder.listItem(vararg classMap: Pair<ListItemStyle, String>, block: ListItemElementBuilder<LI, ListItemProps>.() -> Unit)
-    = child(ListItemElementBuilder(ListItem, classMap.toList()) { LI(mapOf(), it) }.apply(block).create())
-
-fun RBuilder.buttonListItem(vararg classMap: Pair<ListItemStyle, String>, block: ButtonListItemElementBuilder.() -> Unit)
-    = child(ButtonListItemElementBuilder(ListItem, classMap.toList()).apply {
+fun RBuilder.listItem(vararg classMap: Pair<ListItemStyle, String>, block: ListItemElementBuilder<LI, ListItemProps>.() -> Unit) {
+    child(ListItemElementBuilder(ListItem, classMap.toList()) { LI(mapOf(), it) }.apply(block).create())
+}
+fun RBuilder.buttonListItem(vararg classMap: Pair<ListItemStyle, String>, block: ButtonListItemElementBuilder.() -> Unit) {
+    child(ButtonListItemElementBuilder(ListItem, classMap.toList()).apply {
         block()
         attrs.button = true
     }.create())
+}
 
-fun <T: Tag> RBuilder.listItem(vararg classMap: Pair<ListItemStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ListItemElementBuilder<T, ListItemProps>.() -> Unit)
-    = child(ListItemElementBuilder(ListItem, classMap.toList(), factory).apply(block).create())
+fun <T: Tag> RBuilder.listItem(vararg classMap: Pair<ListItemStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ListItemElementBuilder<T, ListItemProps>.() -> Unit) {
+    child(ListItemElementBuilder(ListItem, classMap.toList(), factory).apply(block).create())
+}

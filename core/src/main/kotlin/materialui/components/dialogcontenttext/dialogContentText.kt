@@ -10,8 +10,9 @@ import react.*
 
 external interface DialogContentTextProps : TypographyProps
 
-fun RBuilder.dialogContentText(rootStyle: String?, block: DialogContentTextElementBuilder<P>.() -> Unit)
-    = child(DialogContentTextElementBuilder(DialogContentText, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { P(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.dialogContentText(rootStyle: String?, factory: (TagConsumer<Unit>) -> T, block: DialogContentTextElementBuilder<T>.() -> Unit)
-    = child(DialogContentTextElementBuilder(DialogContentText, listOfNotNull(rootStyle?.let { MaterialStyle.root to it }), factory).apply(block).create())
+fun RBuilder.dialogContentText(rootStyle: String?, block: DialogContentTextElementBuilder<P>.() -> Unit) {
+    child(DialogContentTextElementBuilder(DialogContentText, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { P(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.dialogContentText(rootStyle: String?, factory: (TagConsumer<Unit>) -> T, block: DialogContentTextElementBuilder<T>.() -> Unit) {
+    child(DialogContentTextElementBuilder(DialogContentText, listOfNotNull(rootStyle?.let { MaterialStyle.root to it }), factory).apply(block).create())
+}

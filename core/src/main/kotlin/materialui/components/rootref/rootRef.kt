@@ -7,5 +7,6 @@ external interface RootRefProps : PropsWithChildren {
     var rootRef: Ref<*>?
 }
 
-fun RBuilder.rootRef(block: RootRefElementBuilder.() -> Unit)
-    = child(RootRefElementBuilder(RootRef).apply(block).create())
+fun RBuilder.rootRef(block: RootRefElementBuilder.() -> Unit) {
+    child(RootRefElementBuilder(RootRef).apply(block).create())
+}

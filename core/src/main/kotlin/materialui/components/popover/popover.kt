@@ -54,5 +54,6 @@ external interface PopoverPosition {
     var left: Number?
 }
 
-fun RBuilder.popover(vararg classMap: Pair<PopoverStyle, String>, block: PopoverElementBuilder<PopoverProps>.() -> Unit)
-    = child(PopoverElementBuilder(Popover, classMap.toList()).apply(block).create())
+fun RBuilder.popover(vararg classMap: Pair<PopoverStyle, String>, block: PopoverElementBuilder<PopoverProps>.() -> Unit) {
+    child(PopoverElementBuilder(Popover, classMap.toList()).apply(block).create())
+}

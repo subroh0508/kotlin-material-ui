@@ -11,5 +11,6 @@ external interface NativeSelectProps : InputProps {
     var variant: String?
 }
 
-fun RBuilder.nativeSelect(vararg classMap: Pair<NativeSelectStyle, String>, block: NativeSelectElementBuilder.() -> Unit)
-    = child(NativeSelectElementBuilder(NativeSelect, classMap.toList()).apply(block).create())
+fun RBuilder.nativeSelect(vararg classMap: Pair<NativeSelectStyle, String>, block: NativeSelectElementBuilder.() -> Unit) {
+    child(NativeSelectElementBuilder(NativeSelect, classMap.toList()).apply(block).create())
+}

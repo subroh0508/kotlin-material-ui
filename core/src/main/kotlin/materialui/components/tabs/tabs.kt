@@ -33,8 +33,9 @@ external interface TabsActions {
     val updateIndicator: () -> Unit
 }
 
-fun RBuilder.tabs(vararg classMap: Pair<TabsStyle, String>, block: TabsElementBuilder<DIV>.() -> Unit)
-    = child(TabsElementBuilder(Tabs, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.tabs(vararg classMap: Pair<TabsStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TabsElementBuilder<T>.() -> Unit)
-    = child(TabsElementBuilder(Tabs, classMap.toList(), factory).apply(block).create())
+fun RBuilder.tabs(vararg classMap: Pair<TabsStyle, String>, block: TabsElementBuilder<DIV>.() -> Unit) {
+    child(TabsElementBuilder(Tabs, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.tabs(vararg classMap: Pair<TabsStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TabsElementBuilder<T>.() -> Unit) {
+    child(TabsElementBuilder(Tabs, classMap.toList(), factory).apply(block).create())
+}

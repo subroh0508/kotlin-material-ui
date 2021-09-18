@@ -13,8 +13,9 @@ external interface ToolbarProps : StandardProps {
     var variant: String?
 }
 
-fun RBuilder.toolbar(vararg classMap: Pair<ToolbarStyle, String>, block: ToolbarElementBuilder<DIV>.() -> Unit)
-    = child(ToolbarElementBuilder(Toolbar, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.toolbar(vararg classMap: Pair<ToolbarStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ToolbarElementBuilder<T>.() -> Unit)
-    = child(ToolbarElementBuilder(Toolbar, classMap.toList(), factory).apply(block).create())
+fun RBuilder.toolbar(vararg classMap: Pair<ToolbarStyle, String>, block: ToolbarElementBuilder<DIV>.() -> Unit) {
+    child(ToolbarElementBuilder(Toolbar, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.toolbar(vararg classMap: Pair<ToolbarStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ToolbarElementBuilder<T>.() -> Unit) {
+    child(ToolbarElementBuilder(Toolbar, classMap.toList(), factory).apply(block).create())
+}

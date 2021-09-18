@@ -11,5 +11,6 @@ external interface CheckboxProps : SwitchBaseProps {
     var indeterminateIcon: ReactElement?
 }
 
-fun RBuilder.checkbox(vararg classMap: Pair<CheckboxStyle, String>, block: CheckboxElementBuilder.() -> Unit)
-    = child(CheckboxElementBuilder(Checkbox, classMap.toList()).apply(block).create())
+fun RBuilder.checkbox(vararg classMap: Pair<CheckboxStyle, String>, block: CheckboxElementBuilder.() -> Unit) {
+    child(CheckboxElementBuilder(Checkbox, classMap.toList()).apply(block).create())
+}

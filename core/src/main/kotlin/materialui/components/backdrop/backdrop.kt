@@ -12,9 +12,9 @@ external interface BackdropProps : FadeProps {
     var transitionDuration: dynamic
 }
 
-fun RBuilder.backdrop(vararg classMap: Pair<BackdropStyle, String>, block: BackdropElementBuilder.() -> Unit)
-    = child(backdropElement(classMap.toList(), block))
-
+fun RBuilder.backdrop(vararg classMap: Pair<BackdropStyle, String>, block: BackdropElementBuilder.() -> Unit) {
+    child(backdropElement(classMap.toList(), block))
+}
 internal fun backdropElement(
     classMap: List<Pair<BackdropStyle, String>> = listOf(),
     block: BackdropElementBuilder.() -> Unit,

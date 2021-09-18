@@ -14,9 +14,9 @@ external interface MenuProps : PopoverProps {
     var PopoveComponentClasses: Any?
 }
 
-fun RBuilder.menu(vararg classMap: Pair<MenuStyle, String>, block: MenuElementBuilder.() -> Unit)
-    = child(menuElement(classMap.toList(), block))
-
+fun RBuilder.menu(vararg classMap: Pair<MenuStyle, String>, block: MenuElementBuilder.() -> Unit) {
+    child(menuElement(classMap.toList(), block))
+}
 internal fun menuElement(
     classMap: List<Pair<MenuStyle, String>> = listOf(),
     block: MenuElementBuilder.() -> Unit

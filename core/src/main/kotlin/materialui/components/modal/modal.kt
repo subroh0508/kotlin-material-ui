@@ -25,5 +25,6 @@ external interface ModalProps : StandardProps {
     var open: Boolean?
 }
 
-fun RBuilder.modal(vararg classMap: Pair<ModalStyle, String>, block: ModalElementBuilder<ModalProps>.() -> Unit)
-    = child(ModalElementBuilder(Modal, classMap.toList()).apply(block).create())
+fun RBuilder.modal(vararg classMap: Pair<ModalStyle, String>, block: ModalElementBuilder<ModalProps>.() -> Unit) {
+    child(ModalElementBuilder(Modal, classMap.toList()).apply(block).create())
+}

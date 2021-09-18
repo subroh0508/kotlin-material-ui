@@ -17,8 +17,9 @@ external interface StepperProps : PaperProps {
     var orientation: String?
 }
 
-fun RBuilder.stepper(vararg classMap: Pair<StepperStyle, String>, block: StepperElementBuilder<DIV>.() -> Unit)
-    = child(StepperElementBuilder(Stepper, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.stepper(vararg classMap: Pair<StepperStyle, String>, factory: (TagConsumer<Unit>) -> T, block: StepperElementBuilder<T>.() -> Unit)
-    = child(StepperElementBuilder(Stepper, classMap.toList(), factory).apply(block).create())
+fun RBuilder.stepper(vararg classMap: Pair<StepperStyle, String>, block: StepperElementBuilder<DIV>.() -> Unit) {
+    child(StepperElementBuilder(Stepper, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.stepper(vararg classMap: Pair<StepperStyle, String>, factory: (TagConsumer<Unit>) -> T, block: StepperElementBuilder<T>.() -> Unit) {
+    child(StepperElementBuilder(Stepper, classMap.toList(), factory).apply(block).create())
+}

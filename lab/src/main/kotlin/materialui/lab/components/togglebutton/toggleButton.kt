@@ -23,8 +23,9 @@ external interface ToggleButtonProps : ButtonBaseProps {
 @Suppress("UnsafeCastFromDynamic")
 private val toggleButtonComponent: ComponentType<ToggleButtonProps> = toggleButtonModule.default
 
-fun RBuilder.toggleButton(vararg classMap: Pair<ToggleButtonStyle, String>, block: ToggleButtonElementBuilder<BUTTON>.() -> Unit)
-    = child(ToggleButtonElementBuilder(toggleButtonComponent, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.toggleButton(vararg classMap: Pair<ToggleButtonStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ToggleButtonElementBuilder<T>.() -> Unit)
-    = child(ToggleButtonElementBuilder(toggleButtonComponent, classMap.toList(), factory).apply(block).create())
+fun RBuilder.toggleButton(vararg classMap: Pair<ToggleButtonStyle, String>, block: ToggleButtonElementBuilder<BUTTON>.() -> Unit) {
+    child(ToggleButtonElementBuilder(toggleButtonComponent, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.toggleButton(vararg classMap: Pair<ToggleButtonStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ToggleButtonElementBuilder<T>.() -> Unit) {
+    child(ToggleButtonElementBuilder(toggleButtonComponent, classMap.toList(), factory).apply(block).create())
+}

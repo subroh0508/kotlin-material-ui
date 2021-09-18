@@ -10,5 +10,6 @@ external interface OutlinedInputProps : InputBaseProps {
     var notched: Boolean?
 }
 
-fun RBuilder.outlinedInput(vararg classMap: Pair<OutlinedInputStyle, String>, block: OutlinedInputElementBuilder.() -> Unit)
-    = child(OutlinedInputElementBuilder(OutlinedInput, classMap.toList()).apply(block).create())
+fun RBuilder.outlinedInput(vararg classMap: Pair<OutlinedInputStyle, String>, block: OutlinedInputElementBuilder.() -> Unit) {
+    child(OutlinedInputElementBuilder(OutlinedInput, classMap.toList()).apply(block).create())
+}

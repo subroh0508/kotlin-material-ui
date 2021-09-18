@@ -18,11 +18,12 @@ external interface TableCellProps : StandardProps {
     var variant: String?
 }
 
-fun RBuilder.thCell(vararg classMap: Pair<TableCellStyle, String>, block: TableCellElementBuilder<TH, TableCellProps>.() -> Unit)
-    = child(TableCellElementBuilder(TableCell, classMap.toList()) { TH(mapOf(), it) }.apply(block).create())
-
-fun RBuilder.tdCell(vararg classMap: Pair<TableCellStyle, String>, block: TableCellElementBuilder<TD, TableCellProps>.() -> Unit)
-    = child(TableCellElementBuilder(TableCell, classMap.toList()) { TD(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.tableCell(vararg classMap: Pair<TableCellStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TableCellElementBuilder<T, TableCellProps>.() -> Unit)
-    = child(TableCellElementBuilder(TableCell, classMap.toList(), factory).apply(block).create())
+fun RBuilder.thCell(vararg classMap: Pair<TableCellStyle, String>, block: TableCellElementBuilder<TH, TableCellProps>.() -> Unit) {
+    child(TableCellElementBuilder(TableCell, classMap.toList()) { TH(mapOf(), it) }.apply(block).create())
+}
+fun RBuilder.tdCell(vararg classMap: Pair<TableCellStyle, String>, block: TableCellElementBuilder<TD, TableCellProps>.() -> Unit) {
+    child(TableCellElementBuilder(TableCell, classMap.toList()) { TD(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.tableCell(vararg classMap: Pair<TableCellStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TableCellElementBuilder<T, TableCellProps>.() -> Unit) {
+    child(TableCellElementBuilder(TableCell, classMap.toList(), factory).apply(block).create())
+}

@@ -11,5 +11,6 @@ external interface ZoomProps : RTransitionProps, PropsWithChildren {
     var theme: MuiTheme?
 }
 
-fun RBuilder.zoom(block: ZoomElementBuilder.() -> Unit)
-    = child(ZoomElementBuilder(Zoom).apply(block).create())
+fun RBuilder.zoom(block: ZoomElementBuilder.() -> Unit) {
+    child(ZoomElementBuilder(Zoom).apply(block).create())
+}

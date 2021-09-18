@@ -15,5 +15,6 @@ external interface CircularProgressProps : StandardProps {
     var variant: String?
 }
 
-fun RBuilder.circularProgress(vararg classMap: Pair<CircularProgressStyle, String>, block: CircularProgressElementBuilder.() -> Unit)
-    = child(CircularProgressElementBuilder(CircularProgress, classMap.toList()).apply(block).create())
+fun RBuilder.circularProgress(vararg classMap: Pair<CircularProgressStyle, String>, block: CircularProgressElementBuilder.() -> Unit) {
+    child(CircularProgressElementBuilder(CircularProgress, classMap.toList()).apply(block).create())
+}

@@ -20,8 +20,9 @@ external interface BadgeProps : StandardProps {
     var variant: BadgeVariant?
 }
 
-fun RBuilder.badge(vararg classMap: Pair<BadgeStyle, String>, block: BadgeElementBuilder<SPAN>.() -> Unit)
-    = child(BadgeElementBuilder(Badge, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.badge(vararg classMap: Pair<BadgeStyle, String>, factory: (TagConsumer<Unit>) -> T, block: BadgeElementBuilder<T>.() -> Unit)
-    = child(BadgeElementBuilder(Badge, classMap.toList(), factory).apply(block).create())
+fun RBuilder.badge(vararg classMap: Pair<BadgeStyle, String>, block: BadgeElementBuilder<SPAN>.() -> Unit) {
+    child(BadgeElementBuilder(Badge, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.badge(vararg classMap: Pair<BadgeStyle, String>, factory: (TagConsumer<Unit>) -> T, block: BadgeElementBuilder<T>.() -> Unit) {
+    child(BadgeElementBuilder(Badge, classMap.toList(), factory).apply(block).create())
+}

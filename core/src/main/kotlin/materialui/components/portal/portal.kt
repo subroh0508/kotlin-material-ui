@@ -10,5 +10,6 @@ external interface PortalProps : PropsWithChildren {
     var onRendered: (() -> Unit)?
 }
 
-fun RBuilder.portal(block: PortalElementBuilder.() -> Unit)
-    = child(PortalElementBuilder(Portal).apply(block).create())
+fun RBuilder.portal(block: PortalElementBuilder.() -> Unit) {
+    child(PortalElementBuilder(Portal).apply(block).create())
+}

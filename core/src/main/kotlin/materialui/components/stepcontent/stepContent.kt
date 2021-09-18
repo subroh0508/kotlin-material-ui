@@ -18,5 +18,6 @@ external interface StepContentProps : StandardProps {
     var TransitionProps: RTransitionProps?
 }
 
-fun RBuilder.stepContent(vararg classMap: Pair<StepContentStyle, String>, block: StepContentElementBuilder.() -> Unit)
-    = child(StepContentElementBuilder(StepContent, classMap.toList()).apply(block).create())
+fun RBuilder.stepContent(vararg classMap: Pair<StepContentStyle, String>, block: StepContentElementBuilder.() -> Unit) {
+    child(StepContentElementBuilder(StepContent, classMap.toList()).apply(block).create())
+}

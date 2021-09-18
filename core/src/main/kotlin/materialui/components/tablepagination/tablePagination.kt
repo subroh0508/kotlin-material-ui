@@ -33,8 +33,9 @@ external interface LabelDisplayedRows {
     val page: Int
 }
 
-fun RBuilder.tablePagination(vararg classMap: Pair<TablePaginationStyle, String>, block: TablePaginationElementBuilder<TD>.() -> Unit)
-    = child(TablePaginationElementBuilder(TablePagination, classMap.toList()) { TD(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.tablePagination(vararg classMap: Pair<TablePaginationStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TablePaginationElementBuilder<T>.() -> Unit)
-    = child(TablePaginationElementBuilder(TablePagination, classMap.toList(), factory).apply(block).create())
+fun RBuilder.tablePagination(vararg classMap: Pair<TablePaginationStyle, String>, block: TablePaginationElementBuilder<TD>.() -> Unit) {
+    child(TablePaginationElementBuilder(TablePagination, classMap.toList()) { TD(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.tablePagination(vararg classMap: Pair<TablePaginationStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TablePaginationElementBuilder<T>.() -> Unit) {
+    child(TablePaginationElementBuilder(TablePagination, classMap.toList(), factory).apply(block).create())
+}

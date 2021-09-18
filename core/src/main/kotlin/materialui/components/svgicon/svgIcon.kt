@@ -20,8 +20,9 @@ external interface SvgIconProps : StandardProps {
 
 var SvgIconProps.htmlColor: Color? by ColorDelegate
 
-fun RBuilder.svgIcon(vararg classMap: Pair<SvgIconStyle, String>, block: SvgIconElementBuilder<SVG>.() -> Unit)
-    = child(SvgIconElementBuilder(SvgIcon, classMap.toList()) { SVG(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.svgIcon(vararg classMap: Pair<SvgIconStyle, String>, factory: (TagConsumer<Unit>) -> T, block: SvgIconElementBuilder<T>.() -> Unit)
-    = child(SvgIconElementBuilder(SvgIcon, classMap.toList(), factory).apply(block).create())
+fun RBuilder.svgIcon(vararg classMap: Pair<SvgIconStyle, String>, block: SvgIconElementBuilder<SVG>.() -> Unit) {
+    child(SvgIconElementBuilder(SvgIcon, classMap.toList()) { SVG(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.svgIcon(vararg classMap: Pair<SvgIconStyle, String>, factory: (TagConsumer<Unit>) -> T, block: SvgIconElementBuilder<T>.() -> Unit) {
+    child(SvgIconElementBuilder(SvgIcon, classMap.toList(), factory).apply(block).create())
+}

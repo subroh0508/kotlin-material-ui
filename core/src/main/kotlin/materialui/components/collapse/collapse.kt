@@ -19,8 +19,9 @@ external interface CollapseProps : RTransitionProps, StandardProps {
 
 var CollapseProps.collapsedHeight: LinearDimension? by LinearDimensionDelegate
 
-fun RBuilder.collapse(vararg classMap: Pair<CollapseStyle, String>, block: CollapseElementBuilder<DIV>.() -> Unit)
-    = child(CollapseElementBuilder(Collapse, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.collapse(vararg classMap: Pair<CollapseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: CollapseElementBuilder<T>.() -> Unit)
-    = child(CollapseElementBuilder(Collapse, classMap.toList(), factory).apply(block).create())
+fun RBuilder.collapse(vararg classMap: Pair<CollapseStyle, String>, block: CollapseElementBuilder<DIV>.() -> Unit) {
+    child(CollapseElementBuilder(Collapse, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.collapse(vararg classMap: Pair<CollapseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: CollapseElementBuilder<T>.() -> Unit) {
+    child(CollapseElementBuilder(Collapse, classMap.toList(), factory).apply(block).create())
+}

@@ -7,5 +7,6 @@ import react.RBuilder
 
 external interface ExpansionPanelDetailsProps : StandardProps
 
-fun RBuilder.expansionPanelDetails(rootStyle: String? = null, block: ExpansionPanelDetailsElementBuilder.() -> Unit)
-    = child(ExpansionPanelDetailsElementBuilder(ExpansionPanelDetails, listOfNotNull(rootStyle?.let{ MaterialStyle.root to it })).apply(block).create())
+fun RBuilder.expansionPanelDetails(rootStyle: String? = null, block: ExpansionPanelDetailsElementBuilder.() -> Unit) {
+    child(ExpansionPanelDetailsElementBuilder(ExpansionPanelDetails, listOfNotNull(rootStyle?.let{ MaterialStyle.root to it })).apply(block).create())
+}

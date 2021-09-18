@@ -9,5 +9,6 @@ external interface DialogActionsProps : StandardProps {
     var disableSpacing: Boolean?
 }
 
-fun RBuilder.dialogActions(vararg classMap: Pair<DialogActionsStyle, String>, block: DialogActionsElementBuilder.() -> Unit)
-    = child(DialogActionsElementBuilder(DialogActions, classMap.toList()).apply(block).create())
+fun RBuilder.dialogActions(vararg classMap: Pair<DialogActionsStyle, String>, block: DialogActionsElementBuilder.() -> Unit) {
+    child(DialogActionsElementBuilder(DialogActions, classMap.toList()).apply(block).create())
+}

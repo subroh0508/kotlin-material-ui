@@ -24,9 +24,9 @@ external interface SelectProps : InputProps {
     var variant: String?
 }
 
-fun RBuilder.select(vararg classMap: Pair<SelectStyle, String>, block: SelectElementBuilder.() -> Unit)
-    = child(selectElement(classMap.toList(), block))
-
+fun RBuilder.select(vararg classMap: Pair<SelectStyle, String>, block: SelectElementBuilder.() -> Unit) {
+    child(selectElement(classMap.toList(), block))
+}
 internal fun selectElement(
     classMap: List<Pair<SelectStyle, String>> = listOf(),
     block: SelectElementBuilder.() -> Unit

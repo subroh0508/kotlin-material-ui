@@ -20,5 +20,6 @@ external interface HiddenProps : StandardProps {
     var xsUp: Boolean?
 }
 
-fun RBuilder.hidden(block: HiddenElementBuilder.() -> Unit)
-    = child(HiddenElementBuilder(Hidden).apply(block).create())
+fun RBuilder.hidden(block: HiddenElementBuilder.() -> Unit) {
+    child(HiddenElementBuilder(Hidden).apply(block).create())
+}

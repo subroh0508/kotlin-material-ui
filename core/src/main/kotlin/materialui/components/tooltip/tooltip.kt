@@ -34,5 +34,6 @@ var TooltipProps.placement: TooltipPlacement?
     get() = (asDynamic()["placement"] as String?)?.let { TooltipPlacement.valueOf(it) }
     set(value) { asDynamic()["placement"] = value?.toString() }
 
-fun RBuilder.tooltip(vararg classMap: Pair<TooltipStyle, String>, block: TooltipElementBuilder.() -> Unit)
-    = child(TooltipElementBuilder(Tooltip, classMap.toList()).apply(block).create())
+fun RBuilder.tooltip(vararg classMap: Pair<TooltipStyle, String>, block: TooltipElementBuilder.() -> Unit) {
+    child(TooltipElementBuilder(Tooltip, classMap.toList()).apply(block).create())
+}

@@ -18,8 +18,9 @@ external interface AvatarProps : StandardProps {
     var srcSet: String?
 }
 
-fun RBuilder.avatar(vararg classMap: Pair<AvatarStyle, String>, block: AvatarElementBuilder<DIV>.() -> Unit)
-    = child(AvatarElementBuilder(Avatar, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.avatar(vararg classMap: Pair<AvatarStyle, String>, factory: (TagConsumer<Unit>) -> T, block: AvatarElementBuilder<T>.() -> Unit)
-    = child(AvatarElementBuilder(Avatar, classMap.toList(), factory).apply(block).create())
+fun RBuilder.avatar(vararg classMap: Pair<AvatarStyle, String>, block: AvatarElementBuilder<DIV>.() -> Unit) {
+    child(AvatarElementBuilder(Avatar, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.avatar(vararg classMap: Pair<AvatarStyle, String>, factory: (TagConsumer<Unit>) -> T, block: AvatarElementBuilder<T>.() -> Unit) {
+    child(AvatarElementBuilder(Avatar, classMap.toList(), factory).apply(block).create())
+}

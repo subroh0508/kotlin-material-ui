@@ -10,8 +10,9 @@ import react.RBuilder
 
 external interface CardActionAreaProps : ButtonBaseProps
 
-fun RBuilder.cardActionArea(vararg classMap: Pair<ButtonBaseStyle, String>, block: CardActionAreaElementBuilder<BUTTON>.() -> Unit)
-    = child(CardActionAreaElementBuilder(CardActionArea, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.cardActionArea(vararg classMap: Pair<ButtonBaseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: CardActionAreaElementBuilder<T>.() -> Unit)
-    = child(CardActionAreaElementBuilder(CardActionArea, classMap.toList(), factory).apply(block).create())
+fun RBuilder.cardActionArea(vararg classMap: Pair<ButtonBaseStyle, String>, block: CardActionAreaElementBuilder<BUTTON>.() -> Unit) {
+    child(CardActionAreaElementBuilder(CardActionArea, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.cardActionArea(vararg classMap: Pair<ButtonBaseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: CardActionAreaElementBuilder<T>.() -> Unit) {
+    child(CardActionAreaElementBuilder(CardActionArea, classMap.toList(), factory).apply(block).create())
+}

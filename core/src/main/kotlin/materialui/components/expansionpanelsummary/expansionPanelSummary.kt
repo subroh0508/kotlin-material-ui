@@ -16,8 +16,9 @@ external interface ExpansionPanelSummaryProps : ButtonBaseProps {
     var IconButtonProps: PropsWithChildren?
 }
 
-fun RBuilder.expansionPanelSummary(vararg classMap: Pair<ExpansionPanelSummaryStyle, String>, block: ExpansionPanelSummaryElementBuilder<DIV>.() -> Unit)
-    = child(ExpansionPanelSummaryElementBuilder(ExpansionPanelSummary, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.expansionPanelSummary(vararg classMap: Pair<ExpansionPanelSummaryStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ExpansionPanelSummaryElementBuilder<T>.() -> Unit)
-    = child(ExpansionPanelSummaryElementBuilder(ExpansionPanelSummary, classMap.toList(), factory).apply(block).create())
+fun RBuilder.expansionPanelSummary(vararg classMap: Pair<ExpansionPanelSummaryStyle, String>, block: ExpansionPanelSummaryElementBuilder<DIV>.() -> Unit) {
+    child(ExpansionPanelSummaryElementBuilder(ExpansionPanelSummary, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.expansionPanelSummary(vararg classMap: Pair<ExpansionPanelSummaryStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ExpansionPanelSummaryElementBuilder<T>.() -> Unit) {
+    child(ExpansionPanelSummaryElementBuilder(ExpansionPanelSummary, classMap.toList(), factory).apply(block).create())
+}

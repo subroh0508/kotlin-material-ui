@@ -18,5 +18,6 @@ external interface FormControlLabelProps : StandardProps {
     var value: String?
 }
 
-fun RBuilder.formControlLabel(vararg classMap: Pair<FormControlLabelStyle, String>, block: FormControlLabelElementBuilder.() -> Unit)
-    = child(FormControlLabelElementBuilder(FormControlLabel, classMap.toList()).apply(block).create())
+fun RBuilder.formControlLabel(vararg classMap: Pair<FormControlLabelStyle, String>, block: FormControlLabelElementBuilder.() -> Unit) {
+    child(FormControlLabelElementBuilder(FormControlLabel, classMap.toList()).apply(block).create())
+}

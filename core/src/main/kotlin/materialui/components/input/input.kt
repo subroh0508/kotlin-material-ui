@@ -9,9 +9,9 @@ external interface InputProps : InputBaseProps {
     var disableUnderline: Boolean?
 }
 
-fun RBuilder.input(vararg classMap: Pair<InputStyle, String>, block: InputElementBuilder<InputProps>.() -> Unit)
-    = child(inputElement(classMap.toList(), block))
-
+fun RBuilder.input(vararg classMap: Pair<InputStyle, String>, block: InputElementBuilder<InputProps>.() -> Unit) {
+    child(inputElement(classMap.toList(), block))
+}
 internal fun inputElement(
     classMap: List<Pair<InputStyle, String>> = listOf(),
     block: InputElementBuilder<InputProps>.() -> Unit

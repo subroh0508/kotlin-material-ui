@@ -20,8 +20,9 @@ external interface CardHeaderProps : StandardProps {
     var titleTypographyProps: PropsWithChildren?
 }
 
-fun RBuilder.cardHeader(vararg classMap: Pair<CardHeaderStyle, String>, block: CardHeaderElementBuilder<DIV>.() -> Unit)
-    = child(CardHeaderElementBuilder(CardHeader, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.cardHeader(vararg classMap: Pair<CardHeaderStyle, String>, factory: (TagConsumer<Unit>) -> T, block: CardHeaderElementBuilder<T>.() -> Unit)
-    = child(CardHeaderElementBuilder(CardHeader, classMap.toList(), factory).apply(block).create())
+fun RBuilder.cardHeader(vararg classMap: Pair<CardHeaderStyle, String>, block: CardHeaderElementBuilder<DIV>.() -> Unit) {
+    child(CardHeaderElementBuilder(CardHeader, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.cardHeader(vararg classMap: Pair<CardHeaderStyle, String>, factory: (TagConsumer<Unit>) -> T, block: CardHeaderElementBuilder<T>.() -> Unit) {
+    child(CardHeaderElementBuilder(CardHeader, classMap.toList(), factory).apply(block).create())
+}

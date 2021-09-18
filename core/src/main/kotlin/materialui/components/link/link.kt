@@ -14,8 +14,9 @@ external interface LinkProps : TypographyProps {
     var underline: String?
 }
 
-fun RBuilder.link(vararg classMap: Pair<LinkStyle, String>, block: LinkElementBuilder<A>.() -> Unit)
-    = child(LinkElementBuilder(Link, classMap.toList()) { A(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.link(vararg classMap: Pair<LinkStyle, String>, factory: (TagConsumer<Unit>) -> T, block: LinkElementBuilder<T>.() -> Unit)
-    = child(LinkElementBuilder(Link, classMap.toList(), factory).apply(block).create())
+fun RBuilder.link(vararg classMap: Pair<LinkStyle, String>, block: LinkElementBuilder<A>.() -> Unit) {
+    child(LinkElementBuilder(Link, classMap.toList()) { A(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.link(vararg classMap: Pair<LinkStyle, String>, factory: (TagConsumer<Unit>) -> T, block: LinkElementBuilder<T>.() -> Unit) {
+    child(LinkElementBuilder(Link, classMap.toList(), factory).apply(block).create())
+}

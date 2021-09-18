@@ -13,8 +13,9 @@ external interface AppBarProps : PaperProps {
     var position: String?
 }
 
-fun RBuilder.appBar(vararg classMap: Pair<AppBarStyle, String>, block: AppBarElementBuilder<DIV>.() -> Unit)
-    = child(AppBarElementBuilder(AppBar, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.appBar(vararg classMap: Pair<AppBarStyle, String>, factory: (TagConsumer<Unit>) -> T, block: AppBarElementBuilder<T>.() -> Unit)
-    = child(AppBarElementBuilder(AppBar, classMap.toList(), factory).apply(block).create())
+fun RBuilder.appBar(vararg classMap: Pair<AppBarStyle, String>, block: AppBarElementBuilder<DIV>.() -> Unit) {
+    child(AppBarElementBuilder(AppBar, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.appBar(vararg classMap: Pair<AppBarStyle, String>, factory: (TagConsumer<Unit>) -> T, block: AppBarElementBuilder<T>.() -> Unit) {
+    child(AppBarElementBuilder(AppBar, classMap.toList(), factory).apply(block).create())
+}

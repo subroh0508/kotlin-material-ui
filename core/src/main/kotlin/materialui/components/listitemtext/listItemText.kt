@@ -15,5 +15,6 @@ external interface ListItemTextProps : StandardProps {
     var theme: Any?
 }
 
-fun RBuilder.listItemText(vararg classMap: Pair<ListItemTextStyle, String>, block: ListItemTextElementBuilder.() -> Unit)
-    = child(ListItemTextElementBuilder(ListItemText, classMap.toList()).apply(block).create())
+fun RBuilder.listItemText(vararg classMap: Pair<ListItemTextStyle, String>, block: ListItemTextElementBuilder.() -> Unit) {
+    child(ListItemTextElementBuilder(ListItemText, classMap.toList()).apply(block).create())
+}

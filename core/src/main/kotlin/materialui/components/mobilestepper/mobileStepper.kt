@@ -20,8 +20,9 @@ external interface MobileStepperProps : PaperProps {
     var variant: String?
 }
 
-fun RBuilder.mobileStepper(vararg classMap: Pair<PaperStyle, String>, block: MobileStepperElementBuilder<DIV>.() -> Unit)
-    = child(MobileStepperElementBuilder(MobileStepper, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.mobileStepper(vararg classMap: Pair<PaperStyle, String>, factory: (TagConsumer<Unit>) -> T, block: MobileStepperElementBuilder<T>.() -> Unit)
-    = child(MobileStepperElementBuilder(MobileStepper, classMap.toList(), factory).apply(block).create())
+fun RBuilder.mobileStepper(vararg classMap: Pair<PaperStyle, String>, block: MobileStepperElementBuilder<DIV>.() -> Unit) {
+    child(MobileStepperElementBuilder(MobileStepper, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.mobileStepper(vararg classMap: Pair<PaperStyle, String>, factory: (TagConsumer<Unit>) -> T, block: MobileStepperElementBuilder<T>.() -> Unit) {
+    child(MobileStepperElementBuilder(MobileStepper, classMap.toList(), factory).apply(block).create())
+}

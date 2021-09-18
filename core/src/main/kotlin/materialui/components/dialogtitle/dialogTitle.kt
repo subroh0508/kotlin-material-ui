@@ -9,5 +9,6 @@ external interface DialogTitleProps : StandardProps {
     var disableTypography: Boolean?
 }
 
-fun RBuilder.dialogTitle(rootStyle: String? = null, block: DialogTitleElementBuilder.() -> Unit)
-    = child(DialogTitleElementBuilder(DialogTitle, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })).apply(block).create())
+fun RBuilder.dialogTitle(rootStyle: String? = null, block: DialogTitleElementBuilder.() -> Unit) {
+    child(DialogTitleElementBuilder(DialogTitle, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })).apply(block).create())
+}

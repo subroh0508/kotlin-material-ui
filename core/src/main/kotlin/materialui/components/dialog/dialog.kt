@@ -18,5 +18,6 @@ external interface DialogProps : ModalProps {
     var TransitionProps: PropsWithChildren?
 }
 
-fun RBuilder.dialog(vararg classMap: Pair<DialogStyle, String>, block: DialogElementBuilder.() -> Unit)
-    = child(DialogElementBuilder(Dialog, classMap.toList()).apply(block).create())
+fun RBuilder.dialog(vararg classMap: Pair<DialogStyle, String>, block: DialogElementBuilder.() -> Unit) {
+    child(DialogElementBuilder(Dialog, classMap.toList()).apply(block).create())
+}

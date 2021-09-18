@@ -7,5 +7,6 @@ import react.PropsWithChildren
 
 external interface FadeProps : RTransitionProps, PropsWithChildren
 
-fun RBuilder.fade(block: FadeElementBuilder.() -> Unit)
-    = child(FadeElementBuilder(Fade).apply(block).create())
+fun RBuilder.fade(block: FadeElementBuilder.() -> Unit) {
+    child(FadeElementBuilder(Fade).apply(block).create())
+}

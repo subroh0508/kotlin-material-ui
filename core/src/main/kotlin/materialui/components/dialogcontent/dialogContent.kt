@@ -7,5 +7,6 @@ import react.RBuilder
 
 external interface DialogContentProps : StandardProps
 
-fun RBuilder.dialogContent(rootStyle: String? = null, block: DialogContentElementBuilder.() -> Unit)
-    = child(DialogContentElementBuilder(DialogContent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })).apply(block).create())
+fun RBuilder.dialogContent(rootStyle: String? = null, block: DialogContentElementBuilder.() -> Unit) {
+    child(DialogContentElementBuilder(DialogContent, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })).apply(block).create())
+}

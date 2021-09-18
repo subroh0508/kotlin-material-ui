@@ -18,5 +18,6 @@ external interface SwipeableDrawerProps : DrawerProps {
     var swipeAreaWidth: Number?
 }
 
-fun RBuilder.swipeableDrawer(block: SwipeableDrawerElementBuilder.() -> Unit)
-    = child(SwipeableDrawerElementBuilder(SwipeableDrawer, listOf()).apply(block).create())
+fun RBuilder.swipeableDrawer(block: SwipeableDrawerElementBuilder.() -> Unit) {
+    child(SwipeableDrawerElementBuilder(SwipeableDrawer, listOf()).apply(block).create())
+}

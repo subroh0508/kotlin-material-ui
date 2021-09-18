@@ -11,9 +11,9 @@ external interface ClickAwayListenerProps : PropsWithChildren {
     var touchEvent: dynamic
 }
 
-fun RBuilder.clickAwayListener(block: ClickAwayListenerBuilder.() -> Unit)
-    = child(clickAwayListenerElement(block))
-
+fun RBuilder.clickAwayListener(block: ClickAwayListenerBuilder.() -> Unit) {
+    child(clickAwayListenerElement(block))
+}
 internal fun clickAwayListenerElement(
     block: ClickAwayListenerBuilder.() -> Unit
 ) = ClickAwayListenerBuilder(ClickAwayListener).apply(block).create()

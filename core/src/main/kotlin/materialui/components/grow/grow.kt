@@ -11,5 +11,6 @@ external interface GrowProps : RTransitionProps, PropsWithChildren {
     var theme: MuiTheme?
 }
 
-fun RBuilder.grow(block: GrowElementBuilder.() -> Unit)
-    = child(GrowElementBuilder(Grow).apply(block).create())
+fun RBuilder.grow(block: GrowElementBuilder.() -> Unit) {
+    child(GrowElementBuilder(Grow).apply(block).create())
+}

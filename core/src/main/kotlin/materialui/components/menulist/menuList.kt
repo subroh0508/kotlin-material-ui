@@ -11,12 +11,12 @@ external interface MenuListProps : ListProps {
     var disableListWrap: Boolean?
 }
 
-fun RBuilder.menuList(block: MenuListElementBuilder<UL>.() -> Unit)
-    = child(menuListElement(block))
-
-fun <T: Tag> RBuilder.menuList(factory: (TagConsumer<Unit>) -> T, block: MenuListElementBuilder<T>.() -> Unit)
-    = child(menuListElement(factory, block))
-
+fun RBuilder.menuList(block: MenuListElementBuilder<UL>.() -> Unit) {
+    child(menuListElement(block))
+}
+fun <T: Tag> RBuilder.menuList(factory: (TagConsumer<Unit>) -> T, block: MenuListElementBuilder<T>.() -> Unit) {
+    child(menuListElement(factory, block))
+}
 internal fun menuListElement(
     block: MenuListElementBuilder<UL>.() -> Unit
 ) = menuListElement({ UL(mapOf(), it) }, block)

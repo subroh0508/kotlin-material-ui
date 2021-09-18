@@ -22,5 +22,6 @@ external interface DrawerProps : StandardProps {
     var variant: String?
 }
 
-fun RBuilder.drawer(vararg classMap: Pair<DrawerStyle, String>, block: DrawerElementBuilder<DrawerProps>.() -> Unit)
-    = child(DrawerElementBuilder(Drawer, classMap.toList()).apply(block).create())
+fun RBuilder.drawer(vararg classMap: Pair<DrawerStyle, String>, block: DrawerElementBuilder<DrawerProps>.() -> Unit) {
+    child(DrawerElementBuilder(Drawer, classMap.toList()).apply(block).create())
+}

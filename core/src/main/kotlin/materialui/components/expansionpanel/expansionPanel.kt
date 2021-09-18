@@ -18,8 +18,9 @@ external interface ExpansionPanelProps : PaperProps {
     var onChange: ((Event, Boolean) -> Unit)?
 }
 
-fun RBuilder.expansionPanel(vararg classMap: Pair<ExpansionPanelStyle, String>, block: ExpansionPanelElementBuilder<DIV>.() -> Unit)
-    = child(ExpansionPanelElementBuilder(ExpansionPanel, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.expansionPanel(vararg classMap: Pair<ExpansionPanelStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ExpansionPanelElementBuilder<T>.() -> Unit)
-    = child(ExpansionPanelElementBuilder(ExpansionPanel, classMap.toList(), factory).apply(block).create())
+fun RBuilder.expansionPanel(vararg classMap: Pair<ExpansionPanelStyle, String>, block: ExpansionPanelElementBuilder<DIV>.() -> Unit) {
+    child(ExpansionPanelElementBuilder(ExpansionPanel, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.expansionPanel(vararg classMap: Pair<ExpansionPanelStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ExpansionPanelElementBuilder<T>.() -> Unit) {
+    child(ExpansionPanelElementBuilder(ExpansionPanel, classMap.toList(), factory).apply(block).create())
+}

@@ -17,5 +17,6 @@ external interface StepProps : StandardProps {
     var orientation: String?
 }
 
-fun RBuilder.step(vararg classMap: Pair<StepStyle, String>, block: StepElementBuilder.() -> Unit)
-    = child(StepElementBuilder(Step, classMap.toList()).apply(block).create())
+fun RBuilder.step(vararg classMap: Pair<StepStyle, String>, block: StepElementBuilder.() -> Unit) {
+    child(StepElementBuilder(Step, classMap.toList()).apply(block).create())
+}

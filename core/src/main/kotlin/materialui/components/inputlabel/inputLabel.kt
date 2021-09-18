@@ -15,12 +15,12 @@ external interface InputLabelProps : FormLabelProps {
     var variant: String?
 }
 
-fun RBuilder.inputLabel(vararg classMap: Pair<InputLabelStyle, String>, block: InputLabelElementBuilder<LABEL>.() -> Unit)
-    = child(inputLabelElement(classMap.toList(), block))
-
-fun <T: Tag> RBuilder.inputLabel(vararg classMap: Pair<InputLabelStyle, String>, factory: (TagConsumer<Unit>) -> T, block: InputLabelElementBuilder<T>.() -> Unit)
-    = child(inputLabelElement(classMap.toList(), factory, block))
-
+fun RBuilder.inputLabel(vararg classMap: Pair<InputLabelStyle, String>, block: InputLabelElementBuilder<LABEL>.() -> Unit) {
+    child(inputLabelElement(classMap.toList(), block))
+}
+fun <T: Tag> RBuilder.inputLabel(vararg classMap: Pair<InputLabelStyle, String>, factory: (TagConsumer<Unit>) -> T, block: InputLabelElementBuilder<T>.() -> Unit) {
+    child(inputLabelElement(classMap.toList(), factory, block))
+}
 internal fun inputLabelElement(
     classMap: List<Pair<InputLabelStyle, String>> = listOf(),
     block: InputLabelElementBuilder<LABEL>.() -> Unit

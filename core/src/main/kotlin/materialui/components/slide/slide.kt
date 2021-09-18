@@ -11,5 +11,6 @@ external interface SlideProps : RTransitionProps, PropsWithChildren {
     var theme: MuiTheme?
 }
 
-fun RBuilder.slide(block: SlideElementBuilder.() -> Unit)
-    = child(SlideElementBuilder(Slide).apply(block).create())
+fun RBuilder.slide(block: SlideElementBuilder.() -> Unit) {
+    child(SlideElementBuilder(Slide).apply(block).create())
+}
