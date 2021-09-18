@@ -37,12 +37,12 @@ class TabsElementBuilder<T: Tag> internal constructor(
 
     fun Tag.action(block: (TabsActions) -> Unit) { action = block }
     fun <P: PropsWithChildren, C: Component<P, *>> Tag.scrollButtonComponent(kClass: KClass<C>) {
-        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        @Suppress("UNCHECKED_CAST")
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
         materialProps.ScrollButtonComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.scrollButtonComponent(tagName: String) { materialProps.ScrollButtonComponent = tagName }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.tabIndicatorProps(block: TabIndicatorElementBuilder.() -> Unit) {
-        TabIndicatorProps = RBuilder().tabIndicator(block).props
+        TabIndicatorProps = tabIndicatorElement(block).props as PropsWithChildren
     }
 }

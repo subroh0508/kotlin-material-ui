@@ -1,6 +1,6 @@
 package materialui.components.tabs
 
-import kotlinx.css.CSSBuilder
+import kotlinx.css.CssBuilder
 import kotlinx.css.RuleSet
 import kotlinx.html.SPAN
 import kotlinx.html.Tag
@@ -15,6 +15,6 @@ class TabIndicatorElementBuilder internal constructor() : RDOMBuilderImpl<SPAN>(
         set(value) { asDynamic()["color"] = value?.toString() }
 
     fun style(ruleSet: RuleSet) {
-        setProp("style", CSSBuilder().apply(ruleSet).toDynamic)
+        setProp("style", CssBuilder().apply(ruleSet).toDynamic)
     }
 }

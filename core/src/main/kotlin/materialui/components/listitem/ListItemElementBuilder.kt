@@ -13,7 +13,7 @@ import materialui.components.setValue
 import react.Component
 import react.ComponentType
 import react.ComponentClass
-import react.RProps
+import react.PropsWithChildren
 import react.dom.RDOMBuilder
 import kotlin.reflect.KClass
 
@@ -49,7 +49,7 @@ open class ListItemElementBuilder<T: Tag, Props: ListItemProps> internal constru
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        ContainerProps = props as RProps
+        ContainerProps = props as PropsWithChildren
     }
     fun <T2: Tag> Tag.containerProps(factory: (TagConsumer<Unit>) -> T2, block: RDOMBuilder<T2>.() -> Unit) {
         val props = js {  }
@@ -59,6 +59,6 @@ open class ListItemElementBuilder<T: Tag, Props: ListItemProps> internal constru
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        ContainerProps = props as RProps
+        ContainerProps = props as PropsWithChildren
     }
 }

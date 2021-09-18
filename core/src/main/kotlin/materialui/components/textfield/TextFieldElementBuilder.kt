@@ -10,10 +10,13 @@ import materialui.components.getValue
 import materialui.components.input.InputElementBuilder
 import materialui.components.input.InputProps
 import materialui.components.input.input
+import materialui.components.input.inputElement
 import materialui.components.inputlabel.InputLabelElementBuilder
 import materialui.components.inputlabel.inputLabel
+import materialui.components.inputlabel.inputLabelElement
 import materialui.components.select.SelectElementBuilder
 import materialui.components.select.select
+import materialui.components.select.selectElement
 import materialui.components.set
 import materialui.components.setValue
 import materialui.components.textfield.enums.TextFieldSize
@@ -30,7 +33,7 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
     var Tag.autoComplete: String? by materialProps
     var Tag.autoFocus: Boolean? by materialProps
     var Tag.defaultValue: Any? by materialProps
-    var Tag.FormHelperTextProps: RProps
+    var Tag.FormHelperTextProps: PropsWithChildren
         get() = @Suppress("UnsafeCastFromDynamic") domProps.asDynamic()["FormHelperTextProps"]
         set(value) { setProp("FormHelperTextProps", value) }
     var Tag.helperText: ReactElement
@@ -60,14 +63,17 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
     fun Tag.defaultValue(v: Boolean) { defaultValue = v }
     fun Tag.defaultValue(v: Date) { defaultValue = v }
     fun Tag.defaultValue(v: Color) { defaultValue = v.toString() }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.inputLabelProps(block: InputLabelElementBuilder<LABEL>.() -> Unit) {
-        InputLabelProps = RBuilder().inputLabel(block = block).props
+        InputLabelProps = inputLabelElement(block = block).props as PropsWithChildren
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun <T2: Tag> Tag.inputLabelProps(factory: (TagConsumer<Unit>) -> T2, block: InputLabelElementBuilder<T2>.() -> Unit) {
-        InputLabelProps = RBuilder().inputLabel(factory = factory, block = block).props
+        InputLabelProps = inputLabelElement(factory = factory, block = block).props as PropsWithChildren
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.inputProps(block: InputElementBuilder<InputProps>.() -> Unit) {
-        InputProps = RBuilder().input(block = block).props
+        InputProps = inputElement(block = block).props as PropsWithChildren
     }
     fun Tag.nativeInputProps(block: INPUT.() -> Unit) {
         val props = js {  }
@@ -77,11 +83,12 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        inputProps = props as RProps
+        inputProps = props as PropsWithChildren
     }
     fun Tag.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.selectProps(block: SelectElementBuilder.() -> Unit) {
-        SelectProps = RBuilder().select(block = block).props
+        SelectProps = selectElement(block = block).props as PropsWithChildren
     }
     fun Tag.rows(v: String) { materialProps.rows = v }
     fun Tag.rows(v: Number) { materialProps.rows = v }

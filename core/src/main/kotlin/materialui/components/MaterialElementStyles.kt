@@ -1,5 +1,5 @@
 package materialui.components
 
-import kotlinx.css.CSSBuilder
+import kotlinx.css.CssBuilder
 
-typealias MaterialElementStyles = Map<String, CSSBuilder>
+typealias MaterialElementStyles = Map<String, CssBuilder>

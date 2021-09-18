@@ -11,6 +11,7 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.inputadornment.InputAdornmentElementBuilder
 import materialui.components.inputadornment.inputAdornment
+import materialui.components.inputadornment.inputAdornmentElement
 import materialui.components.inputbase.enums.InputBaseStyle
 import materialui.components.inputbase.enums.InputMargin
 import materialui.components.setValue
@@ -57,7 +58,7 @@ open class InputBaseElementBuilder<Props: InputBaseProps> internal constructor(
     fun Tag.defaultValue(v: Date) { defaultValue = v }
     fun Tag.defaultValue(v: Color) { defaultValue = v.toString() }
     fun Tag.endAdornment(block: InputAdornmentElementBuilder<DIV>.() -> Unit) {
-        endAdornment = RBuilder().inputAdornment(block = block)
+        endAdornment = inputAdornmentElement(block = block)
     }
     fun <P: PropsWithChildren, C: Component<P, *>> Tag.inputComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
@@ -72,10 +73,10 @@ open class InputBaseElementBuilder<Props: InputBaseProps> internal constructor(
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        inputProps = props as RProps
+        inputProps = props as PropsWithChildren
     }
     fun Tag.startAdornment(block: InputAdornmentElementBuilder<DIV>.() -> Unit) {
-        startAdornment = RBuilder().inputAdornment(block = block)
+        startAdornment = inputAdornmentElement(block = block)
     }
     fun Tag.rows(v: String) { materialProps.rows = v }
     fun Tag.rows(v: Number) { materialProps.rows = v }

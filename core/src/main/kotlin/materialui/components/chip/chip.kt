@@ -27,3 +27,14 @@ fun RBuilder.chip(vararg classMap: Pair<ChipStyle, String>, block: ChipElementBu
 
 fun <T: Tag> RBuilder.chip(vararg classMap: Pair<ChipStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ChipElementBuilder<T>.() -> Unit)
     = child(ChipElementBuilder(Chip, classMap.toList(), factory).apply(block).create())
+
+fun chipElement(
+    classMap: List<Pair<ChipStyle, String>> = listOf(),
+    block: ChipElementBuilder<DIV>.() -> Unit
+) = chipElement(classMap, { DIV(mapOf(), it) }, block)
+
+fun <T: Tag> chipElement(
+    classMap: List<Pair<ChipStyle, String>> = listOf(),
+    factory: (TagConsumer<Unit>) -> T,
+    block: ChipElementBuilder<T>.() -> Unit
+) = ChipElementBuilder(Chip, classMap.toList(), factory).apply(block).create()

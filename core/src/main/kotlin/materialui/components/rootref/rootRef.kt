@@ -3,7 +3,7 @@ package materialui.components.rootref
 import materialui.RootRef
 import react.*
 
-external interface RootRefProps : RProps {
+external interface RootRefProps : PropsWithChildren {
     var rootRef: Ref<*>?
 }
 

@@ -2,11 +2,11 @@
 
 package materialui.styles.mixins
 
-import kotlinx.css.CSSBuilder
+import kotlinx.css.CssBuilder
 
 external interface Mixins
 
 val Mixins.gutters: Gutters by ReadOnlyGutterDelegate
-val Mixins.toolbar: CSSBuilder by ReadOnlyToolbarDelegate
+val Mixins.toolbar: CssBuilder by ReadOnlyToolbarDelegate
 
 

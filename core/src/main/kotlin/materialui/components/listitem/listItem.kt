@@ -8,7 +8,7 @@ import materialui.components.StandardProps
 import materialui.components.buttonbase.ButtonBaseProps
 import materialui.components.listitem.enums.ListItemStyle
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
 external interface ListItemProps : StandardProps {
     var alignItems: String?

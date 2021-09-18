@@ -193,7 +193,7 @@ class InputAdornmentsDemo : RComponent<PropsWithChildren, InputAdornmentsState>(
     }
 }
 
-external interface InputAdornmentsState : RState {
+external interface InputAdornmentsState : State {
     var amount: String
     var password: String
     var weight: String

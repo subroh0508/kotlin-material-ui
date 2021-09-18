@@ -7,9 +7,9 @@ import kotlinx.html.stream.createHTML
 import materialui.components.getValue
 import materialui.components.input.InputElementBuilder
 import materialui.components.input.InputProps
-import materialui.components.input.input
+import materialui.components.input.inputElement
 import materialui.components.menu.MenuElementBuilder
-import materialui.components.menu.menu
+import materialui.components.menu.menuElement
 import materialui.components.select.enums.SelectStyle
 import materialui.components.select.enums.SelectVariant
 import materialui.components.setValue
@@ -38,14 +38,14 @@ class SelectElementBuilder internal constructor(
     var Tag.variant: SelectVariant? by materialProps
 
     fun <P : PropsWithChildren, C : Component<P, *>> Tag.iconComponent(kClass: KClass<C>) {
-        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        @Suppress("UNCHECKED_CAST")
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
         materialProps.IconComponent = kClass.js as ComponentClass<P>
     }
-    fun Tag.input(block: InputElementBuilder<InputProps>.() -> Unit) { input = RBuilder().input(block = block) }
+    fun Tag.input(block: InputElementBuilder<InputProps>.() -> Unit) { input = inputElement(block = block) }
     fun Tag.input(block: RBuilder.() -> Unit) { input = buildElement(block) }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.menuProps(block: MenuElementBuilder.() -> Unit) {
-        MenuProps = RBuilder().menu(block = block).props
+        MenuProps = menuElement(block = block).props as PropsWithChildren
     }
     fun <V: Any> Tag.renderValue(block: (V) -> ReactElement) { materialProps.renderValue = block }
     fun Tag.selectDisplayProps(block: DIV.() -> Unit) {
@@ -56,6 +56,6 @@ class SelectElementBuilder internal constructor(
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        SelectDisplayProps = props as RProps
+        SelectDisplayProps = props as PropsWithChildren
     }
 }

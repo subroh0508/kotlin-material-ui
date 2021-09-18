@@ -7,7 +7,7 @@ import materialui.components.tooltip.enums.TooltipStyle
 import materialui.reacttransiton.RTransitionProps
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 import react.ReactElement
 
 external interface TooltipProps : StandardProps {

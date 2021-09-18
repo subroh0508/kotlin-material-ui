@@ -12,4 +12,8 @@ external interface ClickAwayListenerProps : PropsWithChildren {
 }
 
 fun RBuilder.clickAwayListener(block: ClickAwayListenerBuilder.() -> Unit)
-    = child(ClickAwayListenerBuilder(ClickAwayListener).apply(block).create())
+    = child(clickAwayListenerElement(block))
+
+internal fun clickAwayListenerElement(
+    block: ClickAwayListenerBuilder.() -> Unit
+) = ClickAwayListenerBuilder(ClickAwayListener).apply(block).create()

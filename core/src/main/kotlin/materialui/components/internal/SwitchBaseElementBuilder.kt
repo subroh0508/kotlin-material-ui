@@ -42,6 +42,6 @@ abstract class SwitchBaseElementBuilder<Props: SwitchBaseProps> internal constru
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        inputProps = props as RProps
+        inputProps = props as PropsWithChildren
     }
 }

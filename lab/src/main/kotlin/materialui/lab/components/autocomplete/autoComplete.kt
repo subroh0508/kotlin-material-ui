@@ -40,7 +40,7 @@ external interface AutocompleteProps<T> : UseAutocompleteProps<T>, StandardProps
     var renderGroup: ((params: AutocompleteRenderGroupParams) -> dynamic)?
     var renderInput: (params: AutocompleteRenderInputParams) -> dynamic
     var renderOption: ((option: T, state: AutocompleteRenderOptionState) -> dynamic)?
-    var renderTags: ((value: Array<T>, (Int) -> RProps) -> dynamic)?
+    var renderTags: ((value: Array<T>, (Int) -> PropsWithChildren) -> dynamic)?
     var size: String? /* 'small' | 'medium' */
 }
 
@@ -57,10 +57,10 @@ external interface AutocompleteRenderInputParams {
     var size: String?
     var InputLabelProps: PropsWithChildren?
     var InputProps: AutocompleteInputProps
-    var inputProps: RProps
+    var inputProps: PropsWithChildren
 }
 
-external interface AutocompleteInputProps: RProps{
+external interface AutocompleteInputProps: PropsWithChildren {
     val ref: Ref<*>
     var className: String
     var startAdornment: ReactElement
@@ -81,5 +81,5 @@ fun <O: Any> RBuilder.autoComplete(vararg classMap: Pair<AutocompleteStyle, Stri
 fun <T: Tag, O: Any> RBuilder.autoComplete(vararg classMap: Pair<AutocompleteStyle, String>, factory: (TagConsumer<Unit>) -> T, block: AutocompleteElementBuilder<T ,O>.() -> Unit)
         = child(AutocompleteElementBuilder<T ,O>(autocompleteComponent, classMap.toList(), factory).apply(block).create())
 
-fun AutocompleteRenderInputParams.getTextFieldProps():TextFieldProps =
+fun AutocompleteRenderInputParams.getTextFieldProps(): TextFieldProps =
     Object.assign(jsObject {},this)

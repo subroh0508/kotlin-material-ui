@@ -15,7 +15,7 @@ val TypographyStyle.letterSpacing: LinearDimension? by LinearDimensionDelegate
 val TypographyStyle.lineHeight: LinearDimension? by LinearDimensionDelegate
 val TypographyStyle.textTransform: TextTransform? by TextTransformDelegate
 
-fun CSSBuilder.typography(style: TypographyStyle) {
+fun CssBuilder.typography(style: TypographyStyle) {
     fontFamily = style.fontFamily
     fontSize = style.fontSize
     fontWeight = style.fontWeight

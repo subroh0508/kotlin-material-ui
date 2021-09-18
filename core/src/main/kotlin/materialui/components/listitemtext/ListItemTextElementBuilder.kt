@@ -8,6 +8,7 @@ import materialui.components.setValue
 import materialui.components.typography.TypographyElementBuilder
 import materialui.components.typography.TypographyProps
 import materialui.components.typography.typography
+import materialui.components.typography.typographyElement
 import materialui.styles.muitheme.MuiTheme
 import react.ComponentType
 import react.RBuilder
@@ -30,16 +31,18 @@ class ListItemTextElementBuilder internal constructor(
     var Tag.secondaryTypographyProps: PropsWithChildren? by materialProps
     var Tag.theme: MuiTheme? by materialProps
 
-    fun Tag.primary(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) { primary = RBuilder().typography(block = block) }
-    fun Tag.primary(p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) { primary = RBuilder().typography(p = p, block = block) }
-    fun <T: Tag> Tag.primary(factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit) { primary = RBuilder().typography(factory = factory, block = block) }
+    fun Tag.primary(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) { primary = typographyElement(block = block) }
+    fun Tag.primary(p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) { primary = typographyElement(p = p, block = block) }
+    fun <T: Tag> Tag.primary(factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit) { primary = typographyElement(factory = factory, block = block) }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.primaryTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
-        primaryTypographyProps = RBuilder().typography(block = block).props
+        primaryTypographyProps = typographyElement(block = block).props as PropsWithChildren
     }
-    fun Tag.secondary(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) { secondary = RBuilder().typography(block = block) }
-    fun Tag.secondary(p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) { secondary = RBuilder().typography(p = p, block = block) }
-    fun <T: Tag> Tag.secondary(factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit) { secondary = RBuilder().typography(factory = factory, block = block) }
+    fun Tag.secondary(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) { secondary = typographyElement(block = block) }
+    fun Tag.secondary(p: Boolean, block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) { secondary = typographyElement(p = p, block = block) }
+    fun <T: Tag> Tag.secondary(factory: (TagConsumer<Unit>) -> T, block: TypographyElementBuilder<T, TypographyProps>.() -> Unit) { secondary = typographyElement(factory = factory, block = block) }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.secondaryTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
-        secondaryTypographyProps = RBuilder().typography(block = block).props
+        secondaryTypographyProps = typographyElement(block = block).props as PropsWithChildren
     }
 }

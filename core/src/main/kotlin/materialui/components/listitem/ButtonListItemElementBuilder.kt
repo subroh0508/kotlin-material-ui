@@ -13,7 +13,7 @@ import materialui.components.setValue
 import react.Component
 import react.ComponentType
 import react.ComponentClass
-import react.RProps
+import react.PropsWithChildren
 import react.dom.RDOMBuilder
 import kotlin.reflect.KClass
 
@@ -34,8 +34,7 @@ class ButtonListItemElementBuilder internal constructor(
     var Tag.selected: Boolean? by materialProps
 
     fun <P: PropsWithChildren, C: Component<P, *>> Tag.containerComponent(kClass: KClass<C>) {
-        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        @Suppress("UNCHECKED_CAST")
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
         materialProps.ContainerComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.containerComponent(tagName: String) { materialProps.ContainerComponent = tagName }
@@ -47,7 +46,7 @@ class ButtonListItemElementBuilder internal constructor(
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        ContainerProps = props as RProps
+        ContainerProps = props as PropsWithChildren
     }
     fun <T2: Tag> Tag.containerProps(factory: (TagConsumer<Unit>) -> T2, block: RDOMBuilder<T2>.() -> Unit) {
         val props = kotlinext.js.js { }
@@ -57,6 +56,6 @@ class ButtonListItemElementBuilder internal constructor(
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        ContainerProps = props as RProps
+        ContainerProps = props as PropsWithChildren
     }
 }

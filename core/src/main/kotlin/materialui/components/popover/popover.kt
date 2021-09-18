@@ -9,7 +9,7 @@ import materialui.components.popover.enums.PopoverStyle
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.Node
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
 external interface PopoverProps : ModalProps {
     var action: ((PopoverActions) -> Unit)?

@@ -16,11 +16,11 @@ import materialui.styles.transitions.create
 import materialui.styles.withStyles
 import react.RBuilder
 import react.RComponent
-import react.RState
+import react.State
 import react.dom.attrs
 import react.dom.div
 
-class Header : RComponent<HeaderProps, RState>() {
+class Header : RComponent<HeaderProps, State>() {
     override fun RBuilder.render() {
         div(props.rootStyle) {
             cssBaseline {  }

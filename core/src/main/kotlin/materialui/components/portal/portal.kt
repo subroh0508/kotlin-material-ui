@@ -2,9 +2,9 @@ package materialui.components.portal
 
 import materialui.Portal
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
-external interface PortalProps : RProps {
+external interface PortalProps : PropsWithChildren {
     var container: dynamic
     var disablePortal: Boolean?
     var onRendered: (() -> Unit)?

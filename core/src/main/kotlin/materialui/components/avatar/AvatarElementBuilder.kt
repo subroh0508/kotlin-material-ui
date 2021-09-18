@@ -10,7 +10,7 @@ import materialui.components.avatar.enum.AvatarStyle
 import materialui.components.getValue
 import materialui.components.setValue
 import react.ComponentType
-import react.RProps
+import react.PropsWithChildren
 
 class AvatarElementBuilder<T: Tag> internal constructor(
     type: ComponentType<AvatarProps>,
@@ -36,6 +36,6 @@ class AvatarElementBuilder<T: Tag> internal constructor(
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        imgProps = props as RProps
+        imgProps = props as PropsWithChildren
     }
 }

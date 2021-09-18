@@ -5,15 +5,15 @@ import materialui.styles.muitheme.MuiTheme
 import react.*
 
 class ThemeProviderBuilder internal constructor(
-    val type: ComponentType<RProps>,
+    val type: ComponentType<PropsWithChildren>,
     val theme: MuiTheme,
-    private val props: RProps = jsObject { }
+    private val props: PropsWithChildren = jsObject { }
 ) : RBuilderImpl() {
     init {
         props.asDynamic()["theme"] = theme
     }
 
-    fun attrs(handler: RProps.() -> Unit) {
+    fun attrs(handler: PropsWithChildren.() -> Unit) {
         props.handler()
     }
 

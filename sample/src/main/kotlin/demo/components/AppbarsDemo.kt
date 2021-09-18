@@ -16,12 +16,12 @@ import materialui.styles.withStyles
 import react.RBuilder
 import react.RComponent
 import react.PropsWithChildren
-import react.RState
+import react.State
 import react.dom.attrs
 import react.dom.div
 import styled.styledH1
 
-class AppbarsDemo : RComponent<PropsWithChildren, RState>() {
+class AppbarsDemo : RComponent<PropsWithChildren, State>() {
     override fun RBuilder.render() {
         val rootStyle = props.asDynamic()["classes"]["root"] as String
         val growStyle = props.asDynamic()["classes"]["grow"] as String

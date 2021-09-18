@@ -7,7 +7,7 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import materialui.components.*
 import materialui.components.chip.ChipElementBuilder
-import materialui.components.chip.chip
+import materialui.components.chip.chipElement
 import materialui.components.popper.PopperProps
 import materialui.components.textfield.enums.TextFieldSize
 import materialui.lab.components.autocomplete.enums.AutocompleteForcePopupIcon
@@ -80,7 +80,7 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
     var Tag.renderGroup: ((params: AutocompleteRenderGroupParams) -> dynamic)? by materialProps
     var Tag.renderInput: (params: AutocompleteRenderInputParams) -> dynamic by materialProps
     var Tag.renderOption: ((option: T, state: AutocompleteRenderOptionState) -> dynamic)? by materialProps
-    var Tag.renderTags: ((value: Array<T>, (Int) -> RProps) -> dynamic)? by materialProps
+    var Tag.renderTags: ((value: Array<T>, (Int) -> PropsWithChildren) -> dynamic)? by materialProps
     var Tag.size: TextFieldSize? // issue: Enum? problem with <reified T: Enum<T>> StandardProps.getValue()
         get() = materialProps.get<TextFieldSize>("size")
         set(value) { materialProps.set("size",value) }
@@ -99,20 +99,22 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
             else -> value.toString()
         }
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.chipProps(block: ChipElementBuilder<DIV>.() -> Unit){
-        ChipProps = RBuilder().chip(block = block).props
+        ChipProps = chipElement(block = block).props as PropsWithChildren
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun <T2: Tag> Tag.chipProps(factory: (TagConsumer<Unit>) -> T2,block: ChipElementBuilder<T2>.() -> Unit){
-        ChipProps = RBuilder().chip(factory = factory,block = block).props
+        ChipProps = chipElement(factory = factory, block = block).props as PropsWithChildren
     }
 
     fun Tag.closeIcon(block: RBuilder.()->Unit) { closeIcon = buildElement(block) }
 
-    fun <P: RProps> Tag.listBoxComponent(kClass: KClass<out Component<P, *>>) {
+    fun <P: PropsWithChildren> Tag.listBoxComponent(kClass: KClass<out Component<P, *>>) {
         materialProps.ListboxComponent = kClass.react
     }
 
-    fun <P: RProps> Tag.listBoxComponent(fc: FunctionComponent<P>) {
+    fun <P: PropsWithChildren> Tag.listBoxComponent(fc: FunctionComponent<P>) {
         materialProps.ListboxComponent = fc
     }
     fun Tag.listBoxComponent(tagName: String) {
@@ -125,11 +127,11 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
     fun Tag.loadingText(block: RBuilder.()->Unit) { loadingText = buildElement(block) }
     fun Tag.noOptionsText(block: RBuilder.()->Unit) { noOptionsText = buildElement(block) }
 
-    fun <P: RProps> Tag.paperComponent(kClass: KClass<out Component<P, *>>) {
+    fun <P: PropsWithChildren> Tag.paperComponent(kClass: KClass<out Component<P, *>>) {
         materialProps.PaperComponent = kClass.react
     }
 
-    fun <P: RProps> Tag.paperComponent(fc: FunctionComponent<P>) {
+    fun <P: PropsWithChildren> Tag.paperComponent(fc: FunctionComponent<P>) {
         materialProps.PaperComponent = fc
     }
 

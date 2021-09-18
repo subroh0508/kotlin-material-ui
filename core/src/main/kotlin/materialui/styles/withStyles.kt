@@ -6,7 +6,7 @@ import materialui.styles.muitheme.MuiTheme
 import react.*
 import kotlin.reflect.KClass
 
-fun <P: RProps> withStyles(
+fun <P: PropsWithChildren> withStyles(
     functionComponent: FunctionComponent<P>,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = true
@@ -15,7 +15,7 @@ fun <P: RProps> withStyles(
     js { this["withTheme"] = withTheme }
 )(functionComponent).unsafeCast<ComponentClass<P>>()
 
-fun <P: RProps> withStyles(
+fun <P: PropsWithChildren> withStyles(
     ComponentClass: ComponentClass<P>,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = true
@@ -24,13 +24,13 @@ fun <P: RProps> withStyles(
     js { this["withTheme"] = withTheme }
 )(ComponentClass).unsafeCast<ComponentClass<P>>()
 
-fun <C : Component<P, *>, P : RProps> withStyles(
+fun <C : Component<P, *>, P : PropsWithChildren> withStyles(
     klazz: KClass<C>,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false
 ): ComponentClass<P> = withStyles(klazz.react, styleSet, withTheme = withTheme)
 
-fun <P: RProps> withStyles(
+fun <P: PropsWithChildren> withStyles(
     displayName: String,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false,
@@ -45,17 +45,13 @@ fun <P : PropsWithChildren, C : Component<P, *>> RBuilder.childWithStyles(
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false,
     handler: RHandler<P>
-): ReactElement {
-    val ComponentClass = withStyles(klazz, styleSet, withTheme = withTheme)
-
-    return ComponentClass(handler)
-}
+) { withStyles(klazz, styleSet, withTheme = withTheme)(handler) }
 
 @Deprecated(
     "Use withStyles instead",
     replaceWith = ReplaceWith("withStyles(displayName, styleSet, withTheme, render)", "materialui.styles.withStyles")
 )
-fun <P: RProps> RBuilder.childWithStyles(
+fun <P: PropsWithChildren> RBuilder.childWithStyles(
     displayName: String,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false,

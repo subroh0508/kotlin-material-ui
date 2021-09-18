@@ -8,11 +8,13 @@ import kotlinx.html.TagConsumer
 import materialui.components.MaterialElementBuilder
 import materialui.components.clickawaylistener.ClickAwayListenerBuilder
 import materialui.components.clickawaylistener.clickAwayListener
+import materialui.components.clickawaylistener.clickAwayListenerElement
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.components.snackbar.enums.SnackbarStyle
 import materialui.components.snackbarcontent.SnackbarContentElementBuilder
 import materialui.components.snackbarcontent.snackbarContent
+import materialui.components.snackbarcontent.snackbarContentElement
 import materialui.reacttransiton.RTransitionProps
 import org.w3c.dom.events.Event
 import react.*
@@ -50,19 +52,21 @@ class SnackbarElementBuilder internal constructor(
 
     fun Tag.action(block: RBuilder.() -> Unit) { action = buildElement(block) }
     fun Tag.anchorOrigin(block: SnackbarOrigin.() -> Unit) { anchorOrigin = jsObject(block) }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.clickAwayListenerProps(block: ClickAwayListenerBuilder.() -> Unit) {
-        ClickAwayListenerProps = RBuilder().clickAwayListener(block).props
+        ClickAwayListenerProps = clickAwayListenerElement(block).props as PropsWithChildren
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.contentProps(block: SnackbarContentElementBuilder<DIV>.() -> Unit) {
-        ContentProps = RBuilder().snackbarContent(block = block).props
+        ContentProps = snackbarContentElement(block = block).props as PropsWithChildren
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun <T: Tag> Tag.contentProps(factory: (TagConsumer<Unit>) -> T, block: SnackbarContentElementBuilder<T>.() -> Unit) {
-        ContentProps = RBuilder().snackbarContent(factory = factory, block = block).props
+        ContentProps = snackbarContentElement(factory = factory, block = block).props as PropsWithChildren
     }
     fun Tag.message(block: RBuilder.() -> Unit) { message = buildElement(block) }
     fun <P: PropsWithChildren, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
-        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        @Suppress("UNCHECKED_CAST")
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
         materialProps.TransitionComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.transitionComponent(tagName: String) { materialProps.TransitionComponent = tagName }

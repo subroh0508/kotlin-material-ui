@@ -19,4 +19,8 @@ external interface PopperProps : StandardProps {
 }
 
 fun RBuilder.popper(block: PopperElementBuilder.() -> Unit)
-    = child(PopperElementBuilder(Popper).apply(block).create())
+    = child(popperElement(block))
+
+internal fun popperElement(
+    block: PopperElementBuilder.() -> Unit
+) = PopperElementBuilder(Popper).apply(block).create()

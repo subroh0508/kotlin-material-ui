@@ -8,7 +8,7 @@ import materialui.components.snackbar.enums.SnackbarStyle
 import materialui.reacttransiton.RTransitionHandlerProps
 import materialui.reacttransiton.RTransitionProps
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 import react.ReactElement
 
 external interface SnackbarProps : RTransitionHandlerProps, StandardProps {

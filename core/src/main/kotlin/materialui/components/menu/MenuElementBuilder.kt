@@ -7,13 +7,13 @@ import materialui.components.getValue
 import materialui.components.menu.enums.MenuStyle
 import materialui.components.menulist.MenuListElementBuilder
 import materialui.components.menulist.menuList
+import materialui.components.menulist.menuListElement
 import materialui.components.popover.PopoverElementBuilder
 import materialui.components.popover.enums.PopoverStyle
 import materialui.components.setValue
 import materialui.styles.muitheme.MuiTheme
 import react.ComponentType
-import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
 class MenuElementBuilder internal constructor(
     type: ComponentType<MenuProps>,
@@ -28,8 +28,9 @@ class MenuElementBuilder internal constructor(
     var Tag.theme: MuiTheme? by materialProps
     var Tag.PopoveComponentClasses: Any? by materialProps
 
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.menuListProps(block: MenuListElementBuilder<UL>.() -> Unit) {
-        MenuListProps = RBuilder().menuList(block).props
+        MenuListProps = menuListElement(block = block).props as PropsWithChildren
     }
     fun Tag.popoveComponentClasses(vararg classMap: Pair<PopoverStyle, String>) {
         if (classMap.isEmpty()) {

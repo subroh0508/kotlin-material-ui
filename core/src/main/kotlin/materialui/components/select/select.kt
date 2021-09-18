@@ -5,7 +5,7 @@ import materialui.components.input.InputProps
 import materialui.components.select.enums.SelectStyle
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 import react.ReactElement
 
 external interface SelectProps : InputProps {
@@ -25,4 +25,9 @@ external interface SelectProps : InputProps {
 }
 
 fun RBuilder.select(vararg classMap: Pair<SelectStyle, String>, block: SelectElementBuilder.() -> Unit)
-    = child(SelectElementBuilder(Select, classMap.toList()).apply(block).create())
+    = child(selectElement(classMap.toList(), block))
+
+internal fun selectElement(
+    classMap: List<Pair<SelectStyle, String>> = listOf(),
+    block: SelectElementBuilder.() -> Unit
+) = SelectElementBuilder(Select, classMap.toList()).apply(block).create()

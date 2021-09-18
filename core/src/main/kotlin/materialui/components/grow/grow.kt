@@ -4,9 +4,9 @@ import materialui.Grow
 import materialui.reacttransiton.RTransitionProps
 import materialui.styles.muitheme.MuiTheme
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
-external interface GrowProps : RTransitionProps, RProps {
+external interface GrowProps : RTransitionProps, PropsWithChildren {
     var style: Any?
     var theme: MuiTheme?
 }

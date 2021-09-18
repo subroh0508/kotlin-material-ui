@@ -12,7 +12,16 @@ external interface MenuListProps : ListProps {
 }
 
 fun RBuilder.menuList(block: MenuListElementBuilder<UL>.() -> Unit)
-    = child(MenuListElementBuilder(MenuList, listOf()) { UL(mapOf(), it) }.apply(block).create())
+    = child(menuListElement(block))
 
 fun <T: Tag> RBuilder.menuList(factory: (TagConsumer<Unit>) -> T, block: MenuListElementBuilder<T>.() -> Unit)
-    = child(MenuListElementBuilder(MenuList, listOf(), factory).apply(block).create())
+    = child(menuListElement(factory, block))
+
+internal fun menuListElement(
+    block: MenuListElementBuilder<UL>.() -> Unit
+) = menuListElement({ UL(mapOf(), it) }, block)
+
+internal fun <T: Tag> menuListElement(
+    factory: (TagConsumer<Unit>) -> T,
+    block: MenuListElementBuilder<T>.() -> Unit
+) = MenuListElementBuilder(MenuList, listOf(), factory).apply(block).create()

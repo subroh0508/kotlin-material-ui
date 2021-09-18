@@ -8,7 +8,7 @@ import materialui.components.expansionpanel.enums.ExpansionPanelStyle
 import materialui.components.paper.PaperProps
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
 external interface ExpansionPanelProps : PaperProps {
     var TransitionProps: PropsWithChildren?
