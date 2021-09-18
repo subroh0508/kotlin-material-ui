@@ -148,15 +148,17 @@ class InputAdornmentsDemo : RComponent<PropsWithChildren, InputAdornmentsState>(
                     attrs.fullWidth = true
                     attrs.renderInput = {
                         it.InputProps.startAdornment = buildElement {
-                                inputAdornment {
-                                    icon { +"person" }
-                                }
+                            inputAdornment {
+                                icon { +"person" }
                             }
-                        textField {
-                            props(it.getTextFieldProps())
-                            attrs.classes("$marginStyle $textFieldStyle")
-                            attrs.label { +"Autocomplete Person" }
-                            attrs.variant = FormControlVariant.outlined
+                        }
+                        buildElement {
+                            textField {
+                                props(it.getTextFieldProps())
+                                attrs.classes("$marginStyle $textFieldStyle")
+                                attrs.label { +"Autocomplete Person" }
+                                attrs.variant = FormControlVariant.outlined
+                            }
                         }
                     }
                 }

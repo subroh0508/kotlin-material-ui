@@ -82,7 +82,7 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
 
     @Suppress("FunctionName")
     fun Props.InputProps(block: InputProps.() -> Unit) { InputProps = jsObject(block) }
-    fun Props.inputProps(block: INPUT.() -> Unit) { inputProps = RDOMBuilderImpl { INPUT(mapOf(), it) }.input { attrs(block) }.props }
+    fun Props.inputProps(block: INPUT.() -> Unit) { inputProps = RDOMBuilderImpl { INPUT(mapOf(), it) }.apply { input { attrs(block) } }.domProps }
 
     fun Props.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
 
