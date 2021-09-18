@@ -77,7 +77,7 @@ open class PopoverElementBuilder<Props: PopoverProps>(
     fun <P: RProps, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.TransitionComponent = kClass.js as RClass<P>
+        materialProps.TransitionComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.transitionComponent(tagName: String) {
         materialProps.TransitionComponent = tagName

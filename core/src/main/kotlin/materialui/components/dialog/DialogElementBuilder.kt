@@ -34,7 +34,7 @@ class DialogElementBuilder internal constructor(
     var Tag.TransitionProps: RProps? by materialProps
 
     fun <P: RProps, C: Component<P, *>> Tag.paperComponent(kClass: KClass<C>) {
-        materialProps.PaperComponent = kClass.rClass
+        materialProps.PaperComponent = kClass.react
     }
 
     fun <P: PaperProps> Tag.paperComponent(component: FunctionComponent<P>) {
@@ -53,7 +53,7 @@ class DialogElementBuilder internal constructor(
     fun <P: RProps, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.TransitionComponent = kClass.js as RClass<P>
+        materialProps.TransitionComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.transitionComponent(tagName: String) { materialProps.TransitionComponent = tagName }
     fun Tag.transitionProps(block: RTransitionProps.() -> Unit) { TransitionProps = jsObject(block) }

@@ -73,7 +73,7 @@ external interface AutocompleteRenderOptionState {
 }
 
 @Suppress("UnsafeCastFromDynamic")
-private val autocompleteComponent: RClass<AutocompleteProps<*>> = autocompleteModule.default
+private val autocompleteComponent: ComponentClass<AutocompleteProps<*>> = autocompleteModule.default
 
 fun <O: Any> RBuilder.autoComplete(vararg classMap: Pair<AutocompleteStyle, String>, block: AutocompleteElementBuilder<DIV ,O>.() -> Unit)
         = child(AutocompleteElementBuilder<DIV ,O>(autocompleteComponent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())

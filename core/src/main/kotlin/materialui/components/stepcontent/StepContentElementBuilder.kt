@@ -12,7 +12,7 @@ import materialui.components.stepcontent.enums.StepContentStyle
 import materialui.reacttransiton.RTransitionProps
 import react.Component
 import react.ComponentType
-import react.RClass
+import react.ComponentClass
 import react.RProps
 import kotlin.reflect.KClass
 
@@ -36,7 +36,7 @@ class StepContentElementBuilder internal constructor(
     fun <P: RProps, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.TransitionComponent = kClass.js as RClass<P>
+        materialProps.TransitionComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.transitionComponent(tagName: String) { materialProps.TransitionComponent = tagName }
     fun Tag.transitionDuration(msec: Long) { materialProps.transitionDuration = msec }

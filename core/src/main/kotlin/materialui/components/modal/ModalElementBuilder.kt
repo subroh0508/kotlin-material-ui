@@ -41,7 +41,7 @@ open class ModalElementBuilder<Props: ModalProps>(
     fun <P : RProps, C : Component<P, *>> Tag.backdropComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.BackdropComponent = kClass.js as RClass<P>
+        materialProps.BackdropComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.backdropComponent(tagName: String) { materialProps.BackdropComponent = tagName }
     fun Tag.backdropProps(block: BackdropElementBuilder.() -> Unit) {

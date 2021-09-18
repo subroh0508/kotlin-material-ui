@@ -20,7 +20,7 @@ import kotlin.js.Date
 import kotlin.reflect.KClass
 
 class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
-    type: RClass<AutocompleteProps<O>>,
+    type: ComponentClass<AutocompleteProps<O>>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, AutocompleteProps<O>>(type, classMap, factory) {
@@ -109,7 +109,7 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
     fun Tag.closeIcon(block: RBuilder.()->Unit) { closeIcon = buildElement(block) }
 
     fun <P: RProps> Tag.listBoxComponent(kClass: KClass<out Component<P, *>>) {
-        materialProps.ListboxComponent = kClass.rClass
+        materialProps.ListboxComponent = kClass.react
     }
 
     fun <P: RProps> Tag.listBoxComponent(fc: FunctionComponent<P>) {
@@ -126,7 +126,7 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
     fun Tag.noOptionsText(block: RBuilder.()->Unit) { noOptionsText = buildElement(block) }
 
     fun <P: RProps> Tag.paperComponent(kClass: KClass<out Component<P, *>>) {
-        materialProps.PaperComponent = kClass.rClass
+        materialProps.PaperComponent = kClass.react
     }
 
     fun <P: RProps> Tag.paperComponent(fc: FunctionComponent<P>) {
@@ -137,7 +137,7 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
         materialProps.PaperComponent = tagName
     }
     fun <P: PopperProps> Tag.popperComponent(kClass: KClass<out Component<P, *>>) {
-        materialProps.PopperComponent = kClass.rClass
+        materialProps.PopperComponent = kClass.react
     }
 
     fun <P: PopperProps> Tag.popperComponent(fc: FunctionComponent<P>) {

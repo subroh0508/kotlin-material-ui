@@ -27,7 +27,7 @@ class NativeSelectElementBuilder internal constructor(
     fun <P : RProps, C : Component<P, *>> Tag.iconComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.IconComponent = kClass.js as RClass<P>
+        materialProps.IconComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.iconComponent(tagName: String) { materialProps.IconComponent = tagName }
 }

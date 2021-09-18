@@ -26,12 +26,12 @@ class MenuElementBuilder internal constructor(
     var Tag.disableAutoFocusItem: Boolean? by materialProps
     var Tag.MenuListProps: RProps? by materialProps
     var Tag.theme: MuiTheme? by materialProps
-    var Tag.PopoverClasses: Any? by materialProps
+    var Tag.PopoveComponentClasses: Any? by materialProps
 
     fun Tag.menuListProps(block: MenuListElementBuilder<UL>.() -> Unit) {
         MenuListProps = RBuilder().menuList(block).props
     }
-    fun Tag.popoverClasses(vararg classMap: Pair<PopoverStyle, String>) {
+    fun Tag.popoveComponentClasses(vararg classMap: Pair<PopoverStyle, String>) {
         if (classMap.isEmpty()) {
             return
         }
@@ -40,6 +40,6 @@ class MenuElementBuilder internal constructor(
 
         classMap.forEach { (key, value) -> classesObj[key] = value }
 
-        PopoverClasses = classesObj as Any
+        PopoveComponentClasses = classesObj as Any
     }
 }

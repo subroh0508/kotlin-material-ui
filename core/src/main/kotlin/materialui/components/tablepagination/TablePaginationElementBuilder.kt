@@ -43,7 +43,7 @@ class TablePaginationElementBuilder<T: Tag> internal constructor(
     fun <P: RProps, C: Component<P, *>> Tag.actionsComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.ActionsComponent = kClass.js as RClass<P>
+        materialProps.ActionsComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.actionsComponet(tagName: String) { materialProps.ActionsComponent = tagName }
     fun Tag.backIconButtonProps(block: IconButtonElementBuilder<BUTTON>.() -> Unit) {

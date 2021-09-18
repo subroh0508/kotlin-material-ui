@@ -56,7 +56,7 @@ class TooltipElementBuilder internal constructor(
     fun <P: RProps, C: Component<P, *>> TooltipProps.transitionComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        TransitionComponent = kClass.js as RClass<P>
+        TransitionComponent = kClass.js as ComponentClass<P>
     }
     fun TooltipProps.transitionComponet(tagName: String) { TransitionComponent = tagName }
     fun TooltipProps.transitionProips(block: RTransitionProps.() -> Unit) { TransitionProps = jsObject(block) }

@@ -36,9 +36,9 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     fun Props.orientation(v: PickerOrientation?) { orientation = v?.name }
 
     @Suppress("FunctionName")
-    fun <P: ToolbarComponentProps, C: Component<P, *>> Props.ToolbarComponent(kClass: KClass<C>) { ToolbarComponent = kClass.rClass }
+    fun <P: ToolbarComponentProps, C: Component<P, *>> Props.ToolbarComponent(kClass: KClass<C>) { ToolbarComponent = kClass.react }
     @Suppress("FunctionName")
-    fun <P: ToolbarComponentProps> Props.ToolbarComponent(functionalComponent: FunctionComponent<P>) { ToolbarComponent = functionalComponent }
+    fun <P: ToolbarComponentProps> Props.ToolbarComponent(functionComponent: FunctionComponent<P>) { ToolbarComponent = functionComponent }
 
     fun Props.toolbarTitle(block: RBuilder.() -> Unit) { toolbarTitle = buildElement(block) }
 
@@ -59,14 +59,14 @@ abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constru
     fun Props.onDateChange(block: (Any, String, Boolean) -> Unit) { onDateChange = block }
 
     @Suppress("FunctionName")
-    fun <P: DateInputProps, C: Component<P, *>> Props.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.rClass }
+    fun <P: DateInputProps, C: Component<P, *>> Props.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.react }
     @Suppress("FunctionName")
-    fun <P: DateInputProps> Props.KeyboardDateInputComponent(functionalComponent: FunctionComponent<P>) { KeyboardDateInputComponent = functionalComponent }
+    fun <P: DateInputProps> Props.KeyboardDateInputComponent(functionComponent: FunctionComponent<P>) { KeyboardDateInputComponent = functionComponent }
 
     @Suppress("FunctionName")
-    fun <P: DateInputProps, C: Component<P, *>> Props.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.rClass }
+    fun <P: DateInputProps, C: Component<P, *>> Props.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.react }
     @Suppress("FunctionName")
-    fun <P: DateInputProps> Props.PureDateInputComponent(functionalComponent: FunctionComponent<P>) { PureDateInputComponent = functionalComponent }
+    fun <P: DateInputProps> Props.PureDateInputComponent(functionComponent: FunctionComponent<P>) { PureDateInputComponent = functionComponent }
 
     /* TextFieldProps */
     fun Props.defaultValue(v: String?) { defaultValue = v }

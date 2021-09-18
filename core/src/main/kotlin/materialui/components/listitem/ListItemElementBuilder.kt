@@ -12,7 +12,7 @@ import materialui.components.listitem.enums.ListItemStyle
 import materialui.components.setValue
 import react.Component
 import react.ComponentType
-import react.RClass
+import react.ComponentClass
 import react.RProps
 import react.dom.RDOMBuilder
 import kotlin.reflect.KClass
@@ -38,7 +38,7 @@ open class ListItemElementBuilder<T: Tag, Props: ListItemProps> internal constru
     fun <P: RProps, C: Component<P, *>> Tag.containerComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.ContainerComponent = kClass.js as RClass<P>
+        materialProps.ContainerComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.containerComponent(tagName: String) { materialProps.ContainerComponent = tagName }
     fun Tag.containerProps(block: LI.() -> Unit) {

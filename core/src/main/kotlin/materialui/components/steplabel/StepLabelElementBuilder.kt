@@ -35,7 +35,7 @@ class StepLabelElementBuilder internal constructor(
     fun <P: RProps, C: Component<P, *>> Tag.stepIconComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.StepIconComponent = kClass.js as RClass<P>
+        materialProps.StepIconComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.optional(block: RBuilder.() -> Unit) { optional = buildElement(block) }
     fun Tag.stepIconComponent(tagName: String) { materialProps.StepIconComponent = tagName }
