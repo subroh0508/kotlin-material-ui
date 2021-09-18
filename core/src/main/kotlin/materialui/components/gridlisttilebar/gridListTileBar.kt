@@ -13,5 +13,6 @@ external interface GridListTileBarProps : StandardProps {
     var titlePosition: String?
 }
 
-fun RBuilder.gridListTileBar(vararg classMap: Pair<GridListTitleStyle, String>, block: GridListTileBarElementBuilder.() -> Unit)
-    = child(GridListTileBarElementBuilder(GridListTileBar, classMap.toList()).apply(block).create())
+fun RBuilder.gridListTileBar(vararg classMap: Pair<GridListTitleStyle, String>, block: GridListTileBarElementBuilder.() -> Unit) {
+    child(GridListTileBarElementBuilder(GridListTileBar, classMap.toList()).apply(block).create())
+}

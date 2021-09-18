@@ -8,11 +8,11 @@ import materialui.components.StandardProps
 import materialui.components.buttonbase.enums.ButtonBaseStyle
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
-import react.RRef
+import react.PropsWithChildren
+import react.Ref
 
 external interface ButtonBaseProps : StandardProps {
-    var buttonRef: RRef?
+    var buttonRef: Ref<*>?
     var centerRipple: Boolean?
     var disabled: Boolean?
     var disableRipple: Boolean?
@@ -20,12 +20,13 @@ external interface ButtonBaseProps : StandardProps {
     var focusRipple: Boolean?
     var focusVisibleClassName: String?
     var onFocusVisible: ((Event) -> Unit)?
-    var touchRippleProps: RProps?
+    var touchRippleProps: PropsWithChildren?
     var type: String?
 }
 
-fun RBuilder.buttonBase(vararg classMap: Pair<ButtonBaseStyle, String>, block: ButtonBaseElementBuilder<BUTTON, ButtonBaseProps>.() -> Unit)
-    = child(ButtonBaseElementBuilder(ButtonBase, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.buttonBase(vararg classMap: Pair<ButtonBaseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ButtonBaseElementBuilder<T, ButtonBaseProps>.() -> Unit)
-    = child(ButtonBaseElementBuilder(ButtonBase, classMap.toList(), factory).apply(block).create())
+fun RBuilder.buttonBase(vararg classMap: Pair<ButtonBaseStyle, String>, block: ButtonBaseElementBuilder<BUTTON, ButtonBaseProps>.() -> Unit) {
+    child(ButtonBaseElementBuilder(ButtonBase, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.buttonBase(vararg classMap: Pair<ButtonBaseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ButtonBaseElementBuilder<T, ButtonBaseProps>.() -> Unit) {
+    child(ButtonBaseElementBuilder(ButtonBase, classMap.toList(), factory).apply(block).create())
+}

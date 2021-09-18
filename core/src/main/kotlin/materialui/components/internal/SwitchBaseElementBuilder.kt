@@ -24,8 +24,8 @@ abstract class SwitchBaseElementBuilder<Props: SwitchBaseProps> internal constru
     var Tag.disableRipple: Boolean? by materialProps
     var Tag.icon: ReactElement? by materialProps
     var Tag.id: String? by materialProps
-    var Tag.inputProps: RProps? by materialProps
-    var Tag.inputRef: RRef? by materialProps
+    var Tag.inputProps: PropsWithChildren? by materialProps
+    var Tag.inputRef: Ref<*>? by materialProps
     var Tag.name: String? by materialProps
     var Tag.readOnly: Boolean? by materialProps
     var Tag.required: Boolean? by materialProps
@@ -42,6 +42,6 @@ abstract class SwitchBaseElementBuilder<Props: SwitchBaseProps> internal constru
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        inputProps = props as RProps
+        inputProps = props as PropsWithChildren
     }
 }

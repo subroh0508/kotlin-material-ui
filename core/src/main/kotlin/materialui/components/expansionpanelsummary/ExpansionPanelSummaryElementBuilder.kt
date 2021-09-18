@@ -8,6 +8,7 @@ import materialui.components.buttonbase.ButtonBaseElementBuilder
 import materialui.components.getValue
 import materialui.components.iconbutton.IconButtonElementBuilder
 import materialui.components.iconbutton.iconButton
+import materialui.components.iconbutton.iconButtonElement
 import materialui.components.setValue
 import react.*
 
@@ -19,14 +20,16 @@ class ExpansionPanelSummaryElementBuilder<T: Tag> internal constructor(
 
     var Tag.expanded: Boolean? by materialProps
     var Tag.expandIcon: ReactElement? by materialProps
-    var Tag.IconButtonProps: RProps? by materialProps
+    var Tag.IconButtonProps: PropsWithChildren? by materialProps
 
     fun Tag.expandIcon(block: RBuilder.() -> Unit) { expandIcon = buildElement(block) }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.iconButtonProps(block: IconButtonElementBuilder<BUTTON>.() -> Unit) {
-        IconButtonProps = RBuilder().iconButton(block = block).props
+        IconButtonProps = iconButtonElement(block = block).props as PropsWithChildren
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun <T2: Tag> Tag.iconButtonProps(factory: (TagConsumer<Unit>) -> T2, block: IconButtonElementBuilder<T2>.() -> Unit) {
-        IconButtonProps = RBuilder().iconButton(factory = factory, block = block).props
+        IconButtonProps = iconButtonElement(factory = factory, block = block).props as PropsWithChildren
     }
-    fun <P: RProps> Tag.iconButtonProps(block: P.() -> Unit) { IconButtonProps = jsObject(block) }
+    fun <P: PropsWithChildren> Tag.iconButtonProps(block: P.() -> Unit) { IconButtonProps = jsObject(block) }
 }

@@ -7,5 +7,6 @@ import react.*
 
 external interface ExpansionPanelActionsProps : StandardProps
 
-fun RBuilder.expansionPanelActions(vararg classMap: Pair<ExpansionPanelActionsStyle, String>, block: ExpansionPanelActionsElementBuilder.() -> Unit)
-    = child(ExpansionPanelActionsElementBuilder(ExpansionPanelActions, classMap.toList()).apply(block).create())
+fun RBuilder.expansionPanelActions(vararg classMap: Pair<ExpansionPanelActionsStyle, String>, block: ExpansionPanelActionsElementBuilder.() -> Unit) {
+    child(ExpansionPanelActionsElementBuilder(ExpansionPanelActions, classMap.toList()).apply(block).create())
+}

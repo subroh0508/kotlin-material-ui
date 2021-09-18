@@ -2,52 +2,51 @@ package materialui.styles
 
 import kotlinext.js.js
 import kotlinx.css.*
+import materialui.styles.muitheme.MUI_UNIT
 import materialui.styles.muitheme.MuiTheme
-import materialui.styles.muitheme.spacing
-import react.RProps
+import react.PropsWithChildren
 
-class StylesBuilder<P: RProps> internal constructor(
+class StylesBuilder<P: PropsWithChildren> internal constructor(
     val theme: MuiTheme
 ) {
     val css: dynamic = js {  }
 
-    fun global(block: CSSBuilder.() -> Unit) {
-        css["@global"] = CSSBuilder().apply(block).toDynamic
+    fun global(block: CssBuilder.() -> Unit) {
+        css["@global"] = CssBuilder().apply(block).toDynamic
     }
 
-    operator fun String.invoke(block: CSSBuilder.() -> Unit): String {
-        css[this] = CSSBuilder().apply(block).toDynamic
+    operator fun String.invoke(block: CssBuilder.() -> Unit): String {
+        css[this] = CssBuilder().apply(block).toDynamic
         return this
     }
 
-    fun dynamic(name: String, block: CSSBuilder.(P) -> Unit): String {
-        css[name] = { props: P -> CSSBuilder().apply { block(props) }.toDynamic }
+    fun dynamic(name: String, block: CssBuilder.(P) -> Unit): String {
+        css[name] = { props: P -> CssBuilder().apply { block(props) }.toDynamic }
         return name
     }
 
-    operator fun String.invoke(builder: CSSBuilder): String {
+    operator fun String.invoke(builder: CssBuilder): String {
         css[this] = builder.toDynamic
         return this
     }
 
-    fun CSSBuilder.flip(enable: Boolean) {
+    fun CssBuilder.flip(enable: Boolean) {
         declarations["flip"] = enable
     }
 
-    val Number.spacing: LinearDimension get() = theme.spacing(this)
-    val Number.unit: LinearDimension get() = LinearDimension("${this}unit")
+    fun u(n: Number): LinearDimension = LinearDimension(n.toString() + MUI_UNIT)
 }
 
-internal val CSSBuilder.toDynamic: Any
+internal val CssBuilder.toDynamic: Any
     get() = js {
         rules.forEach {
-            this[it.selector] = CSSBuilder().apply(it.block).toDynamic
+            this[it.selector] = CssBuilder().apply(it.block).toDynamic
         }
 
         declarations.forEach { (key, value) ->
             this[key.hyphenize()] = when {
                 key == "flip" -> value //keep boolean value parse in jss
-                value is CSSBuilder -> value.toDynamic
+                value is CssBuilder -> value.toDynamic
                 else -> value.toString()
             }
         }

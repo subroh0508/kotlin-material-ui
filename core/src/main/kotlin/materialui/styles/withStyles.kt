@@ -6,58 +6,54 @@ import materialui.styles.muitheme.MuiTheme
 import react.*
 import kotlin.reflect.KClass
 
-fun <P: RProps> withStyles(
-    functionalComponent: FunctionComponent<P>,
+fun <P: PropsWithChildren> withStyles(
+    functionComponent: FunctionComponent<P>,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = true
-): RClass<P> = rawWithStyles(
+): ComponentClass<P> = rawWithStyles(
     { theme: MuiTheme ->  StylesBuilder<P>(theme).apply(styleSet).css },
     js { this["withTheme"] = withTheme }
-)(functionalComponent).unsafeCast<RClass<P>>()
+)(functionComponent).unsafeCast<ComponentClass<P>>()
 
-fun <P: RProps> withStyles(
-    rClass: RClass<P>,
+fun <P: PropsWithChildren> withStyles(
+    ComponentClass: ComponentClass<P>,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = true
-): RClass<P> = rawWithStyles(
+): ComponentClass<P> = rawWithStyles(
     { theme: MuiTheme -> StylesBuilder<P>(theme).apply(styleSet).css },
     js { this["withTheme"] = withTheme }
-)(rClass).unsafeCast<RClass<P>>()
+)(ComponentClass).unsafeCast<ComponentClass<P>>()
 
-fun <C : Component<P, *>, P : RProps> withStyles(
+fun <C : Component<P, *>, P : PropsWithChildren> withStyles(
     klazz: KClass<C>,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false
-): RClass<P> = withStyles(klazz.rClass, styleSet, withTheme = withTheme)
+): ComponentClass<P> = withStyles(klazz.react, styleSet, withTheme = withTheme)
 
-fun <P: RProps> withStyles(
+fun <P: PropsWithChildren> withStyles(
     displayName: String,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false,
     render: RBuilder.(P) -> Unit
-): RClass<P> = withStyles(functionalComponent(displayName, render), styleSet, withTheme = withTheme)
+): ComponentClass<P> = withStyles(functionComponent(displayName, render), styleSet, withTheme = withTheme)
 
 @Deprecated(
-    "Use withStyles to create a reusable RClass instead, and call that to render the styled component."
+    "Use withStyles to create a reusable ComponentClass instead, and call that to render the styled component."
 )
-fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
+fun <P : PropsWithChildren, C : Component<P, *>> RBuilder.childWithStyles(
     klazz: KClass<C>,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false,
     handler: RHandler<P>
-): ReactElement {
-    val rClass = withStyles(klazz, styleSet, withTheme = withTheme)
-
-    return rClass(handler)
-}
+) { withStyles(klazz, styleSet, withTheme = withTheme)(handler) }
 
 @Deprecated(
     "Use withStyles instead",
     replaceWith = ReplaceWith("withStyles(displayName, styleSet, withTheme, render)", "materialui.styles.withStyles")
 )
-fun <P: RProps> RBuilder.childWithStyles(
+fun <P: PropsWithChildren> RBuilder.childWithStyles(
     displayName: String,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false,
     render: RBuilder.(P) -> Unit
-): RClass<P> = withStyles(functionalComponent(displayName, render), styleSet, withTheme = withTheme)
+): ComponentClass<P> = withStyles(functionComponent(displayName, render), styleSet, withTheme = withTheme)

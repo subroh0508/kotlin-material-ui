@@ -9,5 +9,6 @@ external interface CardActionsProps : StandardProps {
     var disableSpacing: Boolean?
 }
 
-fun RBuilder.cardActions(vararg classMap: Pair<CardActionsStyle, String>, block: CardActionsElementBuilder.() -> Unit)
-    = child(CardActionsElementBuilder(CardActions, classMap.toList()).apply(block).create())
+fun RBuilder.cardActions(vararg classMap: Pair<CardActionsStyle, String>, block: CardActionsElementBuilder.() -> Unit) {
+    child(CardActionsElementBuilder(CardActions, classMap.toList()).apply(block).create())
+}

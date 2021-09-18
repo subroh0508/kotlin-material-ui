@@ -4,7 +4,7 @@ import materialui.SwipeableDrawer
 import materialui.components.drawer.DrawerProps
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
 external interface SwipeableDrawerProps : DrawerProps {
     var disableBackdropTransition: Boolean?
@@ -14,9 +14,10 @@ external interface SwipeableDrawerProps : DrawerProps {
     var hysteresis: Number?
     var minFlingVelocity: Number?
     var onOpen: ((Event) -> Unit)?
-    var SwipeAreaProps: RProps?
+    var SwipeAreaProps: PropsWithChildren?
     var swipeAreaWidth: Number?
 }
 
-fun RBuilder.swipeableDrawer(block: SwipeableDrawerElementBuilder.() -> Unit)
-    = child(SwipeableDrawerElementBuilder(SwipeableDrawer, listOf()).apply(block).create())
+fun RBuilder.swipeableDrawer(block: SwipeableDrawerElementBuilder.() -> Unit) {
+    child(SwipeableDrawerElementBuilder(SwipeableDrawer, listOf()).apply(block).create())
+}

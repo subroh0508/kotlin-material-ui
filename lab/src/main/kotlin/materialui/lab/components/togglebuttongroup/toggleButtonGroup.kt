@@ -19,5 +19,6 @@ external interface ToggleButtonGroupProps : StandardProps {
 @Suppress("UnsafeCastFromDynamic")
 private val toggleButtonGroupComponent: ComponentType<ToggleButtonGroupProps> = toggleButtonGroupModule.default
 
-fun RBuilder.toggleButtonGroup(vararg classMap: Pair<ToggleButtonGroupStyle, String>, block: ToggleButtonGroupElementBuilder.() -> Unit)
-    = child(ToggleButtonGroupElementBuilder(toggleButtonGroupComponent, classMap.toList()).apply(block).create())
+fun RBuilder.toggleButtonGroup(vararg classMap: Pair<ToggleButtonGroupStyle, String>, block: ToggleButtonGroupElementBuilder.() -> Unit) {
+    child(ToggleButtonGroupElementBuilder(toggleButtonGroupComponent, classMap.toList()).apply(block).create())
+}

@@ -15,8 +15,19 @@ external interface InputLabelProps : FormLabelProps {
     var variant: String?
 }
 
-fun RBuilder.inputLabel(vararg classMap: Pair<InputLabelStyle, String>, block: InputLabelElementBuilder<LABEL>.() -> Unit)
-    = child(InputLabelElementBuilder(InputLabel, classMap.toList()) { LABEL(mapOf(), it) }.apply(block).create())
+fun RBuilder.inputLabel(vararg classMap: Pair<InputLabelStyle, String>, block: InputLabelElementBuilder<LABEL>.() -> Unit) {
+    child(inputLabelElement(classMap.toList(), block))
+}
+fun <T: Tag> RBuilder.inputLabel(vararg classMap: Pair<InputLabelStyle, String>, factory: (TagConsumer<Unit>) -> T, block: InputLabelElementBuilder<T>.() -> Unit) {
+    child(inputLabelElement(classMap.toList(), factory, block))
+}
+internal fun inputLabelElement(
+    classMap: List<Pair<InputLabelStyle, String>> = listOf(),
+    block: InputLabelElementBuilder<LABEL>.() -> Unit
+) = inputLabelElement(classMap, { LABEL(mapOf(), it) }, block)
 
-fun <T: Tag> RBuilder.inputLabel(vararg classMap: Pair<InputLabelStyle, String>, factory: (TagConsumer<Unit>) -> T, block: InputLabelElementBuilder<T>.() -> Unit)
-    = child(InputLabelElementBuilder(InputLabel, classMap.toList(), factory).apply(block).create())
+internal fun <T: Tag> inputLabelElement(
+    classMap: List<Pair<InputLabelStyle, String>> = listOf(),
+    factory: (TagConsumer<Unit>) -> T,
+    block: InputLabelElementBuilder<T>.() -> Unit
+) = InputLabelElementBuilder(InputLabel, classMap, factory).apply(block).create()

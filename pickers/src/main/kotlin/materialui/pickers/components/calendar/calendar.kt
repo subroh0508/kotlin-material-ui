@@ -4,7 +4,7 @@ import materialui.pickers.components.ExportedArrowSwitcherProps
 import materialui.pickers.components.ExportedCalendarProps
 import react.ComponentType
 import react.RBuilder
-import react.dom.WithClassName
+import react.PropsWithClassName
 
 @JsModule("@material-ui/pickers")
 @JsNonModule
@@ -13,7 +13,7 @@ private external val CalendarModule: dynamic
 @Suppress("UnsafeCastFromDynamic")
 private val CalendarComponent: ComponentType<CalendarProps> = CalendarModule.Calendar
 
-external interface CalendarProps : ExportedCalendarProps, ExportedArrowSwitcherProps, WithClassName {
+external interface CalendarProps : ExportedCalendarProps, ExportedArrowSwitcherProps, PropsWithClassName {
     var date: dynamic
     var minDate: dynamic
     var maxDate: dynamic
@@ -29,7 +29,7 @@ external interface CalendarProps : ExportedCalendarProps, ExportedArrowSwitcherP
     var TransitionProps: SlideTransitionProps
 }
 
-external interface SlideTransitionProps : WithClassName {
+external interface SlideTransitionProps : PropsWithClassName {
     var transKey: dynamic
     var reduceAnimation: Boolean?
     var slideDirection: String?

@@ -9,7 +9,7 @@ import materialui.components.popover.enums.PopoverStyle
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.Node
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
 external interface PopoverProps : ModalProps {
     var action: ((PopoverActions) -> Unit)?
@@ -27,12 +27,12 @@ external interface PopoverProps : ModalProps {
     var onExit: ((Node) -> Unit)?
     var onExited: ((Node) -> Unit)?
     var onExiting: ((Node) -> Unit)?
-    var PaperProps: RProps?
+    var PaperProps: PropsWithChildren?
     var role: String?
     var transformOrigin: PopoverOrigin?
     var TransitionComponent: dynamic
     var transitionDuration: dynamic
-    var TransitionProps: RProps?
+    var TransitionProps: PropsWithChildren?
 }
 
 external interface PopoverActions {
@@ -54,5 +54,6 @@ external interface PopoverPosition {
     var left: Number?
 }
 
-fun RBuilder.popover(vararg classMap: Pair<PopoverStyle, String>, block: PopoverElementBuilder<PopoverProps>.() -> Unit)
-    = child(PopoverElementBuilder(Popover, classMap.toList()).apply(block).create())
+fun RBuilder.popover(vararg classMap: Pair<PopoverStyle, String>, block: PopoverElementBuilder<PopoverProps>.() -> Unit) {
+    child(PopoverElementBuilder(Popover, classMap.toList()).apply(block).create())
+}

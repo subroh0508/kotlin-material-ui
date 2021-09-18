@@ -28,7 +28,7 @@ class TreeItemElementBuilder<T : Tag> internal constructor(
     var Tag.label: ReactElement? by materialProps
     var Tag.nodeId: String? by materialProps
     @Suppress("PropertyName")
-    var Tag.TransitionProps: RProps? by materialProps
+    var Tag.TransitionProps: PropsWithChildren? by materialProps
     @Suppress("PropertyName")
     var Tag.TransitionComponent: Any? by materialProps
 
@@ -41,10 +41,10 @@ class TreeItemElementBuilder<T : Tag> internal constructor(
     @Suppress("FunctionName")
     fun Tag.TransitionComponent(tagName: String) { TransitionComponent = tagName }
     @Suppress("FunctionName")
-    fun <P: RProps, C: Component<P, *>> Tag.TransitionComponent(kClass: KClass<C>) { TransitionComponent = kClass.rClass }
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.TransitionComponent(kClass: KClass<C>) { TransitionComponent = kClass.react }
     @Suppress("FunctionName")
-    fun <P: RProps> Tag.TransitionComponent(functionalComponent: FunctionComponent<P>) { TransitionComponent = functionalComponent }
+    fun <P: PropsWithChildren> Tag.TransitionComponent(functionComponent: FunctionComponent<P>) { TransitionComponent = functionComponent }
 
     @Suppress("FunctionName")
-    fun <P: RProps> Tag.TransitionProps(block: P.() -> Unit) { TransitionProps = jsObject(block) }
+    fun <P: PropsWithChildren> Tag.TransitionProps(block: P.() -> Unit) { TransitionProps = jsObject(block) }
 }

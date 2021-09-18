@@ -3,7 +3,7 @@ package materialui.reacttransiton
 import kotlinext.js.jsObject
 import react.*
 
-abstract class RTransitionBuilder<P: RProps>(
+abstract class RTransitionBuilder<P: PropsWithChildren>(
     protected val type: ComponentType<P>,
     protected val props: P = jsObject { }
 ) : RBuilderImpl() {

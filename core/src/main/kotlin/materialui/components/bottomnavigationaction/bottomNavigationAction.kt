@@ -17,8 +17,9 @@ external interface BottomNavigationActionProps : ButtonBaseProps {
     var value: Any?
 }
 
-fun RBuilder.bottomNavigationAction(vararg classMap: Pair<ButtonBaseStyle, String>, block: BottomNavigationActionElementBuilder<BUTTON>.() -> Unit)
-    = child(BottomNavigationActionElementBuilder(BottomNavigationAction, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.bottomNavigationAction(vararg classMap: Pair<ButtonBaseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: BottomNavigationActionElementBuilder<T>.() -> Unit)
-    = child(BottomNavigationActionElementBuilder(BottomNavigationAction, classMap.toList(), factory).apply(block).create())
+fun RBuilder.bottomNavigationAction(vararg classMap: Pair<ButtonBaseStyle, String>, block: BottomNavigationActionElementBuilder<BUTTON>.() -> Unit) {
+    child(BottomNavigationActionElementBuilder(BottomNavigationAction, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.bottomNavigationAction(vararg classMap: Pair<ButtonBaseStyle, String>, factory: (TagConsumer<Unit>) -> T, block: BottomNavigationActionElementBuilder<T>.() -> Unit) {
+    child(BottomNavigationActionElementBuilder(BottomNavigationAction, classMap.toList(), factory).apply(block).create())
+}

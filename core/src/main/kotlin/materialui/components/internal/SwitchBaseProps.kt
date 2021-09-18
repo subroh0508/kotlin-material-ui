@@ -1,8 +1,8 @@
 package materialui.components.internal
 
 import materialui.components.StandardProps
-import react.RProps
-import react.RRef
+import react.PropsWithChildren
+import react.Ref
 import react.ReactElement
 
 external interface SwitchBaseProps : StandardProps {
@@ -14,8 +14,8 @@ external interface SwitchBaseProps : StandardProps {
     var disableRipple: Boolean?
     var icon: ReactElement?
     var id: String?
-    var inputProps: RProps?
-    var inputRef: RRef?
+    var inputProps: PropsWithChildren?
+    var inputRef: Ref<*>?
     var name: String?
     var readOnly: Boolean?
     var required: Boolean?

@@ -9,11 +9,12 @@ external interface ListItemTextProps : StandardProps {
     var disableTypography: Boolean?
     var inset: Boolean?
     var primary: ReactElement?
-    var primaryTypographyProps: RProps?
+    var primaryTypographyProps: PropsWithChildren?
     var secondary: ReactElement?
-    var secondaryTypographyProps: RProps?
+    var secondaryTypographyProps: PropsWithChildren?
     var theme: Any?
 }
 
-fun RBuilder.listItemText(vararg classMap: Pair<ListItemTextStyle, String>, block: ListItemTextElementBuilder.() -> Unit)
-    = child(ListItemTextElementBuilder(ListItemText, classMap.toList()).apply(block).create())
+fun RBuilder.listItemText(vararg classMap: Pair<ListItemTextStyle, String>, block: ListItemTextElementBuilder.() -> Unit) {
+    child(ListItemTextElementBuilder(ListItemText, classMap.toList()).apply(block).create())
+}

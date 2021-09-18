@@ -13,8 +13,9 @@ external interface TableRowProps : StandardProps {
     var selected: Boolean?
 }
 
-fun RBuilder.tableRow(vararg classMap: Pair<TableRowStyle, String>, block: TableRowElementBuilder<TR>.() -> Unit)
-    = child(TableRowElementBuilder(TableRow, classMap.toList()) { TR(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.tableRow(vararg classMap: Pair<TableRowStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TableRowElementBuilder<T>.() -> Unit)
-    = child(TableRowElementBuilder(TableRow, classMap.toList(), factory).apply(block).create())
+fun RBuilder.tableRow(vararg classMap: Pair<TableRowStyle, String>, block: TableRowElementBuilder<TR>.() -> Unit) {
+    child(TableRowElementBuilder(TableRow, classMap.toList()) { TR(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.tableRow(vararg classMap: Pair<TableRowStyle, String>, factory: (TagConsumer<Unit>) -> T, block: TableRowElementBuilder<T>.() -> Unit) {
+    child(TableRowElementBuilder(TableRow, classMap.toList(), factory).apply(block).create())
+}

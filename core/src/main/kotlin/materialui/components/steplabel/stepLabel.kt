@@ -21,5 +21,6 @@ external interface StepLabelProps : StandardProps {
     var StepIconProps: StepIconProps?
 }
 
-fun RBuilder.stepLabel(vararg classMap: Pair<StepLabelStyle, String>, block: StepLabelElementBuilder.() -> Unit)
-    = child(StepLabelElementBuilder(StepLabel, classMap.toList()).apply(block).create())
+fun RBuilder.stepLabel(vararg classMap: Pair<StepLabelStyle, String>, block: StepLabelElementBuilder.() -> Unit) {
+    child(StepLabelElementBuilder(StepLabel, classMap.toList()).apply(block).create())
+}

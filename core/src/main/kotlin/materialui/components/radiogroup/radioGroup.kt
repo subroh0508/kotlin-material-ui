@@ -10,5 +10,6 @@ external interface RadioGroupProps : FormGroupProps {
     var value: Any?
 }
 
-fun RBuilder.radioGroup(block: RadioGroupElementBuilder.() -> Unit)
-    = child(RadioGroupElementBuilder(RadioGroup, listOf()).apply(block).create())
+fun RBuilder.radioGroup(block: RadioGroupElementBuilder.() -> Unit) {
+    child(RadioGroupElementBuilder(RadioGroup, listOf()).apply(block).create())
+}

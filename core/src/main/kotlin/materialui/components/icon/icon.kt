@@ -13,8 +13,9 @@ external interface IconProps : StandardProps {
     var fontSize: String?
 }
 
-fun RBuilder.icon(vararg classMap: Pair<IconStyle, String>, block: IconElementBuilder<SPAN>.() -> Unit)
-    = child(IconElementBuilder(Icon, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.icon(vararg classMap: Pair<IconStyle, String>, factory: (TagConsumer<Unit>) -> T, block: IconElementBuilder<T>.() -> Unit)
-    = child(IconElementBuilder(Icon, classMap.toList(), factory).apply(block).create())
+fun RBuilder.icon(vararg classMap: Pair<IconStyle, String>, block: IconElementBuilder<SPAN>.() -> Unit) {
+    child(IconElementBuilder(Icon, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.icon(vararg classMap: Pair<IconStyle, String>, factory: (TagConsumer<Unit>) -> T, block: IconElementBuilder<T>.() -> Unit) {
+    child(IconElementBuilder(Icon, classMap.toList(), factory).apply(block).create())
+}

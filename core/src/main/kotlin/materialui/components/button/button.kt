@@ -19,9 +19,9 @@ external interface ButtonProps : ButtonBaseProps {
     var variant: String?
 }
 
-fun RBuilder.button(vararg classMap: Pair<ButtonStyle, String>, block: ButtonElementBuilder<BUTTON>.() -> Unit)
-    = child(ButtonElementBuilder(Button, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.button(vararg classMap: Pair<ButtonStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ButtonElementBuilder<T>.() -> Unit)
-    = child(ButtonElementBuilder(Button, classMap.toList(), factory).apply(block).create())
-
+fun RBuilder.button(vararg classMap: Pair<ButtonStyle, String>, block: ButtonElementBuilder<BUTTON>.() -> Unit) {
+    child(ButtonElementBuilder(Button, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.button(vararg classMap: Pair<ButtonStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ButtonElementBuilder<T>.() -> Unit) {
+    child(ButtonElementBuilder(Button, classMap.toList(), factory).apply(block).create())
+}

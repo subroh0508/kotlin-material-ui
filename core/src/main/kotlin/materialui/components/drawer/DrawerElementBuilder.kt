@@ -12,7 +12,7 @@ import materialui.components.setValue
 import materialui.styles.muitheme.MuiTheme
 import org.w3c.dom.events.Event
 import react.ComponentType
-import react.RProps
+import react.PropsWithChildren
 
 open class DrawerElementBuilder<Props: DrawerProps> internal constructor(
     type: ComponentType<Props>,
@@ -23,13 +23,13 @@ open class DrawerElementBuilder<Props: DrawerProps> internal constructor(
     }
 
     var Tag.anchor: DrawerAnchor? by materialProps
-    var Tag.BackdropProps: RProps? by materialProps
+    var Tag.BackdropProps: PropsWithChildren? by materialProps
     var Tag.elevation: Number? by materialProps
-    var Tag.ModalProps: RProps? by materialProps
+    var Tag.ModalProps: PropsWithChildren? by materialProps
     var Tag.onClose: ((Event) -> Unit)? by materialProps
     var Tag.open: Boolean? by materialProps
-    var Tag.PaperProps: RProps? by materialProps
-    var Tag.SlideProps: RProps? by materialProps
+    var Tag.PaperProps: PropsWithChildren? by materialProps
+    var Tag.SlideProps: PropsWithChildren? by materialProps
     var Tag.theme: MuiTheme? by materialProps
     var Tag.variant: DrawerVariant? by materialProps
 

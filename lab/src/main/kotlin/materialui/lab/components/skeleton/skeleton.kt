@@ -22,9 +22,9 @@ external interface SkeletonProps : ButtonBaseProps {
 @Suppress("UnsafeCastFromDynamic")
 private val skeletonComponent: ComponentType<SkeletonProps> = skeletonModule.default
 
-fun RBuilder.skeleton(vararg classMap: Pair<SkeletonStyle, String>, block: SkeletonElementBuilder<SPAN>.() -> Unit)
-    = child(SkeletonElementBuilder(skeletonComponent, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.skeleton(vararg classMap: Pair<SkeletonStyle, String>, factory: (TagConsumer<Unit>) -> T, block: SkeletonElementBuilder<T>.() -> Unit)
-    = child(SkeletonElementBuilder(skeletonComponent, classMap.toList(), factory).apply(block).create())
-
+fun RBuilder.skeleton(vararg classMap: Pair<SkeletonStyle, String>, block: SkeletonElementBuilder<SPAN>.() -> Unit) {
+    child(SkeletonElementBuilder(skeletonComponent, classMap.toList()) { SPAN(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.skeleton(vararg classMap: Pair<SkeletonStyle, String>, factory: (TagConsumer<Unit>) -> T, block: SkeletonElementBuilder<T>.() -> Unit) {
+    child(SkeletonElementBuilder(skeletonComponent, classMap.toList(), factory).apply(block).create())
+}

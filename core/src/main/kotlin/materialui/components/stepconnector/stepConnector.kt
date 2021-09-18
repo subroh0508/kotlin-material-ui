@@ -14,5 +14,6 @@ external interface StepConnectorProps : StandardProps {
     var orientation: String?
 }
 
-fun RBuilder.stepConnector(vararg classMap: Pair<StepConnectorStyle, String>, block: StepConnectorElementBuilder.() -> Unit)
-    = child(StepConnectorElementBuilder(StepConnector, classMap.toList()).apply(block).create())
+fun RBuilder.stepConnector(vararg classMap: Pair<StepConnectorStyle, String>, block: StepConnectorElementBuilder.() -> Unit) {
+    child(StepConnectorElementBuilder(StepConnector, classMap.toList()).apply(block).create())
+}

@@ -19,8 +19,9 @@ external interface StepButtonProps : ButtonBaseProps {
     var orientation: String?
 }
 
-fun RBuilder.stepButton(vararg classMap: Pair<StepButtonStyle, String>, block: StepButtonElementBuilder<BUTTON>.() -> Unit)
-    = child(StepButtonElementBuilder(StepButton, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.stepButton(vararg classMap: Pair<StepButtonStyle, String>, factory: (TagConsumer<Unit>) -> T, block: StepButtonElementBuilder<T>.() -> Unit)
-    = child(StepButtonElementBuilder(StepButton, classMap.toList(), factory).apply(block).create())
+fun RBuilder.stepButton(vararg classMap: Pair<StepButtonStyle, String>, block: StepButtonElementBuilder<BUTTON>.() -> Unit) {
+    child(StepButtonElementBuilder(StepButton, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.stepButton(vararg classMap: Pair<StepButtonStyle, String>, factory: (TagConsumer<Unit>) -> T, block: StepButtonElementBuilder<T>.() -> Unit) {
+    child(StepButtonElementBuilder(StepButton, classMap.toList(), factory).apply(block).create())
+}

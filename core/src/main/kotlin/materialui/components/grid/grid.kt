@@ -25,8 +25,9 @@ external interface GridProps : StandardProps {
     var zeroMinWidth: Boolean?
 }
 
-fun RBuilder.grid(vararg classMap: Pair<GridStyle, String>, block: GridElementBuilder<DIV>.() -> Unit)
-    = child(GridElementBuilder(Grid, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.grid(vararg classMap: Pair<GridStyle, String>, factory: (TagConsumer<Unit>) -> T, block: GridElementBuilder<T>.() -> Unit)
-    = child(GridElementBuilder(Grid, classMap.toList(), factory).apply(block).create())
+fun RBuilder.grid(vararg classMap: Pair<GridStyle, String>, block: GridElementBuilder<DIV>.() -> Unit) {
+    child(GridElementBuilder(Grid, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.grid(vararg classMap: Pair<GridStyle, String>, factory: (TagConsumer<Unit>) -> T, block: GridElementBuilder<T>.() -> Unit) {
+    child(GridElementBuilder(Grid, classMap.toList(), factory).apply(block).create())
+}

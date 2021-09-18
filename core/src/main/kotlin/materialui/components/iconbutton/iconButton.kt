@@ -13,8 +13,19 @@ external interface IconButtonProps : ButtonBaseProps {
     var edge: String?
 }
 
-fun RBuilder.iconButton(vararg classMap: Pair<IconButtonStyle, String>, block: IconButtonElementBuilder<BUTTON>.() -> Unit)
-    = child(IconButtonElementBuilder(IconButton, classMap.toList()) { BUTTON(mapOf(), it) }.apply(block).create())
+fun RBuilder.iconButton(vararg classMap: Pair<IconButtonStyle, String>, block: IconButtonElementBuilder<BUTTON>.() -> Unit) {
+    child(iconButtonElement(classMap.toList(), block))
+}
+fun <T: Tag> RBuilder.iconButton(vararg classMap: Pair<IconButtonStyle, String>, factory: (TagConsumer<Unit>) -> T, block: IconButtonElementBuilder<T>.() -> Unit) {
+    child(iconButtonElement(classMap.toList(), factory, block))
+}
+internal fun iconButtonElement(
+    classMap: List<Pair<IconButtonStyle, String>> = listOf(),
+    block: IconButtonElementBuilder<BUTTON>.() -> Unit
+) = iconButtonElement(classMap, { BUTTON(mapOf(), it) }, block)
 
-fun <T: Tag> RBuilder.iconButton(vararg classMap: Pair<IconButtonStyle, String>, factory: (TagConsumer<Unit>) -> T, block: IconButtonElementBuilder<T>.() -> Unit)
-    = child(IconButtonElementBuilder(IconButton, classMap.toList(), factory).apply(block).create())
+internal fun <T: Tag> iconButtonElement(
+    classMap: List<Pair<IconButtonStyle, String>> = listOf(),
+    factory: (TagConsumer<Unit>) -> T,
+    block: IconButtonElementBuilder<T>.() -> Unit
+) = IconButtonElementBuilder(IconButton, classMap, factory).apply(block).create()

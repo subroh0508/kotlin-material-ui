@@ -16,8 +16,9 @@ external interface FormLabelProps : StandardProps {
     var required: Boolean?
 }
 
-fun RBuilder.formLabel(vararg classMap: Pair<FormLabelStyle, String>, block: FormLabelElementBuilder<LABEL, FormLabelProps>.() -> Unit)
-    = child(FormLabelElementBuilder(FormLabel, classMap.toList()) { LABEL(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.formLabel(vararg classMap: Pair<FormLabelStyle, String>, factory: (TagConsumer<Unit>) -> T, block: FormLabelElementBuilder<T, FormLabelProps>.() -> Unit)
-    = child(FormLabelElementBuilder(FormLabel, classMap.toList(), factory).apply(block).create())
+fun RBuilder.formLabel(vararg classMap: Pair<FormLabelStyle, String>, block: FormLabelElementBuilder<LABEL, FormLabelProps>.() -> Unit) {
+    child(FormLabelElementBuilder(FormLabel, classMap.toList()) { LABEL(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.formLabel(vararg classMap: Pair<FormLabelStyle, String>, factory: (TagConsumer<Unit>) -> T, block: FormLabelElementBuilder<T, FormLabelProps>.() -> Unit) {
+    child(FormLabelElementBuilder(FormLabel, classMap.toList(), factory).apply(block).create())
+}

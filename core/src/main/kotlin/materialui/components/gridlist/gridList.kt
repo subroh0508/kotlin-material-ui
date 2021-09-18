@@ -15,8 +15,9 @@ external interface GridListProps : StandardProps {
     var style: Any?
 }
 
-fun RBuilder.gridList(rootStyle: String? = null, block: GridListElementBuilder<UL>.() -> Unit)
-    = child(GridListElementBuilder(GridList, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { UL(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.gridList(rootStyle: String? = null, factory: (TagConsumer<Unit>) -> T, block: GridListElementBuilder<T>.() -> Unit)
-    = child(GridListElementBuilder(GridList, listOfNotNull(rootStyle?.let { MaterialStyle.root to it }), factory).apply(block).create())
+fun RBuilder.gridList(rootStyle: String? = null, block: GridListElementBuilder<UL>.() -> Unit) {
+    child(GridListElementBuilder(GridList, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { UL(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.gridList(rootStyle: String? = null, factory: (TagConsumer<Unit>) -> T, block: GridListElementBuilder<T>.() -> Unit) {
+    child(GridListElementBuilder(GridList, listOfNotNull(rootStyle?.let { MaterialStyle.root to it }), factory).apply(block).create())
+}

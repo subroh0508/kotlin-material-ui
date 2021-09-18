@@ -1,10 +1,10 @@
 package materialui.reacttransiton
 
-import react.RProps
+import react.PropsWithChildren
 import react.ReactElement
 import kotlin.reflect.KProperty
 
-external interface RTransitionGroupProps : RProps {
+external interface RTransitionGroupProps : PropsWithChildren {
     var appear: Boolean?
     var enter: Boolean?
     var exit: Boolean?

@@ -13,8 +13,9 @@ external interface BottomNavigationProps : StandardProps {
     var value: Any?
 }
 
-fun RBuilder.bottomNavigation(rootStyle: String? = null, block: BottomNavigationElementBuilder<DIV>.() -> Unit)
-    = child(BottomNavigationElementBuilder(BottomNavigation, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.bottomNavigation(rootStyle: String? = null, factory: (TagConsumer<Unit>) -> T, block: BottomNavigationElementBuilder<T>.() -> Unit)
-    = child(BottomNavigationElementBuilder(BottomNavigation, listOfNotNull(rootStyle?.let { MaterialStyle.root to it }), factory).apply(block).create())
+fun RBuilder.bottomNavigation(rootStyle: String? = null, block: BottomNavigationElementBuilder<DIV>.() -> Unit) {
+    child(BottomNavigationElementBuilder(BottomNavigation, listOfNotNull(rootStyle?.let { MaterialStyle.root to it })) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.bottomNavigation(rootStyle: String? = null, factory: (TagConsumer<Unit>) -> T, block: BottomNavigationElementBuilder<T>.() -> Unit) {
+    child(BottomNavigationElementBuilder(BottomNavigation, listOfNotNull(rootStyle?.let { MaterialStyle.root to it }), factory).apply(block).create())
+}

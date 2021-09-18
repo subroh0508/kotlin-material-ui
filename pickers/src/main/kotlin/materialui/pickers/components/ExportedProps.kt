@@ -3,14 +3,14 @@ package materialui.pickers.components
 import materialui.components.iconbutton.IconButtonProps
 import materialui.components.textfield.TextFieldProps
 import materialui.pickers.components.day.DayProps
-import react.RProps
+import react.PropsWithChildren
 
-external interface WithViewProps : RProps {
+external interface WithViewProps : PropsWithChildren {
     var views: Array<String>?
     var openTo: String?
 }
 
-external interface ExportedArrowSwitcherProps : RProps {
+external interface ExportedArrowSwitcherProps : PropsWithChildren {
     var leftArrowIcon: dynamic
     var rightArrowIcon: dynamic
     var leftArrowButtonText: String?
@@ -19,7 +19,7 @@ external interface ExportedArrowSwitcherProps : RProps {
     var rightArrowButtonProps: IconButtonProps?
 }
 
-external interface ExportedCalendarProps : RProps {
+external interface ExportedCalendarProps : PropsWithChildren {
     var showDaysOutsideCurrentMonth: Boolean?
     var disableHighlightToday: Boolean?
     //var onChange: ((dynamic, dynamic) -> Unit)?  TODO delete

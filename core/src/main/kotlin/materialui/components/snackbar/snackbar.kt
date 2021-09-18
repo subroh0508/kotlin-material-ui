@@ -8,15 +8,15 @@ import materialui.components.snackbar.enums.SnackbarStyle
 import materialui.reacttransiton.RTransitionHandlerProps
 import materialui.reacttransiton.RTransitionProps
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 import react.ReactElement
 
 external interface SnackbarProps : RTransitionHandlerProps, StandardProps {
     var action: ReactElement?
     var anchorOrigin: SnackbarOrigin?
     var autoHideDuration: Number?
-    var ClickAwayListenerProps: RProps?
-    var ContentProps: RProps?
+    var ClickAwayListenerProps: PropsWithChildren?
+    var ContentProps: PropsWithChildren?
     var disableWindowBlurListener: Boolean?
     var key: Any?
     var message: ReactElement?
@@ -36,5 +36,6 @@ var SnackbarOrigin.vertical: SnackbarOriginVertical?
     get() = (asDynamic()["vertical"] as String?)?.let { SnackbarOriginVertical.valueOf(it) }
     set(value) { asDynamic()["vertical"] = value?.toString() }
 
-fun RBuilder.snackbar(vararg classMap: Pair<SnackbarStyle, String>, block: SnackbarElementBuilder.() -> Unit)
-    = child(SnackbarElementBuilder(Snackbar, classMap.toList()).apply(block).create())
+fun RBuilder.snackbar(vararg classMap: Pair<SnackbarStyle, String>, block: SnackbarElementBuilder.() -> Unit) {
+    child(SnackbarElementBuilder(Snackbar, classMap.toList()).apply(block).create())
+}

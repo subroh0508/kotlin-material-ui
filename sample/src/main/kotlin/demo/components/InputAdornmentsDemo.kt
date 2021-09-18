@@ -42,7 +42,7 @@ val DATA: Array<Person> = arrayOf(
     jsObject { name = "Madoka Higuchi"; age = 17 },
 )
 
-class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
+class InputAdornmentsDemo : RComponent<PropsWithChildren, InputAdornmentsState>() {
     override fun InputAdornmentsState.init() {
         amount = ""
         password = ""
@@ -148,15 +148,17 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
                     attrs.fullWidth = true
                     attrs.renderInput = {
                         it.InputProps.startAdornment = buildElement {
-                                inputAdornment {
-                                    icon { +"person" }
-                                }
+                            inputAdornment {
+                                icon { +"person" }
                             }
-                        textField {
-                            props(it.getTextFieldProps())
-                            attrs.classes("$marginStyle $textFieldStyle")
-                            attrs.label { +"Autocomplete Person" }
-                            attrs.variant = FormControlVariant.outlined
+                        }
+                        buildElement {
+                            textField {
+                                props(it.getTextFieldProps())
+                                attrs.classes("$marginStyle $textFieldStyle")
+                                attrs.label { +"Autocomplete Person" }
+                                attrs.variant = FormControlVariant.outlined
+                            }
                         }
                     }
                 }
@@ -193,7 +195,7 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
     }
 }
 
-external interface InputAdornmentsState : RState {
+external interface InputAdornmentsState : State {
     var amount: String
     var password: String
     var weight: String

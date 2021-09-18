@@ -10,7 +10,7 @@ external interface FormControlLabelProps : StandardProps {
     var checked: Any?
     var control: ReactElement?
     var disabled: Boolean?
-    var inputRef: RRef?
+    var inputRef: Ref<*>?
     var label: ReactElement?
     var labelPlacement: String?
     var name: String?
@@ -18,5 +18,6 @@ external interface FormControlLabelProps : StandardProps {
     var value: String?
 }
 
-fun RBuilder.formControlLabel(vararg classMap: Pair<FormControlLabelStyle, String>, block: FormControlLabelElementBuilder.() -> Unit)
-    = child(FormControlLabelElementBuilder(FormControlLabel, classMap.toList()).apply(block).create())
+fun RBuilder.formControlLabel(vararg classMap: Pair<FormControlLabelStyle, String>, block: FormControlLabelElementBuilder.() -> Unit) {
+    child(FormControlLabelElementBuilder(FormControlLabel, classMap.toList()).apply(block).create())
+}

@@ -102,6 +102,6 @@ private val styledAppSearch = withStyles(AppSearchComponent::class, {
         color = Color.inherit
     }
     "inputInput" {
-        padding = theme.spacing(top = 1, bottom = 1, right = 1, left = 9)
+        padding = theme.spacing(u(1), u(1), u(1), u(9))
     }
 })

@@ -237,7 +237,7 @@ internal external val TouchRipple: ComponentType<TouchRippleProps>
 internal external val Typography: ComponentType<TypographyProps>
 internal external val Zoom: ComponentType<ZoomProps>
 
-internal external val ThemeProvider: ComponentType<RProps>
+internal external val ThemeProvider: ComponentType<PropsWithChildren>
 internal external val StylesProvider: ComponentType<StylesProviderProps>
 
 

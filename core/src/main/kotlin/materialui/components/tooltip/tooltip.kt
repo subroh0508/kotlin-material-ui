@@ -7,7 +7,7 @@ import materialui.components.tooltip.enums.TooltipStyle
 import materialui.reacttransiton.RTransitionProps
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 import react.ReactElement
 
 external interface TooltipProps : StandardProps {
@@ -23,7 +23,7 @@ external interface TooltipProps : StandardProps {
     var onClose: ((Event) -> Unit)?
     var onOpen: ((Event) -> Unit)?
     var open: Boolean?
-    var PopperProps: RProps?
+    var PopperProps: PropsWithChildren?
     var theme: Any?
     var title: ReactElement?
     var TransitionComponent: dynamic
@@ -34,5 +34,6 @@ var TooltipProps.placement: TooltipPlacement?
     get() = (asDynamic()["placement"] as String?)?.let { TooltipPlacement.valueOf(it) }
     set(value) { asDynamic()["placement"] = value?.toString() }
 
-fun RBuilder.tooltip(vararg classMap: Pair<TooltipStyle, String>, block: TooltipElementBuilder.() -> Unit)
-    = child(TooltipElementBuilder(Tooltip, classMap.toList()).apply(block).create())
+fun RBuilder.tooltip(vararg classMap: Pair<TooltipStyle, String>, block: TooltipElementBuilder.() -> Unit) {
+    child(TooltipElementBuilder(Tooltip, classMap.toList()).apply(block).create())
+}

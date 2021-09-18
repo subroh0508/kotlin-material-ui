@@ -17,8 +17,9 @@ external interface FormControlProps : StandardProps {
     var variant: String?
 }
 
-fun RBuilder.formControl(vararg classMap: Pair<FormControlStyle, String>, block: FormControlElementBuilder<DIV, FormControlProps>.() -> Unit)
-    = child(FormControlElementBuilder(FormControl, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.formControl(vararg classMap: Pair<FormControlStyle, String>, factory: (TagConsumer<Unit>) -> T, block: FormControlElementBuilder<T, FormControlProps>.() -> Unit)
-    = child(FormControlElementBuilder(FormControl, classMap.toList(), factory).apply(block).create())
+fun RBuilder.formControl(vararg classMap: Pair<FormControlStyle, String>, block: FormControlElementBuilder<DIV, FormControlProps>.() -> Unit) {
+    child(FormControlElementBuilder(FormControl, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.formControl(vararg classMap: Pair<FormControlStyle, String>, factory: (TagConsumer<Unit>) -> T, block: FormControlElementBuilder<T, FormControlProps>.() -> Unit) {
+    child(FormControlElementBuilder(FormControl, classMap.toList(), factory).apply(block).create())
+}

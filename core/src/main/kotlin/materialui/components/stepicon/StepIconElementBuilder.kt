@@ -12,7 +12,7 @@ class StepIconElementBuilder internal constructor(
         props.classes(classMap)
     }
 
-    fun attrs(handler: RProps.() -> Unit) {
+    fun attrs(handler: PropsWithChildren.() -> Unit) {
         props.handler()
     }
 

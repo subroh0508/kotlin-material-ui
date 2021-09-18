@@ -11,6 +11,7 @@ import materialui.components.setValue
 import materialui.components.typography.TypographyElementBuilder
 import materialui.components.typography.TypographyProps
 import materialui.components.typography.typography
+import materialui.components.typography.typographyElement
 import react.*
 
 class CardHeaderElementBuilder<T: Tag> internal constructor(
@@ -26,25 +27,29 @@ class CardHeaderElementBuilder<T: Tag> internal constructor(
     var Tag.avatar: ReactElement? by materialProps
     var Tag.disableTypography: Boolean? by materialProps
     var Tag.subheader: ReactElement? by materialProps
-    var Tag.subheaderTypographyProps: RProps? by materialProps
+    var Tag.subheaderTypographyProps: PropsWithChildren? by materialProps
     var Tag.title: ReactElement? by materialProps
-    var Tag.titleTypographyProps: RProps? by materialProps
+    var Tag.titleTypographyProps: PropsWithChildren? by materialProps
 
     fun Tag.action(block: RBuilder.() -> Unit) { action = buildElement(block) }
     fun Tag.avatar(block: RBuilder.() -> Unit) { avatar = buildElement(block) }
     fun Tag.subheader(block: RBuilder.() -> Unit) { subheader = buildElement(block) }
     fun Tag.title(block: RBuilder.() -> Unit) { title = buildElement(block) }
 
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.subheaderTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
-        subheaderTypographyProps = RBuilder().typography(block = block).props
+        subheaderTypographyProps = typographyElement(block = block).props as PropsWithChildren
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.subheaderTypographyProps(block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) {
-        subheaderTypographyProps = RBuilder().typography(p = true, block = block).props
+        subheaderTypographyProps = typographyElement(p = true, block = block).props as PropsWithChildren
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.titleTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
-        titleTypographyProps = RBuilder().typography(block = block).props
+        titleTypographyProps = typographyElement(block = block).props as PropsWithChildren
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.titleTypographyProps(block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) {
-        titleTypographyProps = RBuilder().typography(p = true, block = block).props
+        titleTypographyProps = typographyElement(p = true, block = block).props as PropsWithChildren
     }
 }

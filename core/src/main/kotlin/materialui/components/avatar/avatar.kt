@@ -7,10 +7,10 @@ import materialui.Avatar
 import materialui.components.StandardProps
 import materialui.components.avatar.enum.AvatarStyle
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
 external interface AvatarProps : StandardProps {
-    var imgProps: RProps?
+    var imgProps: PropsWithChildren?
     var alt: String?
     var childrenClassName: String?
     var sizes: String?
@@ -18,8 +18,9 @@ external interface AvatarProps : StandardProps {
     var srcSet: String?
 }
 
-fun RBuilder.avatar(vararg classMap: Pair<AvatarStyle, String>, block: AvatarElementBuilder<DIV>.() -> Unit)
-    = child(AvatarElementBuilder(Avatar, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.avatar(vararg classMap: Pair<AvatarStyle, String>, factory: (TagConsumer<Unit>) -> T, block: AvatarElementBuilder<T>.() -> Unit)
-    = child(AvatarElementBuilder(Avatar, classMap.toList(), factory).apply(block).create())
+fun RBuilder.avatar(vararg classMap: Pair<AvatarStyle, String>, block: AvatarElementBuilder<DIV>.() -> Unit) {
+    child(AvatarElementBuilder(Avatar, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.avatar(vararg classMap: Pair<AvatarStyle, String>, factory: (TagConsumer<Unit>) -> T, block: AvatarElementBuilder<T>.() -> Unit) {
+    child(AvatarElementBuilder(Avatar, classMap.toList(), factory).apply(block).create())
+}

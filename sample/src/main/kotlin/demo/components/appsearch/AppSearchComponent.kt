@@ -7,13 +7,13 @@ import materialui.components.input.input
 import materialui.components.inputbase.enums.InputBaseStyle
 import react.RBuilder
 import react.RComponent
-import react.RState
+import react.State
 import react.dom.attrs
 import react.dom.div
 import styled.css
 import styled.styledDiv
 
-class AppSearchComponent : RComponent<AppSearchProps, RState>() {
+class AppSearchComponent : RComponent<AppSearchProps, State>() {
     override fun RBuilder.render() {
         styledDiv {
             css {

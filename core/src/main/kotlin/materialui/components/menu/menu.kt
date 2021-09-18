@@ -5,14 +5,19 @@ import materialui.components.menu.enums.MenuStyle
 import materialui.components.popover.PopoverProps
 import materialui.styles.muitheme.MuiTheme
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
 external interface MenuProps : PopoverProps {
     var disableAutoFocusItem: Boolean?
-    var MenuListProps: RProps?
+    var MenuListProps: PropsWithChildren?
     var theme: MuiTheme?
-    var PopoverClasses: Any?
+    var PopoveComponentClasses: Any?
 }
 
-fun RBuilder.menu(vararg classMap: Pair<MenuStyle, String>, block: MenuElementBuilder.() -> Unit)
-    = child(MenuElementBuilder(Menu, classMap.toList()).apply(block).create())
+fun RBuilder.menu(vararg classMap: Pair<MenuStyle, String>, block: MenuElementBuilder.() -> Unit) {
+    child(menuElement(classMap.toList(), block))
+}
+internal fun menuElement(
+    classMap: List<Pair<MenuStyle, String>> = listOf(),
+    block: MenuElementBuilder.() -> Unit
+) = MenuElementBuilder(Menu, classMap.toList()).apply(block).create()

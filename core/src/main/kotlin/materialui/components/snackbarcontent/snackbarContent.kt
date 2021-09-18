@@ -14,8 +14,19 @@ external interface SnackbarContentProps : PaperProps {
     var message: ReactElement?
 }
 
-fun RBuilder.snackbarContent(vararg classMap: Pair<SnackbarContentStyle, String>, block: SnackbarContentElementBuilder<DIV>.() -> Unit)
-    = child(SnackbarContentElementBuilder(SnackbarContent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+fun RBuilder.snackbarContent(vararg classMap: Pair<SnackbarContentStyle, String>, block: SnackbarContentElementBuilder<DIV>.() -> Unit) {
+    child(snackbarContentElement(classMap.toList(), block))
+}
+fun <T: Tag> RBuilder.snackbarContent(vararg classMap: Pair<SnackbarContentStyle, String>, factory: (TagConsumer<Unit>) -> T, block: SnackbarContentElementBuilder<T>.() -> Unit) {
+    child(snackbarContentElement(classMap.toList(), factory, block))
+}
+internal fun snackbarContentElement(
+    classMap: List<Pair<SnackbarContentStyle, String>> = listOf(),
+    block: SnackbarContentElementBuilder<DIV>.() -> Unit
+) = snackbarContentElement(classMap, { DIV(mapOf(), it) }, block)
 
-fun <T: Tag> RBuilder.snackbarContent(vararg classMap: Pair<SnackbarContentStyle, String>, factory: (TagConsumer<Unit>) -> T, block: SnackbarContentElementBuilder<T>.() -> Unit)
-    = child(SnackbarContentElementBuilder(SnackbarContent, classMap.toList(), factory).apply(block).create())
+internal fun <T: Tag> snackbarContentElement(
+    classMap: List<Pair<SnackbarContentStyle, String>> = listOf(),
+    factory: (TagConsumer<Unit>) -> T,
+    block: SnackbarContentElementBuilder<T>.() -> Unit
+) = SnackbarContentElementBuilder(SnackbarContent, classMap, factory).apply(block).create()

@@ -16,8 +16,8 @@ external interface InputBaseProps : StandardProps {
     var fullWidth: Boolean?
     var id: String?
     var inputComponent: dynamic
-    var inputProps: RProps?
-    var inputRef: RRef?
+    var inputProps: PropsWithChildren?
+    var inputRef: Ref<*>?
     var margin: String?
     var muiFormControl: Any?
     var multiline: Boolean?
@@ -34,5 +34,6 @@ external interface InputBaseProps : StandardProps {
     var value: Any?
 }
 
-fun RBuilder.inputBase(vararg classMap: Pair<InputBaseStyle, String>, block: InputBaseElementBuilder<InputBaseProps>.() -> Unit)
-    = child(InputBaseElementBuilder(InputBase, classMap.toList()).apply(block).create())
+fun RBuilder.inputBase(vararg classMap: Pair<InputBaseStyle, String>, block: InputBaseElementBuilder<InputBaseProps>.() -> Unit) {
+    child(InputBaseElementBuilder(InputBase, classMap.toList()).apply(block).create())
+}

@@ -18,8 +18,9 @@ external interface FormHelperTextProps : StandardProps {
     var variant: String?
 }
 
-fun RBuilder.formHelperText(vararg classMap: Pair<FormHelperTextStyle, String>, block: FormHelperTextElementBuilder<P>.() -> Unit)
-    = child(FormHelperTextElementBuilder(FormHelperText, classMap.toList()) { P(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.formHelperText(vararg classMap: Pair<FormHelperTextStyle, String>, factory: (TagConsumer<Unit>) -> T, block: FormHelperTextElementBuilder<T>.() -> Unit)
-    = child(FormHelperTextElementBuilder(FormHelperText, classMap.toList(), factory).apply(block).create())
+fun RBuilder.formHelperText(vararg classMap: Pair<FormHelperTextStyle, String>, block: FormHelperTextElementBuilder<P>.() -> Unit) {
+    child(FormHelperTextElementBuilder(FormHelperText, classMap.toList()) { P(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.formHelperText(vararg classMap: Pair<FormHelperTextStyle, String>, factory: (TagConsumer<Unit>) -> T, block: FormHelperTextElementBuilder<T>.() -> Unit) {
+    child(FormHelperTextElementBuilder(FormHelperText, classMap.toList(), factory).apply(block).create())
+}

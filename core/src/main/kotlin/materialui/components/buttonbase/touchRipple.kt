@@ -10,5 +10,6 @@ external interface TouchRippleProps : RTransitionGroupProps, StandardProps {
     var center: Boolean?
 }
 
-fun RBuilder.touchRipple(vararg classMap: Pair<TouchRippleStyle, String>, block: TouchRippleElementBuilder.() -> Unit)
-    = child(TouchRippleElementBuilder(TouchRipple, classMap.toList()).apply(block).create())
+fun RBuilder.touchRipple(vararg classMap: Pair<TouchRippleStyle, String>, block: TouchRippleElementBuilder.() -> Unit) {
+    child(TouchRippleElementBuilder(TouchRipple, classMap.toList()).apply(block).create())
+}

@@ -6,11 +6,9 @@ plugins {
     //id("maven-publishing")
 }
 
-repositories {
-    mavenLocal()
-    jcenter()
-}
-
 dependencies {
+    val wrappers = Libraries.JsWrappers(kotlinVersion)
+    api(wrappers.extensions)
+
     api(npm("@date-io/core", Libraries.Npm.dateIo))
 }

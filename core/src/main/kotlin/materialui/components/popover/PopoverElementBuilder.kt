@@ -11,6 +11,7 @@ import materialui.components.modal.enums.ModalStyle
 import materialui.components.paper.PaperElementBuilder
 import materialui.components.paper.PaperProps
 import materialui.components.paper.paper
+import materialui.components.paper.paperElement
 import materialui.components.popover.enums.PopoverReference
 import materialui.components.popover.enums.PopoverStyle
 import materialui.components.setValue
@@ -43,10 +44,10 @@ open class PopoverElementBuilder<Props: PopoverProps>(
     var Tag.onExit: ((Node) -> Unit)? by materialProps
     var Tag.onExited: ((Node) -> Unit)? by materialProps
     var Tag.onExiting: ((Node) -> Unit)? by materialProps
-    var Tag.PaperProps: RProps? by materialProps
+    var Tag.PaperProps: PropsWithChildren? by materialProps
     var Tag.transformOrigin: PopoverOrigin? by materialProps
     val Tag.transitionDuration: Any? by materialProps
-    var Tag.TransitionProps: RProps? by materialProps
+    var Tag.TransitionProps: PropsWithChildren? by materialProps
 
     fun Tag.action(actions: (PopoverActions) -> Unit) { action = actions }
     fun Tag.anchorEl(node: Node) { materialProps.anchorEl = node }
@@ -67,17 +68,19 @@ open class PopoverElementBuilder<Props: PopoverProps>(
 
         ModalClasses = classesObj as Any
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.paperProps(block: PaperElementBuilder<DIV, PaperProps>.() -> Unit) {
-        PaperProps = RBuilder().paper(block = block).props
+        PaperProps = paperElement(block = block).props as PropsWithChildren
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun <T: Tag, P: PaperProps> Tag.paperProps(factory: (TagConsumer<Unit>) -> T, block: PaperElementBuilder<T, P>.() -> Unit) {
-        PaperProps = RBuilder().paper(factory = factory, block = block).props
+        PaperProps = paperElement(factory = factory, block = block).props as PropsWithChildren
     }
     fun Tag.transformOrigin(block: PopoverOrigin.() -> Unit) { transformOrigin = jsObject(block) }
-    fun <P: RProps, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.TransitionComponent = kClass.js as RClass<P>
+        materialProps.TransitionComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.transitionComponent(tagName: String) {
         materialProps.TransitionComponent = tagName

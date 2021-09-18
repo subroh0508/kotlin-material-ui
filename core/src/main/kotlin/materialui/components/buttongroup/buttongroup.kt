@@ -19,9 +19,9 @@ external interface ButtonGroupProps : StandardProps {
     var variant: String?
 }
 
-fun RBuilder.buttonGroup(vararg classMap: Pair<ButtonGroupStyle, String>, block: ButtonGroupElementBuilder<DIV>.() -> Unit)
-    = child(ButtonGroupElementBuilder(ButtonGroup, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
-
-fun <T: Tag> RBuilder.buttonGroup(vararg classMap: Pair<ButtonGroupStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ButtonGroupElementBuilder<T>.() -> Unit)
-    = child(ButtonGroupElementBuilder(ButtonGroup, classMap.toList(), factory).apply(block).create())
-
+fun RBuilder.buttonGroup(vararg classMap: Pair<ButtonGroupStyle, String>, block: ButtonGroupElementBuilder<DIV>.() -> Unit) {
+    child(ButtonGroupElementBuilder(ButtonGroup, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())
+}
+fun <T: Tag> RBuilder.buttonGroup(vararg classMap: Pair<ButtonGroupStyle, String>, factory: (TagConsumer<Unit>) -> T, block: ButtonGroupElementBuilder<T>.() -> Unit) {
+    child(ButtonGroupElementBuilder(ButtonGroup, classMap.toList(), factory).apply(block).create())
+}

@@ -13,5 +13,6 @@ external interface StepIconProps : StandardProps {
     var icon: ReactElement?
 }
 
-fun RBuilder.stepIcon(vararg classMap: Pair<StepIconStyle, String>, block: StepIconElementBuilder.() -> Unit)
-    = child(StepIconElementBuilder(StepIcon, classMap.toList()).apply(block).create())
+fun RBuilder.stepIcon(vararg classMap: Pair<StepIconStyle, String>, block: StepIconElementBuilder.() -> Unit) {
+    child(StepIconElementBuilder(StepIcon, classMap.toList()).apply(block).create())
+}

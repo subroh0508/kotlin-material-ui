@@ -11,5 +11,6 @@ private external val listItemAvatarModule: dynamic
 
 external interface ListItemAvatarProps : StandardProps
 
-fun RBuilder.listAvatar(vararg classMap: Pair<ListItemAvaterStyle, String>, block: ListItemAvatarElementBuilder.() -> Unit)
-    = child(ListItemAvatarElementBuilder(ListItemAvatar, classMap.toList()).apply(block).create())
+fun RBuilder.listAvatar(vararg classMap: Pair<ListItemAvaterStyle, String>, block: ListItemAvatarElementBuilder.() -> Unit) {
+    child(ListItemAvatarElementBuilder(ListItemAvatar, classMap.toList()).apply(block).create())
+}

@@ -12,5 +12,6 @@ external interface LinearProgressProps : StandardProps {
     var variant: String?
 }
 
-fun RBuilder.linearProgress(vararg classMap: Pair<LinearProgressStyle, String>, block: LinearProgressElementBuilder.() -> Unit)
-    = child(LinearProgressElementBuilder(LinearProgress, classMap.toList()).apply(block).create())
+fun RBuilder.linearProgress(vararg classMap: Pair<LinearProgressStyle, String>, block: LinearProgressElementBuilder.() -> Unit) {
+    child(LinearProgressElementBuilder(LinearProgress, classMap.toList()).apply(block).create())
+}

@@ -2,17 +2,17 @@ package materialui.styles.mixins
 
 import kotlinext.js.Object
 import kotlinext.js.js
-import kotlinx.css.CSSBuilder
+import kotlinx.css.CssBuilder
 import kotlinx.css.px
 import kotlin.reflect.KProperty
 
-typealias Gutters = (CSSBuilder) -> CSSBuilder
+typealias Gutters = (CssBuilder) -> CssBuilder
 
 object ReadOnlyGutterDelegate {
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): Gutters = { cssBuilder: CSSBuilder ->
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): Gutters = { cssBuilder: CssBuilder ->
         val gutter = thisRef.asDynamic()[property.name] as (dynamic) -> (dynamic)
 
-        buildCssBuilder(CSSBuilder(), gutter.invoke(cssBuilder.toDynamic()))
+        buildCssBuilder(CssBuilder(), gutter.invoke(cssBuilder.toDynamic()))
     }
 }
 
@@ -20,7 +20,7 @@ object GutterDelegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): Gutters? {
         val gutter = thisRef.asDynamic()[property.name] as ((dynamic) -> (dynamic))? ?: return null
 
-        return { cssBuilder: CSSBuilder -> buildCssBuilder(CSSBuilder(), gutter.invoke(cssBuilder.toDynamic())) }
+        return { cssBuilder: CssBuilder -> buildCssBuilder(CssBuilder(), gutter.invoke(cssBuilder.toDynamic())) }
     }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: Gutters?) {
@@ -30,31 +30,31 @@ object GutterDelegate {
         }
 
         thisRef.asDynamic()[property.name] = { jsObject: dynamic ->
-            value.invoke(buildCssBuilder(CSSBuilder(), jsObject)).toDynamic()
+            value.invoke(buildCssBuilder(CssBuilder(), jsObject)).toDynamic()
         }
     }
 }
 
 object ReadOnlyToolbarDelegate {
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): CSSBuilder
-        = buildCssBuilder(CSSBuilder(), thisRef.asDynamic()[property.name])
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): CssBuilder
+        = buildCssBuilder(CssBuilder(), thisRef.asDynamic()[property.name])
 }
 
 object ToolbarDelegate {
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): CSSBuilder?
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): CssBuilder?
         = if (Object.keys(thisRef.asDynamic()[property.name] as Any).isEmpty())
               null
           else
-              buildCssBuilder(CSSBuilder(), thisRef.asDynamic()[property.name])
+              buildCssBuilder(CssBuilder(), thisRef.asDynamic()[property.name])
 
-    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: CSSBuilder?) {
+    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: CssBuilder?) {
         thisRef.asDynamic()[property.name] = value?.toDynamic()
     }
 }
 
-private fun CSSBuilder.toDynamic(): dynamic = js {
+private fun CssBuilder.toDynamic(): dynamic = js {
     declarations.forEach { (key, value) ->
-        if (value is CSSBuilder) {
+        if (value is CssBuilder) {
             this[key] = value.toDynamic()
         } else {
             this[key] = value
@@ -64,7 +64,7 @@ private fun CSSBuilder.toDynamic(): dynamic = js {
 
 
 
-private fun buildCssBuilder(cssBuilder: CSSBuilder, jsObject: dynamic): CSSBuilder
+private fun buildCssBuilder(cssBuilder: CssBuilder, jsObject: dynamic): CssBuilder
     = cssBuilder.apply {
         Object.keys(jsObject as Any).toList().forEach { key: String ->
             when (jsObject[key]) {

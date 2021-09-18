@@ -13,11 +13,11 @@ import materialui.styles.palette.options.primary
 import materialui.styles.themeprovider.themeProvider
 import react.RBuilder
 import react.RComponent
-import react.RProps
-import react.RState
+import react.PropsWithChildren
+import react.State
 import react.dom.*
 
-class App : RComponent<RProps, RState>() {
+class App : RComponent<PropsWithChildren, State>() {
     override fun RBuilder.render() {
         themeProvider(theme) {
             header {
