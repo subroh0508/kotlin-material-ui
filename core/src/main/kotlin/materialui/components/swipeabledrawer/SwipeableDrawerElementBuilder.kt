@@ -9,7 +9,7 @@ import materialui.components.getValue
 import materialui.components.setValue
 import org.w3c.dom.events.Event
 import react.ComponentType
-import react.RProps
+import react.PropsWithChildren
 
 class SwipeableDrawerElementBuilder internal constructor(
     type: ComponentType<SwipeableDrawerProps>,
@@ -23,7 +23,7 @@ class SwipeableDrawerElementBuilder internal constructor(
     var Tag.hysteresis: Number? by materialProps
     var Tag.minFlingVelocity: Number? by materialProps
     var Tag.onOpen: ((Event) -> Unit)? by materialProps
-    var Tag.SwipeAreaProps: RProps? by materialProps
+    var Tag.SwipeAreaProps: PropsWithChildren? by materialProps
     var Tag.swipeAreaWidth: Number? by materialProps
 
     fun Tag.swipeAreaProps(block: DIV.() -> Unit) {
@@ -34,6 +34,6 @@ class SwipeableDrawerElementBuilder internal constructor(
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        SwipeAreaProps = props as RProps
+        SwipeAreaProps = props as PropsWithChildren
     }
 }

@@ -11,7 +11,7 @@ import materialui.components.typography.typography
 import materialui.styles.muitheme.MuiTheme
 import react.ComponentType
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 import react.ReactElement
 
 class ListItemTextElementBuilder internal constructor(
@@ -25,9 +25,9 @@ class ListItemTextElementBuilder internal constructor(
     var Tag.disableTypography: Boolean? by materialProps
     var Tag.inset: Boolean? by materialProps
     var Tag.primary: ReactElement? by materialProps
-    var Tag.primaryTypographyProps: RProps? by materialProps
+    var Tag.primaryTypographyProps: PropsWithChildren? by materialProps
     var Tag.secondary: ReactElement? by materialProps
-    var Tag.secondaryTypographyProps: RProps? by materialProps
+    var Tag.secondaryTypographyProps: PropsWithChildren? by materialProps
     var Tag.theme: MuiTheme? by materialProps
 
     fun Tag.primary(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) { primary = RBuilder().typography(block = block) }

@@ -9,7 +9,7 @@ import materialui.components.tabs.enums.TabsStyle
 import materialui.styles.muitheme.MuiTheme
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
 external interface TabsProps : StandardProps {
     var action: ((TabsActions) -> Unit)?
@@ -22,7 +22,7 @@ external interface TabsProps : StandardProps {
     var scrollable: Boolean?
     var ScrollButtonComponent: dynamic
     var scrollButtons: String?
-    var TabIndicatorProps: RProps?
+    var TabIndicatorProps: PropsWithChildren?
     var textColor: String?
     var theme: MuiTheme?
     var value: Any?

@@ -1,8 +1,8 @@
 package demo.components.appsearch
 
-import react.RProps
+import react.PropsWithChildren
 
-external interface AppSearchProps : RProps {
+external interface AppSearchProps : PropsWithChildren {
     val classes: dynamic
 }
 

@@ -13,7 +13,7 @@ import materialui.reacttransiton.RTransitionProps
 import react.Component
 import react.ComponentType
 import react.ComponentClass
-import react.RProps
+import react.PropsWithChildren
 import kotlin.reflect.KClass
 
 class StepContentElementBuilder internal constructor(
@@ -33,7 +33,7 @@ class StepContentElementBuilder internal constructor(
     var Tag.transitionDuration: Any? by materialProps
     var Tag.TransitionProps: RTransitionProps? by materialProps
 
-    fun <P: RProps, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
         materialProps.TransitionComponent = kClass.js as ComponentClass<P>

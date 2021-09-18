@@ -7,13 +7,13 @@ import materialui.MobileStepper
 import materialui.components.paper.PaperProps
 import materialui.components.paper.enums.PaperStyle
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 import react.ReactElement
 
 external interface MobileStepperProps : PaperProps {
     var activeStep: Number?
     var backButton: ReactElement?
-    var LinearProgressProps: RProps?
+    var LinearProgressProps: PropsWithChildren?
     var nextButton: ReactElement?
     var position: String?
     var steps: Number?

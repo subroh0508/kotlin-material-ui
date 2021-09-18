@@ -23,7 +23,7 @@ open class ModalElementBuilder<Props: ModalProps>(
         classes(classMap.toList())
     }
 
-    var Tag.BackdropProps: RProps? by materialProps
+    var Tag.BackdropProps: PropsWithChildren? by materialProps
     var Tag.disableAutoFocus: Boolean? by materialProps
     var Tag.disableBackdropClick: Boolean? by materialProps
     var Tag.disableEnforceFocus: Boolean? by materialProps
@@ -38,7 +38,7 @@ open class ModalElementBuilder<Props: ModalProps>(
     var Tag.onRendered: (() -> Unit)? by materialProps
     var Tag.open: Boolean? by materialProps
 
-    fun <P : RProps, C : Component<P, *>> Tag.backdropComponent(kClass: KClass<C>) {
+    fun <P : PropsWithChildren, C : Component<P, *>> Tag.backdropComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
         materialProps.BackdropComponent = kClass.js as ComponentClass<P>
@@ -47,7 +47,7 @@ open class ModalElementBuilder<Props: ModalProps>(
     fun Tag.backdropProps(block: BackdropElementBuilder.() -> Unit) {
         BackdropProps = RBuilder().backdrop(block = block).props
     }
-    fun <P: RProps> Tag.backdropProps(block: P.() -> Unit) { BackdropProps = jsObject(block) }
+    fun <P: PropsWithChildren> Tag.backdropProps(block: P.() -> Unit) { BackdropProps = jsObject(block) }
     fun Tag.container(node: Node) { materialProps.container = node }
     fun Tag.container(htmlElement: HTMLElement) { materialProps.container = htmlElement }
     fun Tag.container(block: RBuilder.() -> Unit) { materialProps.container = buildElement(block) }

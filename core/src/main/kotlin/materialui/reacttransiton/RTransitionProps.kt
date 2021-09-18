@@ -1,11 +1,11 @@
 package materialui.reacttransiton
 
 import org.w3c.dom.events.Event
-import react.RProps
+import react.PropsWithChildren
 import react.ReactElement
 import kotlin.reflect.KProperty
 
-external interface RTransitionProps : RProps, RTransitionHandlerProps {
+external interface RTransitionProps : PropsWithChildren, RTransitionHandlerProps {
     var `in`: Boolean?
     var mountOnEnter: Boolean?
     var unmountOnExit: Boolean?
@@ -16,7 +16,7 @@ external interface RTransitionProps : RProps, RTransitionHandlerProps {
     var addEndListener: ((ReactElement, (Event) -> Unit) -> Unit)?
 }
 
-external interface RTransitionHandlerProps : RProps {
+external interface RTransitionHandlerProps : PropsWithChildren {
     var onEnter: ((ReactElement, Boolean) -> Unit)?
     var onEntering: ((ReactElement, Boolean) -> Unit)?
     var onEntered: ((ReactElement, Boolean) -> Unit)?

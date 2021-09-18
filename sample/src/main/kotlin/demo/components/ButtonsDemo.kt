@@ -10,14 +10,14 @@ import materialui.styles.muitheme.spacing
 import materialui.styles.withStyles
 import react.RBuilder
 import react.RComponent
-import react.RProps
+import react.PropsWithChildren
 import react.RState
 import react.dom.*
 import styled.css
 import styled.styledDiv
 import styled.styledH1
 
-class ButtonsDemo : RComponent<RProps, RState>() {
+class ButtonsDemo : RComponent<PropsWithChildren, RState>() {
     override fun RBuilder.render() {
         val buttonStyle = props.asDynamic()["classes"]["button"] as String
         val inputStyle = props.asDynamic()["classes"]["input"] as String

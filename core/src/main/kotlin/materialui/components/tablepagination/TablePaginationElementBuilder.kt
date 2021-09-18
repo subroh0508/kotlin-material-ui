@@ -28,19 +28,19 @@ class TablePaginationElementBuilder<T: Tag> internal constructor(
         classes(classMap.toList())
     }
 
-    var Tag.backIconButtonProps: RProps? by materialProps
+    var Tag.backIconButtonProps: PropsWithChildren? by materialProps
     var Tag.count: Int? by materialProps
     var Tag.labelDisplayedRows: ((LabelDisplayedRows) -> ReactElement)? by materialProps
     var Tag.labelRowsPerPage: ReactElement? by materialProps
-    var Tag.nextIconButtonProps: RProps? by materialProps
+    var Tag.nextIconButtonProps: PropsWithChildren? by materialProps
     var Tag.onChangePage: ((Event, Int) -> Unit)? by materialProps
     var Tag.onChangeRowsPerPage: ((Event) -> Unit)? by materialProps
     var Tag.page: Int? by materialProps
     var Tag.rowsPerPage: Int? by materialProps
     var Tag.rowsPerPageOptions: Array<Int>? by materialProps
-    var Tag.SelectProps: RProps? by materialProps
+    var Tag.SelectProps: PropsWithChildren? by materialProps
 
-    fun <P: RProps, C: Component<P, *>> Tag.actionsComponent(kClass: KClass<C>) {
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.actionsComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
         materialProps.ActionsComponent = kClass.js as ComponentClass<P>

@@ -8,12 +8,12 @@ import materialui.components.tablecell.TableCellProps
 import materialui.components.tablepagination.enums.TablePaginationStyle
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 import react.ReactElement
 
 external interface TablePaginationProps : TableCellProps {
     var ActionsComponent: dynamic
-    var backIconButtonProps: RProps?
+    var backIconButtonProps: PropsWithChildren?
     var count: Int?
     var labelDisplayedRows: ((LabelDisplayedRows) -> ReactElement)?
     var labelRowsPerPage: ReactElement?

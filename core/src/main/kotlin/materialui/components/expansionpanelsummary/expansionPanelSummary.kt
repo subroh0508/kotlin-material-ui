@@ -7,13 +7,13 @@ import materialui.ExpansionPanelSummary
 import materialui.components.buttonbase.ButtonBaseProps
 import materialui.components.expansionpanelsummary.enums.ExpansionPanelSummaryStyle
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 import react.ReactElement
 
 external interface ExpansionPanelSummaryProps : ButtonBaseProps {
     var expanded: Boolean?
     var expandIcon: ReactElement?
-    var IconButtonProps: RProps?
+    var IconButtonProps: PropsWithChildren?
 }
 
 fun RBuilder.expansionPanelSummary(vararg classMap: Pair<ExpansionPanelSummaryStyle, String>, block: ExpansionPanelSummaryElementBuilder<DIV>.() -> Unit)

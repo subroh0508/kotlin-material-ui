@@ -4,7 +4,7 @@ import kotlinext.js.jsObject
 import materialui.components.iconbutton.IconButtonProps
 import materialui.pickers.components.ExportedArrowSwitcherProps
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 import react.buildElement
 
 interface ArrowSwitcherElement<P: ExportedArrowSwitcherProps> {

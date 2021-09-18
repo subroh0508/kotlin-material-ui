@@ -1,8 +1,8 @@
 package materialui.pickers.components
 
-import react.RProps
+import react.PropsWithChildren
 
-external interface DateValidationProps : RProps {
+external interface DateValidationProps : PropsWithChildren {
     var invalidDateMessage: dynamic
     var minDateMessage: dynamic
     var maxDateMessage: dynamic

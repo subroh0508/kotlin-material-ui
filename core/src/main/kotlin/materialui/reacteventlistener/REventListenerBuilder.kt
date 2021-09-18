@@ -3,7 +3,7 @@ package materialui.reacteventlistener
 import kotlinext.js.jsObject
 import react.*
 
-abstract class REventListenerBuilder<Props: RProps> internal constructor(
+abstract class REventListenerBuilder<Props: PropsWithChildren> internal constructor(
     val type: ComponentType<Props>,
     protected val props: Props = jsObject { }
 ) : RBuilderImpl() {

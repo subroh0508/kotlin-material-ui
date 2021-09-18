@@ -1,8 +1,8 @@
 package materialui.pickers.components
 
-import react.RProps
+import react.PropsWithChildren
 
-external interface TimeValidationProps : RProps {
+external interface TimeValidationProps : PropsWithChildren {
     var minTime: dynamic
     var maxTime: dynamic
     var shouldDisableTime: ((Number, String) -> Boolean)?

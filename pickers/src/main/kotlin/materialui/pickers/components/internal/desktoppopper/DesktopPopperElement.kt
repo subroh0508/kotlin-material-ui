@@ -10,14 +10,14 @@ interface DesktopPopperElement<Props: DesktopPopperWrapperProps> {
     fun Props.PopperProps(block: PopperProps.() -> Unit)
 
     @Suppress("FunctionName")
-    fun <P: RProps, C: Component<P, *>> Props.TransitionComponent(kClass: KClass<C>)
+    fun <P: PropsWithChildren, C: Component<P, *>> Props.TransitionComponent(kClass: KClass<C>)
     @Suppress("FunctionName")
-    fun <P: RProps> Props.TransitionComponent(functionComponent: FunctionComponent<P>)
+    fun <P: PropsWithChildren> Props.TransitionComponent(functionComponent: FunctionComponent<P>)
 }
 
 internal class DesktopPopperDelegate<Props: DesktopPopperWrapperProps> : DesktopPopperElement<Props> {
     override fun Props.PopperProps(block: PopperProps.() -> Unit) { PopperProps = jsObject(block) }
 
-    override fun <P: RProps, C: Component<P, *>> Props.TransitionComponent(kClass: KClass<C>) { TransitionComponent = kClass.react }
-    override fun <P: RProps> Props.TransitionComponent(functionComponent: FunctionComponent<P>) { TransitionComponent = functionComponent }
+    override fun <P: PropsWithChildren, C: Component<P, *>> Props.TransitionComponent(kClass: KClass<C>) { TransitionComponent = kClass.react }
+    override fun <P: PropsWithChildren> Props.TransitionComponent(functionComponent: FunctionComponent<P>) { TransitionComponent = functionComponent }
 }

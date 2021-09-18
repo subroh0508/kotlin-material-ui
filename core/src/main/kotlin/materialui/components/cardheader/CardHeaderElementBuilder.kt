@@ -26,9 +26,9 @@ class CardHeaderElementBuilder<T: Tag> internal constructor(
     var Tag.avatar: ReactElement? by materialProps
     var Tag.disableTypography: Boolean? by materialProps
     var Tag.subheader: ReactElement? by materialProps
-    var Tag.subheaderTypographyProps: RProps? by materialProps
+    var Tag.subheaderTypographyProps: PropsWithChildren? by materialProps
     var Tag.title: ReactElement? by materialProps
-    var Tag.titleTypographyProps: RProps? by materialProps
+    var Tag.titleTypographyProps: PropsWithChildren? by materialProps
 
     fun Tag.action(block: RBuilder.() -> Unit) { action = buildElement(block) }
     fun Tag.avatar(block: RBuilder.() -> Unit) { avatar = buildElement(block) }

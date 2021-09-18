@@ -1,8 +1,8 @@
 package demo.components.header
 
-import react.RProps
+import react.PropsWithChildren
 
-external interface HeaderProps : RProps {
+external interface HeaderProps : PropsWithChildren {
     val classes: dynamic
 }
 

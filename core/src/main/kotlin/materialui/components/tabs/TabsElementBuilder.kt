@@ -29,14 +29,14 @@ class TabsElementBuilder<T: Tag> internal constructor(
     @Deprecated("Instead, use the `variant=\"scrollable\"` property.")
     var Tag.scrollable: Boolean? by materialProps
     var Tag.scrollButtons: TabsScrollButtons? by materialProps
-    var Tag.TabIndicatorProps: RProps? by materialProps
+    var Tag.TabIndicatorProps: PropsWithChildren? by materialProps
     var Tag.textColor: TabsTextColor? by materialProps
     var Tag.theme: MuiTheme? by materialProps
     var Tag.value: Any? by materialProps
     var Tag.variant: TabsVariant? by materialProps
 
     fun Tag.action(block: (TabsActions) -> Unit) { action = block }
-    fun <P: RProps, C: Component<P, *>> Tag.scrollButtonComponent(kClass: KClass<C>) {
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.scrollButtonComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
         materialProps.ScrollButtonComponent = kClass.js as ComponentClass<P>

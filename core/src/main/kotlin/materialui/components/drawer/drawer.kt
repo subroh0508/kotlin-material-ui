@@ -6,7 +6,7 @@ import materialui.components.drawer.enums.DrawerStyle
 import materialui.styles.muitheme.MuiTheme
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.PropsWithChildren
 
 external interface DrawerProps : StandardProps {
     var anchor: String?

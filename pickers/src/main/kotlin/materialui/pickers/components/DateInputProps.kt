@@ -4,10 +4,10 @@ import materialui.components.iconbutton.IconButtonProps
 import materialui.components.input.InputProps
 import materialui.components.inputadornment.InputAdornmentProps
 import materialui.components.textfield.TextFieldProps
-import react.RProps
+import react.PropsWithChildren
 import kotlin.js.RegExp
 
-interface DateInputProps : RProps {
+interface DateInputProps : PropsWithChildren {
     var open: Boolean?
     var rawValue: dynamic
     var parsedDateValue: dynamic
