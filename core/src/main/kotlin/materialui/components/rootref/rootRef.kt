@@ -4,7 +4,7 @@ import materialui.RootRef
 import react.*
 
 external interface RootRefProps : RProps {
-    var rootRef: Ref?
+    var rootRef: Ref<*>?
 }
 
 fun RBuilder.rootRef(block: RootRefElementBuilder.() -> Unit)

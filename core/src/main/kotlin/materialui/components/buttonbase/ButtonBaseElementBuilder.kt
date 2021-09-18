@@ -22,7 +22,7 @@ open class ButtonBaseElementBuilder<T: Tag, Props: ButtonBaseProps>(
         classes(classMap.map { it.first to it.second })
     }
 
-    var Tag.buttonRef: Ref? by materialProps
+    var Tag.buttonRef: Ref<*>? by materialProps
     var Tag.centerRipple: Boolean? by materialProps
     var Tag.disabled: Boolean? by materialProps
     var Tag.disableRipple: Boolean? by materialProps

@@ -17,7 +17,7 @@ external interface InputBaseProps : StandardProps {
     var id: String?
     var inputComponent: dynamic
     var inputProps: PropsWithChildren?
-    var inputRef: Ref?
+    var inputRef: Ref<*>?
     var margin: String?
     var muiFormControl: Any?
     var multiline: Boolean?

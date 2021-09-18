@@ -15,7 +15,7 @@ external interface SwitchBaseProps : StandardProps {
     var icon: ReactElement?
     var id: String?
     var inputProps: PropsWithChildren?
-    var inputRef: Ref?
+    var inputRef: Ref<*>?
     var name: String?
     var readOnly: Boolean?
     var required: Boolean?

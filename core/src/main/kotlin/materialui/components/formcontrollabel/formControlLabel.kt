@@ -10,7 +10,7 @@ external interface FormControlLabelProps : StandardProps {
     var checked: Any?
     var control: ReactElement?
     var disabled: Boolean?
-    var inputRef: Ref?
+    var inputRef: Ref<*>?
     var label: ReactElement?
     var labelPlacement: String?
     var name: String?

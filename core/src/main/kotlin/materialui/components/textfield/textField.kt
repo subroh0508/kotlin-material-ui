@@ -21,7 +21,7 @@ external interface TextFieldProps : FormControlProps {
     var InputLabelProps: InputLabelProps?
     var InputProps: InputProps?
     var inputProps: Any?
-    var inputRef: Ref?
+    var inputRef: Ref<*>?
     var label: ReactElement?
     var multiline: Boolean?
     var name: String?

@@ -40,7 +40,7 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
     var Tag.InputLabelProps: PropsWithChildren? by materialProps
     var Tag.InputProps: PropsWithChildren? by materialProps
     var Tag.inputProps: PropsWithChildren? by materialProps
-    var Tag.inputRef: Ref? by materialProps
+    var Tag.inputRef: Ref<*>? by materialProps
     var Tag.label: ReactElement? by materialProps
     var Tag.multiline: Boolean? by materialProps
     var Tag.name: String? by materialProps

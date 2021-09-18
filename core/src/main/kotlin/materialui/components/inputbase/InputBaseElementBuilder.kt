@@ -36,7 +36,7 @@ open class InputBaseElementBuilder<Props: InputBaseProps> internal constructor(
     var Tag.fullWidth: Boolean? by materialProps
     var Tag.id: String? by materialProps
     var Tag.inputProps: PropsWithChildren? by materialProps
-    var Tag.inputRef: Ref? by materialProps
+    var Tag.inputRef: Ref<*>? by materialProps
     var Tag.margin: InputMargin? by materialProps
     var Tag.multiline: Boolean? by materialProps
     var Tag.name: String? by materialProps

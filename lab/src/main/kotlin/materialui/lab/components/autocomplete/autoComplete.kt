@@ -61,7 +61,7 @@ external interface AutocompleteRenderInputParams {
 }
 
 external interface AutocompleteInputProps: RProps{
-    val ref: Ref
+    val ref: Ref<*>
     var className: String
     var startAdornment: ReactElement
     var endAdornment: ReactElement

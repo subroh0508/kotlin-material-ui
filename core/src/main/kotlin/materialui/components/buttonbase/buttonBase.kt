@@ -12,7 +12,7 @@ import react.PropsWithChildren
 import react.Ref
 
 external interface ButtonBaseProps : StandardProps {
-    var buttonRef: Ref?
+    var buttonRef: Ref<*>?
     var centerRipple: Boolean?
     var disabled: Boolean?
     var disableRipple: Boolean?
