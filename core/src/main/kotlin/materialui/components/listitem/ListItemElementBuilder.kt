@@ -35,7 +35,7 @@ open class ListItemElementBuilder<T: Tag, Props: ListItemProps> internal constru
     var Tag.divider: Boolean? by materialProps
     var Tag.selected: Boolean? by materialProps
 
-    fun <P: RProps, C: Component<P, *>> Tag.containerComponent(kClass: KClass<C>) {
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.containerComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
         materialProps.ContainerComponent = kClass.js as ComponentClass<P>

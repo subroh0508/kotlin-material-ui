@@ -53,7 +53,7 @@ class TooltipElementBuilder internal constructor(
         PopperProps = RBuilder().popper(block).props
     }
     fun TooltipProps.title(block: RBuilder.() -> Unit) { title = buildElement(block) }
-    fun <P: RProps, C: Component<P, *>> TooltipProps.transitionComponent(kClass: KClass<C>) {
+    fun <P: PropsWithChildren, C: Component<P, *>> TooltipProps.transitionComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
         TransitionComponent = kClass.js as ComponentClass<P>

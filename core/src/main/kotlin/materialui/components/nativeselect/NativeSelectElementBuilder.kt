@@ -18,13 +18,13 @@ class NativeSelectElementBuilder internal constructor(
         classes(classMap.toList())
     }
 
-    var Tag.iconComponent: RComponent<RProps, RState>
+    var Tag.iconComponent: RComponent<PropsWithChildren, RState>
         get() = @Suppress("UnsafeCastFromDynamic") domProps.asDynamic()["IconComponent"]
         set(value) { setProp("IconComponent", value) }
     var Tag.input: ReactElement? by materialProps
     var Tag.variant: NativeSelectVariant? by materialProps
 
-    fun <P : RProps, C : Component<P, *>> Tag.iconComponent(kClass: KClass<C>) {
+    fun <P : PropsWithChildren, C : Component<P, *>> Tag.iconComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
         materialProps.IconComponent = kClass.js as ComponentClass<P>

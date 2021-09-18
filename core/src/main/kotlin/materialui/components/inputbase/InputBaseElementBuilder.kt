@@ -59,7 +59,7 @@ open class InputBaseElementBuilder<Props: InputBaseProps> internal constructor(
     fun Tag.endAdornment(block: InputAdornmentElementBuilder<DIV>.() -> Unit) {
         endAdornment = RBuilder().inputAdornment(block = block)
     }
-    fun <P: RProps, C: Component<P, *>> Tag.inputComponent(kClass: KClass<C>) {
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.inputComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
         materialProps.inputComponent = kClass.js as ComponentClass<P>

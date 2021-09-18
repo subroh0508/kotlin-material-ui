@@ -71,7 +71,7 @@ class SliderElementBuilder<T: Tag> internal constructor(
     @Suppress("FunctionName")
     fun Tag.ThumbComponent(tagName: String) { ThumbComponent = tagName }
     @Suppress("FunctionName")
-    fun <P: RProps, C: Component<P, *>> Tag.ThumbComponent(kClass: KClass<C>) { ThumbComponent = kClass.react }
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.ThumbComponent(kClass: KClass<C>) { ThumbComponent = kClass.react }
     @Suppress("FunctionName")
     fun <P: RProps> Tag.ThumbComponent(functionComponent: FunctionComponent<P>) { ThumbComponent = functionComponent }
 
@@ -84,7 +84,7 @@ class SliderElementBuilder<T: Tag> internal constructor(
     @Suppress("FunctionName")
     fun Tag.ValueLabelComponent(tagName: String) { ValueLabelComponent = tagName }
     @Suppress("FunctionName")
-    fun <P: RProps, C: Component<P, *>> Tag.ValueLabelComponent(kClass: KClass<C>) { ValueLabelComponent = kClass.react }
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.ValueLabelComponent(kClass: KClass<C>) { ValueLabelComponent = kClass.react }
     @Suppress("FunctionName")
     fun <P: RProps> Tag.ValueLabelComponent(functionComponent: FunctionComponent<P>) { ValueLabelComponent = functionComponent }
 

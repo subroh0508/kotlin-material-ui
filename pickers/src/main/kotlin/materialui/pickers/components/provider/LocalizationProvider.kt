@@ -12,7 +12,7 @@ private external val LocalizationProviderModule: dynamic
 @Suppress("UnsafeCastFromDynamic")
 private val LocalizationProviderComponent: FunctionComponent<LocalizationProviderProps> = LocalizationProviderModule.LocalizationProvider
 
-external interface LocalizationProviderProps : RProps, DateAdapterProvider
+external interface LocalizationProviderProps : PropsWithChildren, DateAdapterProvider
 
 @Suppress("FunctionName")
 fun RBuilder.LocalizationProvider(block: LocalizationProviderBuilder.() -> Unit) =

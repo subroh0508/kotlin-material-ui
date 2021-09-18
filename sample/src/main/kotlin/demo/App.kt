@@ -17,7 +17,7 @@ import react.RProps
 import react.RState
 import react.dom.*
 
-class App : RComponent<RProps, RState>() {
+class App : RComponent<PropsWithChildren, RState>() {
     override fun RBuilder.render() {
         themeProvider(theme) {
             header {

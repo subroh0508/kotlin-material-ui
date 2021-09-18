@@ -40,7 +40,7 @@ fun <P: RProps> withStyles(
 @Deprecated(
     "Use withStyles to create a reusable ComponentClass instead, and call that to render the styled component."
 )
-fun <P : RProps, C : Component<P, *>> RBuilder.childWithStyles(
+fun <P : PropsWithChildren, C : Component<P, *>> RBuilder.childWithStyles(
     klazz: KClass<C>,
     styleSet: StylesBuilder<P>.() -> Unit,
     withTheme: Boolean = false,

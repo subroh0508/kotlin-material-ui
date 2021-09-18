@@ -34,7 +34,7 @@ class DialogElementBuilder internal constructor(
     var Tag.scroll: DialogScroll? by materialProps
     var Tag.TransitionProps: PropsWithChildren? by materialProps
 
-    fun <P: RProps, C: Component<P, *>> Tag.paperComponent(kClass: KClass<C>) {
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.paperComponent(kClass: KClass<C>) {
         materialProps.PaperComponent = kClass.react
     }
 
@@ -43,17 +43,18 @@ class DialogElementBuilder internal constructor(
     }
 
     fun Tag.paperComponent(tagName: String) { materialProps.PaperComponent = tagName }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun Tag.paperProps(block: PaperElementBuilder<DIV, PaperProps>.() -> Unit) {
-        PaperProps = paperElement(block = block).props
+        PaperProps = paperElement(block = block).props as PropsWithChildren
     }
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
     fun <T: Tag, P: PaperProps> Tag.paperProps(factory: (TagConsumer<Unit>) -> T, block: PaperElementBuilder<T, P>.() -> Unit) {
-        PaperProps = RBuilder().paper(factory = factory, block = block).props
+        PaperProps = paperElement(factory = factory, block = block).props as PropsWithChildren
     }
     fun Tag.transitionDuration(duration: Number) { materialProps.transitionDuration = duration }
     fun Tag.transitionDuration(enter: Number? = null, exit: Number? = null) { materialProps.transitionDuration = js { this["enter"] = enter; this["end"] = exit } }
-    fun <P: RProps, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
-        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        @Suppress("UNCHECKED_CAST")
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
+        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE", "UNCHECKED_CAST")
         materialProps.TransitionComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.transitionComponent(tagName: String) { materialProps.TransitionComponent = tagName }

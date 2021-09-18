@@ -60,7 +60,7 @@ class SnackbarElementBuilder internal constructor(
         ContentProps = RBuilder().snackbarContent(factory = factory, block = block).props
     }
     fun Tag.message(block: RBuilder.() -> Unit) { message = buildElement(block) }
-    fun <P: RProps, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
+    fun <P: PropsWithChildren, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
         materialProps.TransitionComponent = kClass.js as ComponentClass<P>
