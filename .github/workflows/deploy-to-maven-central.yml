@@ -31,7 +31,7 @@ jobs:
       - name: Configure gradle.properties
         run: |
           echo "${{ secrets.SIGNING_AND_SONATYPE_SECRETS }}" > secrets.gpg
-          gpg -d --passphrase "${{ secrets.SIGNING_AND_SONATYPE_SECRETS }}" --batch secrets.gpg >> gradle.properties
+          gpg -d --passphrase "${{ secrets.GPG_PASSPHRASE }}" --batch secrets.gpg >> gradle.properties
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           SIGNING_AND_SONATYPE_SECRETS: ${{ secrets.SIGNING_AND_SONATYPE_SECRETS }}
