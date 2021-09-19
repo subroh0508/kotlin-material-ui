@@ -28,17 +28,21 @@ kotlin {
     }
 
     sourceSets {
-        val main by getting {
+        named("main") {
             dependencies {
-                implementation(project(":core"))
-                implementation(project(":lab"))
+                val wrappers = Libraries.JsWrappers(kotlinVersion)
+
+                implementation(wrappers.react)
+                implementation(wrappers.reactDom)
+                // implementation(project(":core"))
+                // implementation(project(":lab"))
                 // implementation(project(":pickers"))
                 // implementation(project(":pickers:date-io:date-fns"))
-                implementation(Libraries.JsWrappers(kotlinVersion).styled)
+                // implementation(Libraries.JsWrappers(kotlinVersion).styled)
             }
         }
 
-        val test by getting {
+        named("test") {
             dependencies {
                 implementation(kotlinTestJs)
             }
