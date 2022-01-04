@@ -1,12 +1,13 @@
 @Suppress("unused")
 object Libraries {
     class JsWrappers(kotlinVersion: String) {
-        private val wrappersBuild = "pre.246-kotlin-$kotlinVersion"
+        private val wrappersBuild = "pre.282-kotlin-$kotlinVersion"
         private val prefix = "org.jetbrains.kotlin-wrappers:kotlin"
 
         private val reactVersion = "${Npm.react}-$wrappersBuild"
         val react = "$prefix-react:$reactVersion"
         val reactDom = "$prefix-react-dom:$reactVersion"
+        val reactDomLegacy = "$prefix-react-dom-legacy:$reactVersion"
 
         private val htmlVersion = "0.7.3"
         val html = "org.jetbrains.kotlinx:kotlinx-html-js:$htmlVersion"
@@ -22,7 +23,7 @@ object Libraries {
     }
 
     object Npm {
-        const val styledComponent = "5.3.1"
+        const val styledComponent = "5.3.3"
         const val inlineStyledPrefixer = "^5.1.2"
         const val react = "17.0.2"
 
