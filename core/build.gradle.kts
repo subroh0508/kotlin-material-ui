@@ -11,6 +11,7 @@ dependencies {
     api(wrappers.html)
     api(wrappers.react)
     api(wrappers.reactDom)
+    api(wrappers.reactDomLegacy)
     api(wrappers.css)
     api(wrappers.extensions)
 
