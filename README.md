@@ -1,3 +1,5 @@
+⚠️️ This repository is UNMAINTAINED. I recommend using [kotlin-mui](https://github.com/JetBrains/kotlin-wrappers/tree/master/kotlin-mui) by JetBrains instead. ⚠️
+
 # kotlin-material-ui
 Kotlin Wrapper Library of Material-UI
 
